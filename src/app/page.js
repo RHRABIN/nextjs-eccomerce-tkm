@@ -1,10 +1,10 @@
-import ThemeConfig from "@/utilities/themeConfig/ThemeConfig";
+import Advertise from "@/components/home/Advertise";
 
 export default function Home() {
 
   return (
     <>
-      <ThemeConfig />
+      <Advertise />
     </>
   )
 }

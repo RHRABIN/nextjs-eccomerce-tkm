@@ -4,6 +4,7 @@ import TopNav from '@/shared/topNav/TopNav'
 import Header from '@/shared/header/Header'
 import Navbar from '@/shared/navbar/Navbar'
 import Footer from '@/shared/footer/Footer'
+import ThemeConfig from "@/utilities/themeConfig/ThemeConfig";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+      <ThemeConfig />
         <TopNav />
         <Header />
         <Navbar />
