@@ -1,4 +1,5 @@
-
+import { BsBag } from "react-icons/bs";
+import Link from 'next/link';
 import React from 'react';
 import { IoIosSearch } from "react-icons/io";
 
@@ -16,8 +17,12 @@ const Header = () => {
                 <div className='w-1/3'>
                     <h1 className='text-4xl font-semibold text-center'>Logo Here</h1>
                 </div>
-                <div className='w-1/3'>
-
+                <div className='w-1/3 flex justify-end items-center gap-5'>
+                    <Link href='/login'>Login</Link>
+                    <button className="relative">
+                        <BsBag />
+                        <span className="absolute bottom-2 left-2 bg-red-500 h-5 w-5 rounded-full text-white flex justify-center items-center"><small>0</small></span>
+                    </button>
                 </div>
             </div>
         </div>
