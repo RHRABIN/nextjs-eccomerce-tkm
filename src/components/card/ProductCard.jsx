@@ -12,7 +12,7 @@ const ProductCard = () => {
                 <button className='uppercase text-xs bg-black px-2 py-1 text-white'>best seller</button>
                 <p className='uppercase font-semibold my-3'>AXIX-Y</p>
                 <p className='line-clamp-2 text-sm text-center'>Biome Radiating Intensifield Essence 50 ml</p>
-                <p className='text-center font-semibold mt-3 group-hover:opacity-0'><span className='font-[auto]'>৳</span>1500</p>
+                <p className='text-center font-semibold mt-3 group-hover:mt-5 group-hover:opacity-0'><span className='font-[auto]'>৳</span>1500</p>
             </div>
 
             <div className='flex w-full px-5 items-center justify-between mt-5 absolute bottom-3 opacity-0 group-hover:opacity-100'>
