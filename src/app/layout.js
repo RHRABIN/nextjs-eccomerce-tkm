@@ -4,6 +4,8 @@ import TopNav from '@/shared/topNav/TopNav'
 import Header from '@/shared/header/Header'
 import Navbar from '@/shared/navbar/Navbar'
 import Footer from '@/shared/footer/Footer'
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 import ThemeConfig from "@/utilities/themeConfig/ThemeConfig";
 
 const inter = Inter({ subsets: ['latin'] })
