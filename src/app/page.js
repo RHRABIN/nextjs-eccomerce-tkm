@@ -1,5 +1,6 @@
-import Banner from "@/components/banner/Banner";
+import Banner from "@/components/home/banner/Banner";
 import Advertise from "@/components/home/Advertise";
+import SkinCareJourney from "@/components/home/skinCare/SkinCareJourney";
 
 export default function Home() {
 
@@ -7,6 +8,7 @@ export default function Home() {
     <>
       <Advertise />
       <Banner />
+      <SkinCareJourney />
     </>
   )
 }
