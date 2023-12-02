@@ -8,6 +8,7 @@ import OurGlam from "@/components/home/ourGlam/OurGlam";
 import FollowUs from "@/components/home/followUs/FollowUs";
 import SubsCription from "@/components/home/subscription/SubsCription";
 import BrandSlider from "@/components/home/brandSlider/BrandSlider";
+import Gallery from "@/components/home/gallery/Gallery";
 
 export default function Home() {
 
@@ -20,6 +21,7 @@ export default function Home() {
       <Curated />
       <SpfOnTheGo />
       <OurGlam />
+      <Gallery />
       <FollowUs />
       <SubsCription />
       <BrandSlider />
