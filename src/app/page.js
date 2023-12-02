@@ -3,6 +3,7 @@ import Advertise from "@/components/home/Advertise";
 import SkinCareJourney from "@/components/home/skinCare/SkinCareJourney";
 import SkinCareSpotLight from "@/components/home/skinCareSpotlight/SkinCareSpotLight";
 import Curated from "@/components/home/curated/Curated";
+import SpfOnTheGo from "@/components/home/spfOntheGo/SpfOnTheGo";
 
 export default function Home() {
 
@@ -13,6 +14,7 @@ export default function Home() {
       <SkinCareJourney />
       <SkinCareSpotLight />
       <Curated />
+      <SpfOnTheGo />
     </>
   )
 }
