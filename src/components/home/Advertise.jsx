@@ -13,12 +13,9 @@ const Advertise = () => {
                         Shop Now
                         <FaArrowRightLong />
                     </button>
-                    <button className='bg-white rounded-full absolute right-0 top-1/3'>
-                        <HiMiniXMark />
-                    </button>
+                    <AdvertiseClient />
                 </div>
             </div>
-            <AdvertiseClient/>
         </>
     );
 };

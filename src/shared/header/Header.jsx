@@ -2,6 +2,8 @@ import { BsBag } from "react-icons/bs";
 import Link from 'next/link';
 import React from 'react';
 import { IoIosSearch } from "react-icons/io";
+import Image from "next/image";
+import logo from '../../../public/assets/logo.png'
 
 const Header = () => {
 
@@ -14,9 +16,9 @@ const Header = () => {
                         <IoIosSearch className='text-dark text-2xl' />
                     </button>
                 </div>
-                <div className='w-1/3'>
-                    <h1 className='text-4xl font-semibold text-center'>Logo Here</h1>
-                </div>
+                <Link href='/' className='w-1/3 flex items-center justify-center'>
+                    <Image height={600} width={1080} className="w-80" src={logo} />
+                </Link>
                 <div className='w-1/3 flex justify-end items-center gap-5'>
                     <Link href='/login'>Login</Link>
                     <button className="relative">

@@ -15,7 +15,7 @@ const Navbar = () => {
                             <IoIosArrowDown className='text-white text-lg' />
                         </span>
                         {/* menu */}
-                        <ul className='absolute bg-secondary top-[100%] hidden group-hover:block group-hover:border-t group-hover:border-t-gray-500'>
+                        <ul className='absolute z-10 bg-secondary top-[100%] hidden group-hover:block group-hover:border-t group-hover:border-t-gray-500'>
                             <li className='border-b-gray-500 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
                                 <Link href='' className='uppercase block w-full'>Routine</Link>
                                 <IoIosArrowForward className='text-white text-lg' />

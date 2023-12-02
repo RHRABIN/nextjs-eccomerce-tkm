@@ -23,3 +23,43 @@
 .text-secondary {
     color: var(--secondary-color);
 }
+
+.border-primary {
+    border: 1px solid var(--primary-color);
+}
+
+.border-t-primary {
+    border-top: 1px solid var(--primary-color);
+}
+
+.border-b-primary {
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.border-l-primary {
+    border-left: 1px solid var(--primary-color);
+}
+
+.border-r-primary {
+    border-right: 1px solid var(--primary-color);
+}
+
+.border-secondary {
+    border: 1px solid var(--secondary-color);
+}
+
+.border-t-secondary {
+    border-top: 1px solid var(--secondary-color);
+}
+
+.border-b-secondary {
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.border-l-secondary {
+    border-left: 1px solid var(--secondary-color);
+}
+
+.border-r-secondary {
+    border-right: 1px solid var(--secondary-color);
+}
