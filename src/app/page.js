@@ -5,6 +5,7 @@ import SkinCareSpotLight from "@/components/home/skinCareSpotlight/SkinCareSpotL
 import Curated from "@/components/home/curated/Curated";
 import SpfOnTheGo from "@/components/home/spfOntheGo/SpfOnTheGo";
 import OurGlam from "@/components/home/ourGlam/OurGlam";
+import FollowUs from "@/components/home/followUs/FollowUs";
 
 export default function Home() {
 
@@ -17,6 +18,7 @@ export default function Home() {
       <Curated />
       <SpfOnTheGo />
       <OurGlam />
+      <FollowUs />
     </>
   )
 }
