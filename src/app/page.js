@@ -7,6 +7,7 @@ import SpfOnTheGo from "@/components/home/spfOntheGo/SpfOnTheGo";
 import OurGlam from "@/components/home/ourGlam/OurGlam";
 import FollowUs from "@/components/home/followUs/FollowUs";
 import SubsCription from "@/components/home/subscription/SubsCription";
+import BrandSlider from "@/components/home/brandSlider/BrandSlider";
 
 export default function Home() {
 
@@ -21,6 +22,7 @@ export default function Home() {
       <OurGlam />
       <FollowUs />
       <SubsCription />
+      <BrandSlider />
     </>
   )
 }
