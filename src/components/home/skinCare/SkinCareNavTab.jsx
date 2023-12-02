@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import wave from '../../../../public/assets/wave-border.svg'
+import ProductCard from '@/components/card/ProductCard';
 
 const SkinCareNavTab = () => {
     const [selectNav, setSelectNav] = useState('seller');
@@ -33,7 +34,13 @@ const SkinCareNavTab = () => {
             </div>
 
             {
-                selectNav === 'seller' && <p>Seller</p>
+                selectNav === 'seller' &&
+                <div className='grid grid-cols-4 mt-10 gap-5'>
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                </div>
 
             }
             {
