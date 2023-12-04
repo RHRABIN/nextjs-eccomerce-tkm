@@ -1,6 +1,7 @@
 import ProductDescription from '@/components/productDetails/ProductDescription';
 import Image from 'next/image';
 import React from 'react';
+import img from '../../../public/assets/1.webp'
 
 export const metadata = {
     title: 'Biome Radiating Intensified Essence || Korean Mall',
@@ -9,11 +10,11 @@ export const metadata = {
 
 const ProductDetailsPage = () => {
     return (
-        <div className='container mx-auto my-10 md:my20'>
+        <div className='container mx-auto my-10 md:my-20'>
             <div className='mx-4 md:mx-0'>
                 <div className='md:flex items-start gap-20'>
                     <div className='w-full md:w-1/2'>
-                        <Image height={720} width={1280} src='' />
+                        <Image className='h-auto w-full' height={720} width={1280} src={img} />
                     </div>
                     <div className='w-full md:w-1/2'>
                         <ProductDescription />
