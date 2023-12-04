@@ -3,10 +3,11 @@ import React from 'react';
 import img from '../../../public/assets/1.webp'
 import { FaRegHeart } from 'react-icons/fa6';
 import { IoIosSearch } from 'react-icons/io';
+import Link from 'next/link';
 
 const ProductCard = () => {
     return (
-        <div className='py-4 relative cursor-pointer group hover:shadow-lg hover:shadow-dark hover:scale-105 duration-500 transition'>
+        <Link href='/product-detail/axisy-biome-radiating-intensified-essence-50ml' className='py-4 relative cursor-pointer group hover:shadow-lg hover:shadow-dark hover:scale-105 duration-500 transition'>
             <Image className='w-full h-auto' width={261} height={261} src={img} />
             <div className='flex flex-col items-center justify-center w-4/5 mx-auto'>
                 <button className='uppercase text-xs bg-black px-2 py-1 text-white'>best seller</button>
@@ -24,7 +25,7 @@ const ProductCard = () => {
                     <IoIosSearch className='text-2xl' />
                 </button>
             </div>
-        </div>
+        </Link>
     );
 };
 
