@@ -3,6 +3,8 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import wave from '../../../../public/assets/wave-border.svg'
 import ProductCard from '@/components/card/ProductCard';
+import Slider from 'react-slick';
+import { productSettings } from '@/utilities/sliderSettings/productSetting';
 
 const SkinCareNavTab = () => {
     const [selectNav, setSelectNav] = useState('seller');
@@ -35,11 +37,21 @@ const SkinCareNavTab = () => {
 
             {
                 selectNav === 'seller' &&
-                <div className='grid grid-cols-4 mt-10 gap-5'>
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                <div className='py-10'>
+                    <Slider {...productSettings}>
+                        <div className='mx-10'>
+                            <ProductCard />
+                        </div>
+                        <div className='mx-10'>
+                            <ProductCard />
+                        </div>
+                        <div className='mx-10'>
+                            <ProductCard />
+                        </div>
+                        <div className='mx-10'>
+                            <ProductCard />
+                        </div>
+                    </Slider>
                 </div>
 
             }
