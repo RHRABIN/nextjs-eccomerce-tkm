@@ -9,7 +9,7 @@ const AdvertiseClient = () => {
     }
     return (
         <>
-            <button onClick={handleClose} className='bg-white rounded-full absolute right-0 top-1/3'>
+            <button onClick={handleClose} className='bg-white rounded-full absolute right-0 top-1/3 mr-4 md:mr-0'>
                 <HiMiniXMark />
             </button>
         </>
