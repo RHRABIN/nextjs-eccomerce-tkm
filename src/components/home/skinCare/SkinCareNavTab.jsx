@@ -5,6 +5,9 @@ import wave from '../../../../public/assets/wave-border.svg'
 import ProductCard from '@/components/card/ProductCard';
 import Slider from 'react-slick';
 import { productSettings } from '@/utilities/sliderSettings/productSetting';
+import img1 from '../../../../public/assets/2.webp'
+import img2 from '../../../../public/assets/4.webp'
+import img3 from '../../../../public/assets/5.webp'
 
 const SkinCareNavTab = () => {
     const [selectNav, setSelectNav] = useState('seller');
@@ -37,33 +40,53 @@ const SkinCareNavTab = () => {
 
             {
                 selectNav === 'seller' &&
-                <div className='py-10'>
-                    <Slider {...productSettings}>
-                        <div className='mx-10'>
-                            <ProductCard />
-                        </div>
-                        <div className='mx-10'>
-                            <ProductCard />
-                        </div>
-                        <div className='mx-10'>
-                            <ProductCard />
-                        </div>
-                        <div className='mx-10'>
-                            <ProductCard />
-                        </div>
-                    </Slider>
-                </div>
+                <Slider {...productSettings}>
+                    {
+                        Array(5).fill().map((_, idx) =>
+                            <div key={idx} className='px-2 py-10'>
+                                <ProductCard />
+                            </div>
+                        )
+                    }
+                </Slider>
 
             }
             {
-                selectNav === 'skin-type' && <p>skin-type</p>
+                selectNav === 'skin-type' &&
+                <Slider {...productSettings}>
+                    {
+                        Array(5).fill().map((_, idx) =>
+                            <div key={idx} className='px-2 py-10'>
+                                <ProductCard propsImg={img1} />
+                            </div>
+                        )
+                    }
+                </Slider>
             }
             {
-                selectNav === 'skin-concern' && <p>skin-concern</p>
+                selectNav === 'skin-concern' &&
+                <Slider {...productSettings}>
+                    {
+                        Array(5).fill().map((_, idx) =>
+                            <div key={idx} className='px-2 py-10'>
+                                <ProductCard propsImg={img2} />
+                            </div>
+                        )
+                    }
+                </Slider>
 
             }
             {
-                selectNav === 'routine' && <p>routine</p>
+                selectNav === 'routine' &&
+                <Slider {...productSettings}>
+                    {
+                        Array(5).fill().map((_, idx) =>
+                            <div key={idx} className='px-2 py-10'>
+                                <ProductCard propsImg={img3} />
+                            </div>
+                        )
+                    }
+                </Slider>
             }
         </div>
     );

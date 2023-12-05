@@ -5,11 +5,11 @@ import { FaRegHeart } from 'react-icons/fa6';
 import { IoIosSearch } from 'react-icons/io';
 import Link from 'next/link';
 
-const ProductCard = () => {
+const ProductCard = ({ propsImg }) => {
     return (
         <div className='py-4 relative cursor-pointer group hover:shadow-md hover:shadow-dark hover:scale-105 duration-500 transition'>
             <Link href='/product-detail/axisy-biome-radiating-intensified-essence-50ml'>
-                <Image className='w-full h-auto px-10' width={1280} height={720} src={img} />
+                <Image className='w-full h-auto px-10' width={1280} height={720} src={propsImg ? propsImg : img} />
                 <div className='flex flex-col items-center justify-center w-4/5 mx-auto'>
                     <button className='uppercase text-xs bg-black px-2 py-1 text-white'>best seller</button>
                     <p className='uppercase font-semibold my-3'>AXIX-Y</p>
