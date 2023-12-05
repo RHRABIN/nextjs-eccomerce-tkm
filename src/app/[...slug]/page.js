@@ -4,6 +4,7 @@ import React from 'react';
 import img from '../../../public/assets/1.webp'
 import MightAlsoSection from '@/components/productDetails/MightAlsoSection';
 import MoreProducts from '@/components/productDetails/MoreProducts';
+import ReviewSection from '@/components/productDetails/reviewSection';
 
 export const metadata = {
     title: 'Biome Radiating Intensified Essence || Korean Mall',
@@ -24,6 +25,7 @@ const ProductDetailsPage = () => {
                 </div>
                 <MightAlsoSection />
                 <MoreProducts />
+                <ReviewSection />
             </div>
         </div>
     );
