@@ -1,17 +1,23 @@
+'use client'
 import ProductCard from '@/components/card/ProductCard';
+import { productSettings } from '@/utilities/sliderSettings/productSetting';
 import React from 'react';
+import Slider from 'react-slick';
 
 const Curated = () => {
     return (
         <div className='container mx-auto my-10 md:my-20'>
             <div className='mx-4 md:mx-0'>
                 <h1 className='uppercase text-3xl font-semibold text-center border-dotted border-b pb-4'>NEWLY CURATED</h1>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                </div>
+                <Slider {...productSettings}>
+                    {
+                        Array(5).fill().map((_, idx) =>
+                            <div key={idx} className='px-2 py-10'>
+                                <ProductCard />
+                            </div>
+                        )
+                    }
+                </Slider>
             </div>
         </div>
     );
