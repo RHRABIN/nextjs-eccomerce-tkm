@@ -16,7 +16,7 @@ const layout = ({ children }) => {
                 <p className='text-gray-800 text-2xl mb-3'>Searched Products</p>
                 <Image className='w-fit' height={500} width={1000} src={waveImg} />
             </div>
-            <div className='mx-4 md:mx-0 flex'>
+            <div className='mx-4 md:mx-0 flex gap-6'>
                 <div className='w-1/4'>
                     <SearchSidebar />
                 </div>
