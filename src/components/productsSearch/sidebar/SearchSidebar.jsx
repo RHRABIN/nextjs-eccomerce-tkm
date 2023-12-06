@@ -1,5 +1,6 @@
 import React from 'react';
 import { MdPlayArrow } from "react-icons/md";
+import Accordion from '../accordion/Accordion';
 
 const SearchSidebar = () => {
     return (
@@ -8,7 +9,7 @@ const SearchSidebar = () => {
                 <p className='text-gray-800 font-[500] text-lg'>Filter Section</p>
                 <button className='text-primary font-semibold' type='button'>Clear All</button>
             </div>
-
+            <Accordion />
             <div className='mt-10'>
                 <p className='text-gray-800 font-[500] text-lg mb-2'>Price</p>
                 <form className='flex items-center gap-2'>
