@@ -1,3 +1,4 @@
+import AccordionClient from '@/clientSideRender/accordion/AccordionClient';
 import React from 'react';
 import { FaFacebookF, FaHeart, FaInstagram, FaPlus, FaYoutube } from 'react-icons/fa6';
 import { FiMinus } from "react-icons/fi";
@@ -57,6 +58,31 @@ const ProductDescription = () => {
             <div className='mt-5'>
                 <h3 className='text-gray-800 mb-2 font-semibold text-xl'>Ay&Me, A Microbiome Project</h3>
                 <p className='font-[300] tracking-wide leading-7'>Ay&Me is Axis-Y's Biome line with a signature blend of five different prebiotics and probiotics to improve the skin's complexion and health by strengthening the skin barrier function and maintaining oil-sebum balance. Formulated free from exfoliants or traditionally sensitizing extracts, the line's biome blend focuses on protecting the skin from external aggressors.</p>
+            </div>
+
+            <div className='mt-10'>
+                <AccordionClient title={'Activities'}>
+                    <p className='p-2 text-gray-800 font-[300] leading-8 text-sm'>Heartleaf extract(houttuynia cordata) is well known for its anti-inflammatory, soothing effect on skin.
+                        Anua only uses heartleaf ingredients that were grown and harvested in Korea.
+                        Watery texture to provide layer-able, lightweight hydration.
+                        Without any irritating substance, skin feels clarified, skin tone appears even, and feels hydrated regardless of skin type.</p>
+                </AccordionClient>
+                <AccordionClient title={'Directions'}>
+                    <p className='p-2 text-gray-800 font-[300] leading-8 text-sm'>Use after cleansing as both morning & night skincare regimen.
+                        With mild ingredients, Anua heartleaf 77% soothing toner may be used everyday.
+                        You may apply with a cotton pad or pat with your finger all over the face.
+                    </p>
+                </AccordionClient>
+                <AccordionClient title={'Ingredients'}>
+                    <p className='p-2 text-gray-800 font-[300] leading-8 text-sm'>
+                        Houttuynia Cordata Extract(77%), Water, 1,2-Hexanediol, Glycerin, Betaine, Panthenol, Saccharum Officinarum (Sugar Cane) Extract, Portulaca Oleracea Extract, Butylene Glycol, Vitex Agnus-Castus Extract, Chamomilla Recutita (Matricaria) Flower Extract, Arctium Lappa Root Extract, Phellinus Linteus Extract, Vitis Vinifera (Grape) Fruit Extract, Pyrus Malus (Apple) Fruit Extract, Centella Asiatica Extract, Isopentyldiol, Methylpropanediol, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Tromethamine, Disodium EDTA
+                    </p>
+                </AccordionClient>
+                <AccordionClient title={'Shipping'}>
+                    <p className='p-2 text-gray-800 font-[300] leading-8 text-sm'>
+                        Houttuynia Cordata Extract(77%), Water, 1,2-Hexanediol, Glycerin, Betaine, Panthenol, Saccharum Officinarum (Sugar Cane) Extract, Portulaca Oleracea Extract, Butylene Glycol, Vitex Agnus-Castus Extract, Chamomilla Recutita (Matricaria) Flower Extract, Arctium Lappa Root Extract, Phellinus Linteus Extract, Vitis Vinifera (Grape) Fruit Extract, Pyrus Malus (Apple) Fruit Extract, Centella Asiatica Extract, Isopentyldiol, Methylpropanediol, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Tromethamine, Disodium EDTA
+                    </p>
+                </AccordionClient>
             </div>
         </div>
     );
