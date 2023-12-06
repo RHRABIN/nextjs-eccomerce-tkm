@@ -3,6 +3,7 @@ import SearchTopbar from '@/components/productsSearch/topbar/SearchTopbar';
 import Image from 'next/image';
 import React from 'react';
 import waveImg from '../../../public/assets/wave-border.svg'
+import DefaultSortClient from '@/clientSideRender/productsSearch/DefaultSortClient';
 
 export const metadata = {
     title: 'Korean Mall',
@@ -16,13 +17,16 @@ const layout = ({ children }) => {
                 <p className='text-gray-800 text-2xl mb-3'>Searched Products</p>
                 <Image className='w-fit' height={500} width={1000} src={waveImg} />
             </div>
-            <div className='mx-4 md:mx-0 flex gap-6'>
-                <div className='w-1/4'>
+            <div className='mx-4 md:mx-0 md:flex gap-6'>
+                <div className='md:w-1/4 hidden md:block'>
                     <SearchSidebar />
                 </div>
-                <div className='w-3/4'>
-                    <div>
+                <div className='md:w-3/4'>
+                    <div className='hidden md:block'>
                         <SearchTopbar />
+                    </div>
+                    <div className='flex justify-center mb-10 md:hidden'>
+                        <DefaultSortClient />
                     </div>
                     <div>
                         {children}
