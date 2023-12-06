@@ -1,6 +1,8 @@
 import SearchSidebar from '@/components/productsSearch/sidebar/SearchSidebar';
 import SearchTopbar from '@/components/productsSearch/topbar/SearchTopbar';
+import Image from 'next/image';
 import React from 'react';
+import waveImg from '../../../public/assets/wave-border.svg'
 
 export const metadata = {
     title: 'Korean Mall',
@@ -10,6 +12,10 @@ export const metadata = {
 const layout = ({ children }) => {
     return (
         <div className='container mx-auto my-10'>
+            <div className='flex flex-col items-center mb-10'>
+                <p className='text-gray-800 text-2xl mb-3'>Searched Products</p>
+                <Image className='w-fit' height={500} width={1000} src={waveImg} />
+            </div>
             <div className='mx-4 md:mx-0 flex'>
                 <div className='w-1/4'>
                     <SearchSidebar />
