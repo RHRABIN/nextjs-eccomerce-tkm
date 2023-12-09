@@ -29,6 +29,7 @@ const Header = () => {
                         <Image height={600} width={1080} className="w-80 lg:hidden" src={mLogo} />
                     </Link>
                     <div className='w-1/4 flex justify-end items-center gap-5'>
+                        <Link className="hidden lg:block" href='/account'>Account</Link>
                         <Link className="hidden lg:block" href='/login'>Login</Link>
                         <button className="relative">
                             <BsBag />
