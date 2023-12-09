@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import ordImg from '../../../../public/assets/2.webp'
+import OrderDetailsClient from '@/clientSideRender/orders/OrderDetailsClient';
 
 const OrdersCard = () => {
     return (
@@ -12,7 +13,8 @@ const OrdersCard = () => {
                 </div>
                 <div>
                     <p className='text-sm font-[500]'>Total: 2000</p>
-                    <button className='border-none text-sm uppercase text-blue-500'>DETAILS</button>
+                    {/* <button className='border-none text-sm uppercase text-blue-500'>DETAILS</button> */}
+                    <OrderDetailsClient />
                 </div>
             </div>
             <div className='flex items-center justify-between my-2'>
