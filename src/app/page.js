@@ -9,13 +9,11 @@ import FollowUs from "@/components/home/followUs/FollowUs";
 import SubsCription from "@/components/home/subscription/SubsCription";
 import BrandSlider from "@/components/home/brandSlider/BrandSlider";
 import Gallery from "@/components/home/gallery/Gallery";
-import MobileNav from "@/shared/mobileNav/MobileNav";
 
 export default function Home() {
 
   return (
     <>
-      <MobileNav />
       <Advertise />
       <Banner />
       <SkinCareJourney />

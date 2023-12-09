@@ -1,8 +1,5 @@
-'use client'
 import MobileSubNavButtonClient from '@/clientSideRender/navbar/MobileSubNavButtonClient';
 import Link from 'next/link';
-import React, { useState } from 'react';
-import { FaMinus, FaPlus } from 'react-icons/fa6';
 
 const MobileNav = () => {
     return (
