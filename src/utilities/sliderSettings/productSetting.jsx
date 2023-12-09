@@ -25,8 +25,9 @@ export const productSettings = {
         {
             breakpoint: 480,
             settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                dots: false,
             }
         }
     ]

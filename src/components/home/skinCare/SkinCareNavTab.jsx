@@ -12,7 +12,7 @@ import img3 from '../../../../public/assets/5.webp'
 const SkinCareNavTab = () => {
     const [selectNav, setSelectNav] = useState('seller');
     return (
-        <div>
+        <div className='hidden md:block'>
             <div className='flex justify-center gap-6 mt-5 md:mt-10'>
                 <button onClick={() => setSelectNav('seller')} className='uppercase text-sm group'>
                     <p className={selectNav === 'seller' ? 'text-primary mb-3' : 'mb-3 group-hover:text-primary'}>shop by best sellers</p>
