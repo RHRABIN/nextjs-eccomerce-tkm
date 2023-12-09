@@ -1,4 +1,5 @@
 'use client'
+import OrderProgressBar from '@/components/account/orders/OrderProgressBar';
 import OrdersSingleCard from '@/components/account/orders/OrdersSingleCard';
 import Modal from '@/components/modal/Modal';
 import React, { useState } from 'react';
@@ -20,8 +21,10 @@ const OrderDetailsClient = () => {
                         <p className='text-sm font-[500]'>Total: 2000</p>
                     </div>
                 </div>
-
+                
+                {/* <OrderProgressBar /> */}
                 <OrdersSingleCard />
+
 
                 <div className='mt-4 border-t py-4'>
                     <h3 className='font-[500]'>Order summery</h3>
