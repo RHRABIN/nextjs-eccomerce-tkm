@@ -1,3 +1,4 @@
+import EditNewAddressClient from '@/clientSideRender/address/EditNewAddressClient';
 import React from 'react';
 
 const AddressCard = () => {
@@ -13,7 +14,7 @@ const AddressCard = () => {
                                     </span> :
                                         <button onClick={() => handleActiveAddress(adrs?._id)} className='text-gray-500 uppercase font-semibold tracking-widest hover:bg-green-600 hover:text-white text-sm border p-1 rounded-md mr-3'>Select</button>
                                 } */}
-                    <button className='text-blue-500 text-sm'>Edit</button>
+                    <EditNewAddressClient />
                 </div>
             </div>
             <p className='text-sm my-2'>01772781540</p>
