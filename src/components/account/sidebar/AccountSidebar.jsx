@@ -18,7 +18,7 @@ const AccountSidebar = () => {
             </div>
 
             {/* sidebar  */}
-            <ul className='mt-10'>
+            <ul className='mt-10 grid grid-cols-2 md:grid-cols-1'>
                 <li>
                     <Link href='/account' className='flex items-center gap-2 hover:text-blue-600 my-2'><FiUserCheck /> My Account</Link>
                 </li>
