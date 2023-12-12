@@ -9,7 +9,7 @@ const OrderSummary = () => {
                 <button className='bg-secondary text-white px-4 py-2 font-medium hover:opacity-90 rounded-md'>Apply</button>
             </div>
 
-            <h3 className='text-gray-800 font-medium text-lg my-2'>Order Summary</h3>
+            <h3 className='text-gray-800 font-medium text-lg my-4'>Order Summary</h3>
             <span className='flex items-center justify-between'>
                 <p className='font-medium text-gray-800'>Items Total</p>
                 <p>0.00 TK</p>
