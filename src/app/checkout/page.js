@@ -1,3 +1,4 @@
+import CheckoutContent from '@/components/checkout';
 import OrderSummary from '@/components/checkout/OrderSummary';
 import React from 'react';
 
@@ -16,7 +17,7 @@ const CheckoutPage = () => {
 
                 <div className='flex gap-4 mt-4'>
                     <div className='md:w-3/5'>
-
+                        <CheckoutContent />
                     </div>
                     <div className='md:w-2/5'>
                         <OrderSummary />
