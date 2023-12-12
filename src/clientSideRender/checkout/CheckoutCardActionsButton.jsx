@@ -26,14 +26,14 @@ const CheckoutCardActionsButton = () => {
     }
 
     return (
-        <div>
+        <div className='flex items-center justify-between md:block'>
             <div className='flex items-center gap-4 justify-end'>
                 <button onClick={handleDecrementProduct} className='bg-gray-100 h-8 w-8 rounded-full text-2xl'>-</button>
                 <p>{selectProduct}</p>
                 <button onClick={handleIncrementProduct} className='bg-gray-100 h-8 w-8 rounded-full text-2xl'>+</button>
             </div>
 
-            <div className='flex justify-end mt-6'>
+            <div className='flex justify-end md:mt-6'>
                 <button onClick={handleDeleteProduct} className='text-xl'>
                     <AiOutlineDelete />
                 </button>

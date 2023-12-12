@@ -5,8 +5,8 @@ import CheckoutCardActionsButton from '@/clientSideRender/checkout/CheckoutCardA
 
 const ChekoutProductCard = () => {
     return (
-        <div className='flex border p-4'>
-            <div className='w-1/2 flex gap-2'>
+        <div className='md:flex border p-2 rounded'>
+            <div className='md:w-1/2 flex gap-2'>
                 <div className='w-1/4'>
                     <Image className='w-full border rounded' height={720} width={1280} src={img} />
                 </div>
@@ -15,8 +15,8 @@ const ChekoutProductCard = () => {
                     <p className='text-sm font-light mt-2'>Size: 50ml</p>
                 </div>
             </div>
-            <div className='w-1/2 flex gap-2 justify-between'>
-                <div className='w-1/2'>
+            <div className='md:w-1/2 flex items-center md:items-start gap-2 justify-between mt-2 md:mt-0'>
+                <div className='w-1/2 flex md:block justify-start'>
                     <p className='text-center font-semibold'><span className='font-[auto]'>৳ </span>1500</p>
                 </div>
                 <div className='w-1/2'>
