@@ -18,7 +18,7 @@ const Navbar = () => {
                         <ul className='absolute z-10 bg-secondary top-full hidden group-hover:block group-hover:border-t group-hover:border-t-gray-500'>
                             <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
                                 <Link href='' className='uppercase block w-full'>Routine</Link>
-                                <IoIosArrowForward className='text-white text-lg' />
+                                {/* <IoIosArrowForward className='text-white text-lg' /> */}
                             </li>
 
                             {/* sub menu children start */}
@@ -30,15 +30,15 @@ const Navbar = () => {
                                 <ul className='absolute bg-secondary left-full top-0 hidden group-hover/sub:block'>
                                     <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
                                         <Link href='' className='uppercase block w-full'>Routine</Link>
-                                        <IoIosArrowForward className='text-white text-lg' />
+                                        {/* <IoIosArrowForward className='text-white text-lg' /> */}
                                     </li>
                                     <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
                                         <Link href='' className='uppercase block w-full'>Routine</Link>
-                                        <IoIosArrowForward className='text-white text-lg' />
+                                        {/* <IoIosArrowForward className='text-white text-lg' /> */}
                                     </li>
                                     <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
                                         <Link href='' className='uppercase block w-full'>Routine</Link>
-                                        <IoIosArrowForward className='text-white text-lg' />
+                                        {/* <IoIosArrowForward className='text-white text-lg' /> */}
                                     </li>
                                 </ul>
                             </li>
@@ -47,11 +47,11 @@ const Navbar = () => {
 
                             <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
                                 <Link href='' className='uppercase block w-full'>Routine</Link>
-                                <IoIosArrowForward className='text-white text-lg' />
+                                {/* <IoIosArrowForward className='text-white text-lg' /> */}
                             </li>
                             <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
                                 <Link href='' className='uppercase block w-full'>Routine</Link>
-                                <IoIosArrowForward className='text-white text-lg' />
+                                {/* <IoIosArrowForward className='text-white text-lg' /> */}
                             </li>
                         </ul>
                     </li>
