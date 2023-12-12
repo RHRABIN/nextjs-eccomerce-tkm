@@ -15,11 +15,11 @@ const CheckoutPage = () => {
                     <h1 className='text-gray-800 text-2xl text-center font-medium'>Checkout</h1>
                 </div>
 
-                <div className='flex gap-4 mt-4'>
+                <div className='md:flex gap-4 mt-4'>
                     <div className='md:w-3/5'>
                         <CheckoutContent />
                     </div>
-                    <div className='md:w-2/5'>
+                    <div className='md:w-2/5 mt-4 md:mt-0'>
                         <OrderSummary />
                     </div>
                 </div>
