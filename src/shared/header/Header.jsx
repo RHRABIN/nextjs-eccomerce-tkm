@@ -12,18 +12,28 @@ import MobileNav from "../mobileNav/MobileNav";
 
 const Header = () => {
     const [toggle, setToggle] = useState(false);
+    const [suggestSearch, setSuggestSearch] = useState(false);
 
     return (
         <>
             <div className="bg-secondary text-white lg:bg-white lg:text-secondary">
                 <div className='container mx-auto'>
-                    <div className='mx-5 md:mx-0 py-4 flex items-center'>
+                    <div className='mx-5 md:mx-0 py-4 md:py-7 flex items-center'>
                         <div className="w-1/4">
-                            <div className='hidden lg:flex items-center'>
-                                <input className='outline-none bg-gray-200 py-2 px-3 rounded-l-2xl mr-2 placeholder:text-xs' type="text" placeholder='Search for products...' />
-                                <button type='button' className='bg-gray-200 py-2 px-3 rounded-r-2xl'>
-                                    <IoIosSearch className='text-dark text-2xl' />
-                                </button>
+                            <div className="relative">
+                                <div className='hidden lg:flex items-center w-full'>
+                                    <input onChange={(e) => setSuggestSearch(e.target.value)} className={`outline-none bg-gray-200 py-2 px-3 mr-1 placeholder:text-xs ${suggestSearch ? 'rounded-tl-2xl' : 'rounded-l-2xl'}`} type="text" placeholder='Search for products...' />
+                                    <button type='button' className={`bg-gray-200 w-full py-2 px-3 ${suggestSearch ? 'rounded-tr-2xl' : 'rounded-r-2xl'}`}>
+                                        <IoIosSearch className='text-dark text-2xl' />
+                                    </button>
+                                </div>
+                                <div className={`${suggestSearch ? 'block' : 'hidden'} bg-gray-200 shadow w-full border-t border-t-white absolute top-full rounded-b-2xl z-10`}>
+                                    <ul>
+                                        <li className="cursor-pointer px-4 py-1 hover:bg-white">{suggestSearch}</li>
+                                        <li className="cursor-pointer px-4 py-1 hover:bg-white">{suggestSearch}</li>
+                                        <li className="cursor-pointer px-4 py-1 hover:bg-white rounded-b-2xl">{suggestSearch}</li>
+                                    </ul>
+                                </div>
                             </div>
                             {/* <ToggleButtonClient /> */}
                             <button onClick={() => setToggle(!toggle)} className="lg:hidden">

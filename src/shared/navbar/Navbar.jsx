@@ -7,9 +7,9 @@ const Navbar = () => {
         <div className='bg-secondary hidden md:block'>
             <nav className='container mx-auto text-white'>
                 <ul className='flex items-center gap-6 text-sm justify-center  relative'>
-                    <li className=''><Link href='' className='uppercase border-b-2 border-b-secondary hover:border-b-2 hover:border-b-primary pb-1'>New</Link></li>
+                    <li className='py-7'><Link href='' className='uppercase border-b-2 border-b-secondary hover:border-b-2 hover:border-b-primary pb-1'>New</Link></li>
                     {/* sub menu start */}
-                    <li className='group py-4'>
+                    <li className='group py-7'>
                         <span className='flex items-start gap-x-2 cursor-pointer'>
                             <Link href='' className='uppercase'>Best</Link>
                             <IoIosArrowDown className='text-white text-lg' />
@@ -57,8 +57,8 @@ const Navbar = () => {
                     </li>
                     {/* sub menu end  */}
 
-                    <li className=''><Link href='' className='uppercase border-b-2 border-b-secondary hover:border-b-2 hover:border-b-primary pb-1'>Routine</Link></li>
-                    <li className=''><Link href='' className='uppercase border-b-2 border-b-secondary hover:border-b-2 hover:border-b-primary pb-1'>Shop By</Link></li>
+                    <li className='py-7'><Link href='' className='uppercase border-b-2 border-b-secondary hover:border-b-2 hover:border-b-primary pb-1'>Routine</Link></li>
+                    <li className='py-7'><Link href='' className='uppercase border-b-2 border-b-secondary hover:border-b-2 hover:border-b-primary pb-1'>Shop By</Link></li>
                 </ul>
             </nav>
         </div>
