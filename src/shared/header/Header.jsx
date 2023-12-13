@@ -9,10 +9,13 @@ import mLogo from '../../../public/assets/footer-logo.png'
 import { FaBars, FaXmark } from "react-icons/fa6";
 import ToggleButtonClient from "@/clientSideRender/navbar/ToggleButtonClient";
 import MobileNav from "../mobileNav/MobileNav";
+import Drawer from "@/components/drawer/Drawer";
+import ChekoutProductCard from "@/components/card/ChekoutProductCard";
 
 const Header = () => {
     const [toggle, setToggle] = useState(false);
     const [suggestSearch, setSuggestSearch] = useState(false);
+    const [openDrawer, setOpenDrawer] = useState(false)
 
     return (
         <>
@@ -47,7 +50,7 @@ const Header = () => {
                         <div className='w-1/4 flex justify-end items-center gap-5'>
                             <Link className="hidden lg:block" href='/account'>Account</Link>
                             <Link className="hidden lg:block" href='/login'>Login</Link>
-                            <button className="relative">
+                            <button onClick={() => setOpenDrawer(true)} className="relative">
                                 <BsBag />
                                 <span className="absolute bottom-2 left-2 bg-red-500 h-5 w-5 rounded-full text-white flex justify-center items-center"><small>0</small></span>
                             </button>
@@ -59,6 +62,15 @@ const Header = () => {
             {
                 toggle && <MobileNav />
             }
+
+            <Drawer
+                title={'Your Bag'}
+                openDrawer={openDrawer}
+                setOpenDrawer={setOpenDrawer}
+            >
+
+                <ChekoutProductCard />
+            </Drawer>
         </>
     );
 };

@@ -9,7 +9,6 @@ import FollowUs from "@/components/home/followUs/FollowUs";
 import SubsCription from "@/components/home/subscription/SubsCription";
 import BrandSlider from "@/components/home/brandSlider/BrandSlider";
 import Gallery from "@/components/home/gallery/Gallery";
-import Drawer from "@/components/drawer/Drawer";
 
 export default function Home() {
 
@@ -17,7 +16,6 @@ export default function Home() {
     <>
       <Advertise />
       <Banner />
-      <Drawer />
       <SkinCareJourney />
       <SkinCareSpotLight />
       <Curated />
