@@ -46,7 +46,7 @@ const Navbar = () => {
                                     <Link href='' className='uppercase block w-full'>Axis-y</Link>
                                 </li>
                                 <li className='border-b-gray-500 border-opacity-20 bg-primary rounded-md text-center border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                    <Link href='' className='uppercase block w-full'>Others</Link>
+                                    <Link href='/brands' className='uppercase block w-full'>Others</Link>
                                 </li>
                             </div>
                         </ul>
