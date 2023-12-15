@@ -11,7 +11,7 @@ const Gallery = () => {
                     Here at The Korean Mall we believe in Beauty with Reason and we love to see how we have
                     helped you achieve that skin glow you have always dreamt about.</p>
 
-                <div className='grid grid-cols-3 gap-2 md:gap-5 mt-10'>
+                <div className='grid grid-cols-3 lg:grid-cols-4 gap-2 md:gap-5 mt-10'>
                     {
                         Array(8).fill().map((_, idx) =>
                             <Image key={idx} className='w-full h-auto' height={720} width={1280} src={img} />
