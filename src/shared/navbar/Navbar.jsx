@@ -4,7 +4,7 @@ import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io';
 
 const Navbar = () => {
     return (
-        <div className='bg-secondary hidden md:block'>
+        <div className='bg-secondary hidden lg:block'>
             <nav className='container mx-auto text-white'>
                 <ul className='flex items-center gap-6 text-sm justify-center  relative w-4/5 mx-auto'>
                     <li className='py-7'><Link href='' className='uppercase border-b-2 border-b-secondary hover:border-b-2 hover:border-b-primary pb-1'>New</Link></li>

@@ -39,7 +39,7 @@ const Header = () => {
                                 </div>
                             </div>
                             {/* <ToggleButtonClient /> */}
-                            <button onClick={() => setToggle(!toggle)} className="lg:hidden">
+                            <button onClick={() => setToggle(!toggle)} className="lg:hidden text-2xl">
                                 {toggle ? <FaXmark /> : <FaBars />}
                             </button>
                         </div>
@@ -59,9 +59,7 @@ const Header = () => {
                 </div>
             </div>
 
-            {
-                toggle && <MobileNav />
-            }
+            <MobileNav toggle={toggle} />
 
             <Drawer
                 title={'Your Bag'}
