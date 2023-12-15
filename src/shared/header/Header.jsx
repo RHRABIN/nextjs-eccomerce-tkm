@@ -66,8 +66,15 @@ const Header = () => {
                 openDrawer={openDrawer}
                 setOpenDrawer={setOpenDrawer}
             >
+                <div className="relative w-full h-full">
 
-                <ChekoutProductCard />
+                    <ChekoutProductCard />
+
+                    <div className="absolute bottom-20 w-full">
+                        <Link href='/checkout' className="bg-secondary text-white text-lg p-2 w-full block text-center font-medium rounded hover:opacity-90">Place Order</Link>
+                        <Link href='/' className="text-gray-800 text-lg font-medium mt-4 hover:text-black text-center block">Continue Shopping</Link>
+                    </div>
+                </div>
             </Drawer>
         </>
     );
