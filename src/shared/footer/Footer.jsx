@@ -34,12 +34,12 @@ const Footer = () => {
                         <div>
                             <h4 className='text-white text-lg font-semibold'>About Us</h4>
                             <ul>
-                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/'>About Us</Link></li>
-                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/'>Store Location</Link></li>
-                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/'>Delivery information</Link></li>
-                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/'>Privacy Policy</Link></li>
-                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/'>Terms & Conditions</Link></li>
-                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/'>Contact us</Link></li>
+                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/about-us'>About Us</Link></li>
+                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/store-location'>Store Location</Link></li>
+                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/delivery-information'>Delivery information</Link></li>
+                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/privacy-policy'>Privacy Policy</Link></li>
+                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/terms-and-conditions'>Terms & Conditions</Link></li>
+                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/contact-us'>Contact us</Link></li>
                             </ul>
                         </div>
 
@@ -48,9 +48,9 @@ const Footer = () => {
                         <div>
                             <h4 className='text-white text-lg font-semibold'>Account</h4>
                             <ul>
-                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/'>My Account</Link></li>
-                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/'>Order History</Link></li>
-                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/'>MY Wishlist</Link></li>
+                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/account'>My Account</Link></li>
+                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/account/orders'>Order History</Link></li>
+                                <li className='text-dark list-none my-2 hover:text-white'><Link href='/account/wishlist'>MY Wishlist</Link></li>
                             </ul>
                         </div>
 
