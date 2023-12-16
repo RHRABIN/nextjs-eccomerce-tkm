@@ -8,7 +8,7 @@ import pay from '../../../public/assets/payment.png'
 
 const Footer = () => {
     return (
-        <div className='bg-secondary p-8'>
+        <div className='bg-secondary py-8 md:p-8'>
             <div className='container mx-auto'>
                 <div className='mx-4 md:mx-0'>
                     <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
@@ -57,7 +57,7 @@ const Footer = () => {
 
 
                     </div>
-                    <div className='w-1/2 mx-auto mt-10'>
+                    <div className='md:w-1/2 mx-auto mt-10'>
                         <p className='text-dark text-center text-sm mb-4'>Pay Secure</p>
                         <Image height={720} width={1280} src={pay} />
                     </div>
