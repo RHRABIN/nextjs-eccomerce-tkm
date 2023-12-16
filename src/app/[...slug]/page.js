@@ -16,17 +16,28 @@ const ProductDetailsPage = () => {
         <div className='container mx-auto my-10 md:my-20'>
             <div className='mx-4 md:mx-0'>
                 <div className='md:flex items-start gap-20'>
-                    <div className='w-full md:w-1/2'>
-                        <Image className='h-auto w-full' height={720} width={1280} src={img} />
+                    <div className='w-full md:w-1/2 flex gap-2 mb-4 lg:mb-0'>
+                        <div className='w-1/4 overflow-y-scroll h-[16rem] lg:h-[28rem] details-image'>
+                            <Image className='h-auto w-full border mb-2' height={720} width={1280} src={img} alt='' />
+                            <Image className='h-auto w-full border mb-2' height={720} width={1280} src={img} alt='' />
+                            <Image className='h-auto w-full border mb-2' height={720} width={1280} src={img} alt='' />
+                            <Image className='h-auto w-full border mb-2' height={720} width={1280} src={img} alt='' />
+                            <Image className='h-auto w-full border mb-2' height={720} width={1280} src={img} alt='' />
+                            <Image className='h-auto w-full border mb-2' height={720} width={1280} src={img} alt='' />
+                            <Image className='h-auto w-full border mb-2' height={720} width={1280} src={img} alt='' />
+                        </div>
+                        <div className='w-full'>
+                            <Image className='h-auto w-full' height={720} width={1280} src={img} alt='' />
+                        </div>
                     </div>
                     <div className='w-full md:w-1/2'>
                         <ProductDescription />
                     </div>
                 </div>
-                <MightAlsoSection />
-                <MoreProducts />
-                <ReviewSection />
             </div>
+            <MightAlsoSection />
+            <MoreProducts />
+            <ReviewSection />
         </div>
     );
 };

@@ -68,3 +68,7 @@
 .slick-dots li button:before{
     font-size: 10px;
 }
+
+.details-image::-webkit-scrollbar{
+    display: none;
+}

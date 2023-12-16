@@ -9,7 +9,7 @@ const MoreProducts = () => {
     return (
         <div className='container mx-auto my-10 md:my-20'>
             <div className='mx-4 md:mx-0'>
-                <h1 className='uppercase text-3xl font-semibold text-center border-dotted border-b pb-4'>You Might Also Like</h1>
+                <h1 className='uppercase text-2xl md:text-3xl font-semibold text-center border-dotted border-b pb-4'>More Products From This Brand</h1>
                 <Slider {...productSettings}>
                     {
                         Array(5).fill().map((_, idx) =>

@@ -23,7 +23,7 @@ const ProductDescription = () => {
             </span>
 
             <div className='flex items-center gap-4'>
-                <div className='w-2/5 border py-2 px-10 flex items-center'>
+                <div className='w-2/5 border py-2 px-4 md:px-10 flex items-center'>
                     <p className='w-2/5'>1</p>
                     <div className='w-3/5 flex justify-between'>
                         <button className='bg-gray-200 p-1 rounded-full' type='button'>
