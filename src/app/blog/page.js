@@ -3,6 +3,13 @@ import React from 'react';
 import waveImg from '../../../public/assets/wave-border.svg'
 import GlamCard from '@/components/card/GlamCard';
 
+
+export const metadata = {
+    title: 'Blog | Korean Mall',
+    description: 'Blog Page by Korean Malls',
+}
+
+
 const BlogPage = () => {
     return (
         <div className='container mx-auto my-10'>

@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import React from 'react';
 import img from '../../../public/assets/s2.webp'
+import Link from 'next/link';
 
 const GlamCard = () => {
     return (
-        <div className='cursor-pointer'>
+        <Link href={`/blog/See what our latest korean mall community`} className='cursor-pointer'>
             <div className='relative overflow-hidden'>
                 <Image className='w-full h-auto hover:scale-105 duration-500 transition' height={720} width={1280} src={img} />
             </div>
@@ -13,7 +14,7 @@ const GlamCard = () => {
                 <p className='text-dark leading-6 line-clamp-3 text-center'>Discover haruharu's fermented black rice line, a revolutionary skincare innovation. Harnessing the power of nature's finest ingredients, this collection offers transformative benefits for your skin providing radiance and nourishment.</p>
                 <button className='border border-primary hover:bg-primary text-primary hover:text-white uppercase text-sm py-2 px-6 mt-3'>Read More</button>
             </div>
-        </div>
+        </Link>
     );
 };
 
