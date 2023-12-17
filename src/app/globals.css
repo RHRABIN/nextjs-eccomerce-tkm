@@ -72,3 +72,12 @@
 .details-image::-webkit-scrollbar{
     display: none;
 }
+
+.about-bg{
+    background-image: url('../../public/assets/about-bg.png');
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    background-repeat: no-repeat;
+}
