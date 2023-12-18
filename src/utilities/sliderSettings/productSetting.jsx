@@ -1,3 +1,5 @@
+import { ArrowLeft, ArrowRight } from "@/components/ui/SliderButton";
+
 export const productSettings = {
     dots: true,
     infinite: true,
@@ -6,7 +8,8 @@ export const productSettings = {
     autoplay: true,
     speed: 2000,
     autoplaySpeed: 6000,
-    arrows: false,
+    prevArrow: <ArrowLeft />,
+    nextArrow: <ArrowRight />,
     responsive: [
         {
             breakpoint: 1024,
@@ -27,7 +30,6 @@ export const productSettings = {
             settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
-                dots: false,
             }
         }
     ]

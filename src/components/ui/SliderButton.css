@@ -1,0 +1,52 @@
+.custom-arrow {
+    position: absolute;
+    bottom: -12% !important;
+    transform: translateY(-50%);
+}
+
+.custom-arrow-left {
+    border-radius: 50%;
+    background-color: #f4f4f4;
+    left: 80px;
+    z-index: 1;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    margin-bottom: 5px;
+}
+
+.custom-arrow-right {
+    border-radius: 50%;
+    background-color: #f4f4f4;
+    right: 80px;
+    z-index: 1;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .custom-arrow {
+        position: absolute !important;
+        bottom: 0% !important;
+        top: 102% !important;
+    }
+
+    .custom-arrow-left {
+        border-radius: 50% !important;
+        background-color: #f4f4f4 !important;
+        left: 20px !important;
+        bottom: 0 !important;
+        z-index: 1 !important;
+        margin-top: 3px;
+    }
+
+    .custom-arrow-right {
+        border-radius: 50% !important;
+        background-color: #f4f4f4 !important;
+        right: 20px !important;
+        z-index: 1 !important;
+        margin-top: 3px;
+    }
+}
