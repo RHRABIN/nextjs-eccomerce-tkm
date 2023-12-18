@@ -4,9 +4,10 @@ import TopNav from '@/shared/topNav/TopNav'
 import Header from '@/shared/header/Header'
 import Navbar from '@/shared/navbar/Navbar'
 import Footer from '@/shared/footer/Footer'
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ThemeConfig from "@/utilities/themeConfig/ThemeConfig";
+import BackToTop from '@/utilities/backToTop/BackToTop'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +20,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-      <ThemeConfig />
+        <ThemeConfig />
+        <BackToTop />
         <TopNav />
         <Header />
         <Navbar />
