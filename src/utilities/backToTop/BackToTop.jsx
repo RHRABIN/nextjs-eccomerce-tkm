@@ -5,14 +5,16 @@ import { FaAngleUp } from 'react-icons/fa6';
 const BackToTop = () => {
     const [backtotop, setBackToTop] = useState(false);
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            setBackToTop(true);
-        }
-        else {
-            setBackToTop(false);
-        }
-    })
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                setBackToTop(true);
+            }
+            else {
+                setBackToTop(false);
+            }
+        })
+    }, [])
 
     const scrollToTop = () => {
         window.scrollTo({
