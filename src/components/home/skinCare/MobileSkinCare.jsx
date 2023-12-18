@@ -12,7 +12,7 @@ const MobileSkinCare = () => {
     return (
         <div className='mx-4 md:hidden mt-10'>
             <AccordionClient title={<p className='uppercase'>Best Seller</p>}>
-                <Slider {...productSettings}>
+                <Slider {...productSettings} className='mb-20'>
                     {
                         Array(5).fill().map((_, idx) =>
                             <div key={idx} className='px-2 py-10'>
@@ -24,7 +24,7 @@ const MobileSkinCare = () => {
             </AccordionClient>
 
             <AccordionClient title={<p className='uppercase'>Skin Type</p>}>
-                <Slider {...productSettings}>
+                <Slider {...productSettings} className='mb-20'>
                     {
                         Array(5).fill().map((_, idx) =>
                             <div key={idx} className='px-2 py-10'>
@@ -36,7 +36,7 @@ const MobileSkinCare = () => {
             </AccordionClient>
 
             <AccordionClient title={<p className='uppercase'>Skin Concern</p>}>
-                <Slider {...productSettings}>
+                <Slider {...productSettings} className='mb-20'> 
                     {
                         Array(5).fill().map((_, idx) =>
                             <div key={idx} className='px-2 py-10'>
@@ -48,7 +48,7 @@ const MobileSkinCare = () => {
             </AccordionClient>
 
             <AccordionClient title={<p className='uppercase'>Routine</p>}>
-                <Slider {...productSettings}>
+                <Slider {...productSettings} className='mb-20'>
                     {
                         Array(5).fill().map((_, idx) =>
                             <div key={idx} className='px-2 py-10'>
