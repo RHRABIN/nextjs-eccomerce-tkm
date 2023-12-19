@@ -1,8 +1,11 @@
+import { getData } from '@/config/getData';
 import Link from 'next/link';
 import React from 'react';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io';
 
-const Navbar = () => {
+const Navbar = async () => {
+    const data = await getData('2');
+    console.log(data)
     return (
         <div className='bg-secondary hidden lg:block'>
             <nav className='container mx-auto text-white'>
