@@ -4,10 +4,12 @@ import React from 'react';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io';
 
 const Navbar = async () => {
-    const data = await getData('2');
-    console.log(data)
+    const categories = await getData('category');
+
+    console.log(categories?.data?.result)
     return (
         <div className='bg-secondary hidden lg:block'>
+            <p className='text-white text-center'>{categories?.data?.result?.length}</p>
             <nav className='container mx-auto text-white'>
                 <ul className='flex items-center gap-6 text-sm justify-center  relative w-4/5 mx-auto'>
                     <li className='py-7'><Link href='' className='uppercase border-b-2 border-b-secondary hover:border-b-2 hover:border-b-primary pb-1'>New</Link></li>
