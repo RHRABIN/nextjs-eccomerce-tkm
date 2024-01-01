@@ -1,117 +1,101 @@
-import { getData } from '@/config/getData';
+'use server'
+import { getCategories } from '@/config/categoriesApi'
 import Link from 'next/link';
 import React from 'react';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io';
 
 const Navbar = async () => {
-    const { data: categories } = await getData('category');
-    const { data: products } = await getData('product');
+    const { data: categories } = await getCategories()
 
     console.log(categories?.result)
-    // console.log(products?.result?.data)
     return (
         <div className='bg-secondary hidden lg:block'>
-            <p className='text-white text-center'>{categories?.result?.length}</p>
-            <p className='text-white text-center'>{products?.result?.data?.length}</p>
             <nav className='container mx-auto text-white'>
                 <ul className='flex items-center gap-6 text-sm justify-center  relative w-4/5 mx-auto'>
-                    <li className='py-7'><Link href='' className='uppercase border-b-2 border-b-secondary hover:border-b-2 hover:border-b-primary pb-1'>New</Link></li>
 
-                    {/* brand start */}
-                    <li className='group py-7'>
-                        <span className='flex items-start gap-x-2 cursor-pointer'>
-                            <Link href='' className='uppercase'>Brands</Link>
-                            <IoIosArrowDown className='text-white text-lg' />
-                        </span>
-                        {/* brnad menu */}
-                        <ul className='absolute z-10 bg-secondary top-full hidden group-hover:block group-hover:border-t group-hover:border-t-gray-500 w-full left-0'>
-                            <div className='grid grid-cols-5'>
-                                <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                    <Link href='' className='uppercase block w-full'>Acwell</Link>
-                                </li>
-                                <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                    <Link href='' className='uppercase block w-full'>Aromatica</Link>
-                                </li>
-                                <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                    <Link href='' className='uppercase block w-full'>Atomy</Link>
-                                </li>
-                                <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                    <Link href='' className='uppercase block w-full'>Atomy</Link>
-                                </li>
-                                <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                    <Link href='' className='uppercase block w-full'>Atomy</Link>
-                                </li>
-                                <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                    <Link href='' className='uppercase block w-full'>Atomy</Link>
-                                </li>
-                                <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                    <Link href='' className='uppercase block w-full'>Axis-y</Link>
-                                </li>
-                                <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                    <Link href='' className='uppercase block w-full'>Axis-y</Link>
-                                </li>
-                                <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                    <Link href='' className='uppercase block w-full'>Axis-y</Link>
-                                </li>
-                                <li className='border-b-gray-500 border-opacity-20 bg-primary rounded-md text-center border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                    <Link href='/brands' className='uppercase block w-full'>Others</Link>
-                                </li>
-                            </div>
-                        </ul>
-                    </li>
-                    {/* brand end */}
+                    {
+                        categories?.result?.map(category => category?.children?.length > 0 ?
 
-                    {/* sub menu start */}
-                    <li className='group py-7'>
-                        <span className='flex items-start gap-x-2 cursor-pointer'>
-                            <Link href='' className='uppercase'>Best</Link>
-                            <IoIosArrowDown className='text-white text-lg' />
-                        </span>
-                        {/* menu */}
-                        <ul className='absolute z-10 bg-secondary top-full hidden group-hover:block group-hover:border-t group-hover:border-t-gray-500'>
-                            <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
-                                <Link href='' className='uppercase block w-full'>Routine</Link>
-                                {/* <IoIosArrowForward className='text-white text-lg' /> */}
-                            </li>
-
-                            {/* sub menu children start */}
-
-                            <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 relative flex items-start gap-2 cursor-pointer group/sub'>
-                                <Link href='' className='uppercase block w-full'>Shop By</Link>
-                                <IoIosArrowForward className='text-white text-lg' />
-
-                                <ul className='absolute bg-secondary left-full top-0 hidden group-hover/sub:block'>
-                                    <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
-                                        <Link href='' className='uppercase block w-full'>Routine</Link>
-                                        {/* <IoIosArrowForward className='text-white text-lg' /> */}
-                                    </li>
-                                    <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
-                                        <Link href='' className='uppercase block w-full'>Routine</Link>
-                                        {/* <IoIosArrowForward className='text-white text-lg' /> */}
-                                    </li>
-                                    <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
-                                        <Link href='' className='uppercase block w-full'>Routine</Link>
-                                        {/* <IoIosArrowForward className='text-white text-lg' /> */}
-                                    </li>
+                            // sub menu start 
+                            category?.title?.toLowerCase() === 'brands' ? <li className='group py-7'>
+                                <span className='flex items-start gap-x-2 cursor-pointer'>
+                                    <Link href='' className='uppercase'>Brands</Link>
+                                    <IoIosArrowDown className='text-white text-lg' />
+                                </span>
+                                {/* brnad menu */}
+                                <ul className='absolute z-10 bg-secondary top-full hidden group-hover:block group-hover:border-t group-hover:border-t-gray-500 w-full left-0'>
+                                    <div className='grid grid-cols-5'>
+                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
+                                            <Link href='' className='uppercase block w-full'>Acwell</Link>
+                                        </li>
+                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
+                                            <Link href='' className='uppercase block w-full'>Aromatica</Link>
+                                        </li>
+                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
+                                            <Link href='' className='uppercase block w-full'>Atomy</Link>
+                                        </li>
+                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
+                                            <Link href='' className='uppercase block w-full'>Atomy</Link>
+                                        </li>
+                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
+                                            <Link href='' className='uppercase block w-full'>Atomy</Link>
+                                        </li>
+                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
+                                            <Link href='' className='uppercase block w-full'>Atomy</Link>
+                                        </li>
+                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
+                                            <Link href='' className='uppercase block w-full'>Axis-y</Link>
+                                        </li>
+                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
+                                            <Link href='' className='uppercase block w-full'>Axis-y</Link>
+                                        </li>
+                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
+                                            <Link href='' className='uppercase block w-full'>Axis-y</Link>
+                                        </li>
+                                        <li className='border-b-gray-500 border-opacity-20 bg-primary rounded-md text-center border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
+                                            <Link href='/brands' className='uppercase block w-full'>Others</Link>
+                                        </li>
+                                    </div>
                                 </ul>
-                            </li>
+                            </li> : <li key={category?._id} className='group py-7'>
+                                <span className='flex items-start gap-x-2 cursor-pointer'>
+                                    <Link href={category?.slug} className='uppercase'>{category?.title}</Link>
+                                    <IoIosArrowDown className='text-white text-lg' />
+                                </span>
+                                {/* menu */}
+                                <ul className='absolute z-10 bg-secondary top-full hidden group-hover:block group-hover:border-t group-hover:border-t-gray-500'>
+                                    {
+                                        category?.children?.map(subCat => subCat?.children?.length > 0 ?
+                                            // sub category child 
 
-                            {/* sub menu children end */}
+                                            <li key={subCat?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 relative flex items-start gap-2 cursor-pointer group/sub'>
+                                                <Link href={subCat?.slug} className='uppercase block w-full'>{subCat?.title}</Link>
+                                                <IoIosArrowForward className='text-white text-lg' />
 
-                            <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
-                                <Link href='' className='uppercase block w-full'>Routine</Link>
-                                {/* <IoIosArrowForward className='text-white text-lg' /> */}
-                            </li>
-                            <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
-                                <Link href='' className='uppercase block w-full'>Routine</Link>
-                                {/* <IoIosArrowForward className='text-white text-lg' /> */}
-                            </li>
-                        </ul>
-                    </li>
-                    {/* sub menu end  */}
+                                                <ul className='absolute bg-secondary left-full top-0 hidden group-hover/sub:block'>
+                                                    {
+                                                        subCat?.children?.map(subCatChild =>
+                                                            <li key={subCatChild?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
+                                                                <Link href={subCatChild?.slug} className='uppercase block w-full'>{subCatChild?.title}</Link>
+                                                            </li>
+                                                        )
+                                                    }
+                                                </ul>
+                                            </li> :
+                                            // sub category 
+                                            <li key={subCat?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
+                                                <Link href={subCat?.slug} className='uppercase block w-full'>{subCat?.title}</Link>
+                                            </li>
 
-                    <li className='py-7'><Link href='' className='uppercase border-b-2 border-b-secondary hover:border-b-2 hover:border-b-primary pb-1'>Routine</Link></li>
-                    <li className='py-7'><Link href='' className='uppercase border-b-2 border-b-secondary hover:border-b-2 hover:border-b-primary pb-1'>Shop By</Link></li>
+
+                                        )
+                                    }
+                                </ul>
+                            </li> :
+                            // main menu 
+                            <li key={category?._id} className='py-7'><Link href={category?.slug} className='uppercase border-b-2 border-b-secondary hover:border-b-2 hover:border-b-primary pb-1'>{category?.title}</Link></li>
+                        )
+                    }
                 </ul>
             </nav>
         </div>
