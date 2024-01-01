@@ -1,13 +1,13 @@
 'use server'
-import { getCategories } from '@/config/categoriesApi'
+import { getCategories, getAllBrands } from '@/config/categoriesApi'
 import Link from 'next/link';
 import React from 'react';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io';
 
 const Navbar = async () => {
     const { data: categories } = await getCategories()
+    const { data: brands } = await getAllBrands()
 
-    console.log(categories?.result)
     return (
         <div className='bg-secondary hidden lg:block'>
             <nav className='container mx-auto text-white'>
@@ -25,33 +25,13 @@ const Navbar = async () => {
                                 {/* brnad menu */}
                                 <ul className='absolute z-10 bg-secondary top-full hidden group-hover:block group-hover:border-t group-hover:border-t-gray-500 w-full left-0'>
                                     <div className='grid grid-cols-5'>
-                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                            <Link href='' className='uppercase block w-full'>Acwell</Link>
-                                        </li>
-                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                            <Link href='' className='uppercase block w-full'>Aromatica</Link>
-                                        </li>
-                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                            <Link href='' className='uppercase block w-full'>Atomy</Link>
-                                        </li>
-                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                            <Link href='' className='uppercase block w-full'>Atomy</Link>
-                                        </li>
-                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                            <Link href='' className='uppercase block w-full'>Atomy</Link>
-                                        </li>
-                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                            <Link href='' className='uppercase block w-full'>Atomy</Link>
-                                        </li>
-                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                            <Link href='' className='uppercase block w-full'>Axis-y</Link>
-                                        </li>
-                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                            <Link href='' className='uppercase block w-full'>Axis-y</Link>
-                                        </li>
-                                        <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
-                                            <Link href='' className='uppercase block w-full'>Axis-y</Link>
-                                        </li>
+                                        {
+                                            brands?.result?.slice(0, 29)?.map(brand =>
+                                                <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
+                                                    <Link href={brand?.slug} className='uppercase block w-full'>{brand?.name}</Link>
+                                                </li>
+                                            )
+                                        }
                                         <li className='border-b-gray-500 border-opacity-20 bg-primary rounded-md text-center border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
                                             <Link href='/brands' className='uppercase block w-full'>Others</Link>
                                         </li>
