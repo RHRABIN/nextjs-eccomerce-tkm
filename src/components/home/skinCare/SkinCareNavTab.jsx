@@ -9,32 +9,32 @@ import img1 from '../../../../public/assets/2.webp'
 import img2 from '../../../../public/assets/4.webp'
 import img3 from '../../../../public/assets/5.webp'
 
-const SkinCareNavTab = () => {
+const SkinCareNavTab = ({ bestSellingProducts }) => {
     const [selectNav, setSelectNav] = useState('seller');
     return (
         <div className='hidden md:block'>
             <div className='flex justify-center gap-6 mt-5 md:mt-10'>
                 <button onClick={() => setSelectNav('seller')} className='uppercase text-sm group'>
                     <p className={selectNav === 'seller' ? 'text-primary mb-3' : 'mb-3 group-hover:text-primary'}>shop by best sellers</p>
-                    <Image className={`w-full opacity-0 group-hover:opacity-100 ${selectNav === 'seller' && 'opacity-100'}`} height={500} width={1000} src={wave} />
+                    <Image className={`w-full opacity-0 group-hover:opacity-100 ${selectNav === 'seller' && 'opacity-100'}`} src={wave} alt='wavebar' />
                 </button>
 
 
                 <button onClick={() => setSelectNav('skin-type')} className='uppercase text-sm group'>
                     <p className={selectNav === 'skin-type' ? 'text-primary mb-3' : 'mb-3 group-hover:text-primary'}>Shop by Skin type</p>
-                    <Image className={`w-full opacity-0 group-hover:opacity-100 ${selectNav === 'skin-type' && 'opacity-100'}`} height={500} width={1000} src={wave} />
+                    <Image className={`w-full opacity-0 group-hover:opacity-100 ${selectNav === 'skin-type' && 'opacity-100'}`} src={wave} alt='wavebar' />
                 </button>
 
 
                 <button onClick={() => setSelectNav('skin-concern')} className='uppercase text-sm group'>
                     <p className={selectNav === 'skin-concern' ? 'text-primary mb-3' : 'mb-3 group-hover:text-primary'}>Shop by skin concern</p>
-                    <Image className={`w-full opacity-0 group-hover:opacity-100 ${selectNav === 'skin-concern' && 'opacity-100'}`} height={500} width={1000} src={wave} />
+                    <Image className={`w-full opacity-0 group-hover:opacity-100 ${selectNav === 'skin-concern' && 'opacity-100'}`} src={wave} alt='wavebar' />
                 </button>
 
 
                 <button onClick={() => setSelectNav('routine')} className='uppercase text-sm group'>
                     <p className={selectNav === 'routine' ? 'text-primary mb-3' : 'mb-3 group-hover:text-primary'}>Shop by routine</p>
-                    <Image className={`w-full opacity-0 group-hover:opacity-100 ${selectNav === 'routine' && 'opacity-100'}`} height={500} width={1000} src={wave} />
+                    <Image className={`w-full opacity-0 group-hover:opacity-100 ${selectNav === 'routine' && 'opacity-100'}`} src={wave} alt='wavebar' />
                 </button>
             </div>
 
@@ -42,9 +42,9 @@ const SkinCareNavTab = () => {
                 selectNav === 'seller' &&
                 <Slider {...productSettings}>
                     {
-                        Array(5).fill().map((_, idx) =>
-                            <div key={idx} className='px-2 py-10'>
-                                <ProductCard />
+                        bestSellingProducts?.map(product =>
+                            <div key={product?._id} className='px-2 py-10'>
+                                <ProductCard product={product} />
                             </div>
                         )
                     }

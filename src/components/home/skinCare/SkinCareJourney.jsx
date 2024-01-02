@@ -1,8 +1,16 @@
 import React from 'react';
 import SkinCareNavTab from './SkinCareNavTab';
 import MobileSkinCare from './MobileSkinCare';
+import { getProductsByType } from '@/config/productsApi';
 
-const SkinCareJourney = () => {
+const SkinCareJourney = async () => {
+    const [bestSellerData] = await Promise.all([
+        getProductsByType('best-seller')
+    ]);
+
+
+    const { data: bestSellingProducts } = bestSellerData;
+    
     return (
         <div className='container mx-auto my-5 md:my-20'>
             <div className='mx-4 md:mx-0'>
@@ -12,8 +20,8 @@ const SkinCareJourney = () => {
                     <p className='text-center font-[300] text-secondary mt-2 md:hidden'>Shop By</p>
                 </div>
             </div>
-            <SkinCareNavTab />
-            <MobileSkinCare />
+            <SkinCareNavTab bestSellingProducts={bestSellingProducts?.result} />
+            <MobileSkinCare bestSellingProducts={bestSellingProducts?.result} />
         </div>
     );
 };
