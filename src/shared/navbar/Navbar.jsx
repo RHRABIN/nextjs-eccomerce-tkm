@@ -1,12 +1,15 @@
-'use server'
 import { getCategories, getAllBrands } from '@/config/categoriesApi'
 import Link from 'next/link';
 import React from 'react';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io';
 
 const Navbar = async () => {
-    const { data: categories } = await getCategories()
-    const { data: brands } = await getAllBrands()
+    const [categoriesResponse, brandsResponse] = await Promise.all([
+        getCategories(),
+        getAllBrands()
+    ]);
+    const { data: categories } = categoriesResponse;
+    const { data: brands } = brandsResponse;
 
     return (
         <div className='bg-secondary hidden lg:block'>
@@ -39,7 +42,7 @@ const Navbar = async () => {
                                 </ul>
                             </li> : <li key={category?._id} className='group py-7'>
                                 <span className='flex items-start gap-x-2 cursor-pointer'>
-                                    <Link href={category?.slug} className='uppercase'>{category?.title}</Link>
+                                    <Link href={`/products?category=${category?.slug}`} className='uppercase'>{category?.title}</Link>
                                     <IoIosArrowDown className='text-white text-lg' />
                                 </span>
                                 {/* menu */}
@@ -49,14 +52,14 @@ const Navbar = async () => {
                                             // sub category child 
 
                                             <li key={subCat?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 relative flex items-start gap-2 cursor-pointer group/sub'>
-                                                <Link href={subCat?.slug} className='uppercase block w-full'>{subCat?.title}</Link>
+                                                <Link href={`/products?category=${subCat?.slug}`} className='uppercase block w-full'>{subCat?.title}</Link>
                                                 <IoIosArrowForward className='text-white text-lg' />
 
                                                 <ul className='absolute bg-secondary left-full top-0 hidden group-hover/sub:block'>
                                                     {
                                                         subCat?.children?.map(subCatChild =>
                                                             <li key={subCatChild?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
-                                                                <Link href={subCatChild?.slug} className='uppercase block w-full'>{subCatChild?.title}</Link>
+                                                                <Link href={`/products?category=${subCatChild?.slug}`} className='uppercase block w-full'>{subCatChild?.title}</Link>
                                                             </li>
                                                         )
                                                     }
@@ -64,7 +67,7 @@ const Navbar = async () => {
                                             </li> :
                                             // sub category 
                                             <li key={subCat?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
-                                                <Link href={subCat?.slug} className='uppercase block w-full'>{subCat?.title}</Link>
+                                                <Link href={`/products?category=${subCat?.slug}`} className='uppercase block w-full'>{subCat?.title}</Link>
                                             </li>
 
 
@@ -73,7 +76,7 @@ const Navbar = async () => {
                                 </ul>
                             </li> :
                             // main menu 
-                            <li key={category?._id} className='py-7'><Link href={category?.slug} className='uppercase border-b-2 border-b-secondary hover:border-b-2 hover:border-b-primary pb-1'>{category?.title}</Link></li>
+                            <li key={category?._id} className='py-7'><Link href={`/products?category=${category?.slug}`} className='uppercase border-b-2 border-b-secondary hover:border-b-2 hover:border-b-primary pb-1'>{category?.title}</Link></li>
                         )
                     }
                 </ul>
