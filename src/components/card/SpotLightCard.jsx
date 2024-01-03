@@ -6,7 +6,7 @@ const SpotLightCard = ({ product }) => {
     const { name, slug, spotLightDescription, image } = product || {};
     return (
         <div className='cursor-pointer'>
-            <Image className='w-full h-auto' height={720} width={1280} quality={100} src={image} alt={name} />
+            <Image className='w-full h-fit' height={720} width={1280} quality={100} src={image} alt={name} />
             <div className='flex flex-col items-center p-4'>
                 <h1 className='text-gray-800 font-medium text-xl text-center mb-4'>{name}</h1>
                 <p className='text-gray-700 leading-6 line-clamp-3 text-center font-light w-4/5'>{spotLightDescription}</p>
