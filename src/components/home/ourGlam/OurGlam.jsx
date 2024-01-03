@@ -1,8 +1,16 @@
 import GlamCard from '@/components/card/GlamCard';
+import { getAllBlogsData } from '@/config/blogApi';
 import Link from 'next/link';
 import React from 'react';
 
-const OurGlam = () => {
+const OurGlam = async () => {
+    const [blogsResponse] = await Promise.all([
+        getAllBlogsData()
+    ])
+
+    const { data: blogs } = blogsResponse;
+
+
     return (
         <div className='container mx-auto my-10 md:my-20'>
             <div className='mx-4 md:mx-0'>
@@ -13,10 +21,15 @@ const OurGlam = () => {
                 </div>
 
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-10 gap-5'>
-                    <GlamCard />
-                    <GlamCard />
-                    <GlamCard />
-                    <GlamCard />
+                    {
+                        blogs?.data?.map(blog =>
+                            <GlamCard
+                                key={blog?._id}
+                                blog={blog}
+                            />
+
+                        )
+                    }
                 </div>
             </div>
         </div>
