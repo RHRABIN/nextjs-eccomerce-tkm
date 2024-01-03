@@ -24,11 +24,22 @@ const getAllBrands = async () => {
     }
 };
 
+
+// get category by title 
+const getCategoryByTitle = async (query) => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/category/filter?${query}`);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
 // sort brands 
 const getAllSortedBrands = async () => {
     let response;
     try {
-        response = await axios.post(`${baseUrl}//manufacturer/sort-brands`);
+        response = await axios.post(`${baseUrl}/manufacturer/sort-brands`);
         return response;
     } catch (error) {
         console.error(error);
@@ -38,6 +49,7 @@ const getAllSortedBrands = async () => {
 
 module.exports = {
     getCategories,
+    getCategoryByTitle,
     getAllBrands,
     getAllSortedBrands
 }

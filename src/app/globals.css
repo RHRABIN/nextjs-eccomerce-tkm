@@ -64,6 +64,13 @@
     border-right: 1px solid var(--secondary-color);
 }
 
+.slick-dots li{
+    margin: 0px;
+}
+
+.slick-dots li button{
+    padding: 0px;
+}
 
 .slick-dots li button:before{
     font-size: 10px;

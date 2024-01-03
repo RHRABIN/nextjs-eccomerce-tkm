@@ -4,7 +4,7 @@ export const productSettings = {
     dots: true,
     infinite: true,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     autoplay: true,
     speed: 2000,
     autoplaySpeed: 6000,
