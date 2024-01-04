@@ -4,11 +4,13 @@ import { FaFacebookF, FaHeart, FaInstagram, FaPlus, FaYoutube } from 'react-icon
 import { FiMinus } from "react-icons/fi";
 import { IoIosStar } from 'react-icons/io';
 
-const ProductDescription = () => {
+const ProductDescription = ({ product }) => {
+    const { name, manufacturer, tags, price, offerPrice, description, directions, ingredients } = product || {};
+
     return (
         <div>
-            <h1 className='uppercase text-xl'>AXIS-Y</h1>
-            <h2 className='font-semibold text-2xl text-gray-800 mb-3'>Biome Radiating Intensified Essence 50ml</h2>
+            <h1 className='uppercase text-xl'>{manufacturer?.name}</h1>
+            <h2 className='font-semibold text-2xl text-gray-800 mb-3'>{name}</h2>
 
             <div className='flex items-center text-dark text-xl mb-3'>
                 <IoIosStar />
@@ -19,7 +21,7 @@ const ProductDescription = () => {
             </div>
             <span className='text-3xl font-semibold text-gray-800 flex items-start gap-2 mb-3 border-t border-dotted border-t-dark pt-3'>
                 <p className='font-[auto]'>৳</p>
-                <p>1900</p>
+                <p>{offerPrice ? offerPrice : price}</p>
             </span>
 
             <div className='flex items-center gap-4'>
@@ -48,11 +50,11 @@ const ProductDescription = () => {
             </div>
 
             <div className='flex flex-wrap gap-2 mt-5'>
-                <span className='bg-[rgb(245,245,245)] text-gray-800 py-0.5 px-1 text-xs'>Biome</span>
-                <span className='bg-[rgb(245,245,245)] text-gray-800 py-0.5 px-1 text-xs'>Centella Asiatica Extract</span>
-                <span className='bg-[rgb(245,245,245)] text-gray-800 py-0.5 px-1 text-xs'>Anti Ageing</span>
-                <span className='bg-[rgb(245,245,245)] text-gray-800 py-0.5 px-1 text-xs'>Skin Barrier Repairing</span>
-                <span className='bg-[rgb(245,245,245)] text-gray-800 py-0.5 px-1 text-xs'>Bifida Ferment Lysate</span>
+                {
+                    tags?.map((tag, idx) =>
+                        <span key={idx} className='bg-[rgb(245,245,245)] text-gray-800 py-0.5 px-1 text-xs'>{tag}</span>
+                    )
+                }
             </div>
 
             <div className='mt-5'>
@@ -62,21 +64,13 @@ const ProductDescription = () => {
 
             <div className='mt-10'>
                 <AccordionClient title={'Activities'}>
-                    <p className='p-2 text-gray-800 font-[300] leading-8 text-sm'>Heartleaf extract(houttuynia cordata) is well known for its anti-inflammatory, soothing effect on skin.
-                        Anua only uses heartleaf ingredients that were grown and harvested in Korea.
-                        Watery texture to provide layer-able, lightweight hydration.
-                        Without any irritating substance, skin feels clarified, skin tone appears even, and feels hydrated regardless of skin type.</p>
+                    <p className='p-2 text-gray-800 font-[300] leading-8 text-sm' dangerouslySetInnerHTML={{ __html: description }}></p>
                 </AccordionClient>
                 <AccordionClient title={'Directions'}>
-                    <p className='p-2 text-gray-800 font-[300] leading-8 text-sm'>Use after cleansing as both morning & night skincare regimen.
-                        With mild ingredients, Anua heartleaf 77% soothing toner may be used everyday.
-                        You may apply with a cotton pad or pat with your finger all over the face.
-                    </p>
+                    <p className='p-2 text-gray-800 font-[300] leading-8 text-sm' dangerouslySetInnerHTML={{ __html: directions }}></p>
                 </AccordionClient>
                 <AccordionClient title={'Ingredients'}>
-                    <p className='p-2 text-gray-800 font-[300] leading-8 text-sm'>
-                        Houttuynia Cordata Extract(77%), Water, 1,2-Hexanediol, Glycerin, Betaine, Panthenol, Saccharum Officinarum (Sugar Cane) Extract, Portulaca Oleracea Extract, Butylene Glycol, Vitex Agnus-Castus Extract, Chamomilla Recutita (Matricaria) Flower Extract, Arctium Lappa Root Extract, Phellinus Linteus Extract, Vitis Vinifera (Grape) Fruit Extract, Pyrus Malus (Apple) Fruit Extract, Centella Asiatica Extract, Isopentyldiol, Methylpropanediol, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Tromethamine, Disodium EDTA
-                    </p>
+                    <p className='p-2 text-gray-800 font-[300] leading-8 text-sm' dangerouslySetInnerHTML={{ __html: ingredients }}></p>
                 </AccordionClient>
                 <AccordionClient title={'Shipping'}>
                     <p className='p-2 text-gray-800 font-[300] leading-8 text-sm'>
