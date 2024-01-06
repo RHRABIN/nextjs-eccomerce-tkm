@@ -44,7 +44,7 @@ const ProductDetailsPage = async ({ params }) => {
                     </div>
                 </div>
             </div>
-            <MightAlsoSection id={_id} />
+            <MightAlsoSection id={slug} />
             <MoreProducts brandId={manufacturer?._id} />
             <ReviewSection />
         </div>
