@@ -25,8 +25,33 @@ const getSingleProduct = async (id) => {
     }
 };
 
+// get get Brands Products  ByBrand Id 
+const getBrandsProductsByBrandId = async (brandId, page = "?page=1") => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/product/brand-products/${brandId}${page}`);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+
+// get get Brands Products  ByBrand Id 
+const getRelatedProductsByProductId = async (id) => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/product/related-products/${id}`);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 
 module.exports = {
     getProductsByType,
-    getSingleProduct
+    getSingleProduct,
+    getBrandsProductsByBrandId,
+    getRelatedProductsByProductId
 }

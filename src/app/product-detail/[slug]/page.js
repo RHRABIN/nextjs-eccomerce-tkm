@@ -14,7 +14,8 @@ export const metadata = {
 const ProductDetailsPage = async ({ params }) => {
     const { slug } = params || {};
     const { data: product } = await getSingleProduct(slug);
-    const { name, images } = product?.result || {};
+    const { name, images, _id, manufacturer } = product?.result || {};
+    // console.log(product)
 
     return (
         <div className='container mx-auto my-10 md:my-20'>
@@ -43,8 +44,8 @@ const ProductDetailsPage = async ({ params }) => {
                     </div>
                 </div>
             </div>
-            <MightAlsoSection />
-            <MoreProducts />
+            <MightAlsoSection id={_id} />
+            <MoreProducts brandId={manufacturer?._id} />
             <ReviewSection />
         </div>
     );
