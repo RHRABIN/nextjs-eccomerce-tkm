@@ -1,13 +1,11 @@
 import Image from 'next/image';
 import React from 'react';
-import img from '../../../public/assets/1.webp'
 import { FaRegHeart } from 'react-icons/fa6';
 import { IoIosSearch } from 'react-icons/io';
 import Link from 'next/link';
 
 const ProductCard = ({ propsImg, product }) => {
     const { name, images, price, offerPrice, productType, slug, manufacturer } = product || {};
-    console.log(product)
     return (
         <div className='py-4 relative cursor-pointer group hover:shadow-md hover:shadow-dark hover:scale-105 duration-500 transition'>
             <Link href={`/product-detail/${slug}`}>

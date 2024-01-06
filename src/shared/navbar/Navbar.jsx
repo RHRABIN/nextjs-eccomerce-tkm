@@ -20,7 +20,7 @@ const Navbar = async () => {
                         categories?.result?.map(category => category?.children?.length > 0 ?
 
                             // sub menu start 
-                            category?.title?.toLowerCase() === 'brands' ? <li className='group py-7'>
+                            category?.title?.toLowerCase() === 'brands' ? <li key={category?._id} className='group py-7'>
                                 <span className='flex items-start gap-x-2 cursor-pointer'>
                                     <Link href='' className='uppercase'>Brands</Link>
                                     <IoIosArrowDown className='text-white text-lg' />

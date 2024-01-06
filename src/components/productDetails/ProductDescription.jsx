@@ -1,4 +1,5 @@
 import AccordionClient from '@/clientSideRender/accordion/AccordionClient';
+import DangerHtml from '@/clientSideRender/dangerHtml/DangerHtml';
 import React from 'react';
 import { FaFacebookF, FaHeart, FaInstagram, FaPlus, FaYoutube } from 'react-icons/fa6';
 import { FiMinus } from "react-icons/fi";
@@ -64,13 +65,13 @@ const ProductDescription = ({ product }) => {
 
             <div className='mt-10'>
                 <AccordionClient title={'Activities'}>
-                    <p className='p-2 text-gray-800 font-[300] leading-8 text-sm' dangerouslySetInnerHTML={{ __html: description }}></p>
+                    <DangerHtml getText={description} />
                 </AccordionClient>
                 <AccordionClient title={'Directions'}>
-                    <p className='p-2 text-gray-800 font-[300] leading-8 text-sm' dangerouslySetInnerHTML={{ __html: directions }}></p>
+                    <DangerHtml getText={directions} />
                 </AccordionClient>
                 <AccordionClient title={'Ingredients'}>
-                    <p className='p-2 text-gray-800 font-[300] leading-8 text-sm' dangerouslySetInnerHTML={{ __html: ingredients }}></p>
+                    <DangerHtml getText={ingredients} />
                 </AccordionClient>
                 <AccordionClient title={'Shipping'}>
                     <p className='p-2 text-gray-800 font-[300] leading-8 text-sm'>
