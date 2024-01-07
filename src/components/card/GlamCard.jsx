@@ -7,7 +7,7 @@ const GlamCard = ({ blog }) => {
     return (
         <div className='cursor-pointer'>
             <div className='relative overflow-hidden'>
-                <Image className='w-full h-auto hover:scale-105 duration-500 transition' height={720} width={1280} src={image} alt={blogTitle} />
+                <Image className='w-full h-auto md:h-80 hover:scale-105 duration-500 transition' height={720} width={1280} quality={100} src={image} alt={blogTitle} />
             </div>
             <div className='flex flex-col items-center p-4'>
                 <h1 className='text-gray-700 font-medium text-lg mb-4 text-center line-clamp-2'>{blogTitle}</h1>

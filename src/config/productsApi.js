@@ -49,9 +49,22 @@ const getRelatedProductsByProductId = async (id) => {
 };
 
 
+// get all products by search 
+const getAllProductsBySearch = async (queryUrl) => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/product${queryUrl}`);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+
 module.exports = {
     getProductsByType,
     getSingleProduct,
     getBrandsProductsByBrandId,
-    getRelatedProductsByProductId
+    getRelatedProductsByProductId,
+    getAllProductsBySearch
 }
