@@ -2,15 +2,27 @@ import React from 'react';
 import SkinCareNavTab from './SkinCareNavTab';
 import MobileSkinCare from './MobileSkinCare';
 import { getProductsByType } from '@/config/productsApi';
+import { getCategoryByTitle } from '@/config/categoriesApi';
 
 const SkinCareJourney = async () => {
-    const [bestSellerData] = await Promise.all([
-        getProductsByType('best-seller')
+    const [
+        bestSellerData,
+        skinCategoryResponse,
+        concernCategoryResponse,
+        routineCategoryResponse
+    ] = await Promise.all([
+        getProductsByType('best-seller'),
+        getCategoryByTitle('subCategory=skin type'),
+        getCategoryByTitle('subCategory=skin concern'),
+        getCategoryByTitle('category=routine')
     ]);
 
 
     const { data: bestSellingProducts } = bestSellerData;
-    
+    const { data: skinCategory } = skinCategoryResponse;
+    const { data: concernCategory } = concernCategoryResponse;
+    const { data: routineCategory } = routineCategoryResponse;
+
     return (
         <div className='container mx-auto my-5 md:my-20'>
             <div className='mx-4 md:mx-0'>
@@ -20,8 +32,18 @@ const SkinCareJourney = async () => {
                     <p className='text-center font-[300] text-secondary mt-2 md:hidden'>Shop By</p>
                 </div>
             </div>
-            <SkinCareNavTab bestSellingProducts={bestSellingProducts?.result} />
-            <MobileSkinCare bestSellingProducts={bestSellingProducts?.result} />
+            <SkinCareNavTab
+                skinCategory={skinCategory?.data?.children}
+                concernCategory={concernCategory?.data?.children}
+                routineCategory={routineCategory?.data?.children}
+                bestSellingProducts={bestSellingProducts?.result} />
+
+
+            <MobileSkinCare
+                skinCategory={skinCategory?.data?.children}
+                concernCategory={concernCategory?.data?.children}
+                routineCategory={routineCategory?.data?.children}
+                bestSellingProducts={bestSellingProducts?.result} />
         </div>
     );
 };

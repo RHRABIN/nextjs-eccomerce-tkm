@@ -4,13 +4,13 @@ import React, { useState } from 'react';
 import wave from '../../../../public/assets/wave-border.svg'
 import ProductCard from '@/components/card/ProductCard';
 import Slider from 'react-slick';
+import img from '../../../../public/assets/category.jpg';
 import { productSettings } from '@/utilities/sliderSettings/productSetting';
-import img1 from '../../../../public/assets/2.webp'
-import img2 from '../../../../public/assets/4.webp'
-import img3 from '../../../../public/assets/5.webp'
+import Link from 'next/link';
 
-const SkinCareNavTab = ({ bestSellingProducts }) => {
+const SkinCareNavTab = ({ bestSellingProducts, skinCategory, concernCategory, routineCategory }) => {
     const [selectNav, setSelectNav] = useState('seller');
+
     return (
         <div className='hidden md:block'>
             <div className='flex justify-center gap-6 mt-5 md:mt-10'>
@@ -55,9 +55,17 @@ const SkinCareNavTab = ({ bestSellingProducts }) => {
                 selectNav === 'skin-type' &&
                 <Slider {...productSettings}>
                     {
-                        Array(5).fill().map((_, idx) =>
-                            <div key={idx} className='px-2 py-10'>
-                                <ProductCard propsImg={img1} />
+                        skinCategory?.map(category =>
+                            <div key={category?._id} className='px-2 py-10'>
+                                <Link href={`/products?category=${category?.slug}`} className='relative'>
+                                    <Image
+                                        className='w-full'
+                                        height={720}
+                                        width={1280}
+                                        quality={100}
+                                        src={category?.image ? category?.image : img} alt={category?.title} />
+                                    <p className='absolute bottom-5 text-center w-full'>{category?.title}</p>
+                                </Link>
                             </div>
                         )
                     }
@@ -67,9 +75,17 @@ const SkinCareNavTab = ({ bestSellingProducts }) => {
                 selectNav === 'skin-concern' &&
                 <Slider {...productSettings}>
                     {
-                        Array(5).fill().map((_, idx) =>
-                            <div key={idx} className='px-2 py-10'>
-                                <ProductCard propsImg={img2} />
+                        concernCategory?.map(category =>
+                            <div key={category?._id} className='px-2 py-10'>
+                                <Link href={`/products?category=${category?.slug}`} className='relative'>
+                                    <Image
+                                        className='w-full'
+                                        height={720}
+                                        width={1280}
+                                        quality={100}
+                                        src={category?.image ? category?.image : img} alt={category?.title} />
+                                    <p className='absolute bottom-5 text-center w-full'>{category?.title}</p>
+                                </Link>
                             </div>
                         )
                     }
@@ -80,9 +96,17 @@ const SkinCareNavTab = ({ bestSellingProducts }) => {
                 selectNav === 'routine' &&
                 <Slider {...productSettings}>
                     {
-                        Array(5).fill().map((_, idx) =>
-                            <div key={idx} className='px-2 py-10'>
-                                <ProductCard propsImg={img3} />
+                        routineCategory?.map(category =>
+                            <div key={category?._id} className='px-2 py-10'>
+                                <Link href={`/products?category=${category?.slug}`} className='relative'>
+                                    <Image
+                                        className='w-full'
+                                        height={720}
+                                        width={1280}
+                                        quality={100}
+                                        src={category?.image ? category?.image : img} alt={category?.title} />
+                                    <p className='absolute bottom-5 text-center w-full'>{category?.title}</p>
+                                </Link>
                             </div>
                         )
                     }
