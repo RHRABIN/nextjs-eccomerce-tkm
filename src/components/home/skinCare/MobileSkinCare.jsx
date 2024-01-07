@@ -4,19 +4,19 @@ import ProductCard from '@/components/card/ProductCard';
 import { productSettings } from '@/utilities/sliderSettings/productSetting';
 import React from 'react';
 import Slider from 'react-slick';
-import img1 from '../../../../public/assets/2.webp'
-import img2 from '../../../../public/assets/4.webp'
-import img3 from '../../../../public/assets/5.webp'
+import Link from 'next/link';
+import Image from 'next/image';
+import img from '../../../../public/assets/category.jpg'
 
-const MobileSkinCare = () => {
+const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, routineCategory }) => {
     return (
         <div className='mx-4 md:hidden mt-10'>
             <AccordionClient title={<p className='uppercase'>Best Seller</p>}>
                 <Slider {...productSettings} className='mb-20'>
                     {
-                        Array(5).fill().map((_, idx) =>
-                            <div key={idx} className='px-2 py-10'>
-                                <ProductCard />
+                        bestSellingProducts?.map(product =>
+                            <div key={product?._id} className='px-2 py-10'>
+                                <ProductCard product={product} />
                             </div>
                         )
                     }
@@ -26,9 +26,17 @@ const MobileSkinCare = () => {
             <AccordionClient title={<p className='uppercase'>Skin Type</p>}>
                 <Slider {...productSettings} className='mb-20'>
                     {
-                        Array(5).fill().map((_, idx) =>
-                            <div key={idx} className='px-2 py-10'>
-                                <ProductCard propsImg={img3} />
+                        skinCategory?.map(category =>
+                            <div key={category?._id} className='px-2 py-10'>
+                                <Link href={`/products?category=${category?.slug}`} className='relative'>
+                                    <Image
+                                        className='w-full'
+                                        height={720}
+                                        width={1280}
+                                        quality={100}
+                                        src={category?.image ? category?.image : img} alt={category?.title} />
+                                    <p className='absolute bottom-5 text-center w-full'>{category?.title}</p>
+                                </Link>
                             </div>
                         )
                     }
@@ -36,11 +44,19 @@ const MobileSkinCare = () => {
             </AccordionClient>
 
             <AccordionClient title={<p className='uppercase'>Skin Concern</p>}>
-                <Slider {...productSettings} className='mb-20'> 
+                <Slider {...productSettings} className='mb-20'>
                     {
-                        Array(5).fill().map((_, idx) =>
-                            <div key={idx} className='px-2 py-10'>
-                                <ProductCard propsImg={img2} />
+                        concernCategory?.map(category =>
+                            <div key={category?._id} className='px-2 py-10'>
+                                <Link href={`/products?category=${category?.slug}`} className='relative'>
+                                    <Image
+                                        className='w-full'
+                                        height={720}
+                                        width={1280}
+                                        quality={100}
+                                        src={category?.image ? category?.image : img} alt={category?.title} />
+                                    <p className='absolute bottom-5 text-center w-full'>{category?.title}</p>
+                                </Link>
                             </div>
                         )
                     }
@@ -50,9 +66,17 @@ const MobileSkinCare = () => {
             <AccordionClient title={<p className='uppercase'>Routine</p>}>
                 <Slider {...productSettings} className='mb-20'>
                     {
-                        Array(5).fill().map((_, idx) =>
-                            <div key={idx} className='px-2 py-10'>
-                                <ProductCard propsImg={img3} />
+                        routineCategory?.map(category =>
+                            <div key={category?._id} className='px-2 py-10'>
+                                <Link href={`/products?category=${category?.slug}`} className='relative'>
+                                    <Image
+                                        className='w-full'
+                                        height={720}
+                                        width={1280}
+                                        quality={100}
+                                        src={category?.image ? category?.image : img} alt={category?.title} />
+                                    <p className='absolute bottom-5 text-center w-full'>{category?.title}</p>
+                                </Link>
                             </div>
                         )
                     }
