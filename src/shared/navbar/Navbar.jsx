@@ -30,7 +30,7 @@ const Navbar = async () => {
                                     <div className='grid grid-cols-5'>
                                         {
                                             brands?.result?.slice(0, 29)?.map(brand =>
-                                                <li className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
+                                                <li key={brand?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-full flex items-start gap-2 cursor-pointer'>
                                                     <Link href={brand?.slug} className='uppercase block w-full'>{brand?.name}</Link>
                                                 </li>
                                             )

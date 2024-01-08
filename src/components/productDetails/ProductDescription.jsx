@@ -52,8 +52,8 @@ const ProductDescription = ({ product }) => {
 
             <div className='flex flex-wrap gap-2 mt-5'>
                 {
-                    tags?.map((tag, idx) =>
-                        <span key={idx} className='bg-[rgb(245,245,245)] text-gray-800 py-0.5 px-1 text-xs'>{tag}</span>
+                    tags?.map((tag) =>
+                        <span key={tag} className='bg-[rgb(245,245,245)] text-gray-800 py-0.5 px-1 text-xs'>{tag}</span>
                     )
                 }
             </div>

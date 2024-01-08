@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
+import DangerHtml from '@/clientSideRender/dangerHtml/DangerHtml';
 
 const GlamCard = ({ blog }) => {
     const { blogTitle, slug, description, image } = blog || {};
@@ -11,7 +12,9 @@ const GlamCard = ({ blog }) => {
             </div>
             <div className='flex flex-col items-center p-4'>
                 <h1 className='text-gray-700 font-medium text-lg mb-4 text-center line-clamp-2'>{blogTitle}</h1>
-                <p className='text-dark leading-6 line-clamp-3 text-center' dangerouslySetInnerHTML={{ __html: description }}></p>
+                <div className='text-dark leading-6 line-clamp-3 text-center'>
+                    <DangerHtml getText={description}/>
+                </div>
                 <Link href={`/blog/${slug}`} className='border border-primary hover:bg-primary text-primary hover:text-white uppercase text-sm py-2 px-6 mt-3'>Read More</Link>
             </div>
         </div>

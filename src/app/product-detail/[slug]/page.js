@@ -24,9 +24,9 @@ const ProductDetailsPage = async ({ params }) => {
                     <div className='w-full md:w-1/2 flex gap-2 mb-4 lg:mb-0'>
                         <div className='w-1/4 overflow-y-scroll h-[16rem] lg:h-[28rem] details-image'>
                             {
-                                images?.map((img, idx) =>
+                                images?.map((img) =>
                                     <Image
-                                        key={idx}
+                                        key={img}
                                         className='h-auto w-full border mb-2'
                                         height={720}
                                         width={1280}
