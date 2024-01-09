@@ -15,7 +15,7 @@ const layout = ({ children }) => {
         <div className='container mx-auto my-10'>
             <div className='flex flex-col items-center mb-10'>
                 <p className='text-gray-800 text-2xl mb-3'>Searched Products</p>
-                <Image className='w-fit' height={500} width={1000} src={waveImg} />
+                <Image className='w-fit' height={500} width={1000} src={waveImg} alt='wave' />
             </div>
             <div className='mx-4 md:mx-0 md:flex gap-6'>
                 <div className='md:w-1/4 hidden md:block'>

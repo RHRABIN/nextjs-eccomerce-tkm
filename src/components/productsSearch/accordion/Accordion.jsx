@@ -1,42 +1,51 @@
 import AccordionClient from "@/clientSideRender/accordion/AccordionClient";
+import { getCategories, getAllWeight, getShopByCategory } from '@/config/categoriesApi'
 
-const Accordion = () => {
+const Accordion = async () => {
+    const [categoryResponse, weightResponse, shopByResponse] = await Promise.all([
+        getCategories(),
+        getAllWeight(),
+        getShopByCategory(),
+    ]);
+
+    const { data: categories } = categoryResponse;
+    const { data: allWeight } = weightResponse;
+    const { data: shopBy } = shopByResponse;
 
     return (
         <div className="my-8">
             <AccordionClient title={'All Category'}>
                 <ul className="text-sm">
-                    <li className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">New</li>
-                    <li className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">Best</li>
-                    <li className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">Routine</li>
+                    {
+                        categories?.result?.map(category =>
+                            <li
+                                key={category?._id}
+                                className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">{category?.title}</li>
+                        )
+                    }
                 </ul>
             </AccordionClient>
-            <AccordionClient title={'Skin Concern'}>
-                <ul className="text-sm">
-                    <li className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">Brightning</li>
-                    <li className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">Acne</li>
-                    <li className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">Hydration</li>
-                </ul>
-            </AccordionClient>
-            <AccordionClient title={'Skin Type'}>
-                <ul className="text-sm">
-                    <li className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">Brightning</li>
-                    <li className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">Acne</li>
-                    <li className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">Hydration</li>
-                </ul>
-            </AccordionClient>
-            <AccordionClient title={'Star Ingredients'}>
-                <ul className="text-sm">
-                    <li className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">Brightning</li>
-                    <li className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">Acne</li>
-                    <li className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">Hydration</li>
-                </ul>
-            </AccordionClient>
+            {
+                shopBy?.data?.children?.map(shop =>
+                    <AccordionClient key={shop?._id} title={shop?.title}>
+                        <ul className="text-sm">
+                            {
+                                shop?.children?.map(child =>
+                                    <li key={child?._id} className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">{child?.title}</li>
+                                )
+                            }
+                        </ul>
+                    </AccordionClient>
+                )
+            }
             <AccordionClient title={'Weight'}>
                 <ul className="text-sm">
-                    <li className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">Brightning</li>
-                    <li className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">Acne</li>
-                    <li className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">Hydration</li>
+                    {
+                        allWeight?.data?.map(weight =>
+                            <li key={weight?._id}
+                                className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">{weight?.name}</li>
+                        )
+                    }
                 </ul>
             </AccordionClient>
         </div>

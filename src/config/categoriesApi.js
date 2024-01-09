@@ -47,9 +47,35 @@ const getAllSortedBrands = async () => {
 };
 
 
+// get shopby category
+const getShopByCategory = async () => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/category/shop-by`);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+
+// get all weight
+const getAllWeight = async () => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/size`);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+
 module.exports = {
     getCategories,
     getCategoryByTitle,
     getAllBrands,
-    getAllSortedBrands
+    getAllSortedBrands,
+    getShopByCategory,
+    getAllWeight
 }
