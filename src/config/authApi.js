@@ -24,26 +24,20 @@ const userLoggedIn = async (data) => {
 };
 
 
-// store user from localstorage 
 const userData = () => {
+    let getUser = {};
+
     try {
         const storedUser = localStorage.getItem('auth');
-
         if (storedUser) {
-            const parseUser = JSON.parse(storedUser);
-            return parseUser?.data?.user;
-        } else {
-            console.error('No user data found');
+            getUser = JSON.parse(storedUser);
+            return getUser;
         }
     } catch (error) {
-        // console.error(error);
+
     }
-};
-
-
-const user = userData()
-console.log(user)
-module.exports = {
+}
+export {
     userLoggedIn,
     userData
 }
