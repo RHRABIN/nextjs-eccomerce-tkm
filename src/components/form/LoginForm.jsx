@@ -1,9 +1,11 @@
 'use client'
 import { userLoggedIn } from '@/config/authApi';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 const LoginForm = () => {
     const [loginInfo, setLoginInfo] = useState({});
+    const router = useRouter();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,15 +18,22 @@ const LoginForm = () => {
         }
 
         setLoginInfo(getLoginIngo);
-        
+        e.target.reset()
 
     }
-
+    let success;
     useEffect(() => {
-        if (loginInfo) {
-            userLoggedIn(loginInfo)
-        }
-    },[loginInfo])
+        const userMutation = async () => {
+            if (loginInfo) {
+                success = await userLoggedIn(loginInfo);
+
+                if (success?.data) {
+                    router.push('/')
+                }
+            }
+        };
+        userMutation();
+    }, [loginInfo])
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -35,7 +44,7 @@ const LoginForm = () => {
                 <input className='border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]' placeholder='Password' name='password' type="password" />
 
                 <div className='flex justify-center mt-6 hover:opacity-90'>
-                    <button className='bg-secondary text-white font-[500] px-8 py-2 rounded' type='submit'>Login</button>
+                    <button className='bg-secondary text-white font-[500] px-8 py-2 rounded' type='submit'>{success?.data ? 'Login..' : 'Login'}</button>
                 </div>
             </form>
         </div>
