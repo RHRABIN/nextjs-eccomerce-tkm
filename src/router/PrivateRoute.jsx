@@ -1,31 +1,30 @@
-// 'use client'
-// import { useRouter } from 'next/navigation';
-// import React from 'react';
+'use client'
+import { AuthContext } from '@/context/AuthProvider';
+import { useRouter } from 'next/navigation';
+import React, { useContext, useEffect } from 'react';
 
-// const PrivateRoute = ({ children }) => {
-//     const router = useRouter();
-//     const userData = () => {
-//         try {
-//             const storderUser = JSON.parse(localStorage.getItem('auth'));
-//             return storderUser?.data?.user
-//         } catch (error) {
+const PrivateRoute = ({ children }) => {
+    const { user, loading } = useContext(AuthContext);
+    const router = useRouter();
 
-//         }
-//     }
-//     const user = userData();
+    if (loading) {
+        return (
+            <div className='flex items-center justify-center h-screen w-full'>
+                <h1>Loading...</h1>
+            </div>
+        )
+    }
+    useEffect(() => {
+        if (!user?.data?.user?.email) {
+            router.push('/login')
+        }
+    }, [user?.data?.user?.email])
 
-//     if (user?.email) {
-//         return children
-//     } else {
-//         return router.push('/login')
-//     }
+    return (
+        <div>
+            {children}
+        </div>
+    )
+};
 
-
-//     return (
-//         <div>
-
-//         </div>
-//     );
-// };
-
-// export default PrivateRoute;
+export default PrivateRoute;
