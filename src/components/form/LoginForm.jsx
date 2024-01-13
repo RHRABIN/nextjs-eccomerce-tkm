@@ -2,6 +2,8 @@
 import { userLoggedIn } from '@/config/authApi';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import SuccessToast from '../toastMessage/SuccessToast';
+import ErrorToast from '../toastMessage/ErrorToast';
 
 const LoginForm = () => {
     const [loginInfo, setLoginInfo] = useState({});
@@ -36,6 +38,12 @@ const LoginForm = () => {
     }, [loginInfo])
     return (
         <div>
+            {
+                success?.data && <SuccessToast message={'Login Successfull'} />
+            }
+            {
+                success?.data === 'undefined' && <ErrorToast message={'Login Successfull'} />
+            }
             <form onSubmit={handleSubmit}>
                 <label className='mb-2 block' htmlFor="">Email</label>
                 <input className='border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]' placeholder='Email' name='email' type="email" />
