@@ -1,7 +1,7 @@
 'use client'
 import { BsBag } from "react-icons/bs";
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { IoIosSearch } from "react-icons/io";
 import Image from "next/image";
 import logo from '../../../public/assets/logo.png'
@@ -11,11 +11,13 @@ import ToggleButtonClient from "@/clientSideRender/navbar/ToggleButtonClient";
 import MobileNav from "../mobileNav/MobileNav";
 import Drawer from "@/components/drawer/Drawer";
 import ChekoutProductCard from "@/components/card/ChekoutProductCard";
+import { AuthContext } from "@/context/AuthProvider";
 
 const Header = () => {
     const [toggle, setToggle] = useState(false);
     const [suggestSearch, setSuggestSearch] = useState(false);
-    const [openDrawer, setOpenDrawer] = useState(false)
+    const [openDrawer, setOpenDrawer] = useState(false);
+    const { user, loading, handleLogout } = useContext(AuthContext);
 
     return (
         <>
@@ -49,7 +51,9 @@ const Header = () => {
                         </Link>
                         <div className='w-1/4 flex justify-end items-center gap-5'>
                             <Link className="hidden lg:block" href='/account'>Account</Link>
-                            <Link className="hidden lg:block" href='/login'>Login</Link>
+                            {user?.data?.user?.email ?
+                                <button onClick={handleLogout} className="hidden lg:block">Logout</button> :
+                                <Link className="hidden lg:block" href='/login'>Login</Link>}
                             <button onClick={() => setOpenDrawer(true)} className="relative">
                                 <BsBag />
                                 <span className="absolute bottom-2 left-2 bg-red-500 h-5 w-5 rounded-full text-white flex justify-center items-center"><small>0</small></span>

@@ -7,6 +7,10 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
 
+    const handleLogout = () => {
+        localStorage.removeItem('auth')
+    }
+
     useEffect(() => {
         const getUser = JSON.parse(localStorage.getItem('auth'));
         if (getUser) {
@@ -18,7 +22,7 @@ const AuthProvider = ({ children }) => {
     }, [])
 
 
-    const authInfo = { user, loading }
+    const authInfo = { user, loading, handleLogout }
 
     return (
         <AuthContext.Provider value={authInfo}>
