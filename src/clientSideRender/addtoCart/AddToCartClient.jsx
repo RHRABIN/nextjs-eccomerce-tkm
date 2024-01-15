@@ -21,7 +21,7 @@ const AddToCartClient = ({ product }) => {
     }
     return (
         <>
-            <button onClick={handleAddToCart} className='bg-primary p-1 text-white uppercase text-[10px] md:text-sm md:p-2 w-full'>{cartLoading ? 'Add to cart..' : 'Add to cart'}</button>
+            <button onClick={handleAddToCart} className='bg-primary p-1 text-white uppercase text-[10px] md:text-sm md:p-2 w-full'>Add to cart</button>
         </>
     );
 };

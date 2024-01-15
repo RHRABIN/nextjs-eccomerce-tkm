@@ -1,7 +1,7 @@
 'use client'
 import { BsBag } from "react-icons/bs";
 import Link from 'next/link';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { IoIosSearch } from "react-icons/io";
 import Image from "next/image";
 import logo from '../../../public/assets/logo.png'
@@ -12,12 +12,26 @@ import MobileNav from "../mobileNav/MobileNav";
 import Drawer from "@/components/drawer/Drawer";
 import ChekoutProductCard from "@/components/card/ChekoutProductCard";
 import { AuthContext } from "@/context/AuthProvider";
+import { getAddToCartDataByEmail } from "@/config/addCartToapi";
 
 const Header = () => {
     const [toggle, setToggle] = useState(false);
     const [suggestSearch, setSuggestSearch] = useState(false);
     const [openDrawer, setOpenDrawer] = useState(false);
+    const [cartData, setCartData] = useState();
     const { user, loading, handleLogout } = useContext(AuthContext);
+    let email = user?.data?.user?.email || {};
+
+    useEffect(() => {
+        const cartMutation = async () => {
+            const cart = await getAddToCartDataByEmail(email);
+            if (cart) {
+                setCartData(cart?.data?.data)
+            }
+        }
+
+        cartMutation();
+    }, [])
 
     return (
         <>
@@ -72,8 +86,14 @@ const Header = () => {
             >
                 <div className="relative w-full h-full">
 
-                    <ChekoutProductCard />
+                    {
+                        cartData?.cartData?.products?.map(product =>
 
+                            <ChekoutProductCard
+                                key={product?._id}
+                                product={product?.product} />
+                        )
+                    }
                     <div className="absolute bottom-20 w-full">
                         <Link href='/checkout' className="bg-secondary text-white text-lg p-2 w-full block text-center font-medium rounded hover:opacity-90">Place Order</Link>
                         <Link href='/' className="text-gray-800 text-lg font-medium mt-4 hover:text-black text-center block">Continue Shopping</Link>
