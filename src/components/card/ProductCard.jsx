@@ -3,9 +3,10 @@ import React from 'react';
 import { FaRegHeart } from 'react-icons/fa6';
 import { IoIosSearch } from 'react-icons/io';
 import Link from 'next/link';
+import AddToCartClient from '@/clientSideRender/addtoCart/AddToCartClient';
 
-const ProductCard = ({ propsImg, product }) => {
-    const { name, images, price, offerPrice, productType, slug, manufacturer } = product || {};
+const ProductCard = ({ product }) => {
+    const { _id, name, images, price, offerPrice, productType, slug, manufacturer } = product || {};
     return (
         <div className='py-4 relative cursor-pointer group hover:shadow-md hover:shadow-dark hover:scale-105 duration-500 transition'>
             <Link href={`/product-detail/${slug}`}>
@@ -21,7 +22,7 @@ const ProductCard = ({ propsImg, product }) => {
                 <button className='w-1/4 flex justify-start'>
                     <FaRegHeart className='md:text-2xl' />
                 </button>
-                <button className='bg-primary p-1 text-white uppercase text-[10px] md:text-sm md:p-2 w-full'>Add to cart</button>
+                <AddToCartClient product={product} />
                 <Link href={`/product-detail/${slug}`} className='w-1/4 flex justify-end'>
                     <IoIosSearch className='md:text-2xl' />
                 </Link>
