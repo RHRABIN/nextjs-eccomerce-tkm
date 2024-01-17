@@ -1,13 +1,18 @@
 'use client'
-import React, { useState } from 'react';
+import { createAddress } from '@/config/addressApi';
+import { AuthContext } from '@/context/AuthProvider';
+import React, { useContext, useState } from 'react';
 
 const AddressForm = () => {
     const [newAddress, setNewAddress] = useState();
+    const { user } = useContext(AuthContext);
 
 
     const handleSubmitAddress = (e) => {
         e.preventDefault();
-        console.log(newAddress)
+        if(user?.data?.user?.email){
+            createAddress(user?.data?.user?.email, newAddress)
+        }
     }
 
     const handleAddressChange = (e) => {
