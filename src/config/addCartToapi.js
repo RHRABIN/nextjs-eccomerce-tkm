@@ -34,7 +34,7 @@ const addToCartNewDataByEmail = async (email, data) => {
 const deleteCardDataByEmailId = async (email, productId) => {
     let response;
     try {
-        response = await axios.post(`${baseUrl}/cart/cartEdit/${email}`, productId);
+        response = await axios.delete(`${baseUrl}/cart/cartEdit/${email}`, productId);
         return response;
     } catch (error) {
         console.error(error);

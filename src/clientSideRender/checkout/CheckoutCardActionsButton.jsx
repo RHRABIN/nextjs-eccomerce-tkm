@@ -1,9 +1,12 @@
 'use client'
-import React, { useState } from 'react';
+import { deleteCardDataByEmailId } from '@/config/addCartToapi';
+import { AuthContext } from '@/context/AuthProvider';
+import React, { useContext, useState } from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
 
-const CheckoutCardActionsButton = () => {
+const CheckoutCardActionsButton = ({ productId }) => {
     const [selectProduct, setSelectProduct] = useState(1);
+    const { user } = useContext(AuthContext)
 
     const handleIncrementProduct = () => {
         if (selectProduct >= 5) {
@@ -21,8 +24,11 @@ const CheckoutCardActionsButton = () => {
         }
     }
 
-    const handleDeleteProduct = () => {
-        alert('Are you sure you want to delete this product')
+    const handleDeleteProduct = async () => {
+        const success = await deleteCardDataByEmailId(user?.data?.user?.email, productId);
+        if(success){
+            alert('delete successfull')
+        }
     }
 
     return (
