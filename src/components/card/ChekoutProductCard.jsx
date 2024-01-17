@@ -4,7 +4,7 @@ import CheckoutCardActionsButton from '@/clientSideRender/checkout/CheckoutCardA
 
 const ChekoutProductCard = ({ product }) => {
     const { name, images, size, offerPrice, price } = product || {};
-    console.log('product', product)
+
     return (
         <div className='md:flex border p-2 rounded'>
             <div className='md:w-1/2 flex gap-2'>
@@ -13,7 +13,7 @@ const ChekoutProductCard = ({ product }) => {
                 </div>
                 <div className='w-3/4'>
                     <p className='text-sm font-medium'>{name}</p>
-                    <p className='text-sm font-light mt-2'>Size: {size}</p>
+                    <p className='text-sm font-light mt-2'>Size: {size?.[0]?.name}</p>
                 </div>
             </div>
             <div className='md:w-1/2 flex items-center md:items-start gap-2 justify-between mt-2 md:mt-0'>

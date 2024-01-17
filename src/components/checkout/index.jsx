@@ -1,9 +1,15 @@
+'use client'
 import ChangeDelivaryAddress from '@/clientSideRender/checkout/ChangeDelivaryAddress';
 import CheckoutNewAddress from '@/clientSideRender/checkout/CheckoutNewAddress';
-import React from 'react';
+import React, { useContext } from 'react';
 import ChekoutProductCard from '../card/ChekoutProductCard';
+import { getAddToCartDataByEmail } from '@/config/addCartToapi';
+import { AuthContext } from '@/context/AuthProvider';
 
-const CheckoutContent = () => {
+const CheckoutContent = async () => {
+    const { user } = useContext(AuthContext)
+    const data = await getAddToCartDataByEmail(user?.data?.user?.email);
+    // console.log(data?.data?.data?.cartData?.products)
     return (
         <div>
             <CheckoutNewAddress />
@@ -14,7 +20,14 @@ const CheckoutContent = () => {
             </div>
 
             <div className='mt-4'>
-                <ChekoutProductCard />
+                {
+                    data?.data?.data?.cartData?.products?.map(product =>
+                        <ChekoutProductCard
+                            key={product?._id}
+                            product={product?.product}
+                        />
+                    )
+                }
             </div>
         </div>
     );
