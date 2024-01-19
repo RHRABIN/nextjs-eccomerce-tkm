@@ -2,6 +2,7 @@
 import { deleteCardDataByEmailId } from '@/config/addCartToapi';
 import { AuthContext } from '@/context/AuthProvider';
 import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AiOutlineDelete } from 'react-icons/ai';
 
 const CheckoutCardActionsButton = ({ productId }) => {
@@ -10,7 +11,7 @@ const CheckoutCardActionsButton = ({ productId }) => {
 
     const handleIncrementProduct = () => {
         if (selectProduct >= 5) {
-            alert('Already added 5 products')
+            toast.error('Already added 5 products')
         } else {
             setSelectProduct(selectProduct + 1)
         }
@@ -18,7 +19,7 @@ const CheckoutCardActionsButton = ({ productId }) => {
 
     const handleDecrementProduct = () => {
         if (selectProduct <= 1) {
-            alert('You have must select one product')
+            toast.error('You have must select one product')
         } else {
             setSelectProduct(selectProduct - 1)
         }

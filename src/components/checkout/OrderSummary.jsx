@@ -1,7 +1,14 @@
+'use client'
 import PaymentClient from '@/clientSideRender/payment/PaymentClient';
-import React from 'react';
+import { getAddToCartDataByEmail } from '@/config/addCartToapi';
+import { AuthContext } from '@/context/AuthProvider';
+import React, { useContext } from 'react';
 
-const OrderSummary = () => {
+const OrderSummary = async () => {
+    const { user } = useContext(AuthContext)
+    const data = await getAddToCartDataByEmail(user?.data?.user?.email);
+    const { discount, discountAmount, shippingCharge, subtotal, total } = data?.data?.data || {};
+
     return (
         <div className='border rounded-md bg-white shadow-lg p-4'>
             <div className='flex items-center justify-between gap-2'>
@@ -12,19 +19,19 @@ const OrderSummary = () => {
             <h3 className='text-gray-800 font-medium text-lg my-4'>Order Summary</h3>
             <span className='flex items-center justify-between'>
                 <p className='font-medium text-gray-800'>Items Total</p>
-                <p>0.00 TK</p>
+                <p>{subtotal} TK</p>
             </span>
             <span className='flex items-center justify-between'>
                 <p className='font-medium text-gray-800'>Discount (0)</p>
-                <p>- 0 TK</p>
+                <p>- {discount} TK</p>
             </span>
             <span className='flex items-center justify-between'>
                 <p className='font-medium text-gray-800'>Delivery Fee</p>
-                <p>100 TK</p>
+                <p>{shippingCharge} TK</p>
             </span>
             <span className='flex items-center justify-between'>
                 <p className='font-medium text-gray-800'>Total:</p>
-                <p>0.00 TK</p>
+                <p>{total} TK</p>
             </span>
 
             <PaymentClient />

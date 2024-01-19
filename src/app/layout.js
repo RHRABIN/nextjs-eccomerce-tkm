@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ThemeConfig from "@/utilities/themeConfig/ThemeConfig";
 import BackToTop from '@/utilities/backToTop/BackToTop'
 import AuthProvider from '@/context/AuthProvider'
+import { Toaster } from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
           {children}
           <Footer />
         </AuthProvider>
+        <Toaster/>
       </body>
     </html>
   )
