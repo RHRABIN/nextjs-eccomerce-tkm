@@ -29,7 +29,7 @@ const addToCartNewDataByEmail = async (email, data) => {
 };
 
 
-// add cart data 
+// delete cart data 
 
 const deleteCardDataByEmailId = async (email, productId) => {
     let response;
@@ -41,8 +41,23 @@ const deleteCardDataByEmailId = async (email, productId) => {
     }
 };
 
+
+// place single order 
+const placeSingleOrderByEmail = async (email, data) => {
+    let response;
+    try {
+        response = await axios.delete(`${baseUrl}/order/add/newOrder/${email}`, data);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+
+
 export {
     getAddToCartDataByEmail,
     addToCartNewDataByEmail,
-    deleteCardDataByEmailId
+    deleteCardDataByEmailId,
+    placeSingleOrderByEmail
 }

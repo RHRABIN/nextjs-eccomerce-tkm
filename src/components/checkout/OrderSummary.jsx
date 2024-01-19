@@ -35,10 +35,6 @@ const OrderSummary = async () => {
             </span>
 
             <PaymentClient />
-
-            <div className='mt-4 flex items-center justify-center'>
-                <button className='bg-secondary font-medium text-white px-4 py-1.5 rounded-md hover:opacity-90'>Place Order</button>
-            </div>
         </div>
     );
 };
