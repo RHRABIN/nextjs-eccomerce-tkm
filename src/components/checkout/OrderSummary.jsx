@@ -34,7 +34,10 @@ const OrderSummary = async () => {
                 <p>{total} TK</p>
             </span>
 
-            <PaymentClient />
+            <PaymentClient
+                email={user?.data?.user?.email}
+                product={data?.data?.data}
+            />
         </div>
     );
 };

@@ -46,7 +46,7 @@ const deleteCardDataByEmailId = async (email, productId) => {
 const placeSingleOrderByEmail = async (email, data) => {
     let response;
     try {
-        response = await axios.delete(`${baseUrl}/order/add/newOrder/${email}`, data);
+        response = await axios.post(`${baseUrl}/order/add/newOrder/${email}`, data);
         return response;
     } catch (error) {
         console.error(error);
