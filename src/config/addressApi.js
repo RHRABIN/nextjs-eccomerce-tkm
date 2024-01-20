@@ -45,7 +45,7 @@ const createAddress = async (email, data) => {
 const updateAddress = async (id, data) => {
     let response;
     try {
-        response = await axios.put(`${baseUrl}/address/${id}`, { data });
+        response = await axios.put(`${baseUrl}/address/${id}`,  data );
         return response;
     } catch (error) {
         console.error(error);

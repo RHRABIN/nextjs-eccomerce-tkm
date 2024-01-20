@@ -1,12 +1,15 @@
 'use client'
-import EditNewAddressClient from '@/clientSideRender/address/EditNewAddressClient';
 import { FaCheckCircle } from "react-icons/fa";
 import { deleteAddress, getAllAddress, setActiveAddress } from '@/config/addressApi';
 import { AuthContext } from '@/context/AuthProvider';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import Modal from '@/components/modal/Modal';
+import AddressForm from './AddressForm';
 
 const AddressCard = async () => {
     const { user } = useContext(AuthContext);
+    const [addressOpen, setAddressOpen] = useState(false);
+    const [editAddress, setEditAddress] = useState({});
     const { data: allAddress } = await getAllAddress(user?.data?.user?.email) || {};
 
     const handleActiveAddress = async (id) => {
@@ -17,6 +20,11 @@ const AddressCard = async () => {
         await deleteAddress(Id, user?.data?.user?.email)
     }
 
+
+    const handleEditAddress = (adrs) => {
+        setAddressOpen(true);
+        setEditAddress(adrs)
+    }
 
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
@@ -33,7 +41,17 @@ const AddressCard = async () => {
                                     </span> :
                                         <button onClick={() => handleActiveAddress(adrs?._id)} className='text-gray-500 uppercase font-semibold tracking-widest hover:bg-green-600 hover:text-white text-sm border p-1 rounded-md mr-3'>Select</button>
                                 }
-                                <EditNewAddressClient address={adrs} />
+                                <div>
+                                    <button onClick={() => handleEditAddress(adrs)} className='text-blue-500 text-sm'>Edit</button>
+                                    <Modal
+                                        modalOpen={addressOpen}
+                                        setModalOpen={setAddressOpen}
+                                        title={'Edit Address'}
+                                    >
+
+                                        <AddressForm address={editAddress} />
+                                    </Modal>
+                                </div>
                             </div>
                         </div>
                         <p className='text-sm my-2'>{adrs?.shippingPhone}</p>
