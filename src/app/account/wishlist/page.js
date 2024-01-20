@@ -16,6 +16,7 @@ const WishlistPage = async () => {
                     <WishlistCard
                         key={product?._id}
                         product={product?.product}
+                        email={user?.data?.user?.email}
                     />
                 )
             }

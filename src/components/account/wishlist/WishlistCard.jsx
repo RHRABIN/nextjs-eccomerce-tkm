@@ -2,9 +2,15 @@ import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
 import { AiOutlineDelete } from "react-icons/ai";
+import { deleteWishListDataByEmailId } from '@/config/wishlistApi';
 
-const WishlistCard = ({ product }) => {
-    const { name, model, offerPrice, price, images } = product || {};
+const WishlistCard = ({ email, product }) => {
+    const { _id, name, model, offerPrice, price, images } = product || {};
+
+    const handleDeleteWishlist = async () => {
+        await deleteWishListDataByEmailId(email, { productId: _id })
+    }
+
     return (
         <div className='flex items-center justify-between md:w-3/4 my-2'>
             <div className='flex items-center gap-4'>
@@ -17,7 +23,7 @@ const WishlistCard = ({ product }) => {
                 </div>
             </div>
 
-            <button className='hover:text-red-500'><AiOutlineDelete /></button>
+            <button onClick={handleDeleteWishlist} className='hover:text-red-500'><AiOutlineDelete /></button>
         </div>
     );
 };
