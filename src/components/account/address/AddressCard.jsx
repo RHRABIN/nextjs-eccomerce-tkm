@@ -30,7 +30,7 @@ const AddressCard = async () => {
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
             {
                 allAddress?.map(adrs =>
-                    <div key={adrs?._id} className={`bg-white p-4 rounded hover:shadow-md cursor-pointer border text-gray-600 mb-10`}>
+                    <div key={adrs?._id} className={`bg-white p-4 rounded hover:shadow-md cursor-pointer border text-gray-600 mb-10 ${adrs?.selected && 'border-green-600'}`}>
                         <div className='flex justify-between items-center'>
                             <p className='text-sm font-[500]'>{adrs?.shippingName}</p>
                             <div className='flex justify-between items-center'>

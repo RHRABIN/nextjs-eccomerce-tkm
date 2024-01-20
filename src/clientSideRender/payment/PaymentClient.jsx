@@ -12,19 +12,18 @@ const PaymentClient = ({ email, product }) => {
             toast.error('Please Select Payment Method')
         } else if (payment === 'COD') {
             const modifiedData = {
-                addressId: '54f4sr9w98a4de49',
                 paymentType: payment,
                 totalAmount: total,
                 shippingCharge: shippingCharge,
                 status: 'pending',
                 discountAmount: discountAmount,
-                shippingPhone: '01772781540'
             }
             if (modifiedData) {
                 const response = await placeSingleOrderByEmail(email, modifiedData)
-                console.log(response)
+                if (response) {
+                    toast.success('Order Successfull')
+                }
             }
-            toast.success('Order Successfull')
         }
     }
 
