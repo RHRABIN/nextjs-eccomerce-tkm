@@ -54,10 +54,23 @@ const placeSingleOrderByEmail = async (email, data) => {
 };
 
 
+// get all order order 
+const getAllOrdersByEmail = async (email, search) => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/order/user/all/${email}?${search}`);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+
 
 export {
     getAddToCartDataByEmail,
     addToCartNewDataByEmail,
     deleteCardDataByEmailId,
-    placeSingleOrderByEmail
+    placeSingleOrderByEmail,
+    getAllOrdersByEmail
 }

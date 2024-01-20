@@ -4,8 +4,10 @@ import OrdersSingleCard from '@/components/account/orders/OrdersSingleCard';
 import Modal from '@/components/modal/Modal';
 import React, { useState } from 'react';
 
-const OrderDetailsClient = () => {
+const OrderDetailsClient = ({ product }) => {
     const [openModal, setOpenModal] = useState(false);
+    const { orderId, totalAmount, createdAt, shippingCharge } = product || {};
+
     return (
         <div>
             <button onClick={() => setOpenModal(true)} className='border-none text-sm uppercase text-blue-500'>DETAILS</button>
@@ -16,29 +18,37 @@ const OrderDetailsClient = () => {
             >
                 <div className='border-b pb-2'>
                     <div>
-                        <h4 className='text-blue-500 text-lg'>Order Id: BKON973630</h4>
-                        <p className='text-sm font-[300]'>Date: 12/9/2023, 12:01:02 PM</p>
-                        <p className='text-sm font-[500]'>Total: 2000</p>
+                        <h4 className='text-blue-500 text-lg'>Order Id: {orderId}</h4>
+                        <p className='text-sm font-[300]'>Date: {new Date(createdAt).toLocaleString()}</p>
+                        <p className='text-sm font-[500]'>Total: {totalAmount}</p>
                     </div>
                 </div>
-                
+
                 {/* <OrderProgressBar /> */}
-                <OrdersSingleCard />
+                {
+                    product?.products?.map(prod =>
+                        <OrdersSingleCard
+                            key={prod?._id}
+                            orderProd={prod}
+                            status={product?.status}
+                        />
+                    )
+                }
 
 
                 <div className='mt-4 border-t py-4'>
                     <h3 className='font-[500]'>Order summery</h3>
                     <span className='text-sm flex items-center justify-between'>
                         <p>Sub total:</p>
-                        <p>1900 ৳</p>
+                        <p>{shippingCharge ? (totalAmount - shippingCharge) : totalAmount} ৳</p>
                     </span>
                     <span className='text-sm flex items-center justify-between border-b pb-1'>
                         <p>Shipping:</p>
-                        <p>100 ৳</p>
+                        <p>{shippingCharge} ৳</p>
                     </span>
                     <span className='text-sm flex items-center justify-between py-1'>
                         <p>Total amount:</p>
-                        <p>2000 ৳</p>
+                        <p>{totalAmount} ৳</p>
                     </span>
                 </div>
             </Modal>

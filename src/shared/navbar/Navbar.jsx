@@ -8,8 +8,8 @@ const Navbar = async () => {
         getCategories(),
         getAllBrands()
     ]);
-    const { data: categories } = categoriesResponse;
-    const { data: brands } = brandsResponse;
+    const { data: categories } = categoriesResponse || {};
+    const { data: brands } = brandsResponse || {};
 
     return (
         <div className='bg-secondary hidden lg:block'>
