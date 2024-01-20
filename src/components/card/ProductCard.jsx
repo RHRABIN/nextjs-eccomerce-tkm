@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import React from 'react';
-import { FaRegHeart } from 'react-icons/fa6';
 import { IoIosSearch } from 'react-icons/io';
 import Link from 'next/link';
 import AddToCartClient from '@/clientSideRender/addtoCart/AddToCartClient';
@@ -19,9 +18,6 @@ const ProductCard = ({ product }) => {
                 </div>
             </Link>
             <div className='flex gap-2 w-full px-2 md:px-5 items-center justify-between mt-5 absolute bottom-3 opacity-0 group-hover:opacity-100'>
-                <button className='w-1/4 flex justify-start'>
-                    <FaRegHeart className='md:text-2xl' />
-                </button>
                 <AddToCartClient product={product} />
                 <Link href={`/product-detail/${slug}`} className='w-1/4 flex justify-end'>
                     <IoIosSearch className='md:text-2xl' />
