@@ -1,13 +1,36 @@
 'use client'
 import { createAddress, updateAddress } from '@/config/addressApi';
+import { getAllDistrict, getAllDivisions, getAllSubDistrict } from '@/config/shippingApi';
 import { AuthContext } from '@/context/AuthProvider';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 
-const AddressForm = ({ address }) => {
+const AddressForm = async ({ address }) => {
     const [newAddress, setNewAddress] = useState();
     const { user } = useContext(AuthContext);
+    const [divisionResponse, districtResponse, subDistricResponse] = await Promise.all([
+        getAllDivisions(),
+        getAllDistrict(newAddress?.division),
+        getAllSubDistrict(newAddress?.district)
+    ]);
     const { _id, shippingName, shippingPhone, shippingEmail } = address || {};
+
+    const { data: division } = divisionResponse || {};
+    const { data: district } = districtResponse || {};
+    const { data: subDistrict } = subDistricResponse || {};
+
+
+
+
+    const makeOptions = (options) => {
+        let allOptions = [];
+        allOptions.push(<option value="">Select one</option>)
+        options?.map((op, index) => {
+            allOptions.push(<option key={index} value={op?.title} >{op?.title}</option>)
+        })
+        return allOptions;
+    }
+
 
     const handleSubmitAddress = async (e) => {
         e.preventDefault();
@@ -46,9 +69,9 @@ const AddressForm = ({ address }) => {
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Select Division <span className='text-red-600'>*</span></label>
                     <select onChange={handleAddressChange} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="division" id="">
-                        <option value="">Select One</option>
-                        <option value="dhaka">Dhaka</option>
-                        <option value="sylhet">Sylhet</option>
+                        {
+                            makeOptions(division?.result)
+                        }
                     </select>
                 </div>
                 <div>
@@ -58,10 +81,10 @@ const AddressForm = ({ address }) => {
 
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Select District <span className='text-red-600'>*</span></label>
-                    <select onChange={handleAddressChange} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="district" id="">
-                        <option value="">Select One</option>
-                        <option value="dhaka">Dhaka</option>
-                        <option value="sylhet">Sylhet</option>
+                    <select onChange={handleAddressChange} disabled={!newAddress?.division} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="district" id="">
+                        {
+                            makeOptions(district?.result)
+                        }
                     </select>
                 </div>
                 <div>
@@ -72,10 +95,10 @@ const AddressForm = ({ address }) => {
 
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Select Upazilla <span className='text-red-600'>*</span></label>
-                    <select onChange={handleAddressChange} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="upazila" id="">
-                        <option value="">Select One</option>
-                        <option value="dhaka">Dhaka</option>
-                        <option value="sylhet">Sylhet</option>
+                    <select disabled={!newAddress?.district} onChange={handleAddressChange} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="upazila" id="">
+                        {
+                            makeOptions(subDistrict?.result)
+                        }
                     </select>
                 </div>
                 <div>
