@@ -9,10 +9,7 @@ const AddressPage = () => {
                 <h1 className='text-xl text-gray-800 font-[500]'>My Address</h1>
                 <CreateNewAddressClient />
             </div>
-
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
-                <AddressCard />
-            </div>
+            <AddressCard />
         </div>
     );
 };
