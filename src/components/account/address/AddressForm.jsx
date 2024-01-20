@@ -2,16 +2,20 @@
 import { createAddress } from '@/config/addressApi';
 import { AuthContext } from '@/context/AuthProvider';
 import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const AddressForm = () => {
     const [newAddress, setNewAddress] = useState();
     const { user } = useContext(AuthContext);
 
 
-    const handleSubmitAddress = (e) => {
+    const handleSubmitAddress = async (e) => {
         e.preventDefault();
-        if(user?.data?.user?.email){
-            createAddress(user?.data?.user?.email, newAddress)
+        if (user?.data?.user?.email) {
+            const res = await createAddress(user?.data?.user?.email, newAddress);
+            if(res){
+                toast.success("Address created successfully!")
+            }
         }
     }
 

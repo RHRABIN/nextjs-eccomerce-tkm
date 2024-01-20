@@ -27,12 +27,12 @@ const getSingleAddress = async (addressId) => {
 const createAddress = async (email, data) => {
     let response;
     try {
-        response = await axios.post(`${baseUrl}/address/${email}`, { data },
-        {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        }
+        response = await axios.post(`${baseUrl}/address/${email}`, data,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
         );
         return response;
     } catch (error) {
