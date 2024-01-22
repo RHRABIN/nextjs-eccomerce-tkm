@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import SuccessToast from '../toastMessage/SuccessToast';
 import ErrorToast from '../toastMessage/ErrorToast';
+import Link from 'next/link';
 
 const LoginForm = () => {
     const [loginInfo, setLoginInfo] = useState({});
@@ -50,7 +51,7 @@ const LoginForm = () => {
 
                 <label className='mb-2 block mt-4' htmlFor="">Password</label>
                 <input className='border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]' placeholder='Password' name='password' type="password" />
-
+                <Link className='text-end w-full block mt-4 text-sm text-blue-600 hover:underline' href='/forgot-password'>Forget Password</Link>
                 <div className='flex justify-center mt-6 hover:opacity-90'>
                     <button className='bg-secondary text-white font-[500] px-8 py-2 rounded' type='submit'>{success?.data ? 'Login..' : 'Login'}</button>
                 </div>
