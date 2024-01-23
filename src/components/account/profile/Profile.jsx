@@ -1,3 +1,4 @@
+import ForgotPasswordForm from '@/components/form/ForgotPasswordForm';
 import Link from 'next/link';
 import React from 'react';
 
@@ -19,6 +20,11 @@ const Profile = () => {
                     <Link href='/account/update-profile' className='bg-secondary text-white px-6 py-2 font-[300] hover:opacity-90 rounded-md'>Update Profile</Link>
                 </div>
             </form>
+
+            <div className='md:w-3/5 mt-10'>
+                <h1 className='text-2xl font-medium'>Change Password</h1>
+                <ForgotPasswordForm />
+            </div>
         </div>
     );
 };

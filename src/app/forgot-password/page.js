@@ -1,6 +1,5 @@
 import ForgotPasswordForm from '@/components/form/ForgotPasswordForm';
 import React from 'react';
-import { FcGoogle } from 'react-icons/fc';
 
 const FotgotPasswordPage = () => {
     return (
