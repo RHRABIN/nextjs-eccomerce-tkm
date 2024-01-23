@@ -61,10 +61,24 @@ const getAllProductsBySearch = async (queryUrl) => {
 };
 
 
+// get search suggestion
+const getSearchSuggestion = async (query) => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/product/searchSuggestion?search=${query}`);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+
+
 module.exports = {
     getProductsByType,
     getSingleProduct,
     getBrandsProductsByBrandId,
     getRelatedProductsByProductId,
-    getAllProductsBySearch
+    getAllProductsBySearch,
+    getSearchSuggestion
 }

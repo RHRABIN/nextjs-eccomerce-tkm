@@ -8,9 +8,9 @@ const Accordion = async () => {
         getShopByCategory(),
     ]);
 
-    const { data: categories } = categoryResponse;
-    const { data: allWeight } = weightResponse;
-    const { data: shopBy } = shopByResponse;
+    const { data: categories } = categoryResponse || {};
+    const { data: allWeight } = weightResponse || {};
+    const { data: shopBy } = shopByResponse || {};
 
     return (
         <div className="my-8">
