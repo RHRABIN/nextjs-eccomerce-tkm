@@ -73,6 +73,18 @@ const getSearchSuggestion = async (query) => {
 };
 
 
+// get campaign Products
+const getCampaignProducts = async (slug) => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/product/campaign-products/${slug}`);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+
 
 module.exports = {
     getProductsByType,
@@ -80,5 +92,6 @@ module.exports = {
     getBrandsProductsByBrandId,
     getRelatedProductsByProductId,
     getAllProductsBySearch,
-    getSearchSuggestion
+    getSearchSuggestion,
+    getCampaignProducts
 }

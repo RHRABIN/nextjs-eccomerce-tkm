@@ -1,7 +1,11 @@
 import ProductCard from '@/components/card/ProductCard';
+import { getCampaignProducts } from '@/config/productsApi';
 import React from 'react';
 
-const CampaignPage = () => {
+const CampaignPage = async ({ params }) => {
+    const { slug } = params || {};
+    const data = await getCampaignProducts()
+    console.log('hittttttttttt', slug)
     return (
         <div className='container mx-auto my-10 md:my-20'>
             <div className='mx-4 md:mx-0'>

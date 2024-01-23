@@ -13,7 +13,7 @@ export const metadata = {
 
 const ProductDetailsPage = async ({ params }) => {
     const { slug } = params || {};
-    const { data: product } = await getSingleProduct(slug);
+    const { data: product } = await getSingleProduct(slug) || {};
     const { name, images, _id, manufacturer } = product?.result || {};
     // console.log(product)
 

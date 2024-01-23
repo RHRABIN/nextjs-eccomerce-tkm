@@ -3,17 +3,29 @@ import { bannerSettings } from '@/utilities/sliderSettings/bannerSettings';
 import Image from 'next/image';
 import React from 'react';
 import Slider from 'react-slick';
-import banner1 from '../../../../public/assets/banner1.webp'
-import banner2 from '../../../../public/assets/banner2.webp'
-import banner3 from '../../../../public/assets/banner3.webp'
+import { getDesktopAllBanner } from '@/config/bannerApi';
+import Link from 'next/link';
 
-const Banner = () => {
+const Banner = async () => {
+    const { data: bannerImage } = await getDesktopAllBanner() || {};
     return (
         <div>
             <Slider {...bannerSettings}>
-                <Image className='w-full' height={650} width={1920} src={banner1} />
-                <Image className='w-full' height={650} width={1920} src={banner2} />
-                <Image className='w-full' height={650} width={1920} src={banner3} />
+                {
+                    bannerImage?.data?.map(banner =>
+                        <Link href={`/campaign-products/${banner?.slug}`}>
+                            <Image
+                                key={banner?._id}
+                                className='w-full'
+                                height={650}
+                                width={1920}
+                                quality={100}
+                                alt={banner?.name}
+                                src={banner?.image}
+                            />
+                        </Link>
+                    )
+                }
             </Slider>
         </div>
     );
