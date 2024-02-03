@@ -4,15 +4,18 @@ import React from 'react';
 
 const CampaignPage = async ({ params }) => {
     const { slug } = params || {};
-    const data = await getCampaignProducts()
-    console.log('hittttttttttt', slug)
+    const { data: campaignProduct } = await getCampaignProducts(slug) || {};
+    console.log('hittttttttttt', campaignProduct?.data)
     return (
         <div className='container mx-auto my-10 md:my-20'>
             <div className='mx-4 md:mx-0'>
                 <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-10'>
                     {
-                        Array(9).fill().map((_, idx) =>
-                            <ProductCard />
+                        campaignProduct?.data?.map(product =>
+                            <ProductCard
+                                key={product?._id}
+                                product={product}
+                            />
                         )
                     }
                 </div>
