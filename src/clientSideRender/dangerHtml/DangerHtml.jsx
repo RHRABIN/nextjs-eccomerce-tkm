@@ -3,7 +3,7 @@ import React from 'react';
 
 const DangerHtml = ({ getText }) => {
     return (
-        <div dangerouslySetInnerHTML={{ __html: getText }}>
+        <div className='px-5' dangerouslySetInnerHTML={{ __html: getText }}>
 
         </div>
     );
