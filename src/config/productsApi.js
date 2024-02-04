@@ -85,6 +85,21 @@ const getCampaignProducts = async (slug) => {
 };
 
 
+// get brands Products
+const getBrandProductsByBrandSlug = async (brandId, page = "?page=1") => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/product/brand-products/slug/${brandId}${page}`);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+
+
+
+
 
 module.exports = {
     getProductsByType,
@@ -93,5 +108,6 @@ module.exports = {
     getRelatedProductsByProductId,
     getAllProductsBySearch,
     getSearchSuggestion,
-    getCampaignProducts
+    getCampaignProducts,
+    getBrandProductsByBrandSlug
 }
