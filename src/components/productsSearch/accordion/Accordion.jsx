@@ -15,7 +15,7 @@ const Accordion = async () => {
     return (
         <div className="my-8">
             <AccordionClient title={'All Category'}>
-                <ul className="text-sm">
+                <ul className="text-sm overflow-y-auto max-h-[20rem]">
                     {
                         categories?.result?.map(category =>
                             <li
@@ -28,7 +28,7 @@ const Accordion = async () => {
             {
                 shopBy?.data?.children?.map(shop =>
                     <AccordionClient key={shop?._id} title={shop?.title}>
-                        <ul className="text-sm">
+                        <ul className="text-sm overflow-y-auto max-h-[20rem]">
                             {
                                 shop?.children?.map(child =>
                                     <li key={child?._id} className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">{child?.title}</li>
@@ -39,7 +39,7 @@ const Accordion = async () => {
                 )
             }
             <AccordionClient title={'Weight'}>
-                <ul className="text-sm">
+                <ul className="text-sm overflow-y-auto max-h-[20rem]">
                     {
                         allWeight?.data?.map(weight =>
                             <li key={weight?._id}
