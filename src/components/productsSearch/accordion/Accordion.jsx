@@ -1,5 +1,6 @@
 import AccordionClient from "@/clientSideRender/accordion/AccordionClient";
 import { getCategories, getAllWeight, getShopByCategory } from '@/config/categoriesApi'
+import Link from "next/link";
 
 const Accordion = async () => {
     const [categoryResponse, weightResponse, shopByResponse] = await Promise.all([
@@ -15,12 +16,12 @@ const Accordion = async () => {
     return (
         <div className="my-8">
             <AccordionClient title={'All Category'}>
-                <ul className="text-sm">
+                <ul className="text-sm overflow-y-auto max-h-[20rem]">
                     {
                         categories?.result?.map(category =>
                             <li
                                 key={category?._id}
-                                className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">{category?.title}</li>
+                                className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5"><Link href={`/products?category=${category?.slug}`} className="w-full block p-2">{category?.title}</Link></li>
                         )
                     }
                 </ul>
@@ -28,10 +29,10 @@ const Accordion = async () => {
             {
                 shopBy?.data?.children?.map(shop =>
                     <AccordionClient key={shop?._id} title={shop?.title}>
-                        <ul className="text-sm">
+                        <ul className="text-sm overflow-y-auto max-h-[20rem]">
                             {
                                 shop?.children?.map(child =>
-                                    <li key={child?._id} className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">{child?.title}</li>
+                                    <li key={child?._id} className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5"><Link href={`/products?category=${child?.slug}`} className="w-full block p-2">{child?.title}</Link></li>
                                 )
                             }
                         </ul>
@@ -39,11 +40,11 @@ const Accordion = async () => {
                 )
             }
             <AccordionClient title={'Weight'}>
-                <ul className="text-sm">
+                <ul className="text-sm overflow-y-auto max-h-[20rem]">
                     {
                         allWeight?.data?.map(weight =>
                             <li key={weight?._id}
-                                className="hover:bg-gray-300 hover:text-primary cursor-pointer p-2 my-0.5">{weight?.name}</li>
+                                className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5"><Link href={``} className="w-full block p-2">{weight?.name}</Link></li>
                         )
                     }
                 </ul>

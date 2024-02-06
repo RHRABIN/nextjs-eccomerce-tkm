@@ -8,7 +8,7 @@ const ContactPage = () => {
         <div className='container mx-auto my-10'>
             <div className='flex flex-col items-center mb-10'>
                 <p className='text-gray-800 text-2xl mb-3'>Contact Us</p>
-                <Image className='w-fit' height={500} width={1000} src={waveImg} />
+                <Image className='w-fit' height={500} width={1000} src={waveImg} alt='wave' />
             </div>
 
             <div class="mx-4 md:mx-0 grid grid-cols-1 md:grid-cols-3 gap-20">

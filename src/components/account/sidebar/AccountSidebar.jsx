@@ -12,7 +12,7 @@ const AccountSidebar = () => {
     return (
         <div className='md:border-r md:border-r-dark'>
             <div className='flex flex-col items-center'>
-                <Image src={userImg} height={720} width={1280} className='rounded-full h-36 w-36 border border-dark' />
+                <Image src={userImg} alt='avatar' height={720} width={1280} className='rounded-full h-36 w-36 border border-dark' />
                 <h1 className='my-1 text-xl font-[500]'>Adnan Hossain</h1>
                 <p className='text-gray-800 font-[300]'>example@gmail.com</p>
             </div>

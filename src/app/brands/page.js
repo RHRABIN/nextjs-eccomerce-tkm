@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
+import { getAllSortedBrands } from '@/config/categoriesApi';
 
-const BrandsPage = () => {
+const BrandsPage = async () => {
+    const { data: brands } = await getAllSortedBrands() || {}
+
     return (
         <div className='container mx-auto my-5 md:my-10'>
             <div className='mx-4 md:mx-0'>
@@ -16,32 +19,26 @@ const BrandsPage = () => {
 
                 <span className='flex items-center gap-2 mt-6'>
                     <p className='font-light'>Brnad Index:</p>
-                    <p className='font-semibold text-sm'>A B C D</p>
+                    {
+                        brands?.result?.map(brand => <p key={brand?.letter} className='font-semibold text-sm'>{brand?.letter}</p>)
+                    }
                 </span>
-                <div className='border mt-6'>
-                    <p className='font-semibold text-sm p-3 uppercase bg-[rgb(0,0,0,0.01)]'>A</p>
-                    <div className='border-t py-3 px-5'>
-                        <li><Link href='' className='uppercase font-light hover:text-primary text-sm'>Abib</Link></li>
-                    </div>
-                </div>
-                <div className='border mt-6'>
-                    <p className='font-semibold text-sm p-3 uppercase bg-[rgb(0,0,0,0.01)]'>b</p>
-                    <div className='border-t py-3 px-5'>
-                        <li><Link href='' className='uppercase font-light hover:text-primary text-sm'>Abib</Link></li>
-                    </div>
-                </div>
-                <div className='border mt-6'>
-                    <p className='font-semibold text-sm p-3 uppercase bg-[rgb(0,0,0,0.01)]'>c</p>
-                    <div className='border-t py-3 px-5'>
-                        <li><Link href='' className='uppercase font-light hover:text-primary text-sm'>Abib</Link></li>
-                    </div>
-                </div>
-                <div className='border mt-6'>
-                    <p className='font-semibold text-sm p-3 uppercase bg-[rgb(0,0,0,0.01)]'>d</p>
-                    <div className='border-t py-3 px-5'>
-                        <li><Link href='' className='uppercase font-light hover:text-primary text-sm'>Abib</Link></li>
-                    </div>
-                </div>
+
+                {
+                    brands?.result?.map(brand =>
+                        <div key={brand?.letter} className='border mt-6'>
+                            <p className='font-semibold text-sm p-3 uppercase bg-[rgb(0,0,0,0.01)]'>{brand?.letter}</p>
+                            <div className='border-t py-3 px-5 grid grid-cols-2 md:grid-cols-4'>
+                                {
+                                    brand?.brands?.map(singleBrand =>
+                                        <li key={singleBrand?.name} className='mb-3'><Link href={`/brands/${singleBrand?.slug}`} className='uppercase font-light hover:text-primary text-sm'>{singleBrand?.name}</Link></li>
+                                    )
+                                }
+                            </div>
+
+                        </div>
+                    )
+                }
             </div>
         </div>
     );

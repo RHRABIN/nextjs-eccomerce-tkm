@@ -14,7 +14,7 @@ const BrandSlider = () => {
                 <Slider {...brandSettings}>
                     {
                         Array(5).fill().map((_, idx) =>
-                            <Image className='p-5 md:px-20 md:py-10' key={idx} height={200} width={1280} src={img} />
+                            <Image className='p-5 md:px-20 md:py-10' key={idx} alt='brand' height={200} width={1280} src={img} />
                         )
                     }
                 </Slider>

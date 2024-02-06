@@ -15,13 +15,12 @@ const ProductDetailsPage = async ({ params }) => {
     const { slug } = params || {};
     const { data: product } = await getSingleProduct(slug) || {};
     const { name, images, _id, manufacturer } = product?.result || {};
-    // console.log(product)
 
     return (
         <div className='container mx-auto my-10 md:my-20'>
             <div className='mx-4 md:mx-0'>
                 <div className='md:flex items-start gap-20'>
-                    <div className='w-full md:w-1/2 flex gap-2 mb-4 lg:mb-0'>
+                    <div className='w-full md:w-1/2 flex gap-2 mb-4 lg:mb-0 sticky top-10'>
                         <div className='w-1/4 overflow-y-scroll h-[16rem] lg:h-[28rem] details-image'>
                             {
                                 images?.map((img) =>

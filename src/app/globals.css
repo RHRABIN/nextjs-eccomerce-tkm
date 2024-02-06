@@ -64,27 +64,71 @@
     border-right: 1px solid var(--secondary-color);
 }
 
-.slick-dots li{
+.slick-dots li {
     margin: 0px;
 }
 
-.slick-dots li button{
+.slick-dots li button {
     padding: 0px;
 }
 
-.slick-dots li button:before{
+.slick-dots li button:before {
     font-size: 10px;
 }
 
-.details-image::-webkit-scrollbar{
+.details-image::-webkit-scrollbar {
     display: none;
 }
 
-.about-bg{
+.about-bg {
     background-image: url('../../public/assets/about-bg.png');
     height: 100%;
     background-position: center;
     background-size: cover;
     width: 100%;
     background-repeat: no-repeat;
+}
+
+
+/* product rating  */
+
+.rate {
+    float: left;
+    height: 46px;
+}
+
+.rate:not(:checked)>input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.rate:not(:checked)>label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
+}
+
+.rate:not(:checked)>label:before {
+    content: '★ ';
+}
+
+.rate>input:checked~label {
+    color: #faca15;
+}
+
+.rate:not(:checked)>label:hover,
+.rate:not(:checked)>label:hover~label {
+    color: #faca15;
+}
+
+.rate>input:checked+label:hover,
+.rate>input:checked+label:hover~label,
+.rate>input:checked~label:hover,
+.rate>input:checked~label:hover~label,
+.rate>label:hover~input:checked~label {
+    color: #faca15;
 }
