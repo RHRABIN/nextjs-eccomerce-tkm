@@ -1,7 +1,7 @@
 'use client'
 import { userLoggedIn } from '@/config/authApi';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SuccessToast from '../toastMessage/SuccessToast';
 import ErrorToast from '../toastMessage/ErrorToast';
 import Link from 'next/link';
@@ -10,33 +10,33 @@ const LoginForm = () => {
     const [loginInfo, setLoginInfo] = useState({});
     const router = useRouter();
 
+    let success;
     const handleSubmit = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        const getLoginIngo = {
+        const getLoginInfo = {
             email,
             password
         }
-
-        setLoginInfo(getLoginIngo);
-        e.target.reset()
-
-    }
-    let success;
-    useEffect(() => {
+        
         const userMutation = async () => {
-            if (loginInfo) {
-                success = await userLoggedIn(loginInfo);
+            if (getLoginInfo) {
+                success = await userLoggedIn(getLoginInfo);
 
                 if (success?.data) {
                     router.push('/')
                 }
             }
         };
+
         userMutation();
-    }, [loginInfo])
+
+        // e.target.reset()
+
+    }
+   
     return (
         <div>
             {
@@ -47,7 +47,7 @@ const LoginForm = () => {
             }
             <form onSubmit={handleSubmit}>
                 <label className='mb-2 block' htmlFor="">Email</label>
-                <input className='border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]' placeholder='Email' name='email' type="email" />
+                <input className='border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]' placeholder='Email' name='email' type="text" />
 
                 <label className='mb-2 block mt-4' htmlFor="">Password</label>
                 <input className='border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]' placeholder='Password' name='password' type="password" />

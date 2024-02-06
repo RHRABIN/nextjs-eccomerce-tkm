@@ -37,7 +37,8 @@ const SignupForm = () => {
             }
         };
         userMutation();
-    }, [loginInfo])
+    }, [loginInfo]);
+    
     return (
         <div>
             <form onSubmit={handleSubmit}>

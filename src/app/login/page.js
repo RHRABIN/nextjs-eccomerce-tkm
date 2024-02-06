@@ -1,7 +1,6 @@
 import LoginForm from '@/components/form/LoginForm';
 import Link from 'next/link';
 import React from 'react';
-import { BiLogoFacebookCircle, BiLogoGithub } from 'react-icons/bi';
 import { FcGoogle } from 'react-icons/fc'
 
 const LoginPage = () => {
@@ -19,13 +18,7 @@ const LoginPage = () => {
                     </div>
                     <div className='flex items-center justify-center gap-2'>
                         <button>
-                            <BiLogoFacebookCircle className='text-3xl text-[#0866FF]' />
-                        </button>
-                        <button>
                             <FcGoogle className='text-3xl' />
-                        </button>
-                        <button>
-                            <BiLogoGithub className='text-3xl' />
                         </button>
                     </div>
                     <p className='text-xs md:text-sm text-center mt-4'>You don't have an account? please <Link href='/signup' className='text-primary hover:underline'>signup</Link></p>

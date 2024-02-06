@@ -22,6 +22,23 @@ const userLoggedIn = async (data) => {
     }
 };
 
+//send otp
+const sendOtp = async (data) => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/auth/otp`, data,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
+        
+        return response;
+    } catch (error) {
+        return error;
+    }
+}
 
 // user signup
 const userSignup = async (data) => {
@@ -43,7 +60,29 @@ const userSignup = async (data) => {
     }
 };
 
+// forget password
+const forgetPassword = async (data) => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/auth/forget-password`, data,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
+        if (response) {
+            localStorage.setItem('auth', JSON.stringify(response?.data));
+        }
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 export {
     userLoggedIn,
-    userSignup
+    userSignup,
+    sendOtp, 
+    forgetPassword
 }
