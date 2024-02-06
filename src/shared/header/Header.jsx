@@ -108,7 +108,10 @@ const Header = () => {
                 </div>
             </div>
 
-            <MobileNav toggle={toggle} />
+            <MobileNav
+                toggle={toggle}
+                setToggle={setToggle}
+            />
 
             <Drawer
                 title={'Your Bag'}
