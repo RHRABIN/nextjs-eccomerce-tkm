@@ -1,16 +1,15 @@
 'use client'
 import { addToCartNewDataByEmail } from '@/config/addCartToapi';
-import { addToWishListByEmail } from '@/config/wishlistApi';
 import { AuthContext } from '@/context/AuthProvider';
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { FaRegHeart } from 'react-icons/fa6';
+import { FaPlus } from 'react-icons/fa6';
+import { FiMinus } from 'react-icons/fi';
 
-const AddToCartClient = ({ product }) => {
+const AddToCartButton = ({ product }) => {
     const { _id, offerPrice } = product || {};
     const { user } = useContext(AuthContext);
     const email = user?.data?.user?.email || {};
-
 
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -43,23 +42,24 @@ const AddToCartClient = ({ product }) => {
         }
     },[isSuccess])
 
-
-    const handleWishlist = async () => {
-        if (email) {
-            const res = await addToWishListByEmail(email, { product: _id });
-            if (res) {
-                toast.success('Wishlist added successfully');
-            }
-        }
-    }
     return (
-        <>
-            <button onClick={handleWishlist} className='w-1/4 flex justify-start'>
-                <FaRegHeart className='md:text-2xl' />
-            </button>
-            <button onClick={handleAddToCart} className='bg-primary p-1 text-white uppercase text-[10px] md:text-sm md:p-2 w-full'>{isLoading ? 'Add to cart..' : 'Add to cart'}</button>
-        </>
+        <div className='flex items-center gap-4'>
+            <div className='w-2/5 border py-2 px-4 md:px-10 flex items-center'>
+                <p className='w-2/5'>1</p>
+                <div className='w-3/5 flex justify-between'>
+                    <button className='bg-gray-200 p-1 rounded-full' type='button'>
+                        <FiMinus />
+                    </button>
+                    <button className='bg-gray-200 p-1 rounded-full' type='button'>
+                        <FaPlus />
+                    </button>
+                </div>
+            </div>
+            <div className='w-3/5'>
+                <button onClick={handleAddToCart} className='bg-black text-white w-full py-2 tracking-widest'>{isLoading ? 'Add to Bag..' : 'Add to Bag'}</button>
+            </div>
+        </div>
     );
 };
 
-export default AddToCartClient;
+export default AddToCartButton;

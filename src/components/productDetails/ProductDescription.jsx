@@ -1,9 +1,9 @@
 import AccordionClient from '@/clientSideRender/accordion/AccordionClient';
 import DangerHtml from '@/clientSideRender/dangerHtml/DangerHtml';
 import React from 'react';
-import { FaFacebookF, FaHeart, FaInstagram, FaPlus, FaYoutube } from 'react-icons/fa6';
-import { FiMinus } from "react-icons/fi";
+import { FaFacebookF, FaHeart, FaInstagram, FaYoutube } from 'react-icons/fa6';
 import { IoIosStar } from 'react-icons/io';
+import AddToCartButton from './AddToCartButton';
 
 const ProductDescription = ({ product }) => {
     const { name, manufacturer, tags, price, offerPrice, description, directions, ingredients } = product || {};
@@ -25,22 +25,7 @@ const ProductDescription = ({ product }) => {
                 <p>{offerPrice ? offerPrice : price}</p>
             </span>
 
-            <div className='flex items-center gap-4'>
-                <div className='w-2/5 border py-2 px-4 md:px-10 flex items-center'>
-                    <p className='w-2/5'>1</p>
-                    <div className='w-3/5 flex justify-between'>
-                        <button className='bg-gray-200 p-1 rounded-full' type='button'>
-                            <FiMinus />
-                        </button>
-                        <button className='bg-gray-200 p-1 rounded-full' type='button'>
-                            <FaPlus />
-                        </button>
-                    </div>
-                </div>
-                <div className='w-3/5'>
-                    <button className='bg-black text-white w-full py-2 tracking-widest'>Add to Bag</button>
-                </div>
-            </div>
+            <AddToCartButton product={product} />
 
             <div className='flex items-center gap-3 mt-3'>
                 <FaYoutube className='border border-gray-300 p-2 rounded-full text-dark text-4xl cursor-pointer hover:bg-[#CD201F] hover:text-white' />
