@@ -2,30 +2,69 @@
 import { FaCheckCircle } from "react-icons/fa";
 import { deleteAddress, getAllAddress, setActiveAddress } from '@/config/addressApi';
 import { AuthContext } from '@/context/AuthProvider';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Modal from '@/components/modal/Modal';
 import AddressForm from './AddressForm';
 
-const AddressCard = async () => {
+const AddressCard = () => {
     const { user } = useContext(AuthContext);
     const [addressOpen, setAddressOpen] = useState(false);
     const [editAddress, setEditAddress] = useState({});
-    const { data: allAddress } = await getAllAddress(user?.data?.user?.email) || {};
+    const [allAddress, setAllAddress] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [selectSuccess, setSelectSuccess] = useState(false);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data } = await getAllAddress(user?.data?.user?.email);
+                setAllAddress(data);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (user?.data?.user?.email) {
+            fetchData();
+        }
+
+        if (selectSuccess) {
+            fetchData();
+        }
+    }, [user, selectSuccess]);
 
     const handleActiveAddress = async (id) => {
-        await setActiveAddress(id, user?.data?.user?.email)
+        try {
+            await setActiveAddress({ id }, user?.data?.user?.email);
+            setSelectSuccess(!selectSuccess);
+        } catch (error) {
+            setError(error.message);
+        }
     }
 
-    const handleDeleteAddress = async (Id) => {
-        await deleteAddress(Id, user?.data?.user?.email)
+    const handleDeleteAddress = async (id) => {
+        try {
+            await deleteAddress({ id }, user?.data?.user?.email);
+        } catch (error) {
+            setError(error.message);
+        }
     }
-
 
     const handleEditAddress = (adrs) => {
         setAddressOpen(true);
-        setEditAddress(adrs)
+        setEditAddress(adrs);
     }
 
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
             {
