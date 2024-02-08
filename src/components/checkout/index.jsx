@@ -1,27 +1,54 @@
 'use client'
+import React, { useContext, useEffect, useState } from 'react';
+import ChekoutProductCard from '../card/ChekoutProductCard';
 import ChangeDelivaryAddress from '@/clientSideRender/checkout/ChangeDelivaryAddress';
 import CheckoutNewAddress from '@/clientSideRender/checkout/CheckoutNewAddress';
-import React, { useContext } from 'react';
-import ChekoutProductCard from '../card/ChekoutProductCard';
 import { getAddToCartDataByEmail } from '@/config/addCartToapi';
 import { AuthContext } from '@/context/AuthProvider';
+import { getActiveAddress } from '@/config/addressApi';
 
-const CheckoutContent = async () => {
-    const { user } = useContext(AuthContext)
-    const data = await getAddToCartDataByEmail(user?.data?.user?.email);
-    // console.log(data?.data?.data?.cartData?.products)
+const CheckoutContent = () => {
+    const { user } = useContext(AuthContext);
+    const [cartData, setCartData] = useState(null);
+    const [activeAddress, setActiveAddress] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const cartResponse = await getAddToCartDataByEmail(user?.data?.user?.email);
+                setCartData(cartResponse);
+
+                const addressResponse = await getActiveAddress(user?.data?.user?.email);
+                setActiveAddress(addressResponse.data);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [user]);
+
+
     return (
         <div>
             <CheckoutNewAddress />
 
-            <div className='bg-white rounded mt-5 shadow p-2 border text-sm'>
-                <p className='font-light'>Deliver to: Rafiul Hasan Rabin</p>
-                <p className='font-light'><span className='bg-blue-100 p-0.5 rounded-md'>Home</span> | Bashundhara, Dhdka - Dhaka, Dhaka <ChangeDelivaryAddress /></p>
-            </div>
+            {
+                activeAddress ?
+                    <div className='bg-white rounded mt-5 shadow p-2 border text-sm'>
+                        <p className='font-light'>Deliver to: {activeAddress?.data?.shippingName}</p>
+                        <p className='font-light'><span className='bg-blue-100 p-0.5 rounded-md'>Home</span> | {activeAddress?.data?.address} <ChangeDelivaryAddress /></p>
+                    </div> :
+                    <p className='text-center mt-5'>No Address Found</p>
+            }
 
             <div className='mt-4'>
                 {
-                    data?.data?.data?.cartData?.products?.map(product =>
+                    cartData?.data?.data?.cartData?.products?.map(product =>
                         <ChekoutProductCard
                             key={product?._id}
                             product={product?.product}

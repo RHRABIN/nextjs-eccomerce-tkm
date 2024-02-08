@@ -27,7 +27,6 @@ const CartDrawer = () => {
         cartMutation();
     }, [user]);
 
-    console.log(cartData?.cartData)
 
     return (
         <div>
