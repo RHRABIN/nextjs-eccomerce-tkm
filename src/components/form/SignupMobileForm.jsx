@@ -141,7 +141,7 @@ const SignupMobileForm = () => {
             <form onSubmit={handleSubmit}>
 
                 {/* initial input */}
-                <input required onWheel={(e) => e.target.blur()} className={signupInfo.phone ? 'hidden' : 'border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]'} placeholder='Enter Phone Number' name='number' type="number" />
+                <input required onWheel={(e) => e.target.blur()} className={signupInfo.phone || isThirtyCount ? 'hidden' : 'border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]'} placeholder='Enter Phone Number' name='number' type="number" />
 
                 {/* verify otp on sms */}
                 <input onWheel={(e) => e.target.blur()} className={(!otpData.otp || signupInfo.isOtp) ? 'hidden' : ' border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]'} placeholder='Enter your 4 digits code' name='otp' type="number" />
