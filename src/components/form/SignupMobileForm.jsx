@@ -3,12 +3,14 @@ import { sendOtp, userSignup } from '@/config/authApi';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import TihrtyMinuteCount from '../signup/TihrtyMinuteCount';
 
 const SignupMobileForm = () => {
     const [signupInfo, setSignUpInfo] = useState({});
     const [otpData, setOtpData] = useState({});
     const [timeInSecs, setTimeInSecs] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
+    const [isThirtyCount, setIsThirtyCount] = useState(false);
     const router = useRouter();
 
     const handleSubmit = (e) => {
@@ -28,7 +30,7 @@ const SignupMobileForm = () => {
             if (otp == otpData.otp) {
                 setSignUpInfo({ ...signupInfo, isOtp: true })
             } else {
-                window.alert("Then otp is incorrect", otpData.otp)
+                toast.error("Then otp is incorrect", otpData.otp)
             }
         }
 
@@ -80,7 +82,7 @@ const SignupMobileForm = () => {
 
     useEffect(() => {
         if (isRunning) {
-            startTimer(1 * 60); // 5 minutes in seconds
+            startTimer(2 * 60); // 5 minutes in seconds
         } else {
             clearInterval(ticker);
         }
@@ -133,6 +135,10 @@ const SignupMobileForm = () => {
                     <span className='text-xs'> {timeInSecs <= 59 ? 'sec' : 'mins'}</span>
                 </p>
             }
+            <TihrtyMinuteCount
+                isThirtyCount={isThirtyCount}
+                setIsThirtyCount={setIsThirtyCount}
+            />
             <form onSubmit={handleSubmit}>
 
                 {/* initial input */}
@@ -154,7 +160,7 @@ const SignupMobileForm = () => {
                 }
 
                 <div className='flex justify-center mt-4 hover:opacity-90'>
-                    <button className={`bg-secondary text-white font-[500] px-8 py-2 rounded ${isRunning ? 'hidden' : 'block'}`} type='submit'>{signupInfo?.number && signupInfo?.otp ? 'Signup' : 'Send'}</button>
+                    <button className={`bg-secondary text-white font-[500] px-8 py-2 rounded ${isRunning || isThirtyCount ? 'hidden' : 'block'}`} type='submit'>{signupInfo?.number && signupInfo?.otp ? 'Signup' : 'Send'}</button>
                 </div>
             </form>
         </div>
