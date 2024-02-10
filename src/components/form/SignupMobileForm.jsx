@@ -67,12 +67,11 @@ const SignupMobileForm = () => {
     useEffect(() => {
         let existingOtpArray;
         if (otpData?.otp) {
+            var currentTime = new Date().getTime();
             existingOtpArray = JSON.parse(localStorage.getItem('otp')) || [];
-            const updatedOtpArray = [...existingOtpArray, 'otpcount'];
+            const updatedOtpArray = [...existingOtpArray, currentTime];
             localStorage.setItem('otp', JSON.stringify(updatedOtpArray));
         }
-
-        console.log('existingOtpArray?.length', existingOtpArray?.length)
     }, [otpData]);
 
 
