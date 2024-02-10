@@ -19,7 +19,7 @@ const TihrtyMinuteCount = ({ isThirtyCount, setIsThirtyCount }) => {
         }
         fetchLoaclData();
 
-        if (timeInSecs <= 0) {
+        if (timeInSecs === 0) {
             localStorage.removeItem('otp');
             setIsThirtyCount(false)
         }
