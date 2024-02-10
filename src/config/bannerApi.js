@@ -13,6 +13,19 @@ const getDesktopAllBanner = async () => {
 };
 
 
+// get mobile banner
+const getMobileBanner = async () => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/mobileBanner`);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+
 module.exports = {
-    getDesktopAllBanner
+    getDesktopAllBanner,
+    getMobileBanner
 }
