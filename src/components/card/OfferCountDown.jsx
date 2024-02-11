@@ -6,7 +6,7 @@ const OfferCountDown = ({ timeStamps }) => {
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
         if (completed) {
             return (
-                <div className="bg-[hsla(0,0%,80%,.4)] w-3/5 mx-auto rounded-md border border-[#ccc]">
+                <div className="bg-[hsla(0,0%,80%,.4)] md:w-3/5 mx-auto rounded-md border border-[#ccc]">
                     <div className="flex justify-center">
                         <div className="border-[#ccc]">
                             <p className="text-xs text-center mx-2">{days}</p>
