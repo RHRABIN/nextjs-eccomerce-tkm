@@ -1,17 +1,22 @@
 'use client'
-import React, { useState } from 'react';
+import { addSingleReview } from '@/config/reviewApi';
+import { AuthContext } from '@/context/AuthProvider';
+import React, { useContext, useState } from 'react';
 
-const WriteReview = ({ setToggleReview }) => {
+const WriteReview = ({ setToggleReview, productId }) => {
     const [rating, setRating] = useState('');
     const [review, setReview] = useState('');
-    const handleSubmitReview = (e) => {
+    const { user } = useContext(AuthContext);
+
+
+    const handleSubmitReview = async (e) => {
         e.preventDefault();
-        // const newReview = {
-        //     rating: rating || '5',
-        //     description: review,
-        //     product: productId
-        // }
-        // singleReview({ data: newReview, userEmail: user?.email, });
+        const data = {
+            rating: rating || '5',
+            description: review,
+            product: productId
+        }
+        await addSingleReview(user?.data?.user?.email, data)
         e.target.reset();
     }
     return (

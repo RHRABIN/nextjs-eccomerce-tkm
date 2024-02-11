@@ -1,11 +1,29 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoIosStar } from 'react-icons/io';
 import ProductReview from './ProductReview';
 import WriteReview from './WriteReview';
+import Rating from '@/components/rating/Rating';
+import { getAllReviewsByProductId } from '@/config/reviewApi';
 
-const ReviewSection = () => {
+const ReviewSection = ({ productId }) => {
     const [toggleReview, setToggleReview] = useState(false);
+    const [allReviews, setAllreviews] = useState([]);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await getAllReviewsByProductId(productId);
+                setAllreviews(response)
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        fetchData()
+    }, [productId]);
+
+    console.log(allReviews)
 
     return (
         <div className='container mx-auto'>
@@ -15,11 +33,7 @@ const ReviewSection = () => {
                         <div className='flex items-center gap-2'>
                             <h1 className='text-gray-800 text-3xl font-[500]'>0.0</h1>
                             <div className='flex items-center text-dark text-xl'>
-                                <IoIosStar />
-                                <IoIosStar />
-                                <IoIosStar />
-                                <IoIosStar />
-                                <IoIosStar />
+                                <Rating rate={4} />
                             </div>
                         </div>
                         <p className='text-gray-800 font-[300]'>Based on 0 reviews</p>
@@ -30,7 +44,10 @@ const ReviewSection = () => {
                 </div>
                     :
                     <div className='mt-5'>
-                        <WriteReview setToggleReview={setToggleReview} />
+                        <WriteReview
+                            productId={id}
+                            setToggleReview={setToggleReview}
+                        />
                     </div>}
                 <div className='mt-5'>
                     <ProductReview />

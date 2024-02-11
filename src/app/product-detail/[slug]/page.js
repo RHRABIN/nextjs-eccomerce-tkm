@@ -45,7 +45,7 @@ const ProductDetailsPage = async ({ params }) => {
             </div>
             <MightAlsoSection id={slug} />
             <MoreProducts brandId={manufacturer?._id} />
-            <ReviewSection />
+            <ReviewSection productId={_id} />
         </div>
     );
 };
