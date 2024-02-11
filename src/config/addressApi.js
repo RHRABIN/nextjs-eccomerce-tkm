@@ -45,7 +45,7 @@ const createAddress = async (email, data) => {
 const updateAddress = async (id, data) => {
     let response;
     try {
-        response = await axios.put(`${baseUrl}/address/${id}`,  data );
+        response = await axios.put(`${baseUrl}/address/${id}`, data);
         return response;
     } catch (error) {
         console.error(error);
@@ -57,7 +57,7 @@ const updateAddress = async (id, data) => {
 const setActiveAddress = async (id, email) => {
     let response;
     try {
-        response = await axios.put(`${baseUrl}/address/active/${email}`,  id );
+        response = await axios.put(`${baseUrl}/address/active/${email}`, id);
         return response;
     } catch (error) {
         console.error(error);
@@ -76,10 +76,10 @@ const getActiveAddress = async (email) => {
 };
 
 // delete address 
-const deleteAddress = async ( Id, email ) => {
+const deleteAddress = async (Id, email) => {
     let response;
     try {
-        response = await axios.delete(`${baseUrl}/address/${email}`,  {Id} );
+        response = await axios.delete(`${baseUrl}/address/${email}`, Id);
         return response;
     } catch (error) {
         console.error(error);

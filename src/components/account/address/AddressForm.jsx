@@ -2,22 +2,40 @@
 import { createAddress, updateAddress } from '@/config/addressApi';
 import { getAllDistrict, getAllDivisions, getAllSubDistrict } from '@/config/shippingApi';
 import { AuthContext } from '@/context/AuthProvider';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
-const AddressForm = async ({ address }) => {
+const AddressForm = ({ address }) => {
     const [newAddress, setNewAddress] = useState();
     const { user } = useContext(AuthContext);
-    const [divisionResponse, districtResponse, subDistricResponse] = await Promise.all([
-        getAllDivisions(),
-        getAllDistrict(newAddress?.division),
-        getAllSubDistrict(newAddress?.district)
-    ]);
-    const { _id, shippingName, shippingPhone, shippingEmail } = address || {};
+    const [division, setDivision] = useState(null);
+    const [district, setDistrict] = useState(null);
+    const [subDistrict, setSubDistrict] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    const { data: division } = divisionResponse || {};
-    const { data: district } = districtResponse || {};
-    const { data: subDistrict } = subDistricResponse || {};
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [divisionsResponse, districtsResponse, subDistrictsResponse] = await Promise.all([
+                    getAllDivisions(),
+                    getAllDistrict(newAddress?.division),
+                    getAllSubDistrict(newAddress?.district)
+                ]);
+                setDivision(divisionsResponse?.data);
+                setDistrict(districtsResponse?.data);
+                setSubDistrict(subDistrictsResponse?.data);
+                setLoading(false);
+            } catch (error) {
+                console.error(error);
+                toast.error("Failed to fetch address data");
+            }
+        };
+
+        fetchData();
+
+    }, [newAddress]);
+
+    const { _id, shippingName, shippingPhone, shippingEmail } = address || {};
 
 
 

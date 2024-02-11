@@ -21,7 +21,7 @@ const ChekoutProductCard = ({ product }) => {
                     <p className='text-center font-semibold'><span className='font-[auto]'>৳ </span>{offerPrice ? offerPrice : price}</p>
                 </div>
                 <div className='w-1/2'>
-                    <CheckoutCardActionsButton productId={_id} />
+                    <CheckoutCardActionsButton product={product} />
                 </div>
             </div>
         </div>

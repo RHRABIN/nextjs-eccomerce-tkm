@@ -4,7 +4,7 @@ import { getProductsByType } from '@/config/productsApi';
 import React from 'react';
 
 const Curated = async () => {
-    const { data: products } = await getProductsByType('new-arrivals');
+    const { data: products } = await getProductsByType('new-arrivals') || {};
 
     return (
         <div className='container mx-auto my-10 md:my-20'>

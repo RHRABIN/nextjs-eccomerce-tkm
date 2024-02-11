@@ -3,7 +3,7 @@ import React from 'react';
 import { getAllCommunity } from '@/config/communityApi';
 
 const Gallery = async () => {
-    const { data: galleries } = await getAllCommunity();
+    const { data: galleries } = await getAllCommunity() || {};
 
     return (
         <div className='container mx-auto my-10 md:my-20'>

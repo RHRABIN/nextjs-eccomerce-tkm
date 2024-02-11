@@ -1,4 +1,3 @@
-import SignupForm from '@/components/form/SignupForm';
 import SignupMobileForm from '@/components/form/SignupMobileForm';
 import Link from 'next/link';
 import React from 'react';
@@ -11,7 +10,6 @@ const SignupPage = () => {
                 <h1 className='uppercase text-center md:text-start text-2xl font-semibold text-secondary border-b-dark border-dotted border-b pb-4 mb-10'>Create Account</h1>
                 <div className='border  md:w-1/3 max-w-[300px] md:mx-auto p-4 rounded-md'>
                     <h2 className='text-secondary font-bold text-center text-3xl'>Signup</h2>
-                    {/* <SignupForm /> */}
                     <SignupMobileForm />
                     <div className='flex items-center gap-4 my-2'>
                         <hr className='w-full' />

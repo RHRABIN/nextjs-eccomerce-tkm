@@ -18,10 +18,10 @@ const SkinCareJourney = async () => {
     ]);
 
 
-    const { data: bestSellingProducts } = bestSellerData;
-    const { data: skinCategory } = skinCategoryResponse;
-    const { data: concernCategory } = concernCategoryResponse;
-    const { data: routineCategory } = routineCategoryResponse;
+    const { data: bestSellingProducts } = bestSellerData || {};
+    const { data: skinCategory } = skinCategoryResponse || {};
+    const { data: concernCategory } = concernCategoryResponse || {};
+    const { data: routineCategory } = routineCategoryResponse || {};
 
     return (
         <div className='container mx-auto my-5 md:my-20'>

@@ -7,7 +7,7 @@ const SkinCareSpotLight = async () => {
         getTopSpotlight()
     ]);
 
-    const { data: products } = campaignProducts;
+    const { data: products } = campaignProducts || {};
 
     return (
         <div className='container mx-auto my-10 md:my-20'>

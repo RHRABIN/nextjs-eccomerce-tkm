@@ -8,7 +8,7 @@ const OurGlam = async () => {
         getAllBlogsData()
     ])
 
-    const { data: blogs } = blogsResponse;
+    const { data: blogs } = blogsResponse || {};
 
 
     return (
