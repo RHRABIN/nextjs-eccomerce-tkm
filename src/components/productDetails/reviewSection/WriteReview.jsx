@@ -3,7 +3,7 @@ import { addSingleReview } from '@/config/reviewApi';
 import { AuthContext } from '@/context/AuthProvider';
 import React, { useContext, useState } from 'react';
 
-const WriteReview = ({ setToggleReview, productId }) => {
+const WriteReview = ({ setToggleReview, id, setIsSuccess }) => {
     const [rating, setRating] = useState('');
     const [review, setReview] = useState('');
     const { user } = useContext(AuthContext);
@@ -14,9 +14,12 @@ const WriteReview = ({ setToggleReview, productId }) => {
         const data = {
             rating: rating || '5',
             description: review,
-            product: productId
+            product: id
         }
-        await addSingleReview(user?.data?.user?.email, data)
+        const response = await addSingleReview(user?.data?.user?.email, data);
+        if (response) {
+            setIsSuccess(true)
+        }
         e.target.reset();
     }
     return (
