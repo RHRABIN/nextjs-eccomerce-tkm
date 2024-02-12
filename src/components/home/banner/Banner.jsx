@@ -1,18 +1,34 @@
 'use client'
 import { bannerSettings } from '@/utilities/sliderSettings/bannerSettings';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { getDesktopAllBanner, getMobileBanner } from '@/config/bannerApi';
 import Link from 'next/link';
 
 const Banner = async () => {
-    const [desktopBannerResponse, mobileBannerRespone] = await Promise.all([
-        getDesktopAllBanner(),
-        getMobileBanner()
-    ])
-    const { data: bannerImage } = desktopBannerResponse || {};
-    const { data: mobileBannerImage } = mobileBannerRespone || {};
+    const [bannerImage, setBannerImage] = useState({});
+    const [mobileBannerImage, setMobileBannerImage] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [desktopBannerResponse, mobileBannerRespone] = await Promise.all([
+                    getDesktopAllBanner(),
+                    getMobileBanner()
+                ])
+                const { data: bannerImageData } = desktopBannerResponse || {};
+                const { data: mobileBannerImageData } = mobileBannerRespone || {};
+                setBannerImage(bannerImageData);
+                setMobileBannerImage(mobileBannerImageData);
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetchData();
+    }, [])
+
+
     return (
         <div>
             <div className='hidden md:block'>
