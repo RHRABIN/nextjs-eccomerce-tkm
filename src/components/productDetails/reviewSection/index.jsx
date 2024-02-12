@@ -45,7 +45,7 @@ const ReviewSection = ({ productId }) => {
                     :
                     <div className='mt-5'>
                         <WriteReview
-                            productId={id}
+                            productId={productId}
                             setToggleReview={setToggleReview}
                         />
                     </div>}
