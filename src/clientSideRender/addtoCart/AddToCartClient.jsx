@@ -2,18 +2,17 @@
 import { addToCartNewDataByEmail } from '@/config/addCartToapi';
 import { addToWishListByEmail } from '@/config/wishlistApi';
 import { AuthContext } from '@/context/AuthProvider';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaRegHeart } from 'react-icons/fa6';
 
 const AddToCartClient = ({ product }) => {
     const { _id, offerPrice } = product || {};
-    const { user } = useContext(AuthContext);
+    const { user, isCartSuccess, setIsCartSuccess } = useContext(AuthContext);
     const email = user?.data?.user?.email || {};
 
 
     const [isLoading, setIsLoading] = useState(false);
-    const [isSuccess, setIsSuccess] = useState(false);
 
     const handleAddToCart = async () => {
         setIsLoading(true);
@@ -28,7 +27,8 @@ const AddToCartClient = ({ product }) => {
 
         try {
             await addToCartNewDataByEmail(email, data) || {};
-            setIsSuccess(true);
+            setIsCartSuccess(true);
+            toast.success('Cart addedd Successfully')
         } catch (error) {
             console.error('Error adding to cart:', error);
         } finally {
@@ -36,12 +36,6 @@ const AddToCartClient = ({ product }) => {
         }
     };
 
-
-    useEffect(() => {
-        if(isSuccess){
-            toast.success('Cart addedd Successfully')
-        }
-    },[isSuccess])
 
 
     const handleWishlist = async () => {

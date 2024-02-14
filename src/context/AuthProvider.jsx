@@ -6,6 +6,7 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
+    const [isCartSuccess, setIsCartSuccess] = useState(false);
 
     const handleLogout = () => {
         localStorage.removeItem('auth')
@@ -22,7 +23,13 @@ const AuthProvider = ({ children }) => {
     }, [])
 
 
-    const authInfo = { user, loading, handleLogout }
+    const authInfo = {
+        user,
+        loading,
+        isCartSuccess,
+        setIsCartSuccess,
+        handleLogout
+    }
 
     return (
         <AuthContext.Provider value={authInfo}>
