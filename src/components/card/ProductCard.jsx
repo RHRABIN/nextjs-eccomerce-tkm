@@ -16,7 +16,7 @@ const ProductCard = ({ product }) => {
                         <p className='text-xs'>Exp: 2/13/2024</p>
                     </div>
                 </div>
-                <Image className='h-44 w-full md:h-auto md:px-10' width={1280} height={720} quality={100} src={images?.length > 0 && images?.[0]} alt='' />
+                <Image  className='h-44 w-full md:h-auto md:px-10' width={1280} height={720} quality={100} src={images?.length > 0 && images?.[0]} alt={name} />
                 <div className='relative'>
                     <div className='flex flex-col items-center justify-center w-4/5 mx-auto'>
                         <button className='uppercase text-xs bg-black px-2 py-1 text-white'>{productType}</button>

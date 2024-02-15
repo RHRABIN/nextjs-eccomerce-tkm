@@ -10,6 +10,8 @@ const ProductsSearchPage = async () => {
     let products;
     const category = searchParams.get('category');
     const search = searchParams.get('search');
+    
+
     if (category) {
         products = await getAllProductsBySearch(`?category=${category}`);
     } else if (search) {

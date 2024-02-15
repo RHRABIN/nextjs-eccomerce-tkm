@@ -1,8 +1,26 @@
+"use client";
+
 import AccordionClient from "@/clientSideRender/accordion/AccordionClient";
 import { getCategories, getAllWeight, getShopByCategory } from '@/config/categoriesApi'
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback } from "react";
 
 const Accordion = async () => {
+    const router = useRouter()
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+
+    const createQueryString = useCallback(
+        (name, value) => {
+          const params = new URLSearchParams(searchParams.toString())
+          params.set(name, value)
+     
+          return params.toString()
+        },
+        [searchParams]
+      )
+
     const [categoryResponse, weightResponse, shopByResponse] = await Promise.all([
         getCategories(),
         getAllWeight(),
@@ -12,6 +30,8 @@ const Accordion = async () => {
     const { data: categories } = categoryResponse || {};
     const { data: allWeight } = weightResponse || {};
     const { data: shopBy } = shopByResponse || {};
+
+
 
     return (
         <div className="my-8">
@@ -44,7 +64,17 @@ const Accordion = async () => {
                     {
                         allWeight?.data?.map(weight =>
                             <li key={weight?._id}
-                                className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5"><Link href={``} className="w-full block p-2">{weight?.name}</Link></li>
+                                className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5">
+                                <Link 
+                                href={
+                                    // <pathname>?sort=desc
+                                    pathname + '?' + createQueryString('weight', weight.name)
+                                  }
+                                
+                                className="w-full block p-2">
+                                    {weight?.name}
+                                </Link>
+                                </li>
                         )
                     }
                 </ul>
