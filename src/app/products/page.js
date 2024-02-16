@@ -2,21 +2,23 @@
 import ProductCard from '@/components/card/ProductCard';
 import { getAllProductsBySearch } from '@/config/productsApi';
 import { useSearchParams } from 'next/navigation';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const ProductsSearchPage = async () => {
     const searchParams = useSearchParams();
+    const params = new URLSearchParams(searchParams.toString())
 
     let products;
-    const category = searchParams.get('category');
-    const search = searchParams.get('search');
     
 
-    if (category) {
-        products = await getAllProductsBySearch(`?category=${category}`);
-    } else if (search) {
-        products = await getAllProductsBySearch(`?search=${search}`);
-    }
+    useEffect(()=>{
+        const loadData = async () =>{
+            products = await getAllProductsBySearch(`?${params.toString()}`);
+        }
+
+        loadData()
+
+    },[params])
 
     return (
         <div className='container mx-auto'>

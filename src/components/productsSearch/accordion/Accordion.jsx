@@ -15,7 +15,6 @@ const Accordion = async () => {
         (name, value) => {
           const params = new URLSearchParams(searchParams.toString())
           params.set(name, value)
-     
           return params.toString()
         },
         [searchParams]
@@ -41,7 +40,7 @@ const Accordion = async () => {
                         categories?.result?.map(category =>
                             <li
                                 key={category?._id}
-                                className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5"><Link href={`/products?category=${category?.slug}`} className="w-full block p-2">{category?.title}</Link></li>
+                                className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5"><Link href={ pathname + '?' + createQueryString('category', category.slug)} className="w-full block p-2">{category?.title}</Link></li>
                         )
                     }
                 </ul>
@@ -52,7 +51,7 @@ const Accordion = async () => {
                         <ul className="text-sm overflow-y-auto max-h-[20rem]">
                             {
                                 shop?.children?.map(child =>
-                                    <li key={child?._id} className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5"><Link href={`/products?category=${child?.slug}`} className="w-full block p-2">{child?.title}</Link></li>
+                                    <li key={child?._id} className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5"><Link href={ pathname + '?' + createQueryString('category', child.slug)} className="w-full block p-2">{child?.title}</Link></li>
                                 )
                             }
                         </ul>
@@ -65,12 +64,10 @@ const Accordion = async () => {
                         allWeight?.data?.map(weight =>
                             <li key={weight?._id}
                                 className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5">
-                                <Link 
+                                <Link
                                 href={
-                                    // <pathname>?sort=desc
                                     pathname + '?' + createQueryString('weight', weight.name)
                                   }
-                                
                                 className="w-full block p-2">
                                     {weight?.name}
                                 </Link>
