@@ -1,34 +1,45 @@
-"use client";
+"use client"
+import AccordionClient from '@/clientSideRender/accordion/AccordionClient';
+import { getCategories, getAllWeight, getShopByCategory } from '@/config/categoriesApi';
+import Link from 'next/link';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
 
-import AccordionClient from "@/clientSideRender/accordion/AccordionClient";
-import { getCategories, getAllWeight, getShopByCategory } from '@/config/categoriesApi'
-import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
-
-const Accordion = async () => {
-    const router = useRouter()
-    const pathname = usePathname()
-    const searchParams = useSearchParams()
+const Accordion = () => {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const [categories, setCategories] = useState(null);
+    const [allWeight, setAllWeight] = useState(null);
+    const [shopBy, setShopBy] = useState(null);
 
     const createQueryString = useCallback(
         (name, value) => {
-          const params = new URLSearchParams(searchParams.toString())
-          params.set(name, value)
-          return params.toString()
+            const params = new URLSearchParams(searchParams.toString());
+            params.set(name, value);
+            return params.toString();
         },
         [searchParams]
-      )
+    );
 
-    const [categoryResponse, weightResponse, shopByResponse] = await Promise.all([
-        getCategories(),
-        getAllWeight(),
-        getShopByCategory(),
-    ]);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [categoriesRes, allWeightRes, shopByRes] = await Promise.all([
+                    getCategories(),
+                    getAllWeight(),
+                    getShopByCategory()
+                ]);
+                setCategories(categoriesRes?.data);
+                setAllWeight(allWeightRes?.data);
+                setShopBy(shopByRes?.data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
 
-    const { data: categories } = categoryResponse || {};
-    const { data: allWeight } = weightResponse || {};
-    const { data: shopBy } = shopByResponse || {};
+        fetchData();
+    }, []);
 
 
 
@@ -40,7 +51,7 @@ const Accordion = async () => {
                         categories?.result?.map(category =>
                             <li
                                 key={category?._id}
-                                className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5"><Link href={ pathname + '?' + createQueryString('category', category.slug)} className="w-full block p-2">{category?.title}</Link></li>
+                                className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5"><Link href={pathname + '?' + createQueryString('category', category.slug)} className="w-full block p-2">{category?.title}</Link></li>
                         )
                     }
                 </ul>
@@ -51,7 +62,7 @@ const Accordion = async () => {
                         <ul className="text-sm overflow-y-auto max-h-[20rem]">
                             {
                                 shop?.children?.map(child =>
-                                    <li key={child?._id} className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5"><Link href={ pathname + '?' + createQueryString('category', child.slug)} className="w-full block p-2">{child?.title}</Link></li>
+                                    <li key={child?._id} className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5"><Link href={pathname + '?' + createQueryString('category', child.slug)} className="w-full block p-2">{child?.title}</Link></li>
                                 )
                             }
                         </ul>
@@ -65,13 +76,13 @@ const Accordion = async () => {
                             <li key={weight?._id}
                                 className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5">
                                 <Link
-                                href={
-                                    pathname + '?' + createQueryString('weight', weight.name)
-                                  }
-                                className="w-full block p-2">
+                                    href={
+                                        pathname + '?' + createQueryString('weight', weight.name)
+                                    }
+                                    className="w-full block p-2">
                                     {weight?.name}
                                 </Link>
-                                </li>
+                            </li>
                         )
                     }
                 </ul>
