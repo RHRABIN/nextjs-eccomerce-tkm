@@ -50,7 +50,7 @@ const SignupMobileForm = () => {
         if ((phone.length > 0 && !otpData.otp)) {
             userMutation({ phone });
         }
-
+        setExistOtp(true)
     }
 
     const userMutation = async (d) => {
@@ -77,8 +77,10 @@ const SignupMobileForm = () => {
 
     useEffect(() => {
         const isExit = JSON.parse(localStorage.getItem('otp')) || [];
-        if (isExit) {
+        if (isExit?.length > 0) {
             setExistOtp(true)
+        } else if (isExit?.length >= 3) {
+            setIsThirtyCount(true)
         }
     }, [])
 
@@ -130,13 +132,16 @@ const SignupMobileForm = () => {
     }, [timeInSecs, otpData])
 
 
-    console.log('sfkskafasfh', existOtp)
 
 
     const handleResendOtp = async (resendPhone) => {
-        await sendOtp(resendPhone)
+        const success = await sendOtp(resendPhone);
+        if (success?.data) {
+            setOtpData({ otp: success.data.data });
+            setIsRunning(true)
+        }
     }
-    // console.log('sdfhsfshakjhfkjhsdfkjsh', signupInfo)
+
 
     return (
         <div className='my-6'>
@@ -172,10 +177,12 @@ const SignupMobileForm = () => {
                 }
 
                 <div className='flex justify-center mt-4 hover:opacity-90'>
-                    <button className={`bg-secondary text-white font-[500] px-8 py-2 rounded ${existOtp || isThirtyCount ? 'hidden' : 'block'}`} type='submit'>{signupInfo?.number && signupInfo?.otp ? 'Signup' : 'Send'}</button>
-                </div>
-                <div className='flex justify-center mt-4 hover:opacity-90'>
-                    <button onClick={() => handleResendOtp(signupInfo?.phone)} className='bg-secondary text-white font-[500] px-8 py-2 rounded'>Resend</button>
+                    {
+                        existOtp ?
+                            <button onClick={() => handleResendOtp(signupInfo)} className={`bg-secondary text-white font-[500] px-8 py-2 rounded ${isRunning || isThirtyCount ? 'hidden' : 'block'}`}>Resend</button> :
+                            <button className={`bg-secondary text-white font-[500] px-8 py-2 rounded ${isThirtyCount ? 'hidden' : 'block'}`} type='submit'>{signupInfo?.number && signupInfo?.otp ? 'Signup' : 'Send'}</button>
+                    }
+
                 </div>
             </form>
         </div>
