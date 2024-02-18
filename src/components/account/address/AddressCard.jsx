@@ -18,7 +18,7 @@ const AddressCard = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await getAllAddress(user?.data?.user?.email);
+                const { data } = await getAllAddress(user?.data?.user?.email) || {};
                 setAllAddress(data);
             } catch (error) {
                 setError(error.message);
