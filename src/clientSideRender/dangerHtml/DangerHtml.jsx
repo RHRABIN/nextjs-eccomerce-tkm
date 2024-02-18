@@ -1,9 +1,9 @@
 'use client'
 import React from 'react';
 
-const DangerHtml = ({ getText }) => {
+const DangerHtml = ({ getText, padding }) => {
     return (
-        <div className='px-5' dangerouslySetInnerHTML={{ __html: getText }}>
+        <div className={`${padding ? 'px-5': ''} text-sm`} dangerouslySetInnerHTML={{ __html: getText }}>
 
         </div>
     );

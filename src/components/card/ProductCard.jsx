@@ -24,7 +24,7 @@ const ProductCard = ({ product }) => {
                     <div className='flex flex-col items-center justify-center w-4/5 mx-auto'>
                         <button className='uppercase text-xs bg-black px-2 py-1 text-white'>{productType}</button>
                         <p className='uppercase font-semibold my-1.5 md:my-3 line-clamp-1'>{manufacturer?.name}</p>
-                        <p className='line-clamp-2 md:min-h-[2rem] text-sm text-center'>{name}</p>
+                        <p className='line-clamp-2 min-h-[40px] text-sm text-center'>{name}</p>
                         <p className='text-center font-semibold mt-1.5 md:mt-3 group-hover:mt-5 group-hover:opacity-0'>
                             {price == offerPrice ? <> <span className='font-[auto]'>৳</span>{offerPrice ? offerPrice : price}</> : <>
                                 <del className='mr-2'><span className='font-[auto]'>৳</span>{price}</del>
@@ -39,7 +39,7 @@ const ProductCard = ({ product }) => {
                     }
                 </div>
             </Link>
-            <div className='flex gap-2 w-full px-2 md:px-5 items-center justify-between mt-5 absolute bottom-3 bg-white md:opacity-0 group-hover:opacity-100'>
+            <div className='flex gap-2 w-full px-2 md:px-5 items-center justify-between mt-5 absolute -bottom-[8px] md:bottom-3 bg-white md:opacity-0 group-hover:opacity-100'>
                 <AddToCartClient product={product} />
                 <Link href={`/product-detail/${slug}`} className='w-1/4 flex justify-end'>
                     <IoIosSearch className='md:text-2xl' />

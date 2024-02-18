@@ -2,11 +2,10 @@
 import AccordionClient from '@/clientSideRender/accordion/AccordionClient';
 import { getCategories, getAllWeight, getShopByCategory } from '@/config/categoriesApi';
 import Link from 'next/link';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
 const Accordion = () => {
-    const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const [categories, setCategories] = useState(null);

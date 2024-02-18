@@ -1,14 +1,13 @@
+import React from 'react';
 import AccordionClient from '@/clientSideRender/accordion/AccordionClient';
 import DangerHtml from '@/clientSideRender/dangerHtml/DangerHtml';
-import React from 'react';
 import { FaFacebookF, FaHeart, FaInstagram, FaYoutube } from 'react-icons/fa6';
 import { IoIosStar } from 'react-icons/io';
 import AddToCartButton from './AddToCartButton';
 import { Image } from 'antd';
 
 const ProductDescription = ({ product }) => {
-    const { name, manufacturer, tags, price, offerPrice, description, directions, ingredients, variation } = product || {};
-    console.log("badge__" , variation)
+    const { name, manufacturer, tags, price, offerPrice, description, directions, ingredients, variation, shipping, activities } = product || {};
 
     return (
         <div>
@@ -29,10 +28,14 @@ const ProductDescription = ({ product }) => {
                 <IoIosStar />
                 <IoIosStar />
             </div>
-            <span className='text-3xl font-semibold text-gray-800 flex items-start gap-2 mb-3 border-t border-dotted border-t-dark pt-3'>
-                <p className='font-[auto]'>৳</p>
-                <p>{offerPrice ? offerPrice : price}</p>
-            </span>
+            <div className='text-3xl font-semibold text-gray-800 flex items-start gap-2 mb-3 border-t border-dotted border-t-dark pt-3'>
+                {/* <p className='font-[auto]'>৳</p>
+                <p>{offerPrice ? offerPrice : price}</p> */}
+                {price == offerPrice ? <> <span className='font-[auto]'>৳</span>{offerPrice ? offerPrice : price}</> : <>
+                    <span className='font-[auto]'>৳</span>{offerPrice}
+                    <del className='mr-2 text-[24px]'>{price}</del>
+                </>}
+            </div>
 
             <AddToCartButton product={product} />
 
@@ -53,23 +56,24 @@ const ProductDescription = ({ product }) => {
             </div>
 
             <div className='mt-5'>
-                <h3 className='text-gray-800 mb-2 font-semibold text-xl'>Ay&Me, A Microbiome Project</h3>
-                <p className='font-[300] tracking-wide leading-7'>Ay&Me is Axis-Y's Biome line with a signature blend of five different prebiotics and probiotics to improve the skin's complexion and health by strengthening the skin barrier function and maintaining oil-sebum balance. Formulated free from exfoliants or traditionally sensitizing extracts, the line's biome blend focuses on protecting the skin from external aggressors.</p>
+                <p className='font-[300] tracking-wide leading-7'>
+                    <DangerHtml getText={description} padding={false} />
+                </p>
             </div>
 
             <div className='mt-10'>
                 <AccordionClient title={'Activities'}>
-                    <DangerHtml getText={description} />
+                    <DangerHtml getText={activities} padding={true} />
                 </AccordionClient>
                 <AccordionClient title={'Directions'}>
-                    <DangerHtml getText={directions} />
+                    <DangerHtml getText={directions} padding={true} />
                 </AccordionClient>
                 <AccordionClient title={'Ingredients'}>
-                    <DangerHtml getText={ingredients} />
+                    <DangerHtml getText={ingredients} padding={true} />
                 </AccordionClient>
                 <AccordionClient title={'Shipping'}>
                     <p className='p-2 text-gray-800 font-[300] leading-8 text-sm'>
-                        Houttuynia Cordata Extract(77%), Water, 1,2-Hexanediol, Glycerin, Betaine, Panthenol, Saccharum Officinarum (Sugar Cane) Extract, Portulaca Oleracea Extract, Butylene Glycol, Vitex Agnus-Castus Extract, Chamomilla Recutita (Matricaria) Flower Extract, Arctium Lappa Root Extract, Phellinus Linteus Extract, Vitis Vinifera (Grape) Fruit Extract, Pyrus Malus (Apple) Fruit Extract, Centella Asiatica Extract, Isopentyldiol, Methylpropanediol, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Tromethamine, Disodium EDTA
+                        <DangerHtml getText={shipping} padding={true} />
                     </p>
                 </AccordionClient>
             </div>

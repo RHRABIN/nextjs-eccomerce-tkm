@@ -18,7 +18,7 @@ const layout = ({ children }) => {
                 <Image className='w-fit' height={500} width={1000} src={waveImg} alt='wave' />
             </div>
             <div className='mx-4 md:mx-0 md:flex gap-6'>
-                <div className='md:w-1/4 hidden md:block'>
+                <div className='md:w-1/4 min-w[240px] hidden md:block'>
                     <SearchSidebar />
                 </div>
                 <div className='md:w-3/4'>
