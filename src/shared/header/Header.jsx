@@ -11,11 +11,13 @@ import { AuthContext } from "@/context/AuthProvider";
 import { getSearchSuggestion } from "@/config/productsApi";
 import { useRouter } from "next/navigation";
 import CartDrawer from "@/components/cartDrawer/CartDrawer";
+import MobileSearchBar from '../mobileNav/MobileSearchBar';
 
 const Header = () => {
     const [toggle, setToggle] = useState(false);
     const [suggestSearch, setSuggestSearch] = useState('');
     const [searchData, setSearchData] = useState([]);
+    const [searchOpen, setSearchOpen] = useState(false);
     const router = useRouter();
     const { user, loading, handleLogout } = useContext(AuthContext);
 
@@ -80,12 +82,26 @@ const Header = () => {
                             {user?.data?.user?.email ?
                                 <button onClick={handleLogout} className="hidden lg:block">Logout</button> :
                                 <Link className="hidden lg:block" href='/login'>Login</Link>}
-                            
+
+                            <button onClick={() => setSearchOpen(!searchOpen)} className='text-white md:hidden text-2xl'>
+                                {
+                                    searchOpen ? <FaXmark /> : <IoIosSearch />
+                                }
+                            </button>
+
                             <CartDrawer />
                         </div>
                     </div>
                 </div>
             </div>
+
+            <MobileSearchBar
+                handleSearch={handleSearch}
+                searchData={searchData}
+                searchOpen={searchOpen}
+                setSuggestSearch={setSuggestSearch}
+                suggestSearch={suggestSearch}
+            />
 
             <MobileNav
                 toggle={toggle}
