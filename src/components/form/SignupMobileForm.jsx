@@ -11,6 +11,7 @@ const SignupMobileForm = () => {
     const [timeInSecs, setTimeInSecs] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
     const [isThirtyCount, setIsThirtyCount] = useState(false);
+    const [existOtp, setExistOtp] = useState(false);
     const router = useRouter();
 
     const handleSubmit = (e) => {
@@ -74,7 +75,12 @@ const SignupMobileForm = () => {
         }
     }, [otpData]);
 
-
+    useEffect(() => {
+        const isExit = JSON.parse(localStorage.getItem('otp')) || [];
+        if (isExit) {
+            setExistOtp(true)
+        }
+    }, [])
 
     // otp verification time count 
     let ticker;
@@ -124,6 +130,13 @@ const SignupMobileForm = () => {
     }, [timeInSecs, otpData])
 
 
+    console.log('sfkskafasfh', existOtp)
+
+
+    const handleResendOtp = async (resendPhone) => {
+        await sendOtp(resendPhone)
+    }
+    // console.log('sdfhsfshakjhfkjhsdfkjsh', signupInfo)
 
     return (
         <div className='my-6'>
@@ -159,7 +172,10 @@ const SignupMobileForm = () => {
                 }
 
                 <div className='flex justify-center mt-4 hover:opacity-90'>
-                    <button className={`bg-secondary text-white font-[500] px-8 py-2 rounded ${isRunning || isThirtyCount ? 'hidden' : 'block'}`} type='submit'>{signupInfo?.number && signupInfo?.otp ? 'Signup' : 'Send'}</button>
+                    <button className={`bg-secondary text-white font-[500] px-8 py-2 rounded ${existOtp || isThirtyCount ? 'hidden' : 'block'}`} type='submit'>{signupInfo?.number && signupInfo?.otp ? 'Signup' : 'Send'}</button>
+                </div>
+                <div className='flex justify-center mt-4 hover:opacity-90'>
+                    <button onClick={() => handleResendOtp(signupInfo?.phone)} className='bg-secondary text-white font-[500] px-8 py-2 rounded'>Resend</button>
                 </div>
             </form>
         </div>
