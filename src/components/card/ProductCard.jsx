@@ -6,7 +6,7 @@ import AddToCartClient from '@/clientSideRender/addtoCart/AddToCartClient';
 import OfferCountDown from './OfferCountDown';
 
 const ProductCard = ({ product }) => {
-    const { _id, name, images, price, offerPrice, productType, slug, manufacturer, timeStamps, expireDate } = product || {};
+    const { _id, name, images, price, offerPrice, productType, slug, manufacturer, timeStamps, expireDate, profileImage } = product || {};
 
     return (
         <div className='py-4 relative cursor-pointer group md:hover:shadow-md md:hover:shadow-dark md:hover:scale-105 duration-500 transition'>
@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
                         </div>
                     }
                 </div>
-                <Image className='h-44 w-full md:h-auto md:px-10' width={1280} height={720} quality={100} src={images?.length > 0 && images?.[0]} alt={name} />
+                <Image className='h-44 w-full md:h-auto md:px-10' width={1280} height={720} quality={100} src={profileImage ? profileImage : images?.[0]} alt={name} />
                 <div className='relative'>
                     <div className='flex flex-col items-center justify-center w-4/5 mx-auto'>
                         <button className='uppercase text-xs bg-black px-2 py-1 text-white'>{productType}</button>

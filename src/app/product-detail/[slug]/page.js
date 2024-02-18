@@ -5,6 +5,7 @@ import MightAlsoSection from '@/components/productDetails/MightAlsoSection';
 import MoreProducts from '@/components/productDetails/MoreProducts';
 import ReviewSection from '@/components/productDetails/reviewSection';
 import { getSingleProduct } from '@/config/productsApi';
+import Link from 'next/link';
 
 export const metadata = {
     title: 'Biome Radiating Intensified Essence || Korean Mall',
@@ -14,10 +15,16 @@ export const metadata = {
 const ProductDetailsPage = async ({ params }) => {
     const { slug } = params || {};
     const { data: product } = await getSingleProduct(slug) || {};
-    const { name, images, _id, manufacturer } = product?.result || {};
+    const { name, images, _id, manufacturer, profileImage } = product?.result || {};
 
     return (
-        <div className='container mx-auto my-10 md:my-20'>
+        <div className='container mx-auto my-4 md:my-12'>
+            <div className='mb-4 px-4'>{
+                product?.breadcrumb?.map(br => <Link className='text-blue-500 
+                hover:underline hover:text-red-500' href={`/products?category=${br.slug}`} key={br.slug}>{br.title} / </Link>)
+            }
+            {name}
+            </div> 
             <div className='mx-4 md:mx-0'>
                 <div className='md:flex items-start gap-20'>
                     <div className='w-full md:w-1/2 flex gap-2 mb-4 lg:mb-0 md:sticky md:top-10'>
@@ -35,7 +42,7 @@ const ProductDetailsPage = async ({ params }) => {
                             }
                         </div>
                         <div className='w-full'>
-                            <Image className='h-auto w-full' height={720} width={1280} src={images[0]} alt={name} />
+                            <Image className='h-auto w-full' height={720} width={1280} src={profileImage ? profileImage : images?.[0]} alt={name} />
                         </div>
                     </div>
                     <div className='w-full md:w-1/2'>

@@ -4,12 +4,21 @@ import React from 'react';
 import { FaFacebookF, FaHeart, FaInstagram, FaYoutube } from 'react-icons/fa6';
 import { IoIosStar } from 'react-icons/io';
 import AddToCartButton from './AddToCartButton';
+import { Image } from 'antd';
 
 const ProductDescription = ({ product }) => {
-    const { name, manufacturer, tags, price, offerPrice, description, directions, ingredients } = product || {};
+    const { name, manufacturer, tags, price, offerPrice, description, directions, ingredients, variation } = product || {};
+    console.log("badge__" , variation)
 
     return (
         <div>
+            {
+                variation?.length > 0 && <div className='d-flex flex-wrap gap-2'>
+                    {
+                        variation?.map(b => <Image src={b.image} key={b._id} />)
+                    }
+                </div>
+            }
             <h1 className='uppercase text-xl'>{manufacturer?.name}</h1>
             <h2 className='font-semibold text-2xl text-gray-800 mb-3'>{name}</h2>
 
