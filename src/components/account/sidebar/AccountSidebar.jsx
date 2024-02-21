@@ -1,4 +1,5 @@
-import React from 'react';
+'use client'
+import React, { useContext } from 'react';
 import userImg from '../../../../public/assets/account.jpg'
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,14 +8,17 @@ import { LiaCommentDots } from "react-icons/lia";
 import { FaRegAddressBook, FaRegCircleXmark, FaRegHeart } from 'react-icons/fa6';
 import { LuFileX2 } from "react-icons/lu";
 import { IoLocationOutline } from "react-icons/io5";
+import { AuthContext } from '@/context/AuthProvider';
 
 const AccountSidebar = () => {
+    const { user } = useContext(AuthContext);
+    const { name, email } = user?.data?.user || {};
     return (
-        <div className='md:border-r md:border-r-dark'>
+        <div className='md:border-r rounded-md bg-slate-50 p-4' style={{boxShadow:'0 0 5px #ddd'}}>
             <div className='flex flex-col items-center'>
                 <Image src={userImg} alt='avatar' height={720} width={1280} className='rounded-full h-36 w-36 border border-dark' />
-                <h1 className='my-1 text-xl font-[500]'>Adnan Hossain</h1>
-                <p className='text-gray-800 font-[300]'>example@gmail.com</p>
+                <h1 className='my-1 text-xl font-[500]'>{name}</h1>
+                <p className='text-gray-800 font-[300]'>{email}</p>
             </div>
 
             {/* sidebar  */}
