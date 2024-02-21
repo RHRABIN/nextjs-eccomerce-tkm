@@ -9,7 +9,6 @@ import searchImg from '../../../public/assets/search.png'
 
 const MobileSearchBar = ({ handleSearch, setSuggestSearch, searchData }) => {
     const [openDrawer, setOpenDrawer] = useState(false);
-
     const searchInputRef = useRef(null);
 
     useEffect(() => {
@@ -27,20 +26,24 @@ const MobileSearchBar = ({ handleSearch, setSuggestSearch, searchData }) => {
             <Drawer
                 open={openDrawer}
                 onClose={() => setOpenDrawer(false)}
-                closeIcon={<IoIosArrowBack className='text-2xl text-white' />}
-                headerStyle={{ backgroundColor: '#737373', padding: '0.75rem' }}
-                bodyStyle={{ padding: '0px' }}
-                extra={
-                    <div>
-                        <form onSubmit={handleSearch}>
-                            <div onClick={() => setOpenDrawer(true)} className=' flex items-center rounded-md bg-white'>
-                                <input ref={searchInputRef} onChange={(e) => setSuggestSearch(e.target.value)} className='rounded-md outline-none w-full p-2 placeholder:text-sm focus:visible' placeholder='Search your product' type="text" />
-                                <IoIosSearch className='text-2xl mx-2' />
-                            </div>
-                        </form>
-                    </div>
-                }
+                title={null}
+                closeIcon={null}
+                styles={{
+                    body: { padding: '0px' }
+                }}
             >
+                <div className='bg-secondary p-3 flex'>
+                    <button onClick={() => setOpenDrawer(false)} className='w-[10%]'>
+                        <IoIosArrowBack className='text-2xl text-white' />
+                    </button>
+                    <form onSubmit={handleSearch} className='w-[90%]'>
+                        <div onClick={() => setOpenDrawer(true)} className=' flex items-center rounded-md bg-white'>
+                            <input ref={searchInputRef} onChange={(e) => setSuggestSearch(e.target.value)} className='rounded-md outline-none w-full p-2 placeholder:text-sm' placeholder='Search your product' type="text" />
+                            <IoIosSearch className='text-2xl mx-2' />
+                        </div>
+                    </form>
+                </div>
+                
                 <ul>
                     {
                         searchData?.length > 0 ?
