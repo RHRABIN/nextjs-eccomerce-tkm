@@ -57,11 +57,11 @@ const Header = () => {
                                         </button>
                                     </div>
                                 </form>
-                                <div className={`${suggestSearch ? 'block' : 'hidden'} bg-gray-200 shadow w-full border-t border-t-white absolute top-full rounded-b-2xl z-10`}>
+                                <div className={`${suggestSearch ? 'block' : 'hidden'} bg-gray-200 shadow w-full border-t border-t-white absolute top-full rounded-b-2xl z-10 hidden lg:block`}>
                                     <ul>
                                         {
                                             searchData?.map((tag, idx) =>
-                                                <li key={idx} className="cursor-pointer text-sm px-4 py-1 hover:bg-white">
+                                                <li key={idx} className="cursor-pointer text-sm px-4 py-1 hover:bg-white ">
                                                     <Link href={`/products?search=${tag}`} className="w-full block">{tag}</Link>
                                                 </li>
                                             )
@@ -82,12 +82,6 @@ const Header = () => {
                             {user?.data?.user?.email ?
                                 <button onClick={handleLogout} className="hidden lg:block">Logout</button> :
                                 <Link className="hidden lg:block" href='/login'>Login</Link>}
-
-                            <button onClick={() => setSearchOpen(!searchOpen)} className='text-white md:hidden text-2xl'>
-                                {
-                                    searchOpen ? <FaXmark /> : <IoIosSearch />
-                                }
-                            </button>
 
                             <CartDrawer />
                         </div>
