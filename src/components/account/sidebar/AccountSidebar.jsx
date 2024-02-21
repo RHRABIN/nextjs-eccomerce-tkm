@@ -23,28 +23,28 @@ const AccountSidebar = () => {
 
             {/* sidebar  */}
             <ul className='mt-10 grid grid-cols-2 md:grid-cols-1'>
-                <li>
+                <li className='border-b'>
                     <Link href='/account' className='flex items-center gap-2 hover:text-blue-600 my-2'><FiUserCheck /> My Account</Link>
                 </li>
-                <li>
+                <li className='border-b'>
                     <Link href='/account/orders' className='flex items-center gap-2 hover:text-blue-600 my-2'><FiShoppingBag /> My Orders</Link>
                 </li>
-                <li>
+                <li className='border-b'>
                     <Link href='/account/returned' className='flex items-center gap-2 hover:text-blue-600 my-2'><LuFileX2 /> My Returned</Link>
                 </li>
-                <li>
+                <li className='border-b'>
                     <Link href='/account/cancelled' className='flex items-center gap-2 hover:text-blue-600 my-2'><FaRegCircleXmark /> My Cancelled</Link>
                 </li>
-                <li>
+                <li className='border-b'>
                     <Link href='/account/reviews' className='flex items-center gap-2 hover:text-blue-600 my-2'><LiaCommentDots /> View Reviews</Link>
                 </li>
-                <li>
+                <li className='border-b'>
                     <Link href='/account/wishlist' className='flex items-center gap-2 hover:text-blue-600 my-2'><FaRegHeart /> My Wishlist</Link>
                 </li>
-                <li>
+                <li className='border-b'>
                     <Link href='/account/addresses' className='flex items-center gap-2 hover:text-blue-600 my-2'><IoLocationOutline /> View Address</Link>
                 </li>
-                <li>
+                <li className='border-b'>
                     <Link href='/account/update-profile' className='flex items-center gap-2 hover:text-blue-600 my-2'><FaRegAddressBook /> Update Profile</Link>
                 </li>
             </ul>

@@ -42,10 +42,10 @@ const Profile = () => {
                 </div>
             </form>
 
-            <div className='md:w-3/5 mt-10'>
+            {/* <div className='md:w-3/5 mt-10'>
                 <h1 className='text-2xl font-medium'>Change Password</h1>
                 <ForgotPasswordForm />
-            </div>
+            </div> */}
         </div>
     );
 };
