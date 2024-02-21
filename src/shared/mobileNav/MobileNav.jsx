@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { getCategories, getAllBrands } from '@/config/categoriesApi'
 import { useEffect, useState } from 'react';
 
-const MobileNav = ({ toggle, setToggle }) => {
+const MobileNav = ({ user, toggle, setToggle, handleLogout }) => {
     const [categories, setCategories] = useState([]);
     const [brands, setBrands] = useState([]);
 
@@ -58,6 +58,14 @@ const MobileNav = ({ toggle, setToggle }) => {
                             </MobileSubNavButtonClient> :
                         <li onClick={() => setToggle(false)} key={category?._id} className='hover:text-white border-b border-b-dark border-opacity-10 py-2'><Link href={`/products?category=${category?.slug}`} className='w-full block'>{category?.title}</Link></li>
                     )
+                }
+                {
+                    user?.data?.user?.email ?
+                        <div>
+                            <Link className="block my-2" href='/account'>Account</Link>
+                            <button onClick={handleLogout} className="">Logout</button>
+                        </div> :
+                        <Link className="" href='/login'>Login</Link>
                 }
             </ul>
         </nav>

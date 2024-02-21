@@ -89,17 +89,21 @@ const Header = () => {
                 </div>
             </div>
 
-            <MobileSearchBar
-                handleSearch={handleSearch}
-                searchData={searchData}
-                searchOpen={searchOpen}
-                setSuggestSearch={setSuggestSearch}
-                suggestSearch={suggestSearch}
-            />
+            {!toggle &&
+                <MobileSearchBar
+                    handleSearch={handleSearch}
+                    searchData={searchData}
+                    searchOpen={searchOpen}
+                    setSuggestSearch={setSuggestSearch}
+                    suggestSearch={suggestSearch}
+                />
+            }
 
             <MobileNav
                 toggle={toggle}
                 setToggle={setToggle}
+                user={user}
+                handleLogout={handleLogout}
             />
 
 
