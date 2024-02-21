@@ -71,7 +71,7 @@ const LoginForm = () => {
                 {
                     error &&
                     <Alert
-                        description="Authorizaton Failed Check email or password"
+                        description="Authorizaton Failed Check phone or password"
                         type="error"
                         closable
                         onClose={onClose}
@@ -79,8 +79,8 @@ const LoginForm = () => {
                 }
             </div>
             <form onSubmit={handleSubmit}>
-                <label className='mb-2 block' htmlFor="">Email</label>
-                <input className='border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]' placeholder='Email' name='email' type="text" />
+                <label className='mb-2 block' htmlFor="">Phone</label>
+                <input className='border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]' placeholder='Phone' name='email' type="text" />
 
                 <label className='mb-2 block mt-4' htmlFor="">Password</label>
                 <input className='border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]' placeholder='Password' name='password' type="password" />
