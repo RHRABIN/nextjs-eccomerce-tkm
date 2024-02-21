@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { getCategories, getAllBrands } from '@/config/categoriesApi'
 import { useEffect, useState } from 'react';
 
-const MobileNav = ({ user, toggle, setToggle, handleLogout }) => {
+const MobileNav = ({ user, toggle, setToggle, handleLogout, loginSuccess }) => {
     const [categories, setCategories] = useState([]);
     const [brands, setBrands] = useState([]);
 
@@ -60,7 +60,7 @@ const MobileNav = ({ user, toggle, setToggle, handleLogout }) => {
                     )
                 }
                 {
-                    user?.data?.user?.email ?
+                    user?.data?.user?.email || loginSuccess ?
                         <div>
                             <Link className="block my-2" href='/account'>Account</Link>
                             <button onClick={handleLogout} className="">Logout</button>

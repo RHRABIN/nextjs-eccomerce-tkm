@@ -7,9 +7,11 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
     const [isCartSuccess, setIsCartSuccess] = useState(false);
+    const [loginSuccess, setLoginSuccess] = useState(false);
 
     const handleLogout = () => {
         localStorage.removeItem('auth')
+        setLoginSuccess(false)
     }
 
     useEffect(() => {
@@ -28,6 +30,8 @@ const AuthProvider = ({ children }) => {
         loading,
         isCartSuccess,
         setIsCartSuccess,
+        loginSuccess,
+        setLoginSuccess,
         handleLogout
     }
 

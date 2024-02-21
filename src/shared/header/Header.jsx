@@ -19,7 +19,7 @@ const Header = () => {
     const [searchData, setSearchData] = useState([]);
     const [searchOpen, setSearchOpen] = useState(false);
     const router = useRouter();
-    const { user, loading, handleLogout } = useContext(AuthContext);
+    const { user, loading, handleLogout, loginSuccess } = useContext(AuthContext);
 
 
     useEffect(() => {
@@ -79,7 +79,7 @@ const Header = () => {
                         </Link>
                         <div className='w-1/4 flex justify-end items-center gap-5'>
                             <Link className="hidden lg:block" href='/account'>Account</Link>
-                            {user?.data?.user?.email ?
+                            {user?.data?.user?.email || loginSuccess ?
                                 <button onClick={handleLogout} className="hidden lg:block">Logout</button> :
                                 <Link className="hidden lg:block" href='/login'>Login</Link>}
 
@@ -104,6 +104,7 @@ const Header = () => {
                 setToggle={setToggle}
                 user={user}
                 handleLogout={handleLogout}
+                loginSuccess={loginSuccess}
             />
 
 
