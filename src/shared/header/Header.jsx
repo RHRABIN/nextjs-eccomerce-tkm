@@ -17,7 +17,7 @@ const Header = () => {
     const [toggle, setToggle] = useState(false);
     const [suggestSearch, setSuggestSearch] = useState('');
     const [searchData, setSearchData] = useState([]);
-    const [searchOpen, setSearchOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(true);
     const router = useRouter();
     const { user, loading, handleLogout, loginSuccess } = useContext(AuthContext);
 
@@ -49,20 +49,32 @@ const Header = () => {
                     <div className='mx-5 md:mx-0 py-4 md:py-7 flex items-center'>
                         <div className="w-1/4">
                             <div className="relative">
-                                <form onSubmit={handleSearch}>
+                                <form  onSubmit={handleSearch}>
                                     <div className='hidden lg:flex items-center w-full'>
-                                        <input onChange={(e) => setSuggestSearch(e.target.value)} className={`outline-none bg-gray-200 py-2 px-3 mr-1 placeholder:text-xs ${suggestSearch ? 'rounded-tl-2xl' : 'rounded-l-2xl'}`} type="text" placeholder='Search for products...' />
-                                        <button type='button' className={`bg-gray-200 w-full py-2 px-3 ${suggestSearch ? 'rounded-tr-2xl' : 'rounded-r-2xl'}`}>
+
+                                        <input 
+                                        onBlur={()=>setSearchOpen(false)}
+                                        onFocus={()=> setSearchOpen(true)}
+                                        onChange={(e) =>setSuggestSearch(e.target.value)} 
+                                        className={`md:min-w-[250px] outline-none bg-gray-200 py-2 px-3 mr-1 placeholder:text-xs ${(searchOpen && searchData.length>0) ? 'rounded-tl-2xl' : 'rounded-l-2xl'}`} type="text" placeholder='Search for products...'
+                                        value={suggestSearch}
+                                        />
+
+                                        <button type='button' className={` bg-gray-200 w-full py-2 px-2 ${(searchOpen && searchData.length>0) ? 'rounded-tr-2xl' : 'rounded-r-2xl'}`}>
                                             <IoIosSearch className='text-dark text-2xl' />
                                         </button>
+
                                     </div>
                                 </form>
-                                <div className={`${suggestSearch ? 'block' : 'hidden'} bg-gray-200 shadow w-full border-t border-t-white absolute top-full rounded-b-2xl z-10 hidden lg:block`}>
+                                <div className={`${(searchOpen && searchData.length>0) ? 'hidden md:block' : 'hidden'} bg-gray-200 shadow w-full border-t border-t-white absolute top-full rounded-b-2xl z-10 `}>
                                     <ul>
                                         {
                                             searchData?.map((tag, idx) =>
                                                 <li key={idx} className="cursor-pointer text-sm px-4 py-1 hover:bg-white ">
-                                                    <Link href={`/products?search=${tag}`} className="w-full block">{tag}</Link>
+                                                    <Link onClick={()=>{
+                                                         setSearchOpen(false);
+                                                         setSuggestSearch(tag)
+                                                    }} href={`/products?search=${tag}`} className="w-full block">{tag}</Link>
                                                 </li>
                                             )
                                         }

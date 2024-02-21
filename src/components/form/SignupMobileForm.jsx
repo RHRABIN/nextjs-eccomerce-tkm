@@ -12,6 +12,7 @@ const SignupMobileForm = () => {
     const [isRunning, setIsRunning] = useState(false);
     const [isThirtyCount, setIsThirtyCount] = useState(false);
     const [existOtp, setExistOtp] = useState(false);
+    const [error, setError] = useState("")
     const router = useRouter();
 
     const handleSubmit = (e) => {
@@ -31,24 +32,25 @@ const SignupMobileForm = () => {
             if (otp == otpData.otp) {
                 setSignUpInfo({ ...signupInfo, isOtp: true })
             } else {
+                setError("Then otp is incorrect");
                 toast.error("Then otp is incorrect", otpData.otp)
             }
         }
 
         if (name && password) {
             // set user name and password and call final register api
-            const userMutation = async () => {
+            const userSignupFunction = async () => {
                 const success = await userSignup({ name, password, email: signupInfo.phone });
                 if (success?.data) {
                     router.push('/')
                 }
 
             };
-            userMutation();
+            userSignupFunction();
         }
 
         if ((phone.length > 0 && !otpData.otp)) {
-            userMutation({ phone });
+            userMutation({ phone, isForRegister: true });
         }
         setExistOtp(true)
     }
@@ -60,6 +62,9 @@ const SignupMobileForm = () => {
             const success = await sendOtp(d);
             if (success?.data) {
                 setOtpData({ otp: success.data.data })
+            }else{
+                setError(success.response.data.message || "This phone already exist");
+                toast.error(success.response.data.message || "This phone already exist")
             }
         }
     };
@@ -146,6 +151,9 @@ const SignupMobileForm = () => {
     return (
         <div className='my-6'>
             {
+                error && <p className='text-sm text-primary text-center'>{error}</p>
+            }
+            {
                 isRunning && <p className='text-sm text-center font-medium mb-4'>
                     Resend OTP After
                     <span className='text-primary'> {formatTime(timeInSecs)}</span>
@@ -178,8 +186,8 @@ const SignupMobileForm = () => {
 
                 <div className='flex justify-center mt-4 hover:opacity-90'>
                     {
-                        existOtp ?
-                            <button onClick={() => handleResendOtp(signupInfo)} className={`bg-secondary text-white font-[500] px-8 py-2 rounded ${isRunning || isThirtyCount ? 'hidden' : 'block'}`}>Resend</button> :
+                        // existOtp ?
+                        //     <button onClick={() => handleResendOtp(signupInfo)} className={`bg-secondary text-white font-[500] px-8 py-2 rounded ${isRunning || isThirtyCount ? 'hidden' : 'block'}`}>Resend</button> :
                             <button className={`bg-secondary text-white font-[500] px-8 py-2 rounded ${isThirtyCount ? 'hidden' : 'block'}`} type='submit'>{signupInfo?.number && signupInfo?.otp ? 'Signup' : 'Send'}</button>
                     }
 

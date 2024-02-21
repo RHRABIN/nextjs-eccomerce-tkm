@@ -1,17 +1,15 @@
 'use client'
 import { userLoggedIn } from '@/config/authApi';
 import { useRouter } from 'next/navigation';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { Alert } from 'antd';
-import { AuthContext } from '@/context/AuthProvider';
 
 const LoginForm = () => {
-    const [isLaoding, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setIsError] = useState(null);
     const router = useRouter();
-    const { loginSuccess, setLoginSuccess } = useContext(AuthContext);
 
     let response;
 
@@ -32,7 +30,7 @@ const LoginForm = () => {
                     response = await userLoggedIn(getLoginInfo);
                     if (response?.data) {
                         router.push('/');
-                        setLoginSuccess(true)
+                        toast.success('Login Successfull')
                     } else {
                         setIsError(true)
                     }
@@ -44,20 +42,11 @@ const LoginForm = () => {
             }
         };
 
-
         userMutation();
 
         // e.target.reset()
 
     }
-
-    console.log(response)
-
-    useEffect(() => {
-        if (loginSuccess) {
-            toast.success('Login Successfull')
-        }
-    }, [loginSuccess])
 
 
     const onClose = (e) => {
@@ -86,7 +75,7 @@ const LoginForm = () => {
                 <input className='border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]' placeholder='Password' name='password' type="password" />
                 <Link className='text-end w-full block mt-4 text-sm text-blue-600 hover:underline' href='/forgot-password'>Forget Password</Link>
                 <div className='flex justify-center mt-6 hover:opacity-90'>
-                    <button className='bg-secondary text-white font-[500] px-8 py-2 rounded' type='submit'>{isLaoding ? 'Login..' : 'Login'}</button>
+                    <button className='bg-secondary text-white font-[500] px-8 py-2 rounded' type='submit'>{isLoading ? 'Login..' : 'Login'}</button>
                 </div>
             </form>
         </div>

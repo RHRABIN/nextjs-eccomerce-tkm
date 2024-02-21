@@ -35,7 +35,7 @@ const Banner = async () => {
                 <Slider {...bannerSettings}>
                     {
                         bannerImage?.data?.map(banner =>
-                            <Link href={`/campaign-products/${banner?.slug}`}>
+                            <Link key={banner._id} href={`/campaign-products/${banner?.slug}`}>
                                 <Image
                                     key={banner?._id}
                                     className='w-full'
@@ -54,7 +54,7 @@ const Banner = async () => {
                 <Slider {...bannerSettings}>
                     {
                         mobileBannerImage?.data?.map(banner =>
-                            <Link href={`/campaign-products/${banner?.slug}`}>
+                            <Link key={banner._id} href={`/campaign-products/${banner?.slug}`}>
                                 <Image
                                     key={banner?._id}
                                     className='w-full'
