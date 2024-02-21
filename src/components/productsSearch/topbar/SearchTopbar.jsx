@@ -26,19 +26,23 @@ const SearchTopbar = () => {
     }
 
     return (
-        <div className='mb-10 flex gap-4 justify-end items-center'>
-            <select onChange={handleSort} className='border border-dark rounded outline-none p-2 text-gray-800 text-sm font-[300]' name="" id="">
-                <option value="default">Default Sorting</option>
-                <option value="newest">Newest Product</option>
-                <option value="price-asc">Price low to high</option>
-                <option value="price-desc">Price high to low</option>
-            </select>
-            <select onChange={handleFilter} className='border border-dark rounded outline-none p-2 text-gray-800 text-sm font-[300]' name="" id="">
-                <option value="12">Show 12</option>
-                <option value="24">Show 24</option>
-                <option value="36">Show 36</option>
-                <option value="50">Show 50</option>
-            </select>
+        <div className=' flex gap-4 justify-end items-center'>
+           <div className='border rounded p-1 md:p-2'>
+                 <select onChange={handleSort} className=' outline-none text-gray-800 text-sm font-[300]' name="" id="">
+                    <option value="default">Default Sorting</option>
+                    <option value="newest">Newest Product</option>
+                    <option value="price-asc">Price low to high</option>
+                    <option value="price-desc">Price high to low</option>
+                </select>
+           </div>
+            <div className='border rounded p-1 md:p-2'>
+                <select onChange={handleFilter} className='outline-none text-gray-800 text-sm font-[300]' name="" id="">
+                    <option value="12">Show 12</option>
+                    <option value="24">Show 24</option>
+                    <option value="36">Show 36</option>
+                    <option value="50">Show 50</option>
+                </select>
+            </div>
         </div>
     );
 };

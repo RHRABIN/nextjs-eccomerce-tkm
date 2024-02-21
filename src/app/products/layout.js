@@ -4,6 +4,8 @@ import Image from 'next/image';
 import React from 'react';
 import waveImg from '../../../public/assets/wave-border.svg'
 import DefaultSortClient from '@/clientSideRender/productsSearch/DefaultSortClient';
+import SearchHistory from '@/components/productsSearch/history/SearchHistory';
+
 
 export const metadata = {
     title: 'Korean Mall',
@@ -12,22 +14,27 @@ export const metadata = {
 
 const layout = ({ children }) => {
     return (
-        <div className='container mx-auto my-10'>
-            <div className='flex flex-col items-center mb-10'>
+        <div className='container mx-auto my-4 md:my-8'>
+            <div className='flex flex-col items-center mb-4 md:mb-8'>
                 <p className='text-gray-800 text-2xl mb-3'>Searched Products</p>
                 <Image className='w-fit' height={500} width={1000} src={waveImg} alt='wave' />
             </div>
             <div className='mx-4 md:mx-0 md:flex gap-6'>
-                <div className='md:w-1/4 min-w[240px] hidden md:block'>
+                <div className='md:w-1/4 min-w-[220px] hidden md:block'>
                     <SearchSidebar />
                 </div>
-                <div className='md:w-3/4'>
-                    <div className='hidden md:block'>
-                        <SearchTopbar />
+                <div className='md:w-3/4 items-center justify-center'>    
+                    <div className='flex items-start mb-1 md:mb-4 justify-between'>
+                        <div className='hidden md:block'><SearchHistory /></div>
+                        <div className=''>
+                            <SearchTopbar />
+                        </div>
+                        <div className='flex justify-center md:hidden'>
+                            <DefaultSortClient />
+                        </div>
                     </div>
-                    <div className='flex justify-center mb-10 md:hidden'>
-                        <DefaultSortClient />
-                    </div>
+                        <div className='md:hidden block'><SearchHistory /></div>
+                   
                     <div>
                         {children}
                     </div>

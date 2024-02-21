@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 
+
 :root {
     --primary-color: #ed143d;
     --secondary-color: #212529;
@@ -131,4 +132,19 @@
 .rate>input:checked~label:hover~label,
 .rate>label:hover~input:checked~label {
     color: #faca15;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ccc;
 }

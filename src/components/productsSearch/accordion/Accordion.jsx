@@ -43,14 +43,14 @@ const Accordion = () => {
 
 
     return (
-        <div className="my-8">
+        <div className='mt-2'>
             <AccordionClient title={'All Category'}>
-                <ul className="text-sm overflow-y-auto max-h-[20rem]">
+                <ul className="text-sm overflow-y-auto max-h-[15rem]">
                     {
                         categories?.result?.map(category =>
                             <li
                                 key={category?._id}
-                                className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5"><Link href={pathname + '?' + createQueryString('category', category.slug)} className="w-full block p-2">{category?.title}</Link></li>
+                                className="hover:bg-gray-300 hover:text-primary cursor-pointer"><Link href={pathname + '?' + createQueryString('category', category.slug)} className="w-full block px-2 py-1 text-[12px]">{category?.title}</Link></li>
                         )
                     }
                 </ul>
@@ -58,10 +58,10 @@ const Accordion = () => {
             {
                 shopBy?.data?.children?.map(shop =>
                     <AccordionClient key={shop?._id} title={shop?.title}>
-                        <ul className="text-sm overflow-y-auto max-h-[20rem]">
+                        <ul className="text-sm overflow-y-auto max-h-[15rem]">
                             {
                                 shop?.children?.map(child =>
-                                    <li key={child?._id} className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5"><Link href={pathname + '?' + createQueryString('category', child.slug)} className="w-full block p-2">{child?.title}</Link></li>
+                                    <li key={child?._id} className="hover:bg-gray-300 hover:text-primary cursor-pointer"><Link href={pathname + '?' + createQueryString('category', child.slug)} className="w-full block px-2 py-1 text-[12px]">{child?.title}</Link></li>
                                 )
                             }
                         </ul>
@@ -69,16 +69,16 @@ const Accordion = () => {
                 )
             }
             <AccordionClient title={'Weight'}>
-                <ul className="text-sm overflow-y-auto max-h-[20rem]">
+                <ul className="text-sm overflow-y-auto max-h-[15rem]">
                     {
                         allWeight?.data?.map(weight =>
                             <li key={weight?._id}
-                                className="hover:bg-gray-300 hover:text-primary cursor-pointer my-0.5">
+                                className="hover:bg-gray-300 hover:text-primary cursor-pointer">
                                 <Link
                                     href={
                                         pathname + '?' + createQueryString('weight', weight.name)
                                     }
-                                    className="w-full block p-2">
+                                    className="w-full block px-2 py-1 text-[12px]">
                                     {weight?.name}
                                 </Link>
                             </li>

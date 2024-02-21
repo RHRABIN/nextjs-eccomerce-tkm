@@ -10,7 +10,7 @@ const AccordionClient = ({ children, title }) => {
     };
 
     return (
-        <div className='my-2'>
+        <div>
             <button
                 type='button'
                 className={`bg-[#f9f9f9] text-sm rounded-t font-[400] text-start flex items-center justify-between py-2 cursor-pointer group w-full text-gray-800 border-0 ${isOpen ? 'rounded-b-none' : 'rounded-b'}`}

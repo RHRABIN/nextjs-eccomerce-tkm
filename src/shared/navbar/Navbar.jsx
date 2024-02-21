@@ -14,7 +14,7 @@ const Navbar = async () => {
     return (
         <div className='bg-secondary hidden lg:block'>
             <nav className='container mx-auto text-white'>
-                <ul className='flex items-center gap-6 text-sm justify-center  relative w-4/5 mx-auto'>
+                <ul className='flex items-center gap-6 text-sm justify-center  relative min:w-4/5 mx-auto w-fit'>
 
                     {
                         categories?.result?.map(category => category?.children?.length > 0 ?
@@ -51,14 +51,14 @@ const Navbar = async () => {
                                         category?.children?.map(subCat => subCat?.children?.length > 0 ?
                                             // sub category child 
 
-                                            <li key={subCat?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 relative flex items-start gap-2 cursor-pointer group/sub'>
+                                            <li key={subCat?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 pl-4 w-[265px] relative flex items-start gap-2 cursor-pointer group/sub'>
                                                 <Link href={`/products?category=${subCat?.slug}`} className='uppercase block w-full'>{subCat?.title}</Link>
                                                 <IoIosArrowForward className='text-white text-lg' />
 
                                                 <ul className='absolute bg-secondary left-full top-0 hidden group-hover/sub:block'>
                                                     {
                                                         subCat?.children?.map(subCatChild =>
-                                                            <li key={subCatChild?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
+                                                            <li key={subCatChild?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 pl-4 w-60 flex items-start gap-2 cursor-pointer'>
                                                                 <Link href={`/products?category=${subCatChild?.slug}`} className='uppercase block w-full'>{subCatChild?.title}</Link>
                                                             </li>
                                                         )
@@ -66,7 +66,7 @@ const Navbar = async () => {
                                                 </ul>
                                             </li> :
                                             // sub category 
-                                            <li key={subCat?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 w-60 flex items-start gap-2 cursor-pointer'>
+                                            <li key={subCat?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 pl-4 w-60 flex items-start gap-2 cursor-pointer'>
                                                 <Link href={`/products?category=${subCat?.slug}`} className='uppercase block w-full'>{subCat?.title}</Link>
                                             </li>
 
