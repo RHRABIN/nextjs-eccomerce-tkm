@@ -23,17 +23,17 @@ const ProductCard = ({ product }) => {
                 <div className='relative'>
                     <div className='flex flex-col items-center justify-center w-4/5 mx-auto'>
                         <button className='uppercase text-xs bg-black px-2 py-1 text-white'>{productType}</button>
-                        <p className='uppercase font-semibold my-1.5 md:my-3 line-clamp-1'>{manufacturer?.name}</p>
+                        <Link href={`/brands/${manufacturer?.slug}`} className='uppercase hover:text-primary font-semibold my-1 md:my-3 line-clamp-1'>{manufacturer?.name}</Link>
                         <p className='line-clamp-2 min-h-[40px] text-sm text-center'>{name}</p>
                         <p className='text-center font-semibold mt-1.5 md:mt-3 group-hover:mt-5 group-hover:opacity-0'>
                             {price == offerPrice ? <> <span className='font-[auto]'>৳</span>{offerPrice ? offerPrice : price}</> : <>
-                                <del className='mr-2'><span className='font-[auto]'>৳</span>{price}</del>
+                                <del className='mr-2 text-primary'><span className='font-[auto]'>৳</span>{price}</del>
                                 <span className='font-[auto]'>৳</span>{offerPrice}
                             </>}
                         </p>
                     </div>
                     {timeStamps ?
-                        <div className='absolute -top-12 left-0 right-0'>
+                        <div className='absolute -top-10 left-0 right-0'>
                             <OfferCountDown timeStamps={timeStamps} />
                         </div> : ""
                     }

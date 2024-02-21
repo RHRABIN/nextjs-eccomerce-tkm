@@ -21,7 +21,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                         )
                     }
                 </Slider> */}
-                <div className='flex overflow-x-scroll details-image gap-2 '>
+                <div className='flex overflow-x-scroll details-image gap-2'>
                     {
                         bestSellingProducts?.map(product =>
                             <div key={product?._id} className='px-2 py-10 min-w-[10rem]'>
