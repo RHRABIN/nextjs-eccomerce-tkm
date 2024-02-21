@@ -19,7 +19,7 @@ const Header = () => {
     const [searchData, setSearchData] = useState([]);
     const [searchOpen, setSearchOpen] = useState(false);
     const router = useRouter();
-    const { user, loading, handleLogout } = useContext(AuthContext);
+    const { user, loading, handleLogout, loginSuccess } = useContext(AuthContext);
 
 
     useEffect(() => {
@@ -57,11 +57,11 @@ const Header = () => {
                                         </button>
                                     </div>
                                 </form>
-                                <div className={`${suggestSearch ? 'block' : 'hidden'} bg-gray-200 shadow w-full border-t border-t-white absolute top-full rounded-b-2xl z-10`}>
+                                <div className={`${suggestSearch ? 'block' : 'hidden'} bg-gray-200 shadow w-full border-t border-t-white absolute top-full rounded-b-2xl z-10 hidden lg:block`}>
                                     <ul>
                                         {
                                             searchData?.map((tag, idx) =>
-                                                <li key={idx} className="cursor-pointer text-sm px-4 py-1 hover:bg-white">
+                                                <li key={idx} className="cursor-pointer text-sm px-4 py-1 hover:bg-white ">
                                                     <Link href={`/products?search=${tag}`} className="w-full block">{tag}</Link>
                                                 </li>
                                             )
@@ -79,15 +79,9 @@ const Header = () => {
                         </Link>
                         <div className='w-1/4 flex justify-end items-center gap-5'>
                             <Link className="hidden lg:block" href='/account'>Account</Link>
-                            {user?.data?.user?.email ?
+                            {user?.data?.user?.email || loginSuccess ?
                                 <button onClick={handleLogout} className="hidden lg:block">Logout</button> :
                                 <Link className="hidden lg:block" href='/login'>Login</Link>}
-
-                            <button onClick={() => setSearchOpen(!searchOpen)} className='text-white md:hidden text-2xl'>
-                                {
-                                    searchOpen ? <FaXmark /> : <IoIosSearch />
-                                }
-                            </button>
 
                             <CartDrawer />
                         </div>
@@ -95,17 +89,22 @@ const Header = () => {
                 </div>
             </div>
 
-            <MobileSearchBar
-                handleSearch={handleSearch}
-                searchData={searchData}
-                searchOpen={searchOpen}
-                setSuggestSearch={setSuggestSearch}
-                suggestSearch={suggestSearch}
-            />
+            {!toggle &&
+                <MobileSearchBar
+                    handleSearch={handleSearch}
+                    searchData={searchData}
+                    searchOpen={searchOpen}
+                    setSuggestSearch={setSuggestSearch}
+                    suggestSearch={suggestSearch}
+                />
+            }
 
             <MobileNav
                 toggle={toggle}
                 setToggle={setToggle}
+                user={user}
+                handleLogout={handleLogout}
+                loginSuccess={loginSuccess}
             />
 
 

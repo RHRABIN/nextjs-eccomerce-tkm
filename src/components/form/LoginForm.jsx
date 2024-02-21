@@ -1,16 +1,17 @@
 'use client'
 import { userLoggedIn } from '@/config/authApi';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { Alert } from 'antd';
+import { AuthContext } from '@/context/AuthProvider';
 
 const LoginForm = () => {
     const [isLaoding, setIsLoading] = useState(false);
     const [error, setIsError] = useState(null);
-    const [isSuccess, setIsSuccess] = useState(false);
     const router = useRouter();
+    const { loginSuccess, setLoginSuccess } = useContext(AuthContext);
 
     let response;
 
@@ -31,7 +32,7 @@ const LoginForm = () => {
                     response = await userLoggedIn(getLoginInfo);
                     if (response?.data) {
                         router.push('/');
-                        setIsSuccess(true)
+                        setLoginSuccess(true)
                     } else {
                         setIsError(true)
                     }
@@ -53,10 +54,10 @@ const LoginForm = () => {
     console.log(response)
 
     useEffect(() => {
-        if (isSuccess) {
+        if (loginSuccess) {
             toast.success('Login Successfull')
         }
-    }, [isSuccess])
+    }, [loginSuccess])
 
 
     const onClose = (e) => {
@@ -70,7 +71,7 @@ const LoginForm = () => {
                 {
                     error &&
                     <Alert
-                        description="Authorizaton Failed Check email or password"
+                        description="Authorizaton Failed Check phone or password"
                         type="error"
                         closable
                         onClose={onClose}
@@ -78,8 +79,8 @@ const LoginForm = () => {
                 }
             </div>
             <form onSubmit={handleSubmit}>
-                <label className='mb-2 block' htmlFor="">Email</label>
-                <input className='border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]' placeholder='Email' name='email' type="text" />
+                <label className='mb-2 block' htmlFor="">Phone</label>
+                <input className='border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]' placeholder='Phone' name='email' type="text" />
 
                 <label className='mb-2 block mt-4' htmlFor="">Password</label>
                 <input className='border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]' placeholder='Password' name='password' type="password" />
