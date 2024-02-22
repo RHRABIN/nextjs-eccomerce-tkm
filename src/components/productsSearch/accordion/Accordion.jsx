@@ -61,7 +61,7 @@ const Accordion = () => {
                         <ul className="text-sm overflow-y-auto max-h-[15rem]">
                             {
                                 shop?.children?.map(child =>
-                                    <li key={child?._id} className="hover:bg-gray-300 hover:text-primary cursor-pointer"><Link href={pathname + '?' + createQueryString('category', child.slug)} className="w-full block px-2 py-1 text-[12px]">{child?.title}</Link></li>
+                                    <li key={child?._id} className="hover:bg-gray-300 hover:text-primary cursor-pointer"><Link href={pathname + '?' + createQueryString('subcat', child.slug)} className="w-full block px-2 py-1 text-[12px]">{child?.title}</Link></li>
                                 )
                             }
                         </ul>
