@@ -8,6 +8,7 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [isCartSuccess, setIsCartSuccess] = useState(false);
     const [loginSuccess, setLoginSuccess] = useState(false);
+    const [deleteSuccess, setDeleteSuccess] = useState(false);
 
     const handleLogout = () => {
         localStorage.removeItem('auth')
@@ -32,6 +33,8 @@ const AuthProvider = ({ children }) => {
         setIsCartSuccess,
         loginSuccess,
         setLoginSuccess,
+        deleteSuccess,
+        setDeleteSuccess,
         handleLogout
     }
 
