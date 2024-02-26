@@ -6,7 +6,7 @@ import AddToCartClient from '@/clientSideRender/addtoCart/AddToCartClient';
 import OfferCountDown from './OfferCountDown';
 
 const ProductCard = ({ product }) => {
-    const { _id, name, images, price, offerPrice, productType, slug, manufacturer, timeStamps, expireDate, profileImage } = product || {};
+    const { _id, name, images, price, offerPrice, productType, slug, manufacturer, timeStamps, expireDate, profileImage , badge } = product || {};
 
     return (
         <div className='py-4 relative cursor-pointer group md:hover:shadow-md md:hover:shadow-dark md:hover:scale-105 duration-500 transition'>
@@ -19,12 +19,17 @@ const ProductCard = ({ product }) => {
                         </div>
                     }
                 </div>
+
                 <Image className='h-44 w-full md:h-auto md:px-10' width={1280} height={720} quality={100} src={profileImage ? profileImage : images?.[0]} alt={name} />
+
                 <div className='relative'>
                     <div className='flex flex-col items-center justify-center w-4/5 mx-auto'>
-                        <button className='uppercase text-xs bg-black px-2 py-1 text-white'>{productType}</button>
-                        <Link href={`/brands/${manufacturer?.slug}`} className='uppercase hover:text-primary font-semibold my-1 md:my-3 line-clamp-1'>{manufacturer?.name}</Link>
+                       {badge?.length > 0 ? <p className='mt-5 uppercase text-xs bg-black px-2 py-1 text-white'>{badge[0]?.name}</p> : <p className='h-[23px]'></p>}
+
+                        <Link href={`/brands/${manufacturer?.slug}`} className='uppercase hover:text-primary font-semibold my-1 md:my-1 line-clamp-1'>{manufacturer?.name}</Link>
+
                         <p className='line-clamp-2 min-h-[40px] text-sm text-center'>{name}</p>
+
                         <p className='text-center font-semibold mt-1.5 md:mt-3 group-hover:mt-5 group-hover:opacity-0'>
                             {price == offerPrice ? <> <span className='font-[auto]'>৳</span>{offerPrice ? offerPrice : price}</> : <>
                                 <del className='mr-2 text-primary'><span className='font-[auto]'>৳</span>{price}</del>
@@ -33,7 +38,7 @@ const ProductCard = ({ product }) => {
                         </p>
                     </div>
                     {timeStamps ?
-                        <div className='absolute -top-10 left-0 right-0'>
+                        <div className='absolute -top-[20px] left-0 right-0'>
                             <OfferCountDown timeStamps={timeStamps} />
                         </div> : ""
                     }
