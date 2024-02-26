@@ -29,24 +29,6 @@ const addToCartNewDataByEmail = async (email, data) => {
 };
 
 
-// delete cart data 
-
-// const deleteCardDataByEmailId = async (email, productId) => {
-//     let response;
-//     try {
-//         response = await axios.delete(`${baseUrl}/cart/cartEdit/${email}`, productId,
-//             {
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                 },
-//             }
-//         );
-//         return response;
-//     } catch (error) {
-//         console.error(error);
-//     }
-// };
-
 // delete cart data
 const deleteCardDataByEmailId = async (email, productId) => {
     const res = await fetch(`${baseUrl}/cart/cartEdit/${email}`,

@@ -5,6 +5,7 @@ import { AuthContext } from '@/context/AuthProvider';
 import React, { useContext, useEffect, useState } from 'react';
 import Modal from '@/components/modal/Modal';
 import AddressForm from './AddressForm';
+import toast from "react-hot-toast";
 
 const AddressCard = () => {
     const { user } = useContext(AuthContext);
@@ -12,8 +13,10 @@ const AddressCard = () => {
     const [editAddress, setEditAddress] = useState({});
     const [allAddress, setAllAddress] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [dLoading, setDloading] = useState(false);
     const [error, setError] = useState(null);
     const [selectSuccess, setSelectSuccess] = useState(false);
+    const [addressSuccess, setAddressSuccess] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,10 +34,11 @@ const AddressCard = () => {
             fetchData();
         }
 
-        if (selectSuccess) {
+        if (selectSuccess || addressSuccess) {
             fetchData();
+            setAddressSuccess(false)
         }
-    }, [user, selectSuccess]);
+    }, [user, selectSuccess, addressSuccess]);
 
     const handleActiveAddress = async (id) => {
         try {
@@ -47,9 +51,16 @@ const AddressCard = () => {
 
     const handleDeleteAddress = async (id) => {
         try {
-            await deleteAddress({ id }, user?.data?.user?.email);
+            setDloading(true)
+            const res = await deleteAddress({ id }, user?.data?.user?.email);
+            if (res) {
+                setAddressSuccess(true);
+                toast.success('Address Delete Successfull')
+            }
         } catch (error) {
             setError(error.message);
+        } finally {
+            setDloading(false)
         }
     }
 
@@ -98,7 +109,7 @@ const AddressCard = () => {
                             <p className='text-sm'>House No: {adrs?.address}</p>
                             {
                                 !adrs?.selected &&
-                                <button onClick={() => handleDeleteAddress(adrs?._id)} className='border p-1 rounded-md text-sm font-semibold hover:bg-red-600 hover:text-white'>Remove</button>
+                                <button onClick={() => handleDeleteAddress(adrs?._id)} className='border p-1 rounded-md text-sm font-semibold hover:bg-red-600 hover:text-white'>{dLoading ? 'Removing..' : 'Remove'}</button>
                             }
                         </span>
                     </div>
