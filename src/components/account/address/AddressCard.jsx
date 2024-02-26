@@ -8,7 +8,7 @@ import AddressForm from './AddressForm';
 import toast from "react-hot-toast";
 
 const AddressCard = () => {
-    const { user } = useContext(AuthContext);
+    const { user, addressSuccess, setAddressSuccess } = useContext(AuthContext);
     const [addressOpen, setAddressOpen] = useState(false);
     const [editAddress, setEditAddress] = useState({});
     const [allAddress, setAllAddress] = useState([]);
@@ -16,7 +16,7 @@ const AddressCard = () => {
     const [dLoading, setDloading] = useState(false);
     const [error, setError] = useState(null);
     const [selectSuccess, setSelectSuccess] = useState(false);
-    const [addressSuccess, setAddressSuccess] = useState(false);
+    
 
     useEffect(() => {
         const fetchData = async () => {

@@ -1,10 +1,11 @@
 'use client'
 import AddressForm from '@/components/account/address/AddressForm';
 import Modal from '@/components/modal/Modal';
-import React, { useState } from 'react';
+import { AuthContext } from '@/context/AuthProvider';
+import React, { useContext } from 'react';
 
 const CreateNewAddressClient = () => {
-    const [addressOpen, setAddressOpen] = useState(false);
+    const { addressOpen, setAddressOpen } = useContext(AuthContext);
     return (
 
         <div>
