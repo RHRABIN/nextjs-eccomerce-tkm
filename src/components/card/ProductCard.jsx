@@ -23,8 +23,8 @@ const ProductCard = ({ product }) => {
                 <Image className='h-44 w-full md:h-auto md:px-10' width={1280} height={720} quality={100} src={profileImage ? profileImage : images?.[0]} alt={name} />
 
                 <div className='relative'>
-                    <div className='flex flex-col items-center justify-center w-4/5 mx-auto'>
-                       {badge?.length > 0 ? <p className='mt-5 uppercase text-xs bg-black px-2 py-1 text-white'>{badge[0]?.name}</p> : <p className='h-[23px]'></p>}
+                    <div className='flex flex-col items-center justify-center w-full md:w-4/5 mx-auto'>
+                       {badge?.length > 0 ? <p className='mt-5 uppercase text-xs bg-black px-2 py-1 text-white'>{badge[0]?.name}</p> : <p className='h-[45px] invisible'>demo</p>}
 
                         <Link href={`/brands/${manufacturer?.slug}`} className='uppercase hover:text-primary font-semibold my-1 md:my-1 line-clamp-1'>{manufacturer?.name}</Link>
 

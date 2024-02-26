@@ -18,19 +18,19 @@ const ProductDescription = ({ product }) => {
              }
              </div>}
             
-            <h1 className='uppercase text-xl font-semibold mt-3'>
+            <h1 className='uppercase  text-lg md:text-xl font-semibold mt-3'>
                 <Link href={`/brand/${manufacturer?.slug}`}>{manufacturer?.name}</Link>
             </h1>
-            <h2 className='font-normal text-2xl text-gray-800 my-3'>{name}</h2>
+            <h2 className='font-normal text-xl md:text-2xl text-gray-800 my-3'>{name}</h2>
 
-            <div className='flex items-center text-dark text-xl mb-3'>
+            <div className='flex items-center text-dark text-lg md:text-xl mb-3'>
                 <IoIosStar />
                 <IoIosStar />
                 <IoIosStar />
                 <IoIosStar />
                 <IoIosStar />
             </div>
-            <div className='text-3xl font-semibold text-gray-800 flex items-start gap-2 mb-3 border-t border-dotted border-t-dark pt-3'>
+            <div className='text-2xl md:text-3xl font-semibold text-gray-800 flex items-start gap-2 mb-3 border-t border-dotted border-t-dark pt-3'>
                 {/* <p className='font-[auto]'>৳</p>
                 <p>{offerPrice ? offerPrice : price}</p> */}
                 {price == offerPrice ? <> <span className='font-[auto]'>৳</span>{offerPrice ? offerPrice : price}</> : <>

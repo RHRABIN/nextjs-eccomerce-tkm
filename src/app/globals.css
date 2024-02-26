@@ -134,6 +134,10 @@
     color: #faca15;
 }
 
+.mobile-scrollbar::-webkit-scrollbar{
+    width: 0px;
+}
+
 ::-webkit-scrollbar {
     width: 4px;
 }
