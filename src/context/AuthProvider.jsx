@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
 
     const handleLogout = () => {
         localStorage.removeItem('auth')
-        setLoginSuccess(false)
+        setLoginSuccess(!loginSuccess)
     }
 
     useEffect(() => {
