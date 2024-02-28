@@ -76,16 +76,23 @@ const getActiveAddress = async (email) => {
 };
 
 // delete address 
-const deleteAddress = async (Id, email) => {
-    let response;
-    try {
-        response = await axios.delete(`${baseUrl}/address/${email}`, Id);
-        return response;
-    } catch (error) {
-        console.error(error);
-    }
-};
+const deleteAddress = async (id, email) => {
+    const res = await fetch(`${baseUrl}/address/${email}`,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(id),
+        }
+    )
 
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
+    }
+
+    return res.json();
+};
 
 module.exports = {
     getAllAddress,

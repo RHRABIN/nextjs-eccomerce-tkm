@@ -7,11 +7,12 @@ import toast from 'react-hot-toast';
 
 const AddressForm = ({ address }) => {
     const [newAddress, setNewAddress] = useState();
-    const { user } = useContext(AuthContext);
+    const { user, setAddressOpen, addressSuccess, setAddressSuccess } = useContext(AuthContext);
     const [division, setDivision] = useState(null);
     const [district, setDistrict] = useState(null);
     const [subDistrict, setSubDistrict] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoadng] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -53,16 +54,27 @@ const AddressForm = ({ address }) => {
     const handleSubmitAddress = async (e) => {
         e.preventDefault();
 
-        if (!address || Object.keys(address).length === 0) {
-            const res = await createAddress(user?.data?.user?.email, newAddress);
-            if (res) {
-                toast.success("Address created successfully!")
+        try {
+            setIsLoadng(true)
+            if (!address || Object.keys(address).length === 0) {
+                const res = await createAddress(user?.data?.user?.email, newAddress);
+                if (res) {
+                    toast.success("Address created successfully!")
+                    setAddressOpen(false)
+                    setAddressSuccess(true)
+                }
+            } else {
+                const res = await updateAddress(_id, newAddress);
+                if (res) {
+                    toast.success("Address Update successfully!")
+                    setAddressOpen(false)
+                    setAddressSuccess(true)
+                }
             }
-        } else {
-            const res = await updateAddress(_id, newAddress);
-            if (res) {
-                toast.success("Address Update successfully!")
-            }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setIsLoadng(false)
         }
     }
 
@@ -130,7 +142,7 @@ const AddressForm = ({ address }) => {
             <input onChange={handleAddressChange} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs mt-2' placeholder='Optional Address' type="text" />
 
             <div className='flex items-center justify-end'>
-                <button className='bg-secondary text-white px-6 py-2 hover:opacity-90 rounded mt-4'>Submit</button>
+                <button className='bg-secondary text-white px-6 py-2 hover:opacity-90 rounded mt-4'>{isLoading ? 'Submit..' : 'Submit'}</button>
             </div>
         </form>
     );

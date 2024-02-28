@@ -1,15 +1,17 @@
 'use client'
 import { userLoggedIn } from '@/config/authApi';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { Alert } from 'antd';
+import { AuthContext } from '@/context/AuthProvider';
 
 const LoginForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setIsError] = useState(null);
     const router = useRouter();
+    const { loginSuccess, setLoginSuccess } = useContext(AuthContext);
 
     let response;
 
@@ -31,6 +33,7 @@ const LoginForm = () => {
                     if (response?.data) {
                         router.push('/');
                         toast.success('Login Successfull')
+                        setLoginSuccess(!loginSuccess)
                     } else {
                         setIsError(true)
                     }

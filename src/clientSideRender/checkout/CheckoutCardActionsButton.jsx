@@ -9,7 +9,8 @@ import { AiOutlineDelete } from 'react-icons/ai';
 const CheckoutCardActionsButton = ({ product }) => {
     const [selectProduct, setSelectProduct] = useState(1);
     const [deleteLoading, setDeleteLoading] = useState(false);
-    const [deleteSuccess, setDeleteSuccess] = useState(false);
+    const { deleteSuccess, setDeleteSuccess } = useContext(AuthContext);
+
     const { _id } = product || {};
     const { user } = useContext(AuthContext)
 
@@ -32,21 +33,17 @@ const CheckoutCardActionsButton = ({ product }) => {
     const handleDeleteProduct = async (productId) => {
         setDeleteLoading(true);
         try {
-            await deleteCardDataByEmailId(user?.data?.user?.email, productId);
-            setDeleteSuccess(true);
+            const res = await deleteCardDataByEmailId(user?.data?.user?.email, { productId });
+            if (res) {
+                setDeleteSuccess(true);
+                toast.success('Cart delete successfull')
+            }
         } catch (error) {
             console.error(error);
         } finally {
             setDeleteLoading(false);
         }
     };
-
-
-    useEffect(() => {
-        if (deleteSuccess) {
-            toast.success('Cart delete successfull')
-        }
-    }, [deleteSuccess])
 
 
     return (

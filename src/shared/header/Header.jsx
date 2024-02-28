@@ -49,31 +49,31 @@ const Header = () => {
                     <div className='mx-5 md:mx-0 py-4 md:py-7 flex items-center'>
                         <div className="w-1/4">
                             <div className="relative">
-                                <form  onSubmit={handleSearch}>
+                                <form onSubmit={handleSearch}>
                                     <div className='hidden lg:flex items-center w-full'>
 
-                                        <input 
-                                        // onBlur={()=>setSearchOpen(false)}
-                                        onFocus={()=> setSearchOpen(true)}
-                                        onChange={(e) =>setSuggestSearch(e.target.value)} 
-                                        className={`md:min-w-[250px] outline-none bg-gray-200 py-2 px-3 mr-1 placeholder:text-xs ${(searchOpen && searchData?.length>0) ? 'rounded-tl-2xl' : 'rounded-l-2xl'}`} type="text" placeholder='Search for products...'
-                                        value={suggestSearch}
+                                        <input
+                                            // onBlur={()=>setSearchOpen(false)}
+                                            onFocus={() => setSearchOpen(true)}
+                                            onChange={(e) => setSuggestSearch(e.target.value)}
+                                            className={`md:min-w-[250px] outline-none bg-gray-200 py-2 px-3 mr-1 placeholder:text-xs ${(searchOpen && searchData?.length > 0) ? 'rounded-tl-2xl' : 'rounded-l-2xl'}`} type="text" placeholder='Search for products...'
+                                            value={suggestSearch}
                                         />
 
-                                        <button type='button' className={` bg-gray-200 w-full py-2 px-2 ${(searchOpen && searchData?.length>0) ? 'rounded-tr-2xl' : 'rounded-r-2xl'}`}>
+                                        <button type='button' className={` bg-gray-200 w-full py-2 px-2 ${(searchOpen && searchData?.length > 0) ? 'rounded-tr-2xl' : 'rounded-r-2xl'}`}>
                                             <IoIosSearch className='text-dark text-2xl' />
                                         </button>
 
                                     </div>
                                 </form>
-                                <div className={`${(searchOpen && searchData?.length>0) ? 'hidden md:block' : 'hidden'} bg-gray-200 shadow w-full border-t border-t-white absolute top-full rounded-b-2xl z-10 overflow-hidden`}>
+                                <div className={`${(searchOpen && searchData?.length > 0) ? 'hidden md:block' : 'hidden'} bg-gray-200 shadow w-full border-t border-t-white absolute top-full rounded-b-2xl z-10 overflow-hidden`}>
                                     <ul>
                                         {
                                             searchData?.map((tag, idx) =>
                                                 <li key={idx} className="cursor-pointer text-sm px-4 py-1 hover:bg-white ">
-                                                    <Link onClick={()=>{
-                                                         setSearchOpen(false);
-                                                         setSuggestSearch(tag)
+                                                    <Link onClick={() => {
+                                                        setSearchOpen(false);
+                                                        setSuggestSearch(tag)
                                                     }} href={`/products?search=${tag}`} className="w-full block">{tag}</Link>
                                                 </li>
                                             )
@@ -90,7 +90,10 @@ const Header = () => {
                             <Image height={600} width={1080} className="w-80 lg:hidden" src={mLogo} alt="logo" />
                         </Link>
                         <div className='w-1/4 flex justify-end items-center gap-5'>
-                            <Link className="hidden lg:block" href='/account'>Account</Link>
+                            {user?.data?.user?.email || loginSuccess ?
+                                <Link className="hidden lg:block" href='/account'>Account</Link> :
+                                <Link className="hidden lg:block" href='/login'>Account</Link>
+                            }
                             {user?.data?.user?.email || loginSuccess ?
                                 <button onClick={handleLogout} className="hidden lg:block">Logout</button> :
                                 <Link className="hidden lg:block" href='/login'>Login</Link>}

@@ -29,16 +29,23 @@ const addToCartNewDataByEmail = async (email, data) => {
 };
 
 
-// delete cart data 
-
+// delete cart data
 const deleteCardDataByEmailId = async (email, productId) => {
-    let response;
-    try {
-        response = await axios.delete(`${baseUrl}/cart/cartEdit/${email}`, productId);
-        return response;
-    } catch (error) {
-        console.error(error);
+    const res = await fetch(`${baseUrl}/cart/cartEdit/${email}`,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(productId),
+        }
+    )
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
     }
+
+    return res.json();
 };
 
 

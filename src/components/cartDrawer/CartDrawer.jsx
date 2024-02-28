@@ -13,7 +13,7 @@ import { baseUrl } from '@/config/baseUrl';
 const CartDrawer = () => {
     const [openDrawer, setOpenDrawer] = useState(false);
     const [cartData, setCartData] = useState();
-    const { user, isCartSuccess, setIsCartSuccess } = useContext(AuthContext);
+    const { user, isCartSuccess, setIsCartSuccess, deleteSuccess, setDeleteSuccess } = useContext(AuthContext);
 
     useEffect(() => {
         const cartMutation = async () => {
@@ -29,7 +29,12 @@ const CartDrawer = () => {
             cartMutation();
             setIsCartSuccess(false);
         }
-    }, [user, isCartSuccess]);
+
+        if (deleteSuccess) {
+            cartMutation()
+            setDeleteSuccess(false)
+        }
+    }, [user, isCartSuccess, deleteSuccess]);
 
 
     return (
