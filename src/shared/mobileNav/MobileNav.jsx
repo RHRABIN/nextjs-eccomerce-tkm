@@ -48,7 +48,7 @@ const MobileNav = ({ user, toggle, setToggle, handleLogout, loginSuccess }) => {
                                         >
                                             {
                                                 subCat?.children?.map(subCatChild =>
-                                                    <li onClick={() => setToggle(false)} key={subCatChild?._id} className='hover:text-white border-b border-b-dark border-opacity-10 py-2'><Link href={`/products?category=${subCatChild?.slug}`} className='w-full block'>{subCatChild?.title}</Link></li>
+                                                    <li onClick={() => setToggle(false)} key={subCatChild?._id} className={`border-b border-b-dark border-opacity-10 py-2 ${toggle && 'text-slate-100'}`}><Link href={`/products?category=${subCatChild?.slug}`} className='w-full block'>{subCatChild?.title}</Link></li>
                                                 )
                                             }
                                         </MobileSubNavButtonClient> :
