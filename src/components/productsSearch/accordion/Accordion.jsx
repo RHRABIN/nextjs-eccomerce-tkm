@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
-const Accordion = () => {
+const Accordion = ({isMobile}) => {
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const [categories, setCategories] = useState(null);
@@ -60,7 +60,7 @@ const Accordion = () => {
 
     return (
         <div className='mt-2'>
-            <AccordionClient title={'All Category'}>
+            <AccordionClient title={'All Category'} isMobile={isMobile}>
                 <ul className="text-sm overflow-y-auto max-h-[15rem]">
                     {
                         categories?.result?.map(category =>
@@ -73,7 +73,7 @@ const Accordion = () => {
             </AccordionClient>
             {
                 shopBy?.data?.children?.map(shop =>
-                    <AccordionClient key={shop?._id} title={shop?.title}>
+                    <AccordionClient key={shop?._id} title={shop?.title} isMobile={isMobile}>
                         <ul className="text-sm overflow-y-auto max-h-[15rem]">
                             {/* {
                                 shop?.children?.map(child =>
@@ -100,7 +100,7 @@ const Accordion = () => {
                     </AccordionClient>
                 )
             }
-            <AccordionClient title={'Weight'}>
+            <AccordionClient title={'Weight'} isMobile={isMobile}>
                 <ul className="text-sm overflow-y-auto max-h-[15rem]">
                     {
                         allWeight?.data?.map(weight =>

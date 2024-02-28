@@ -4,31 +4,33 @@ import DangerHtml from '@/clientSideRender/dangerHtml/DangerHtml';
 import { FaFacebookF, FaHeart, FaInstagram, FaYoutube } from 'react-icons/fa6';
 import { IoIosStar } from 'react-icons/io';
 import AddToCartButton from './AddToCartButton';
-import { Image } from 'antd';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const ProductDescription = ({ product }) => {
-    const { name, manufacturer, tags, price, offerPrice, description, directions, ingredients, variation, shipping, activities } = product || {};
+    const { name, manufacturer, tags, price, offerPrice, description, directions, ingredients, variation, shipping, activities, badge } = product || {};
 
     return (
         <div>
-            {
-                variation?.length > 0 && <div className='d-flex flex-wrap gap-2'>
-                    {
-                        variation?.map(b => <Image src={b.image} key={b._id} />)
-                    }
-                </div>
-            }
-            <h1 className='uppercase text-xl'>{manufacturer?.name}</h1>
-            <h2 className='font-semibold text-2xl text-gray-800 mb-3'>{name}</h2>
+            {badge?.length > 0 && <div className='flex gap-2'>
+             {
+                badge?.map(b=> <p key={b._id} className='uppercase font-semibold text-xs bg-black px-2 py-1.5 text-white'>{b?.name}</p>)
+             }
+             </div>}
+            
+            <h1 className='uppercase  text-lg md:text-xl font-semibold mt-3'>
+                <Link href={`/brand/${manufacturer?.slug}`}>{manufacturer?.name}</Link>
+            </h1>
+            <h2 className='font-normal text-xl md:text-2xl text-gray-800 my-3'>{name}</h2>
 
-            <div className='flex items-center text-dark text-xl mb-3'>
+            <div className='flex items-center text-dark text-lg md:text-xl mb-3'>
                 <IoIosStar />
                 <IoIosStar />
                 <IoIosStar />
                 <IoIosStar />
                 <IoIosStar />
             </div>
-            <div className='text-3xl font-semibold text-gray-800 flex items-start gap-2 mb-3 border-t border-dotted border-t-dark pt-3'>
+            <div className='text-2xl md:text-3xl font-semibold text-gray-800 flex items-start gap-2 mb-3 border-t border-dotted border-t-dark pt-3'>
                 {/* <p className='font-[auto]'>৳</p>
                 <p>{offerPrice ? offerPrice : price}</p> */}
                 {price == offerPrice ? <> <span className='font-[auto]'>৳</span>{offerPrice ? offerPrice : price}</> : <>
@@ -47,7 +49,7 @@ const ProductDescription = ({ product }) => {
                 <FaHeart className='border border-gray-300 p-2 rounded-full text-dark text-4xl cursor-pointer hover:bg-orange-500 hover:text-white' />
             </div>
 
-            <div className='flex flex-wrap gap-2 mt-5'>
+            <div className='flex flex-wrap gap-2 mt-4'>
                 {
                     tags?.map((tag) =>
                         <span key={tag} className='bg-[rgb(245,245,245)] text-gray-800 py-0.5 px-1 text-xs'>{tag}</span>
@@ -61,7 +63,15 @@ const ProductDescription = ({ product }) => {
                 </p>
             </div>
 
-            <div className='mt-10'>
+            {
+                variation?.length > 0 && <div className='flex flex-wrap gap-2 mt-4'>
+                    {
+                        variation?.map(b => <Image src={b.image} key={b._id} alt='variation-image' height={100} width={100} />)
+                    }
+                </div>
+            }
+
+            <div className='mt-2'>
                 <AccordionClient title={'Activities'}>
                     <DangerHtml getText={activities} padding={true} />
                 </AccordionClient>

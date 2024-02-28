@@ -60,6 +60,17 @@ const getAllProductsBySearch = async (queryUrl) => {
     }
 };
 
+// get all weight
+const getCategoryData = async (query) => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/product/categoryData${query}`);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 
 // get search suggestion
 const getSearchSuggestion = async (query) => {
@@ -109,5 +120,6 @@ module.exports = {
     getAllProductsBySearch,
     getSearchSuggestion,
     getCampaignProducts,
-    getBrandProductsByBrandSlug
+    getBrandProductsByBrandSlug,
+    getCategoryData
 }

@@ -2,11 +2,15 @@
 import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 
-const AccordionClient = ({ children, title }) => {
-    const [isOpen, setIsOpen] = useState(false);
+const AccordionClient = ({ children, title, isMobile }) => {
+    const [isOpen, setIsOpen] = useState(isMobile ? true : false);
 
     const toggleAccordion = () => {
-        setIsOpen(!isOpen);
+        if (isMobile){
+            return
+        }else{
+            setIsOpen(!isOpen);
+        }
     };
 
     return (
@@ -17,7 +21,7 @@ const AccordionClient = ({ children, title }) => {
                 onClick={toggleAccordion}
             >
                 {title}
-                <IoIosArrowDown className={isOpen ? 'rotate-180 duration-300 ease-in' : 'duration-300 ease-out'} />
+                {!isMobile && <IoIosArrowDown className={isOpen ? 'rotate-180 duration-300 ease-in' : 'duration-300 ease-out'} />}
             </button>
             <div
                 className={`bg-white overflow-hidden ${isOpen ? 'h-fit overflow-visible rounded-b duration-500 ease-in delay-75' : 'h-0'
