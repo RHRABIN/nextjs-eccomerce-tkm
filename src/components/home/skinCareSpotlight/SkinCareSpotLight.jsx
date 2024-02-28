@@ -1,3 +1,4 @@
+import BlogSliderMobile from '@/clientSideRender/blogSliderMobile/BlogSliderMobile';
 import SpotLightCard from '@/components/card/SpotLightCard';
 import { getTopSpotlight } from '@/config/spotLightApi';
 import React from 'react';
@@ -14,7 +15,7 @@ const SkinCareSpotLight = async () => {
             <div className='mx-4 md:mx-0'>
                 <h1 className='uppercase text-2xl lg:text-3xl font-semibold text-center border-dotted border-b pb-4'>SKIN CARE SPOTLIGHT</h1>
 
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10 gap-5'>
+                <div className='lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10 gap-5 hidden'>
                     {
                         products?.data?.map(product =>
                             <SpotLightCard
@@ -24,6 +25,17 @@ const SkinCareSpotLight = async () => {
                         )
                     }
                 </div>
+
+                <BlogSliderMobile>
+                    {
+                        products?.data?.map(product =>
+                            <SpotLightCard
+                                key={product?._id}
+                                product={product}
+                            />
+                        )
+                    }
+                </BlogSliderMobile>
             </div>
         </div>
     );
