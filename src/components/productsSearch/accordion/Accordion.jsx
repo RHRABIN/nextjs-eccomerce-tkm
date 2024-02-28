@@ -81,12 +81,13 @@ const Accordion = () => {
                                 )
                             } */}
                             {shop?.children?.map(child => (
-                                <div key={child?._id} className='flex items-center'>
+                                <div key={child?._id} className='flex items-center custom-checkbox'>
                                     <input
                                         onChange={handleQueryChange}
                                         type="checkbox"
                                         value={child?.slug}
                                         id={child?._id}
+                                        className='hidden'
                                     />
                                     <label
                                         htmlFor={child?._id}
