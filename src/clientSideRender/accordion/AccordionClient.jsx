@@ -17,7 +17,7 @@ const AccordionClient = ({ children, title, isMobile }) => {
         <div>
             <button
                 type='button'
-                className={`bg-[#f9f9f9] text-sm rounded-t font-[400] text-start flex items-center justify-between py-2 cursor-pointer group w-full text-gray-800 border-0 px-2 my-1.5 ${isOpen ? 'rounded-b-none' : 'rounded-b'}`}
+                className={`bg-[#f9f9f9] text-sm rounded-t font-[400] text-start flex items-center justify-between cursor-pointer group w-full text-gray-800 border-0 py-3 px-3 my-1 ${isOpen ? 'rounded-b-none' : 'rounded-b'}`}
                 onClick={toggleAccordion}
             >
                 {title}

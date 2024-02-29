@@ -48,10 +48,10 @@ const AddToCartClient = ({ product }) => {
     }
     return (
         <>
-            <button onClick={handleWishlist} className='w-1/4 flex justify-start'>
+            <button onClick={handleWishlist} className='w-1/4  justify-start hidden md:flex'>
                 <FaRegHeart className='md:text-2xl' />
             </button>
-            <button onClick={handleAddToCart} className='bg-primary p-1 text-white uppercase text-[10px] md:text-sm md:p-2 w-full'>{isLoading ? 'Add to cart..' : 'Add to cart'}</button>
+            <button onClick={handleAddToCart} className='bg-primary p-1.5 text-white uppercase text-sm md:p-2 w-full'>{isLoading ? 'Add to cart..' : 'Add to cart'}</button>
         </>
     );
 };

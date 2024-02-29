@@ -26,11 +26,11 @@ const ProductCard = ({ product }) => {
                     <div className='flex flex-col items-center justify-center w-full md:w-4/5 mx-auto'>
                        {badge?.length > 0 ? <p className='mt-5 uppercase text-xs bg-black px-2 py-1 text-white'>{badge[0]?.name}</p> : <p className='h-[45px] invisible'>demo</p>}
 
-                        <Link href={`/brands/${manufacturer?.slug}`} className='uppercase hover:text-primary font-semibold my-1 md:my-1 line-clamp-1'>{manufacturer?.name}</Link>
+                        <Link href={`/brands/${manufacturer?.slug}`} className='uppercase hover:text-primary font-semibold my-1 text-sm md:text-[16px] md:my-1 line-clamp-1'>{manufacturer?.name}</Link>
 
                         <p className='line-clamp-2 min-h-[40px] text-sm text-center'>{name}</p>
 
-                        <p className='text-center font-semibold mt-1.5 md:mt-3 group-hover:mt-5 group-hover:opacity-0'>
+                        <p className='text-center font-semibold mt-1.5 md:mt-3 md:group-hover:mt-5 md:group-hover:opacity-0'>
                             {price == offerPrice ? <> <span className='font-[auto]'>৳</span>{offerPrice ? offerPrice : price}</> : <>
                                 <del className='mr-2 text-primary'><span className='font-[auto]'>৳</span>{price}</del>
                                 <span className='font-[auto]'>৳</span>{offerPrice}
@@ -44,9 +44,9 @@ const ProductCard = ({ product }) => {
                     }
                 </div>
             </Link>
-            <div className='flex gap-2 w-full px-2 md:px-5 items-center justify-between mt-5 absolute -bottom-[8px] md:bottom-3 bg-white md:opacity-0 group-hover:opacity-100'>
+            <div className='flex gap-2 w-full px-2 md:px-5 items-center justify-between mt-5 absolute -bottom-[20px] md:bottom-3 bg-white md:opacity-0 group-hover:opacity-100'>
                 <AddToCartClient product={product} />
-                <Link href={`/product-detail/${slug}`} className='w-1/4 flex justify-end'>
+                <Link href={`/product-detail/${slug}`} className='w-1/4 justify-end hidden md:flex'>
                     <IoIosSearch className='md:text-2xl' />
                 </Link>
             </div>
