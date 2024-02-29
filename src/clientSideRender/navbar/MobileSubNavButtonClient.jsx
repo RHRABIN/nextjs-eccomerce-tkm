@@ -7,8 +7,8 @@ const MobileSubNavButtonClient = ({ title, children }) => {
 
     return (
         <>
-            <li className='hover:text-white border-b bg-secondary border-b-dark border-opacity-10 py-2'>
-                <button onClick={() => setToggle(!toggle)} type='button' className='flex items-center justify-between w-full'>
+            <li className='border-b bg-secondary border-b-dark border-opacity-10 py-2'>
+                <button onClick={() => setToggle(!toggle)} type='button' className={`flex items-center justify-between w-full ${toggle ? 'uppercase text-white' : 'capitalize '}`}>
                     {title}
                     {toggle ? <FaMinus /> : <FaPlus />}
                 </button>

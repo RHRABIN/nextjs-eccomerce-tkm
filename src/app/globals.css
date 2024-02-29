@@ -152,3 +152,45 @@
 ::-webkit-scrollbar-thumb {
     background: #ccc;
 }
+
+
+/* custom checkbox  */
+
+.form-group input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+  }
+  
+  .custom-checkbox label {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .custom-checkbox label:before {
+    content:'';
+    --webkit-appearance: none;
+    background-color: transparent;
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .custom-checkbox input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 8px;
+    left: 9px;
+    width: 5px;
+    height: 11px;
+    border: solid #0079bf;
+    border-width: 0 1px 1px 0;
+    transform: rotate(45deg);
+  }

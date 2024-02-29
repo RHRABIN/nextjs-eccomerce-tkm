@@ -7,8 +7,7 @@ import { IoIosArrowBack, IoIosSearch } from 'react-icons/io';
 import { MdOutlineArrowOutward } from 'react-icons/md';
 import searchImg from '../../../public/assets/search.png'
 
-const MobileSearchBar = ({ handleSearch, setSuggestSearch, searchData }) => {
-    const [openDrawer, setOpenDrawer] = useState(false);
+const MobileSearchBar = ({ handleSearch, setSuggestSearch, searchData, openDrawer, setOpenDrawer }) => {
     const searchInputRef = useRef(null);
 
     useEffect(() => {
@@ -18,11 +17,11 @@ const MobileSearchBar = ({ handleSearch, setSuggestSearch, searchData }) => {
     }, [openDrawer]);
 
     return (
-        <div className='bg-secondary p-2 lg:hidden'>
-            <div onClick={() => setOpenDrawer(true)} className=' flex items-center rounded-md bg-white'>
+        <div className='bg-secondary lg:hidden'>
+            {/* <div onClick={() => setOpenDrawer(true)} className=' flex items-center rounded-md bg-white'>
                 <input className='rounded-md outline-none w-full p-2 focus:invisible placeholder:text-sm' placeholder='Search your product' type="text" />
                 <IoIosSearch className='text-2xl mx-2' />
-            </div>
+            </div> */}
             <Drawer
                 open={openDrawer}
                 onClose={() => setOpenDrawer(false)}
@@ -43,18 +42,35 @@ const MobileSearchBar = ({ handleSearch, setSuggestSearch, searchData }) => {
                         </div>
                     </form>
                 </div>
-                
+
                 <ul>
                     {
                         searchData?.length > 0 ?
                             searchData?.map((tag, idx) =>
-                                <li onClick={() => setOpenDrawer(false)} key={idx} className='border-b border-gray-50 '>
-                                    <Link href={`/products?search=${tag}`} className='w-full flex items-center justify-between py-2 px-4'>
-                                        {tag}
-                                        <MdOutlineArrowOutward />
-                                    </Link>
+                                // <li onClick={() => setOpenDrawer(false)} key={idx} className='border-b border-gray-50 '>
+                                //     <Link href={`/products?search=${tag}`} className='w-full flex items-center justify-between py-2 px-4'>
+                                //         {tag}
+                                //         <MdOutlineArrowOutward />
+                                //     </Link>
 
-                                </li>
+                                // </li>
+                                <div className='grid grid-cols-3 gap-2 m-4'>
+                                    <div key={idx} className='border rounded-md'>
+                                        <Image className='w-52' src={searchImg} placeholder='blur' quality={100} />
+                                        <p className='text-center'>120 <span></span></p>
+                                        <p className='text-center'>vania soap</p>
+                                    </div>
+                                    <div key={idx} className='border rounded-md'>
+                                        <Image className='w-52' src={searchImg} placeholder='blur' quality={100} />
+                                        <p className='text-center'>120 <span></span></p>
+                                        <p className='text-center'>vania soap</p>
+                                    </div>
+                                    <div key={idx} className='border rounded-md'>
+                                        <Image className='w-52' src={searchImg} placeholder='blur' quality={100} />
+                                        <p className='text-center'>120 <span></span></p>
+                                        <p className='text-center'>vania soap</p>
+                                    </div>
+                                </div>
                             ) :
                             <div className='flex flex-col justify-center items-center'>
                                 <p className='text-center mt-5 text-dark'>No Search Result Found</p>

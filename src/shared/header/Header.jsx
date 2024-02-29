@@ -18,6 +18,7 @@ const Header = () => {
     const [suggestSearch, setSuggestSearch] = useState('');
     const [searchData, setSearchData] = useState([]);
     const [searchOpen, setSearchOpen] = useState(true);
+    const [openDrawer, setOpenDrawer] = useState(false);
     const router = useRouter();
     const { user, loading, handleLogout, loginSuccess } = useContext(AuthContext);
 
@@ -89,6 +90,11 @@ const Header = () => {
                             <Image height={600} width={1080} className="w-80 hidden lg:block" src={logo} alt="logo" />
                             <Image height={600} width={1080} className="w-80 lg:hidden" src={mLogo} alt="logo" />
                         </Link>
+
+
+
+
+
                         <div className='w-1/4 flex justify-end items-center gap-5'>
                             {user?.data?.user?.email || loginSuccess ?
                                 <Link className="hidden lg:block" href='/account'>Account</Link> :
@@ -97,6 +103,11 @@ const Header = () => {
                             {user?.data?.user?.email || loginSuccess ?
                                 <button onClick={handleLogout} className="hidden lg:block">Logout</button> :
                                 <Link className="hidden lg:block" href='/login'>Login</Link>}
+
+                            {/* mobile search icon */}
+                            <button className='lg:hidden' onClick={() => setOpenDrawer(true)} >
+                                <IoIosSearch className='text-2xl' />
+                            </button>
 
                             <CartDrawer />
                         </div>
@@ -111,6 +122,8 @@ const Header = () => {
                     searchOpen={searchOpen}
                     setSuggestSearch={setSuggestSearch}
                     suggestSearch={suggestSearch}
+                    openDrawer={openDrawer}
+                    setOpenDrawer={setOpenDrawer}
                 />
             }
 

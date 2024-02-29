@@ -1,3 +1,4 @@
+import BlogSliderMobile from '@/clientSideRender/blogSliderMobile/BlogSliderMobile';
 import GlamCard from '@/components/card/GlamCard';
 import { getAllBlogsData } from '@/config/blogApi';
 import Link from 'next/link';
@@ -20,7 +21,7 @@ const OurGlam = async () => {
                     <Link href='/blog' className='absolute right-0 bottom-4 border border-primary hover:bg-primary text-primary hover:text-white uppercase text-sm py-2 px-6 mt-3'>View All</Link>
                 </div>
 
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-10 gap-5'>
+                <div className='lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-10 gap-5 hidden'>
                     {
                         blogs?.data?.map(blog =>
                             <GlamCard
@@ -31,6 +32,18 @@ const OurGlam = async () => {
                         )
                     }
                 </div>
+
+                <BlogSliderMobile>
+                    {
+                        blogs?.data?.map(blog =>
+                            <GlamCard
+                                key={blog?._id}
+                                blog={blog}
+                            />
+
+                        )
+                    }
+                </BlogSliderMobile>
             </div>
         </div>
     );
