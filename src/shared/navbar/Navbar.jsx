@@ -26,7 +26,7 @@ const Navbar = async () => {
                                     <IoIosArrowDown className='text-white text-lg' />
                                 </span>
                                 {/* brnad menu */}
-                                <ul className='absolute z-10 bg-secondary top-full hidden group-hover:block group-hover:border-t group-hover:border-t-gray-500 w-full left-0'>
+                                <ul className='absolute z-10 bg-secondary top-full hidden group-hover:block group-hover:border-t group-hover:border-t-black border-t-[.1px] w-full left-0'>
                                     <div className='grid grid-cols-5'>
                                         {
                                             brands?.result?.slice(0, 29)?.map(brand =>
@@ -46,20 +46,20 @@ const Navbar = async () => {
                                     <IoIosArrowDown className='text-white text-lg' />
                                 </span>
                                 {/* menu */}
-                                <ul className='absolute z-10 bg-secondary top-full hidden group-hover:block group-hover:border-t group-hover:border-t-gray-500'>
+                                <ul className='absolute z-10 bg-secondary top-full hidden group-hover:block group-hover:border-t group-hover:border-black border-t-[.1px]'>
                                     {
                                         category?.children?.map(subCat => subCat?.children?.length > 0 ?
                                             // sub category child 
 
-                                            <li key={subCat?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 pl-4 w-[265px] relative flex items-start gap-2 cursor-pointer group/sub'>
-                                                <Link href={`/products?category=${subCat?.slug}`} className='uppercase block w-full'>{subCat?.title}</Link>
+                                            <li key={subCat?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 pl-4 w-[240px] relative flex items-start gap-2 cursor-pointer group/sub'>
+                                                <Link href={`/products?category=${subCat?.slug}`} className='capitalize block w-full'>{subCat?.title}</Link>
                                                 <IoIosArrowForward className='text-white text-lg' />
 
-                                                <ul className='absolute bg-secondary left-full top-0 hidden group-hover/sub:block'>
+                                                <ul className='absolute bg-secondary left-full border-t-black border-t-[.1px] -top-[2px] hidden group-hover/sub:block'>
                                                     {
                                                         subCat?.children?.map(subCatChild =>
                                                             <li key={subCatChild?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 pl-4 w-60 flex items-start gap-2 cursor-pointer'>
-                                                                <Link href={`/products?category=${subCatChild?.slug}`} className='uppercase block w-full'>{subCatChild?.title}</Link>
+                                                                <Link href={`/products?category=${subCatChild?.slug}`} className='capitalize block w-full'>{subCatChild?.title}</Link>
                                                             </li>
                                                         )
                                                     }
@@ -67,7 +67,7 @@ const Navbar = async () => {
                                             </li> :
                                             // sub category 
                                             <li key={subCat?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 pl-4 w-60 flex items-start gap-2 cursor-pointer'>
-                                                <Link href={`/products?category=${subCat?.slug}`} className='uppercase block w-full'>{subCat?.title}</Link>
+                                                <Link href={`/products?category=${subCat?.slug}`} className='capitalize block w-full'>{subCat?.title}</Link>
                                             </li>
 
 
