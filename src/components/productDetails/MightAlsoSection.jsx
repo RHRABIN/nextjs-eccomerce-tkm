@@ -6,7 +6,7 @@ import { getRelatedProductsByProductId } from '@/config/productsApi';
 const MightAlsoSection = async ({ id }) => {
     const { data: products } = await getRelatedProductsByProductId(id);
     return (
-        <div className='container mx-auto my-10 md:my-20'>
+        <div className={`container mx-auto my-10 md:my-20 ${products?.result?.length > 0 ? '': 'hidden'}`}>
             <div className='mx-4 md:mx-0'>
                 <h1 className='uppercase text-2xl md:text-3xl font-semibold text-center border-dotted border-b pb-4'>You May Also Like</h1>
                 <SliderComponentClient>

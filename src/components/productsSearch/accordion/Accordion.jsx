@@ -55,7 +55,6 @@ const Accordion = ({isMobile}) => {
         }
         setSelectedValue(newQuery);
     }
-    console.log(selectedValue)
 
 
     return (
@@ -81,7 +80,7 @@ const Accordion = ({isMobile}) => {
                                 )
                             } */}
                             {shop?.children?.map(child => (
-                                <div key={child?._id} className='flex items-center custom-checkbox'>
+                                <div key={child?._id} className='flex items-center custom-checkbox mt-1'>
                                     <input
                                         onChange={handleQueryChange}
                                         type="checkbox"
