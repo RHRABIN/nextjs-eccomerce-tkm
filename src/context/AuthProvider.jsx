@@ -12,6 +12,7 @@ const AuthProvider = ({ children }) => {
     const [deleteSuccess, setDeleteSuccess] = useState(false);
     const [addressOpen, setAddressOpen] = useState(false);
     const [addressSuccess, setAddressSuccess] = useState(false);
+    const [openDrawer, setOpenDrawer] = useState(false);
 
     const handleLogout = () => {
         localStorage.removeItem('auth')
@@ -44,6 +45,8 @@ const AuthProvider = ({ children }) => {
         setAddressSuccess,
         checkoutCart,
         setCheckoutCart,
+        openDrawer,
+        setOpenDrawer,
         handleLogout
     }
 

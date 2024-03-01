@@ -8,7 +8,7 @@ import { FaRegHeart } from 'react-icons/fa6';
 
 const AddToCartClient = ({ product }) => {
     const { _id, offerPrice } = product || {};
-    const { user, isCartSuccess, setIsCartSuccess } = useContext(AuthContext);
+    const { user, isCartSuccess, setIsCartSuccess, setOpenDrawer } = useContext(AuthContext);
     const email = user?.data?.user?.email || {};
 
 
@@ -28,6 +28,7 @@ const AddToCartClient = ({ product }) => {
         try {
             await addToCartNewDataByEmail(email, data) || {};
             setIsCartSuccess(true);
+            setOpenDrawer(true)
             toast.success('Cart addedd Successfully')
         } catch (error) {
             console.error('Error adding to cart:', error);
