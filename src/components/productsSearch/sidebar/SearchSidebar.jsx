@@ -29,8 +29,9 @@ const SearchSidebar = ({ isMobile, setOpenDrawer }) => {
 
     return (
         <div className={`${isMobile ? 'p-2' : 'border rounded ring-1 ring-gray-100 p-4'}`}>
-            {!isMobile && <div className='border-b pb-4'>
+            {!isMobile && <div className='border-b pb-4 flex justify-between'>
                 <h1 className='text-gray-800 font-[500] text-lg'>Filters</h1>
+                <button onClick={() => router.push(pathname)} className='transition-colors text-xs hover:text-primary' type='button'>Clear All</button>
             </div>}
             <div className={`${isMobile ? 'max-h-[65vh] overflow-auto mobile-scrollbar' : ''}`}>
                 <Accordion isMobile={isMobile} />
