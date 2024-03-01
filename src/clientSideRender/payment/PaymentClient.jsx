@@ -1,10 +1,12 @@
 'use client'
 import { placeSingleOrderByEmail } from '@/config/addCartToapi';
-import React, { useState } from 'react';
+import { AuthContext } from '@/context/AuthProvider';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const PaymentClient = ({ email, product }) => {
     const [payment, setPayment] = useState('');
+    const { setCheckoutCart, setIsCartSuccess } = useContext(AuthContext)
     const { discountAmount, shippingCharge, total } = product || {};
 
     const handlePayment = async () => {
@@ -22,6 +24,8 @@ const PaymentClient = ({ email, product }) => {
                 const response = await placeSingleOrderByEmail(email, modifiedData)
                 if (response) {
                     toast.success('Order Successfull')
+                    setCheckoutCart(true)
+                    setIsCartSuccess(true)
                 }
             }
         }

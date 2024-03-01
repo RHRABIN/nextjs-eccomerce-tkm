@@ -8,7 +8,7 @@ import { AuthContext } from '@/context/AuthProvider';
 import { getActiveAddress } from '@/config/addressApi';
 
 const CheckoutContent = () => {
-    const { user } = useContext(AuthContext);
+    const { user, checkoutCart, setCheckoutCart } = useContext(AuthContext);
     const [cartData, setCartData] = useState(null);
     const [activeAddress, setActiveAddress] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -30,7 +30,12 @@ const CheckoutContent = () => {
         };
 
         fetchData();
-    }, [user]);
+
+        if (checkoutCart) {
+            fetchData()
+            setCheckoutCart(false)
+        }
+    }, [user, checkoutCart]);
 
 
     return (

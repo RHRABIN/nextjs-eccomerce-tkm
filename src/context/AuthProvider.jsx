@@ -7,6 +7,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
     const [isCartSuccess, setIsCartSuccess] = useState(false);
+    const [checkoutCart, setCheckoutCart] = useState(false);
     const [loginSuccess, setLoginSuccess] = useState(false);
     const [deleteSuccess, setDeleteSuccess] = useState(false);
     const [addressOpen, setAddressOpen] = useState(false);
@@ -41,6 +42,8 @@ const AuthProvider = ({ children }) => {
         setAddressOpen,
         addressSuccess,
         setAddressSuccess,
+        checkoutCart,
+        setCheckoutCart,
         handleLogout
     }
 
