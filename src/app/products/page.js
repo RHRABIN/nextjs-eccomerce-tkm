@@ -20,7 +20,7 @@ const ProductsSearchPage = () => {
         };
 
         loadData();
-    }, [searchParams]);
+    }, []);
 
     return (
         <div className='container mx-auto'>
