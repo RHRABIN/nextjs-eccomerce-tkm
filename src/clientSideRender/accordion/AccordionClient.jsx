@@ -2,30 +2,30 @@
 import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 
-const AccordionClient = ({ children, title, isMobile }) => {
-    const [isOpen, setIsOpen] = useState(isMobile ? true : true);
+const AccordionClient = ({ children, title, isDropdown }) => {
+    const [isOpen, setIsOpen] = useState(isDropdown ? false : true);
 
     const toggleAccordion = () => {
-        return
-        // if (isMobile){
-        // }else{
-        //     setIsOpen(!isOpen);
-        // }
+        
+        if (!isDropdown){
+            return;
+        }else{
+            setIsOpen(!isOpen);
+        }
     };
 
     return (
-        <div className='border-b py-3'>
+        <div className={`${isDropdown ? 'mt-1' : 'border-b py-3'}`}>
             <button
                 type='button'
-                className={`bg-[#f9f9f9] text-sm rounded-t font-[400] text-start flex items-center justify-between cursor-pointer group w-full text-gray-800 border-0 py-1 px-3 ${isOpen ? 'rounded-b-none' : 'rounded-b'}`}
+                className={`bg-[#f9f9f9] text-sm rounded-t font-[400] text-start flex items-center justify-between cursor-pointer group w-full text-gray-800 border-0 px-3  ${isOpen ? 'rounded-b-none' : 'rounded-b'} ${isDropdown ? 'py-2.5': 'py-1'}`}
                 onClick={toggleAccordion}
             >
                 {title}
-                {/* {!isMobile && <IoIosArrowDown className={isOpen ? 'rotate-180 duration-300 ease-in' : 'duration-300 ease-out'} />} */}
+                {isDropdown && <IoIosArrowDown className={isOpen ? 'rotate-180 duration-300 ease-in' : 'duration-300 ease-out'} />}
             </button>
             <div
-                className={`bg-white overflow-hidden ${isOpen ? 'h-fit overflow-visible rounded-b duration-500 ease-in delay-75' : 'h-0'
-                    }`}
+                className={`bg-white overflow-hidden ${isOpen ? 'h-fit overflow-visible rounded-b duration-500 ease-in delay-75' : 'hidden'}`}
             >
                 {children}
             </div>

@@ -1,11 +1,10 @@
 "use client"
 import AccordionClient from '@/clientSideRender/accordion/AccordionClient';
-import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import allJsonDta from "../../../data/category.json"
 
-const Accordion = ({ isMobile }) => {
+const Accordion = () => {
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const params = new URLSearchParams(searchParams.toString());
@@ -84,13 +83,12 @@ const Accordion = ({ isMobile }) => {
 
     return (
         <div className='mt-2'>
-            <AccordionClient title={'All Category'} isMobile={isMobile}>
+            <AccordionClient title={'All Category'}>
                 <ul className="text-sm overflow-y-auto max-h-[19rem]">
                     {
                         categories?.category?.map(category =>
-                                <div key={category?._id} className={`${category.title.toLowerCase() == 'brands' ? 'hidden': ''} flex items-center custom-checkbox mt-[2px] capitalize`}>
+                                <div key={category?._id} className={`${category.title?.toLowerCase() == 'brands' ? 'hidden': ''} flex items-center custom-checkbox mt-[2px] capitalize`}>
                                     <input
-                                        // onChange={(e)=> handleQueryChange(e, 'weight')}
                                         onClick={()=>router.push( pathname + '?' + createQueryString('category', category.slug))}
                                         type="checkbox"
                                         value={category?.slug}
@@ -112,11 +110,6 @@ const Accordion = ({ isMobile }) => {
                 categories?.shopBy?.map(shop =>
                     <AccordionClient key={shop?._id} title={shop?.title} isMobile={isMobile}>
                         <ul className="text-sm overflow-y-auto max-h-[17rem]">
-                            {/* {
-                                shop?.children?.map(child =>
-                                    <li key={child?._id} className="hover:bg-[#f2fafe] hover:text-primary cursor-pointer"><Link href={pathname + '?' + createQueryString('subcat', child.slug)} className="w-full block px-2 py-1 text-[12px]">{child?.title}</Link></li>
-                                )
-                            } */}
                             {shop?.children?.map(child => (
                                 <div key={child?._id} className='flex items-center custom-checkbox mt-1'>
                                     <input

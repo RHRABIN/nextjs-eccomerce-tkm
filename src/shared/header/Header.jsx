@@ -48,7 +48,7 @@ const Header = () => {
             <div className="bg-secondary text-white lg:bg-white lg:text-secondary">
                 <div className='container mx-auto'>
                     <div className='mx-5 md:mx-0 py-4 md:py-7 flex items-center'>
-                        <div className="w-1/4">
+                        <div className="w-1/4 md:w-[300px]">
                             <div className="relative">
                                 <form onSubmit={handleSearch}>
                                     <div className='hidden lg:flex items-center w-full'>
@@ -74,8 +74,8 @@ const Header = () => {
                                                 <li key={idx} className="cursor-pointer text-sm px-4 py-1 hover:bg-white ">
                                                     <Link onClick={() => {
                                                         setSearchOpen(false);
-                                                        setSuggestSearch(tag)
-                                                    }} href={`/products?search=${tag}`} className="w-full block">{tag}</Link>
+                                                        setSuggestSearch("")
+                                                    }} href={`/product-detail/${tag.slug}`} className="w-full block truncate">{tag.name}</Link>
                                                 </li>
                                             )
                                         }

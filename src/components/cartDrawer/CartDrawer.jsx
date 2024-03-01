@@ -38,10 +38,10 @@ const CartDrawer = () => {
 
 
     return (
-        <div>
+        <div className='mt-2'>
             <button onClick={() => setOpenDrawer(true)} className="relative">
                 <BsBag />
-                <span className="absolute bottom-2 left-2 bg-red-500 h-5 w-5 rounded-full text-white flex justify-center items-center"><small>{cartData?.cartData?.products?.length ? cartData?.cartData?.products?.length : 0}</small></span>
+                <span className="absolute bottom-2 left-2 bg-red-500 h-5 w-5 md:h-6 md:w-6 rounded-full text-white flex justify-center items-center"><small>{cartData?.cartData?.products?.length ? cartData?.cartData?.products?.length : 0}</small></span>
             </button>
 
             <Drawer

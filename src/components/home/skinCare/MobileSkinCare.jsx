@@ -11,7 +11,7 @@ import img from '../../../../public/assets/category.jpg'
 const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, routineCategory }) => {
     return (
         <div className='mx-4 md:hidden mt-10'>
-            <AccordionClient title={<p className='uppercase'>Best Seller</p>}>
+            <AccordionClient title={<p className='uppercase' >Best Seller</p>} isDropdown={true}>
                 {/* <Slider {...productSettings} className='mb-20'>
                     {
                         bestSellingProducts?.map(product =>
@@ -32,7 +32,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                 </div>
             </AccordionClient>
 
-            <AccordionClient title={<p className='uppercase'>Skin Type</p>}>
+            <AccordionClient title={<p className='uppercase' >Skin Type</p>} isDropdown={true}>
                 <Slider {...productSettings} className='mb-20'>
                     {
                         skinCategory?.map(category =>
@@ -52,7 +52,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                 </Slider>
             </AccordionClient>
 
-            <AccordionClient title={<p className='uppercase'>Skin Concern</p>}>
+            <AccordionClient title={<p className='uppercase' >Skin Concern</p>} isDropdown={true}>
                 <Slider {...productSettings} className='mb-20'>
                     {
                         concernCategory?.map(category =>
@@ -72,7 +72,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                 </Slider>
             </AccordionClient>
 
-            <AccordionClient title={<p className='uppercase'>Routine</p>}>
+            <AccordionClient title={<p className='uppercase' >Routine</p>} isDropdown={true}>
                 {/* <Slider {...productSettings} className='mb-20'>
                     {
                         routineCategory?.map(category =>
