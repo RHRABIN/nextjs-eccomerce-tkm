@@ -1,6 +1,6 @@
 'use client'
 import AddressCard from '@/components/account/address/AddressCard';
-import Modal from '@/components/modal/Modal';
+import { Modal } from 'antd';
 import React, { useState } from 'react';
 
 const ChangeDelivaryAddress = () => {
@@ -10,8 +10,11 @@ const ChangeDelivaryAddress = () => {
             <button onClick={() => setModalOpen(true)} className='text-blue-600 font-medium'>Change</button>
             <Modal
                 title={'Delivery Address'}
-                modalOpen={openModal}
-                setModalOpen={setModalOpen}
+                width={800}
+                centered
+                open={openModal}
+                onCancel={() => setModalOpen(false)}
+                footer={false}
             >
                 <AddressCard />
             </Modal>

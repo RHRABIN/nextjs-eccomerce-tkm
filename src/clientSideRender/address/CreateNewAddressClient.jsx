@@ -1,7 +1,7 @@
 'use client'
 import AddressForm from '@/components/account/address/AddressForm';
-import Modal from '@/components/modal/Modal';
 import { AuthContext } from '@/context/AuthProvider';
+import { Modal } from 'antd';
 import React, { useContext } from 'react';
 
 const CreateNewAddressClient = () => {
@@ -11,9 +11,11 @@ const CreateNewAddressClient = () => {
         <div>
             <button onClick={() => setAddressOpen(true)} className='bg-secondary text-sm rounded text-white px-4 py-1.5 hover:opacity-90'>+ Create New</button>
             <Modal
-                modalOpen={addressOpen}
-                setModalOpen={setAddressOpen}
                 title={'Create New Address'}
+                centered
+                open={addressOpen}
+                onCancel={() => setAddressOpen(false)}
+                footer={false}
             >
                 <AddressForm />
             </Modal>

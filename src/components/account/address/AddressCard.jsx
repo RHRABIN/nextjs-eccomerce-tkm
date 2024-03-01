@@ -3,9 +3,9 @@ import { FaCheckCircle } from "react-icons/fa";
 import { deleteAddress, getAllAddress, setActiveAddress } from '@/config/addressApi';
 import { AuthContext } from '@/context/AuthProvider';
 import React, { useContext, useEffect, useState } from 'react';
-import Modal from '@/components/modal/Modal';
 import AddressForm from './AddressForm';
 import toast from "react-hot-toast";
+import { Modal } from "antd";
 
 const AddressCard = () => {
     const { user, addressSuccess, setAddressSuccess } = useContext(AuthContext);
@@ -16,7 +16,7 @@ const AddressCard = () => {
     const [dLoading, setDloading] = useState(false);
     const [error, setError] = useState(null);
     const [selectSuccess, setSelectSuccess] = useState(false);
-    
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -94,9 +94,11 @@ const AddressCard = () => {
                                 <div>
                                     <button onClick={() => handleEditAddress(adrs)} className='text-blue-500 text-sm'>Edit</button>
                                     <Modal
-                                        modalOpen={addressOpen}
-                                        setModalOpen={setAddressOpen}
-                                        title={'Edit Address'}
+                                        title="Edit Address"
+                                        centered
+                                        open={addressOpen}
+                                        onCancel={() => setAddressOpen(false)}
+                                        footer={false}
                                     >
 
                                         <AddressForm address={editAddress} />
