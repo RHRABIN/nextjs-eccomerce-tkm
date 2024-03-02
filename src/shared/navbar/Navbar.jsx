@@ -22,7 +22,7 @@ const Navbar = async () => {
                             // sub menu start 
                             category?.title?.toLowerCase() === 'brands' ? <li key={category?._id} className='group py-7'>
                                 <span className='flex items-start gap-x-2 cursor-pointer'>
-                                    <Link href='' className='uppercase'>Brands</Link>
+                                    <Link href='' className='uppercase border-b border-b-secondary hover:border-b-primary'>Brands</Link>
                                     <IoIosArrowDown className='text-white text-lg' />
                                 </span>
                                 {/* brnad menu */}
@@ -42,7 +42,7 @@ const Navbar = async () => {
                                 </ul>
                             </li> : <li key={category?._id} className='group py-7'>
                                 <span className='flex items-start gap-x-2 cursor-pointer'>
-                                    <Link href={`/products?category=${category?.slug}`} className='uppercase'>{category?.title}</Link>
+                                    <Link href={`/products?category=${category?.slug}`} className='uppercase border-b border-b-secondary hover:border-b-primary'>{category?.title}</Link>
                                     <IoIosArrowDown className='text-white text-lg' />
                                 </span>
                                 {/* menu */}
@@ -55,7 +55,7 @@ const Navbar = async () => {
                                                 <Link href={`/products?category=${subCat?.slug}`} className='capitalize block w-full'>{subCat?.title}</Link>
                                                 <IoIosArrowForward className='text-white text-lg' />
 
-                                                <ul className='absolute bg-secondary left-full border-t-black border-t-[.1px] -top-[2px] hidden group-hover/sub:block'>
+                                                <ul className='absolute bg-secondary left-full border-t-black border-t-[.1px] -top-[1px] hidden group-hover/sub:block'>
                                                     {
                                                         subCat?.children?.map(subCatChild =>
                                                             <li key={subCatChild?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 pl-4 w-60 flex items-start gap-2 cursor-pointer'>
@@ -76,7 +76,7 @@ const Navbar = async () => {
                                 </ul>
                             </li> :
                             // main menu 
-                            <li key={category?._id} className='py-7'><Link href={`/products?category=${category?.slug}`} className='uppercase border-b-2 border-b-secondary hover:border-b-2 hover:border-b-primary pb-1'>{category?.title}</Link></li>
+                            <li key={category?._id} className='py-7'><Link href={`/products?category=${category?.slug}`} className='uppercase border-b border-b-secondary hover:border-b hover:border-b-primary pb-1'>{category?.title}</Link></li>
                         )
                     }
                 </ul>
