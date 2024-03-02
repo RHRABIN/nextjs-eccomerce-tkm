@@ -7,11 +7,7 @@ import CancelOrder from './CancelOrder';
 const OrdersCard = ({ product }) => {
     const { orderId, totalAmount, createdAt } = product || {};
     const [modalOpen, setModalOpen] = useState(false);
-
-    //handle cancel order
-    const handleCancelOrder = () => {
-
-    }
+    console.log(product)
 
     return (
         <div className='border rounded p-4'>
@@ -37,9 +33,16 @@ const OrdersCard = ({ product }) => {
                 )
             }
             <div className='flex items-center justify-end'>
+
                 {
-                    product?.status === 'pending' || product?.status === 'processing' ?
-                        <button onClick={() => setModalOpen(true)} className='hover:bg-red-500 hover:text-white px-3 py-1.5 rounded text-xs border border-red-500'>Cancel</button> : null
+                    product?.report ?
+                        <p className='bg-secondary capitalize text-white px-3 py-1 rounded text-xs border border-secondary'>{product?.status}</p> :
+                        <>
+                            {
+                                product?.status === 'pending' || product?.status === 'processing' ?
+                                    <button onClick={() => setModalOpen(true)} className='hover:bg-red-500 hover:text-white px-3 py-1.5 rounded text-xs border border-red-500'>Cancel</button> : null
+                            }
+                        </>
                 }
                 {
                     product?.status === 'delivered' ?
