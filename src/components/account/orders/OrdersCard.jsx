@@ -3,11 +3,13 @@ import React, { useState } from 'react';
 import OrderDetailsClient from '@/clientSideRender/orders/OrderDetailsClient';
 import OrdersSingleCard from './OrdersSingleCard';
 import CancelOrder from './CancelOrder';
+import ReturnOrder from './ReturnOrder';
 
 const OrdersCard = ({ product }) => {
     const { orderId, totalAmount, createdAt } = product || {};
     const [modalOpen, setModalOpen] = useState(false);
-    console.log(product)
+    const [returnModal, setReturnModal] = useState(false);
+
 
     return (
         <div className='border rounded p-4'>
@@ -36,7 +38,7 @@ const OrdersCard = ({ product }) => {
 
                 {
                     product?.report ?
-                        <p className='bg-secondary capitalize text-white px-3 py-1 rounded text-xs border border-secondary'>{product?.status}</p> :
+                        <p className='text-xs md:text-sm font-[300] my-1 bg-slate-200 rounded-full w-fit px-3 py-1'>{`${product?.report?.requestedFor} ${product?.report?.status}`}</p> :
                         <>
                             {
                                 product?.status === 'pending' || product?.status === 'processing' ?
@@ -45,14 +47,20 @@ const OrdersCard = ({ product }) => {
                         </>
                 }
                 {
-                    product?.status === 'delivered' ?
-                        <button className='hover:bg-red-500 hover:text-white px-3 py-1.5 rounded text-xs border border-red-500'>Return</button> : null
+                    !product?.report &&
+                        product?.status === 'delivered' ?
+                        <button onClick={() => setReturnModal(true)} className='hover:bg-red-500 hover:text-white px-3 py-1.5 rounded text-xs border border-red-500'>Return</button> : null
                 }
 
                 <CancelOrder
                     orderId={orderId}
                     modalOpen={modalOpen}
                     setModalOpen={setModalOpen}
+                />
+                <ReturnOrder
+                    orderId={orderId}
+                    returnModal={returnModal}
+                    setReturnModal={setReturnModal}
                 />
             </div>
         </div>
