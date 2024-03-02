@@ -16,7 +16,7 @@ const Gallery = async () => {
                 <div className='grid grid-cols-3 lg:grid-cols-4 gap-2 md:gap-5 mt-10'>
                     {
                         galleries?.data?.map(photo =>
-                            <Image key={photo?._id} className='w-full h-36 md:h-80' height={720} width={1280} src={photo?.image} alt='community-image' />
+                            <Image key={photo?._id} className='w-full h-auto md:h-80' height={720} width={1280} src={photo?.image} alt='community-image' />
                         )
                     }
                 </div>
