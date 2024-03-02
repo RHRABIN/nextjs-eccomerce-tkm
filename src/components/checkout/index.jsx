@@ -35,7 +35,7 @@ const CheckoutContent = () => {
             fetchData()
             setCheckoutCart(false)
         }
-    }, [user, checkoutCart]);
+    }, [user]);
 
 
     return (

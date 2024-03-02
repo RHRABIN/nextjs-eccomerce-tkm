@@ -11,10 +11,9 @@ import axios from 'axios';
 import { baseUrl } from '@/config/baseUrl';
 
 const CartDrawer = () => {
-    const {openDrawer,setOpenDrawer} = useContext(AuthContext)
+    const { user, isCartSuccess, setIsCartSuccess, deleteSuccess, setDeleteSuccess } = useContext(AuthContext)
+    const [openDrawer, setOpenDrawer] = useState(false)
     const [cartData, setCartData] = useState();
-    const { user, isCartSuccess, setIsCartSuccess, deleteSuccess, setDeleteSuccess } = useContext(AuthContext);
-
     useEffect(() => {
         const cartMutation = async () => {
             try {
