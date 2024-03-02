@@ -19,7 +19,7 @@ const DefaultSortClient = () => {
                 openDrawer={openDrawer}
                 setOpenDrawer={setOpenDrawer}
             >
-                <SearchHistory />
+                {/* <SearchHistory /> */}
                 <SearchSidebar isMobile={true} setOpenDrawer={setOpenDrawer} />
             </Drawer>
         </>

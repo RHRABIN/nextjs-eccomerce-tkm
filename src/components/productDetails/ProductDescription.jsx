@@ -35,7 +35,7 @@ const ProductDescription = ({ product }) => {
                 <p>{offerPrice ? offerPrice : price}</p> */}
                 {price == offerPrice ? <> <span className='font-[auto]'>৳</span>{offerPrice ? offerPrice : price}</> : <>
                     <span className='font-[auto]'>৳</span>{offerPrice}
-                    <del className='mr-2 text-[24px]'>{price}</del>
+                    <del className='mr-2 text-[24px]'>৳{price}</del>
                 </>}
             </div>
 
@@ -72,16 +72,16 @@ const ProductDescription = ({ product }) => {
             }
 
             <div className='mt-2'>
-                <AccordionClient title={'Activities'}>
+                <AccordionClient title={'Activities'} isDropdown={true}>
                     <DangerHtml getText={activities} padding={true} />
                 </AccordionClient>
-                <AccordionClient title={'Directions'}>
+                <AccordionClient title={'Directions'} isDropdown={true}>
                     <DangerHtml getText={directions} padding={true} />
                 </AccordionClient>
-                <AccordionClient title={'Ingredients'}>
+                <AccordionClient title={'Ingredients'} isDropdown={true}>
                     <DangerHtml getText={ingredients} padding={true} />
                 </AccordionClient>
-                <AccordionClient title={'Shipping'}>
+                <AccordionClient title={'Shipping'} isDropdown={true}>
                     <p className='p-2 text-gray-800 font-[300] leading-8 text-sm'>
                         <DangerHtml getText={shipping} padding={true} />
                     </p>

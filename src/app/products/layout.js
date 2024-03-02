@@ -20,8 +20,8 @@ const layout = ({ children }) => {
                     <SearchSidebar />
                 </div>
                 <div className='md:w-3/4 items-center justify-center'>    
-                    <div className='flex items-start mb-1 md:mb-4 justify-between'>
-                        <div className='hidden md:block'><SearchHistory /></div>
+                    <div className='flex items-start mb-1 md:mb-4 justify-end'>
+                        <div className='hidden'><SearchHistory /></div>
                         <div className='hidden md:block'>
                             <SearchTopbar />
                         </div>
