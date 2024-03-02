@@ -1,9 +1,18 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 import OrderDetailsClient from '@/clientSideRender/orders/OrderDetailsClient';
 import OrdersSingleCard from './OrdersSingleCard';
+import CancelOrder from './CancelOrder';
 
 const OrdersCard = ({ product }) => {
     const { orderId, totalAmount, createdAt } = product || {};
+    const [modalOpen, setModalOpen] = useState(false);
+
+    //handle cancel order
+    const handleCancelOrder = () => {
+
+    }
+
     return (
         <div className='border rounded p-4'>
             <div className='flex items-start justify-between mb-2'>
@@ -28,7 +37,20 @@ const OrdersCard = ({ product }) => {
                 )
             }
             <div className='flex items-center justify-end'>
-                <button className='hover:bg-red-500 hover:text-white px-3 py-1.5 rounded text-xs border border-red-500'>Cancel</button>
+                {
+                    product?.status === 'pending' || product?.status === 'processing' ?
+                        <button onClick={() => setModalOpen(true)} className='hover:bg-red-500 hover:text-white px-3 py-1.5 rounded text-xs border border-red-500'>Cancel</button> : null
+                }
+                {
+                    product?.status === 'delivered' ?
+                        <button className='hover:bg-red-500 hover:text-white px-3 py-1.5 rounded text-xs border border-red-500'>Return</button> : null
+                }
+
+                <CancelOrder
+                    orderId={orderId}
+                    modalOpen={modalOpen}
+                    setModalOpen={setModalOpen}
+                />
             </div>
         </div>
 

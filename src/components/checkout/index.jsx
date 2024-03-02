@@ -35,7 +35,7 @@ const CheckoutContent = () => {
             fetchData()
             setCheckoutCart(false)
         }
-    }, [user]);
+    }, [user, checkoutCart]);
 
 
     return (
@@ -52,13 +52,14 @@ const CheckoutContent = () => {
             }
 
             <div className='mt-4'>
-                {
+                {cartData?.data?.data?.cartData?.products?.length > 0 ?
                     cartData?.data?.data?.cartData?.products?.map(product =>
                         <ChekoutProductCard
                             key={product?._id}
                             product={product?.product}
                         />
-                    )
+                    ) :
+                    <p className='text-center'>No Cart Data Found</p>
                 }
             </div>
         </div>

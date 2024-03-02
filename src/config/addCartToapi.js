@@ -73,11 +73,22 @@ const getAllOrdersByEmail = async (email, search) => {
 };
 
 
+// oder cancel 
+const orderCancelMutation = async (data) => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/report/post`, data);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 export {
     getAddToCartDataByEmail,
     addToCartNewDataByEmail,
     deleteCardDataByEmailId,
     placeSingleOrderByEmail,
-    getAllOrdersByEmail
+    getAllOrdersByEmail,
+    orderCancelMutation
 }
