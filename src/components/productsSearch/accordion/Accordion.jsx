@@ -108,7 +108,7 @@ const Accordion = () => {
             </AccordionClient>
             {
                 categories?.shopBy?.map(shop =>
-                    <AccordionClient key={shop?._id} title={shop?.title} isMobile={isMobile}>
+                    <AccordionClient key={shop?._id} title={shop?.title}>
                         <ul className="text-sm overflow-y-auto max-h-[17rem]">
                             {shop?.children?.map(child => (
                                 <div key={child?._id} className='flex items-center custom-checkbox mt-1'>
@@ -133,7 +133,7 @@ const Accordion = () => {
                     </AccordionClient>
                 )
             }
-            <AccordionClient title={'Weight'} isMobile={isMobile}>
+            <AccordionClient title={'Weight'}>
                 <ul className="text-sm overflow-y-auto max-h-[17rem]">
                     {
                         categories?.weight?.map(weight =>
