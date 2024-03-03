@@ -20,6 +20,7 @@ const Header = () => {
     const [searchOpen, setSearchOpen] = useState(true);
     const [openDrawer, setOpenDrawer] = useState(false);
     const router = useRouter();
+    const suggestionBarRef = useRef();
     const { user, loading, handleLogout, loginSuccess } = useContext(AuthContext);
 
 
@@ -43,18 +44,31 @@ const Header = () => {
     }
 
 
+    useEffect(() => {
+        const handleOutsideClick = (e) => {
+            if (!suggestionBarRef.current?.contains(e.target)) {
+                setSearchOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        }
+    }, []);
+
+
     return (
         <>
             <div className="bg-secondary text-white lg:bg-white lg:text-secondary">
                 <div className='container mx-auto'>
                     <div className='mx-5 md:mx-0 py-4 md:py-7 flex items-center'>
                         <div className="w-1/4 md:w-[300px]">
-                            <div className="relative">
+                            <div ref={suggestionBarRef} className="relative">
                                 <form onSubmit={handleSearch}>
                                     <div className='hidden lg:flex items-center w-full'>
 
                                         <input
-                                            // onBlur={()=>setSearchOpen(false)}
                                             onFocus={() => setSearchOpen(true)}
                                             onChange={(e) => setSuggestSearch(e.target.value)}
                                             className={`md:min-w-[250px] outline-none bg-gray-200 py-2 px-3 mr-1 placeholder:text-xs ${(searchOpen && searchData?.length > 0) ? 'rounded-tl-2xl' : 'rounded-l-2xl'}`} type="text" placeholder='Search for products...'
@@ -86,12 +100,14 @@ const Header = () => {
                                 {toggle ? <FaXmark /> : <FaBars />}
                             </button>
                         </div>
-                        <Link href='/' className='w-1/2 flex items-center justify-center'>
-                            <Image height={600} width={1080} className="w-80 hidden lg:block" src={logo} alt="logo" />
-                            <Image height={600} width={1080} className="w-80 lg:hidden" src={mLogo} alt="logo" />
-                        </Link>
 
 
+                        <div className='w-1/2 flex items-center justify-center'>
+                            <Link href='/' className='w-fit'>
+                                <Image height={600} width={500} className="w-80 hidden lg:block" src={logo} alt="logo" />
+                                <Image height={600} width={500} className="w-80 lg:hidden" src={mLogo} alt="logo" />
+                            </Link>
+                        </div>
 
 
 
