@@ -3,7 +3,7 @@ import React from 'react';
 import CheckoutCardActionsButton from '@/clientSideRender/checkout/CheckoutCardActionsButton';
 
 const ChekoutProductCard = ({ product }) => {
-    const { _id, name, images, size, offerPrice, price } = product || {};
+    const { _id, name, images, size, offerPrice, price } = product?.product || {};
 
     return (
         <div className='md:flex border p-2 rounded'>

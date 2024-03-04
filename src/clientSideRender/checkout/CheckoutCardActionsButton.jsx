@@ -1,32 +1,70 @@
 'use client'
 import SmallLoader from '@/components/loader/smallLoader/SmallLoader';
-import { deleteCardDataByEmailId } from '@/config/addCartToapi';
+import { addToCartNewDataByEmail, deleteCardDataByEmailId } from '@/config/addCartToapi';
 import { AuthContext } from '@/context/AuthProvider';
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AiOutlineDelete } from 'react-icons/ai';
+import { FaMinus, FaPlus } from 'react-icons/fa6';
 
 const CheckoutCardActionsButton = ({ product }) => {
-    const [selectProduct, setSelectProduct] = useState(1);
+    const [selectProduct, setSelectProduct] = useState(product?.quantity);
     const [deleteLoading, setDeleteLoading] = useState(false);
-    const { deleteSuccess, setDeleteSuccess } = useContext(AuthContext);
+    const [incrementLoading, setIncrementLoading] = useState(false);
+    const [decrementLoading, setDecrementLoading] = useState(false);
+    const { deleteSuccess, setDeleteSuccess, isCartSuccess, setIsCartSuccess, } = useContext(AuthContext);
 
-    const { _id } = product || {};
+    const { _id } = product?.product || {};
     const { user } = useContext(AuthContext)
 
-    const handleIncrementProduct = () => {
-        if (selectProduct >= 5) {
-            toast.error('Already added 5 products')
+    const handleIncrementProduct = async () => {
+        setSelectProduct(selectProduct + 1)
+
+        let data = {};
+        if (user?.data?.user?.email) {
+            data = {
+                product: _id,
+            };
         } else {
-            setSelectProduct(selectProduct + 1)
+            toast.error('Please Signin Your Account')
+        }
+        try {
+            setIncrementLoading(true)
+            const res = await addToCartNewDataByEmail(user?.data?.user?.email, data);
+            if (res) {
+                setIsCartSuccess(true)
+                // setCheckoutSuccess(true)
+            }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setIncrementLoading(false)
         }
     }
 
-    const handleDecrementProduct = () => {
-        if (selectProduct <= 1) {
-            toast.error('You have must select one product')
+    const handleDecrementProduct = async () => {
+        setSelectProduct(selectProduct - 1)
+
+        let data = {};
+        if (user?.data?.user?.email) {
+            data = {
+                product: _id,
+                minusQty: product?.quantity
+            };
         } else {
-            setSelectProduct(selectProduct - 1)
+            toast.error('Please Signin Your Account')
+        }
+        try {
+            setDecrementLoading(true)
+            const res = await addToCartNewDataByEmail(user?.data?.user?.email, data);
+            if (res) {
+                setIsCartSuccess(true)
+                // setCheckoutSuccess(true)
+            }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setDecrementLoading(false)
         }
     }
 
@@ -48,10 +86,14 @@ const CheckoutCardActionsButton = ({ product }) => {
 
     return (
         <div className='flex items-center justify-between md:block'>
-            <div className='flex items-center gap-4 justify-end'>
-                <button onClick={handleDecrementProduct} className='bg-gray-100 h-8 w-8 rounded-full text-2xl'>-</button>
+            <div className='flex items-center gap-4 justify-center'>
+                <button onClick={handleDecrementProduct} className={`bg-gray-100 p-1.5 rounded-full ${selectProduct <= 1 ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
+                    {decrementLoading ? <SmallLoader /> : <FaMinus />}
+                </button>
                 <p>{selectProduct}</p>
-                <button onClick={handleIncrementProduct} className='bg-gray-100 h-8 w-8 rounded-full text-2xl'>+</button>
+                <button onClick={handleIncrementProduct} className={`bg-gray-100 p-1.5 rounded-full ${selectProduct >= 5 ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
+                    {incrementLoading ? <SmallLoader /> : <FaPlus />}
+                </button>
             </div>
 
             <div className='flex justify-end md:mt-6'>
