@@ -33,7 +33,7 @@ const CheckoutCardActionsButton = ({ product }) => {
             const res = await addToCartNewDataByEmail(user?.data?.user?.email, data);
             if (res) {
                 setIsCartSuccess(true)
-                // setCheckoutSuccess(true)
+                setCheckoutSuccess(true)
             }
         } catch (error) {
             console.error(error)
@@ -59,7 +59,7 @@ const CheckoutCardActionsButton = ({ product }) => {
             const res = await addToCartNewDataByEmail(user?.data?.user?.email, data);
             if (res) {
                 setIsCartSuccess(true)
-                // setCheckoutSuccess(true)
+                setCheckoutSuccess(true)
             }
         } catch (error) {
             console.error(error)

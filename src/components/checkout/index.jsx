@@ -8,34 +8,31 @@ import { AuthContext } from '@/context/AuthProvider';
 import { getActiveAddress } from '@/config/addressApi';
 
 const CheckoutContent = () => {
-    const { user, checkoutCart, setCheckoutCart } = useContext(AuthContext);
+    const { user, deleteSuccess, checkoutSuccess, setCheckoutSuccess } = useContext(AuthContext);
     const [cartData, setCartData] = useState(null);
     const [activeAddress, setActiveAddress] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const cartResponse = await getAddToCartDataByEmail(user?.data?.user?.email);
+                const [cartResponse, addressResponse] = await Promise.all([
+                    getAddToCartDataByEmail(user?.data?.user?.email),
+                    getActiveAddress(user?.data?.user?.email)
+                ])
                 setCartData(cartResponse);
-
-                const addressResponse = await getActiveAddress(user?.data?.user?.email);
                 setActiveAddress(addressResponse.data);
             } catch (error) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
+                console.error(error)
             }
         };
 
         fetchData();
 
-        if (checkoutCart) {
+        if (checkoutSuccess || deleteSuccess) {
             fetchData()
-            setCheckoutCart(false)
+            setCheckoutSuccess(false)
         }
-    }, [user, checkoutCart]);
+    }, [user?.data?.user?.email, checkoutSuccess, deleteSuccess]);
 
 
     return (
@@ -56,7 +53,7 @@ const CheckoutContent = () => {
                     cartData?.data?.data?.cartData?.products?.map(product =>
                         <ChekoutProductCard
                             key={product?._id}
-                            product={product?.product}
+                            product={product}
                         />
                     ) :
                     <p className='text-center'>No Cart Data Found</p>
