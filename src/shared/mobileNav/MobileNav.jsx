@@ -24,7 +24,7 @@ const MobileNav = ({ user, toggle, setToggle, handleLogout, loginSuccess }) => {
     }, []);
 
     return (
-        <nav className={`bg-secondary text-dark px-4 transition-all ease-in-out duration-500 ${toggle ? 'h-screen overflow-visible lg:overflow-hidden lg:invisible lg:h-0 visible  pb-4' : 'h-0 overflow-hidden invisible'}`}>
+        <nav className={`bg-secondary text-dark px-4 transition-all ease-in-out duration-500 ${toggle ? 'min-h-screen overflow-visible lg:overflow-hidden lg:invisible lg:h-0 visible  pb-4' : 'h-0 overflow-hidden invisible'}`}>
             <ul>
                 {categories?.length > 0 &&
                     categories?.map(category => category?.children?.length > 0 ?
@@ -62,10 +62,10 @@ const MobileNav = ({ user, toggle, setToggle, handleLogout, loginSuccess }) => {
                 {
                     user?.data?.user?.email || loginSuccess ?
                         <div>
-                            <Link className="block my-2" href='/account'>Account</Link>
+                            <Link onClick={() => setToggle(false)} className="block my-2" href='/account'>Account</Link>
                             <button onClick={handleLogout} className="">Logout</button>
                         </div> :
-                        <Link className="" href='/login'>Login</Link>
+                        <Link onClick={() => setToggle(false)} className="" href='/login'>Login</Link>
                 }
             </ul>
         </nav>

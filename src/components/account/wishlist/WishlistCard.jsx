@@ -1,14 +1,26 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { AiOutlineDelete } from "react-icons/ai";
 import { deleteWishListDataByEmailId } from '@/config/wishlistApi';
+import SmallLoader from '@/components/loader/smallLoader/SmallLoader';
 
-const WishlistCard = ({ email, product }) => {
+const WishlistCard = ({ email, product, setIsSucces }) => {
     const { _id, name, model, offerPrice, price, images } = product || {};
+    const [wishLoading, setWishLoading] = useState(false)
 
     const handleDeleteWishlist = async () => {
-        await deleteWishListDataByEmailId(email, { productId: _id })
+        try {
+            setWishLoading(true)
+            const res = await deleteWishListDataByEmailId(email, { productId: _id })
+            if (res) {
+                setIsSucces(true)
+            }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setWishLoading(false)
+        }
     }
 
     return (
@@ -23,7 +35,9 @@ const WishlistCard = ({ email, product }) => {
                 </div>
             </div>
 
-            <button onClick={handleDeleteWishlist} className='hover:text-red-500'><AiOutlineDelete /></button>
+            <button onClick={handleDeleteWishlist} className='hover:text-red-500'>
+                {wishLoading ? <SmallLoader /> : <AiOutlineDelete />}
+            </button>
         </div>
     );
 };

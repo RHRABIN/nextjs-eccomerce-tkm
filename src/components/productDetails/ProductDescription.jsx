@@ -1,4 +1,5 @@
-import React from 'react';
+'use client'
+import React, { useContext, useState } from 'react';
 import AccordionClient from '@/clientSideRender/accordion/AccordionClient';
 import DangerHtml from '@/clientSideRender/dangerHtml/DangerHtml';
 import { FaFacebookF, FaHeart, FaInstagram, FaYoutube } from 'react-icons/fa6';
@@ -6,18 +7,40 @@ import { IoIosStar } from 'react-icons/io';
 import AddToCartButton from './AddToCartButton';
 import Link from 'next/link';
 import Image from 'next/image';
+import { AuthContext } from '@/context/AuthProvider';
+import toast from 'react-hot-toast';
+import SmallLoader from '../loader/smallLoader/SmallLoader';
+import { addToWishListByEmail } from '@/config/wishlistApi';
 
 const ProductDescription = ({ product }) => {
-    const { name, manufacturer, tags, price, offerPrice, description, directions, ingredients, variation, shipping, activities, badge } = product || {};
+    const { _id, name, manufacturer, tags, price, offerPrice, description, directions, ingredients, variation, shipping, activities, badge } = product || {};
+    const { user } = useContext(AuthContext);
+    const [wishLoading, setWishLoading] = useState(false)
+
+    const handleWishlist = async () => {
+        try {
+            setWishLoading(true)
+            if (user?.data?.user?.email) {
+                const res = await addToWishListByEmail(user?.data?.user?.email, { product: _id });
+                if (res) {
+                    toast.success('Wishlist added successfully');
+                }
+            }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setWishLoading(false)
+        }
+    }
 
     return (
         <div>
             {badge?.length > 0 && <div className='flex gap-2'>
-             {
-                badge?.map(b=> <p key={b._id} className='uppercase font-semibold text-xs bg-black px-2 py-1.5 text-white'>{b?.name}</p>)
-             }
-             </div>}
-            
+                {
+                    badge?.map(b => <p key={b._id} className='uppercase font-semibold text-xs bg-black px-2 py-1.5 text-white'>{b?.name}</p>)
+                }
+            </div>}
+
             <h1 className='uppercase  text-lg md:text-xl font-semibold mt-1 md:mt-3'>
                 <Link href={`/brand/${manufacturer?.slug}`}>{manufacturer?.name}</Link>
             </h1>
@@ -46,7 +69,9 @@ const ProductDescription = ({ product }) => {
                 <FaFacebookF className='border border-gray-300 p-2 rounded-full text-dark text-4xl cursor-pointer hover:bg-[#1877F2] hover:text-white' />
                 <FaInstagram className='border border-gray-300 p-2 rounded-full text-dark text-4xl cursor-pointer hover:bg-gradient-to-br from-[#f9ce34]
                 via-[#ee2a7b] to-[#6228d7] hover:text-white' />
-                <FaHeart className='border border-gray-300 p-2 rounded-full text-dark text-4xl cursor-pointer hover:bg-orange-500 hover:text-white' />
+                <button onClick={handleWishlist} className='border border-gray-300 p-2 rounded-full text-dark cursor-pointer hover:bg-orange-500 hover:text-white'>
+                    {wishLoading ? <SmallLoader /> : <FaHeart className='' />}
+                </button>
             </div>
 
             <div className='flex flex-wrap gap-2 mt-4'>

@@ -29,13 +29,21 @@ const addToWishListByEmail = async (email, data) => {
 
 // delete wishlist product 
 const deleteWishListDataByEmailId = async (email, data) => {
-    let response;
-    try {
-        response = await axios.delete(`${baseUrl}/wishList/${email}`, data);
-        return response;
-    } catch (error) {
-        console.error(error);
+    const res = await fetch(`${baseUrl}/wishList/${email}`,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        }
+    )
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data')
     }
+
+    return res.json();
 };
 
 
