@@ -49,7 +49,7 @@ const ReviewSection = ({ id, productId }) => {
                         )
                     }
                     <div>
-                        <button onClick={() => setToggleReview(true)} className='bg-secondary text-white py-2 px-4 hover:opacity-90 rounded-md font-[300]'>Write Review</button>
+                        <button onClick={() => setToggleReview(true)} className='bg-secondary mt-10 text-white py-2 px-4 hover:opacity-90 rounded-md font-[300]'>Write Review</button>
                     </div>
                 </div>
                     :

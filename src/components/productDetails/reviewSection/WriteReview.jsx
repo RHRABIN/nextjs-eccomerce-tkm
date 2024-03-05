@@ -7,6 +7,7 @@ const WriteReview = ({ setToggleReview, id, setIsSuccess }) => {
     const [rating, setRating] = useState('');
     const [review, setReview] = useState('');
     const { user } = useContext(AuthContext);
+    const [reviewLoading, setReviewLoading] = useState(false)
 
 
     const handleSubmitReview = async (e) => {
@@ -16,9 +17,16 @@ const WriteReview = ({ setToggleReview, id, setIsSuccess }) => {
             description: review,
             product: id
         }
-        const response = await addSingleReview(user?.data?.user?.email, data);
-        if (response) {
-            setIsSuccess(true)
+        try {
+            setReviewLoading(true)
+            const response = await addSingleReview(user?.data?.user?.email, data);
+            if (response) {
+                setIsSuccess(true)
+            }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setReviewLoading(false)
         }
         e.target.reset();
     }
@@ -42,10 +50,10 @@ const WriteReview = ({ setToggleReview, id, setIsSuccess }) => {
 
                 <div className='flex items-center justify-end gap-4 '>
                     <button onClick={() => setToggleReview(false)} className='border border-black py-2 px-6 mt-2 rounded hover:text-white hover:bg-gray-900 cursor-pointer'>Cancel</button>
-                    <button className='border border-black py-2 px-6 mt-2 rounded hover:text-white hover:bg-gray-900 cursor-pointer'>{'Review'}</button>
+                    <button className='border border-black py-2 px-6 mt-2 rounded hover:text-white hover:bg-gray-900 cursor-pointer'>{reviewLoading ? 'Review..' : 'Review'}</button>
                 </div>
             </form>
-            <h1 className='font-medium text-gray-800'>Tell us your feedback about the product</h1>
+            <h1 className='font-medium text-gray-800 mt-2'>Tell us your feedback about the product</h1>
         </div>
     );
 };
