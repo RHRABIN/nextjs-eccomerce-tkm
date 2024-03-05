@@ -1,5 +1,6 @@
 import CheckoutContent from '@/components/checkout';
 import OrderSummary from '@/components/checkout/OrderSummary';
+import PrivateRoute from '@/router/PrivateRoute';
 import React from 'react';
 
 export const metadata = {
@@ -11,6 +12,7 @@ const CheckoutPage = () => {
     return (
         <div className='container mx-auto my-5 md:my-10'>
             <div className='mx-4 md:mx-0'>
+                <PrivateRoute />
                 <div className='border-dotted border-b pb-5 border-b-dark'>
                     <h1 className='text-gray-800 text-2xl text-center font-medium'>Checkout</h1>
                 </div>
