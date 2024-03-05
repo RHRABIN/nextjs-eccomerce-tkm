@@ -59,7 +59,7 @@ const Navbar = async () => {
                                                     {
                                                         subCat?.children?.map(subCatChild =>
                                                             <li key={subCatChild?._id} className='border-b-gray-500 border-opacity-20 hover:bg-dark border-b p-2 pl-4 w-60 flex items-start gap-2 cursor-pointer'>
-                                                                <Link href={`/products?category=${subCatChild?.slug}`} className='capitalize block w-full'>{subCatChild?.title}</Link>
+                                                                <Link href={`/products?subcat=${subCatChild?.slug}`} className='capitalize block w-full'>{subCatChild?.title}</Link>
                                                             </li>
                                                         )
                                                     }

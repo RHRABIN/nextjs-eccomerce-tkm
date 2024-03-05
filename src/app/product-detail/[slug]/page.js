@@ -21,7 +21,7 @@ const ProductDetailsPage = async ({ params }) => {
     const { slug } = params || {};
     const { data: product } = await getSingleProduct(slug) || {};
     const { name, images, _id, manufacturer, profileImage } = product?.result || {};
-    console.log(product)
+   
     return (
         <div className='container mx-auto my-4 md:my-12'>
             <div className='mb-4 px-4 md:px-0'>{
