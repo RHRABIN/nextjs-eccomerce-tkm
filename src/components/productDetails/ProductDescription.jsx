@@ -11,12 +11,13 @@ import { AuthContext } from '@/context/AuthProvider';
 import toast from 'react-hot-toast';
 import SmallLoader from '../loader/smallLoader/SmallLoader';
 import { addToWishListByEmail } from '@/config/wishlistApi';
+import Rating from '../rating/Rating';
 
 const ProductDescription = ({ product }) => {
-    const { _id, name, manufacturer, tags, price, offerPrice, description, directions, ingredients, variation, shipping, activities, badge } = product || {};
+    const { _id, name, totalRating, manufacturer, tags, price, offerPrice, description, directions, ingredients, variation, shipping, activities, badge } = product || {};
     const { user } = useContext(AuthContext);
     const [wishLoading, setWishLoading] = useState(false)
-
+    
     const handleWishlist = async () => {
         try {
             setWishLoading(true)
@@ -47,11 +48,7 @@ const ProductDescription = ({ product }) => {
             <h2 className='font-normal text-xl md:text-2xl text-gray-800 my-2 md:my-3'>{name}</h2>
 
             <div className='flex items-center text-dark text-lg md:text-xl mb-3'>
-                <IoIosStar />
-                <IoIosStar />
-                <IoIosStar />
-                <IoIosStar />
-                <IoIosStar />
+                <Rating rate={totalRating} />
             </div>
             <div className='text-2xl md:text-3xl font-semibold text-gray-800 flex items-start gap-2 mb-3 border-t border-dotted border-t-dark pt-3'>
                 {/* <p className='font-[auto]'>৳</p>
