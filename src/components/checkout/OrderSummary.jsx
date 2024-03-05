@@ -2,12 +2,32 @@
 import PaymentClient from '@/clientSideRender/payment/PaymentClient';
 import { getAddToCartDataByEmail } from '@/config/addCartToapi';
 import { AuthContext } from '@/context/AuthProvider';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
-const OrderSummary = async () => {
-    const { user } = useContext(AuthContext)
-    const data = await getAddToCartDataByEmail(user?.data?.user?.email);
-    const { discount, discountAmount, shippingCharge, subtotal, total } = data?.data?.data || {};
+const OrderSummary = () => {
+    const { user, isCartSuccess, deleteSuccess } = useContext(AuthContext);
+    const [cartData, setCartData] = useState(null)
+
+    const { discount, discountAmount, shippingCharge, subtotal, total } = cartData?.data?.data || {};
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await getAddToCartDataByEmail(user?.data?.user?.email);
+                if (data) {
+                    setCartData(data)
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        fetchData()
+
+        if (isCartSuccess || deleteSuccess) {
+            fetchData()
+        }
+    }, [user?.data?.user?.email, isCartSuccess, deleteSuccess])
 
     return (
         <div className='border rounded-md bg-white shadow-lg p-4'>
@@ -36,7 +56,7 @@ const OrderSummary = async () => {
 
             <PaymentClient
                 email={user?.data?.user?.email}
-                product={data?.data?.data}
+                product={cartData?.data?.data}
             />
         </div>
     );
