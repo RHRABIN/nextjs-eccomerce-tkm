@@ -13,9 +13,14 @@ const Accordion = () => {
         subcat: [],
         weight: [],
     });
-    // const [allWeight, setAllWeight] = useState(null);
-    // const [shopBy, setShopBy] = useState(null);
     const router = useRouter();
+    
+    useEffect(()=>{
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        })
+    },[searchParams])
 
     const createQueryString = useCallback(
         (name, value) => {
@@ -25,27 +30,11 @@ const Accordion = () => {
         [searchParams]
     );
 
-    useEffect(() => {
-        // const fetchData = async () => {
-        //     try {
-        //         const [categoriesRes, allWeightRes, shopByRes] = await Promise.all([
-        //             getCategories(),
-        //             getAllWeight(),
-        //             getShopByCategory()
-        //         ]);
-        //         setCategories(categoriesRes?.data);
-        //         setAllWeight(allWeightRes?.data);
-        //         setShopBy(shopByRes?.data);
-        //     } catch (error) {
-        //         console.error(error);
-        //     }
-        // };
+ 
 
-        // fetchData();
+    useEffect(() => {
         if (allJsonDta) {
             setCategories(allJsonDta);
-            // setAllWeight(allJsonDta?.weight);
-            // setShopBy(allJsonDta?.shopBy);
         }
     }, []);
 
@@ -83,29 +72,7 @@ const Accordion = () => {
 
     return (
         <div className='mt-2'>
-            <AccordionClient title={'All Category'}>
-                <ul className="text-sm overflow-y-auto max-h-[19rem]">
-                    {
-                        categories?.category?.map(category =>
-                                <div key={category?._id} className={`${category.title?.toLowerCase() == 'brands' ? 'hidden': ''} flex items-center custom-checkbox mt-[2px] capitalize`}>
-                                    <input
-                                        onClick={()=>router.push( pathname + '?' + createQueryString('category', category.slug))}
-                                        type="checkbox"
-                                        value={category?.slug}
-                                        id={category?._id}
-                                        className='hidden'
-                                        checked={searchParams.get('category') == (category?.slug)}
-                                    />
-                                    <label
-                                        htmlFor={category?._id}
-                                        className={`hover:bg-[#f2fafe] hover:text-primary cursor-pointer w-full block px-2 py-1 text-[12px]`}>
-                                        {category.title}
-                                    </label>
-                                </div>
-                        )
-                    }
-                </ul>
-            </AccordionClient>
+            
             {
                 categories?.shopBy?.map(shop =>
                     <AccordionClient key={shop?._id} title={shop?.title}>
@@ -123,7 +90,7 @@ const Accordion = () => {
                                     />
                                     <label
                                         htmlFor={child?._id}
-                                        className={`hover:bg-[#f2fafe] hover:text-primary cursor-pointer w-full block px-2 py-1 text-[12px]`}>
+                                        className={`hover:bg-[#dfe1e3] hover:text-primary font-semibold text-[#212529] cursor-pointer w-full block px-2 py-1 text-[12px]`}>
                                         {child.title}
                                     </label>
                                 </div>
@@ -149,7 +116,7 @@ const Accordion = () => {
                                 />
                                 <label
                                     htmlFor={weight?._id}
-                                    className={`hover:bg-[#f2fafe] hover:text-primary cursor-pointer w-full block px-2 py-1 text-[12px]`}>
+                                    className={`hover:bg-[#f2fafe] hover:text-primary font-semibold text-[#212529] cursor-pointer w-full block px-2 py-1 text-[12px]`}>
                                     {weight.name}
                                 </label>
                             </div>

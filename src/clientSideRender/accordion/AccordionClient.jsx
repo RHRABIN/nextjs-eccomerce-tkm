@@ -1,9 +1,11 @@
 'use client'
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 
 const AccordionClient = ({ children, title, isDropdown }) => {
     const [isOpen, setIsOpen] = useState(isDropdown ? false : true);
+    const pathname = usePathname()
 
     const toggleAccordion = () => {
         
@@ -18,7 +20,7 @@ const AccordionClient = ({ children, title, isDropdown }) => {
         <div className={`${isDropdown ? 'mt-1' : 'border-b py-3'}`}>
             <button
                 type='button'
-                className={`bg-[#f9f9f9] text-sm rounded-t font-[400] text-start flex items-center justify-between cursor-pointer group w-full text-gray-800 border-0 px-3  ${isOpen ? 'rounded-b-none' : 'rounded-b'} ${isDropdown ? 'py-2.5': 'py-1'}`}
+                className={` ${pathname == "/products" ? 'bg-[#0079bf] text-white uppercase' : 'bg-[#f9f9f9]'}  text-sm rounded-t font-[400] text-start flex items-center justify-between cursor-pointer group w-full text-gray-800 border-0 px-3  ${isOpen ? 'rounded-b-none' : 'rounded-b'} ${isDropdown ? 'py-2.5': 'py-1'}`}
                 onClick={toggleAccordion}
             >
                 {title}

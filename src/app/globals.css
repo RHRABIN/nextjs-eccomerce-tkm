@@ -150,7 +150,7 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #489ac9;
+    background: #929698;
     border-radius: 10px;
 }
 
@@ -197,5 +197,5 @@
   }
 
   .custom-checkbox input:checked + label{
-    background-color: #f2fafe;
+    background-color: #dfe1e3;
   }
