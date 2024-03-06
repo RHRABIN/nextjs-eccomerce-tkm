@@ -9,9 +9,7 @@ const PrivateRoute = ({ children }) => {
 
     if (loading) {
         return (
-            <div className='flex items-center justify-center h-screen w-full'>
-                <h1>Loading...</h1>
-            </div>
+            <h1></h1>
         )
     }
     useEffect(() => {

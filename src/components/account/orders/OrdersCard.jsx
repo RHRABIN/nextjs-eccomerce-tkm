@@ -15,10 +15,10 @@ const OrdersCard = ({ product }) => {
         <div className='border rounded p-4'>
             <div className='flex items-start justify-between mb-2'>
                 <div>
-                    <h4 className='text-blue-500 text-lg'>Order Id: {orderId}</h4>
-                    <p className='text-sm font-[300]'>Date: {new Date(createdAt).toLocaleString()}</p>
+                    <h4 className='text-blue-500'>Order Id: {orderId}</h4>
+                    <p className='text-xs font-[300]'>Date: {new Date(createdAt).toLocaleString()}</p>
                 </div>
-                <div>
+                <div className='w-1/3 text-end'>
                     <p className='text-sm font-[500]'>Total: {totalAmount}</p>
                     <OrderDetailsClient
                         product={product}
