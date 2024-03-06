@@ -14,13 +14,13 @@ const Accordion = () => {
         weight: [],
     });
     const router = useRouter();
-    
-    useEffect(()=>{
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        })
-    },[searchParams])
+
+    // useEffect(()=>{
+    //     window.scrollTo({
+    //         top: 0,
+    //         behavior: 'smooth',
+    //     })
+    // },[searchParams])
 
     const createQueryString = useCallback(
         (name, value) => {
