@@ -11,14 +11,14 @@ const ProductReview = ({ allReviews, isSucces, setIsSuccess }) => {
                         {
                             allReviews?.data?.map(review =>
                                 <div key={review?._id} className='flex mt-4'>
-                                    <div className='w-1/3 border-r mr-4'>
+                                    <div className='md:w-1/3 border-r mr-4 pr-2 md:pr-0'>
                                         <h1 className='font-medium md:text-lg'>Product Reviews</h1>
-                                        <p>{review?.user?.name}</p>
+                                        <p className='text-sm'>{review?.user?.name}</p>
                                     </div>
-                                    <div className='w-2/3'>
+                                    <div className='md:w-2/3'>
                                         <Rating rate={review?.rating} />
-                                        <p className='my-2'>{new Date(review?.createdAt).toDateString()}</p>
-                                        <p>{review?.description}</p>
+                                        <p className='my-2 text-sm'>{new Date(review?.createdAt).toDateString()}</p>
+                                        <p className='text-sm'>{review?.description}</p>
                                     </div>
                                 </div>
                             )

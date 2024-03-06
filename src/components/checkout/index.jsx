@@ -30,7 +30,7 @@ const CheckoutContent = () => {
 
         if (checkoutSuccess || deleteSuccess) {
             fetchData()
-            setCheckoutSuccess(false)
+            // setCheckoutSuccess(false)
         }
     }, [user?.data?.user?.email, checkoutSuccess, deleteSuccess]);
 

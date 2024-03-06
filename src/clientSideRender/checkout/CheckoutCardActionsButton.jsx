@@ -12,7 +12,7 @@ const CheckoutCardActionsButton = ({ product }) => {
     const [deleteLoading, setDeleteLoading] = useState(false);
     const [incrementLoading, setIncrementLoading] = useState(false);
     const [decrementLoading, setDecrementLoading] = useState(false);
-    const { deleteSuccess, setDeleteSuccess, isCartSuccess, setIsCartSuccess, } = useContext(AuthContext);
+    const { deleteSuccess, setDeleteSuccess, setSummarySuccess, isCartSuccess, setIsCartSuccess, } = useContext(AuthContext);
 
     const { _id } = product?.product || {};
     const { user } = useContext(AuthContext)
@@ -34,6 +34,7 @@ const CheckoutCardActionsButton = ({ product }) => {
             if (res) {
                 setIsCartSuccess(true)
                 setCheckoutSuccess(true)
+                setSummarySuccess(true)
             }
         } catch (error) {
             console.error(error)
@@ -60,6 +61,7 @@ const CheckoutCardActionsButton = ({ product }) => {
             if (res) {
                 setIsCartSuccess(true)
                 setCheckoutSuccess(true)
+                setSummarySuccess(true)
             }
         } catch (error) {
             console.error(error)
@@ -87,11 +89,11 @@ const CheckoutCardActionsButton = ({ product }) => {
     return (
         <div className='flex items-center justify-between md:block'>
             <div className='flex items-center gap-4 justify-center'>
-                <button onClick={handleDecrementProduct} className={`bg-gray-100 p-1.5 rounded-full ${selectProduct <= 1 ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
+                <button onClick={handleDecrementProduct} disabled={selectProduct <= 1} className={`bg-gray-100 p-1.5 rounded-full ${selectProduct <= 1 ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
                     {decrementLoading ? <SmallLoader /> : <FaMinus />}
                 </button>
                 <p>{selectProduct}</p>
-                <button onClick={handleIncrementProduct} className={`bg-gray-100 p-1.5 rounded-full ${selectProduct >= 5 ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
+                <button onClick={handleIncrementProduct} disabled={selectProduct >= 5} className={`bg-gray-100 p-1.5 rounded-full ${selectProduct >= 5 ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
                     {incrementLoading ? <SmallLoader /> : <FaPlus />}
                 </button>
             </div>
