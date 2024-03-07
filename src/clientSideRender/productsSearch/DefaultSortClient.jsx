@@ -1,8 +1,9 @@
 'use client'
-import Drawer from '@/components/drawer/Drawer';
 import SearchHistory from '@/components/productsSearch/history/SearchHistory';
 import SearchSidebar from '@/components/productsSearch/sidebar/SearchSidebar';
+import { Drawer } from 'antd';
 import React, { useState } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
 
 const DefaultSortClient = () => {
     const [openDrawer, setOpenDrawer] = useState(false);
@@ -16,8 +17,13 @@ const DefaultSortClient = () => {
 
             <Drawer
                 title={'Search'}
-                openDrawer={openDrawer}
-                setOpenDrawer={setOpenDrawer}
+                open={openDrawer}
+                onClose={() => setOpenDrawer(false)}
+                closeIcon={null}
+                width={'80%'}
+                extra={
+                    <button onClick={() => setOpenDrawer(false)} className='text-xl font-light border border-white hover:border-dark'><AiOutlineClose /></button>
+                }
             >
                 {/* <SearchHistory /> */}
                 <SearchSidebar isMobile={true} setOpenDrawer={setOpenDrawer} />
