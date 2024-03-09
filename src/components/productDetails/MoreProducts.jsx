@@ -4,7 +4,7 @@ import SliderComponentClient from '@/clientSideRender/sliderComponent/SliderComp
 import { getBrandsProductsByBrandId } from '@/config/productsApi';
 
 const MoreProducts = async ({ brandId }) => {
-    const { data: products } = await getBrandsProductsByBrandId(brandId);
+    const { data: products } = await getBrandsProductsByBrandId(brandId) || {};
 
     return (
         <div className='container mx-auto my-10 md:my-20'>

@@ -3,10 +3,11 @@ import { addToCartNewDataByEmail } from '@/config/addCartToapi';
 import { AuthContext } from '@/context/AuthProvider';
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { FaPlus } from 'react-icons/fa6';
+import { FaHeart, FaPlus } from 'react-icons/fa6';
 import { FiMinus } from 'react-icons/fi';
+import SmallLoader from '../loader/smallLoader/SmallLoader';
 
-const AddToCartButton = ({ product }) => {
+const AddToCartButton = ({ product, wishLoading, handleWishlist }) => {
     const [productQty, setProductQty] = useState(1)
     const { _id, offerPrice } = product || {};
     const { user, setIsCartSuccess } = useContext(AuthContext);
@@ -65,7 +66,7 @@ const AddToCartButton = ({ product }) => {
     }, [isSuccess])
 
     return (
-        <div className='flex items-center gap-4'>
+        <div className='flex items-center md:gap-4 border border-black md:border-white'>
             <div className='w-2/5 border py-2 px-4 md:px-10 flex items-center'>
                 <p className='w-2/5'>{productQty}</p>
                 <div className='w-3/5 flex justify-between'>
@@ -77,9 +78,14 @@ const AddToCartButton = ({ product }) => {
                     </button>
                 </div>
             </div>
-            <div className='w-3/5'>
+            <div className='w-3/5 flex items-center justify-end border border-black md:border-white'>
                 <button onClick={handleAddToCart} className='bg-black text-white w-full py-2 tracking-widest'>{isLoading ? 'Add to Bag..' : 'Add to Bag'}</button>
+
+                <button onClick={handleWishlist} className='bg-black text-white min-h-[2.5rem] w-1/4 md:w-1/5 py-2 tracking-widest flex items-center justify-center border-l'>
+                    {wishLoading ? <SmallLoader /> : <FaHeart className='md:text-2xl' />}
+                </button>
             </div>
+
         </div>
     );
 };

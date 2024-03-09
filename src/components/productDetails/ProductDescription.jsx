@@ -17,7 +17,7 @@ const ProductDescription = ({ product }) => {
     const { _id, name, totalRating, manufacturer, tags, price, offerPrice, description, directions, ingredients, variation, shipping, activities, badge } = product || {};
     const { user } = useContext(AuthContext);
     const [wishLoading, setWishLoading] = useState(false)
-    
+
     const handleWishlist = async () => {
         try {
             setWishLoading(true)
@@ -59,16 +59,17 @@ const ProductDescription = ({ product }) => {
                 </>}
             </div>
 
-            <AddToCartButton product={product} />
+            <AddToCartButton
+                wishLoading={wishLoading}
+                handleWishlist={handleWishlist}
+                product={product} />
 
             <div className='flex items-center gap-3 mt-3'>
                 <FaYoutube className='border border-gray-300 p-2 rounded-full text-dark text-4xl cursor-pointer hover:bg-[#CD201F] hover:text-white' />
                 <FaFacebookF className='border border-gray-300 p-2 rounded-full text-dark text-4xl cursor-pointer hover:bg-[#1877F2] hover:text-white' />
                 <FaInstagram className='border border-gray-300 p-2 rounded-full text-dark text-4xl cursor-pointer hover:bg-gradient-to-br from-[#f9ce34]
                 via-[#ee2a7b] to-[#6228d7] hover:text-white' />
-                <button onClick={handleWishlist} className='border border-gray-300 p-2 rounded-full text-dark cursor-pointer hover:bg-orange-500 hover:text-white'>
-                    {wishLoading ? <SmallLoader /> : <FaHeart className='' />}
-                </button>
+
             </div>
 
             <div className='flex flex-wrap gap-2 mt-4'>
