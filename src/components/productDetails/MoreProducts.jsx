@@ -3,8 +3,8 @@ import ProductCard from '../card/ProductCard';
 import SliderComponentClient from '@/clientSideRender/sliderComponent/SliderComponentClient';
 import { getBrandsProductsByBrandId } from '@/config/productsApi';
 
-const MoreProducts = async ({ brandId }) => {
-    const { data: products } = await getBrandsProductsByBrandId(brandId);
+const MoreProducts = async ({ brandId, productId }) => {
+    const { data: products } = await getBrandsProductsByBrandId(brandId, productId);
 
     return (
         <div className='container mx-auto my-10 md:my-20'>

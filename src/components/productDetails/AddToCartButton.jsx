@@ -8,6 +8,7 @@ import { FiMinus } from 'react-icons/fi';
 import { RiHeartAddLine } from "react-icons/ri";
 import SmallLoader from '../loader/smallLoader/SmallLoader';
 import { addToWishListByEmail } from '@/config/wishlistApi';
+import { useRouter } from 'next/navigation';
 
 
 const AddToCartButton = ({ product }) => {
@@ -15,6 +16,7 @@ const AddToCartButton = ({ product }) => {
     const { _id, offerPrice } = product || {};
     const { user, setIsCartSuccess } = useContext(AuthContext);
     const email = user?.data?.user?.email || {};
+    const router = useRouter()
 
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -48,6 +50,9 @@ const AddToCartButton = ({ product }) => {
                 offerPrice,
                 quantity: productQty
             };
+        }else{
+            toast.error('Please Login first!');
+            router.push("/login")
         }
 
         try {
@@ -79,6 +84,10 @@ const AddToCartButton = ({ product }) => {
                 if (res) {
                     toast.success('Wishlist added successfully');
                 }
+            }else{
+                toast.error('Please Login add to wish list');
+                router.push("/login")
+
             }
         } catch (error) {
             console.error(error)
@@ -99,9 +108,9 @@ const AddToCartButton = ({ product }) => {
                     </button>
             </div>
             <div className='w-3/5 flex gap-[1px] items-center'>
-                <button onClick={handleAddToCart} className='bg-black border border-black text-white w-full py-2 tracking-widest'>{isLoading ? 'Add to Bag..' : 'Add to Bag'}</button>
-                <button onClick={handleWishlist} className='w-[70px] h-[42px] flex items-center justify-center bg-black border border-black text-white tracking-widest'>
-                {wishLoading ? <SmallLoader /> : <RiHeartAddLine width={20} height={20} color='white'/>}
+                <button onClick={handleAddToCart} className='bg-black border border-black text-white w-full py-2 tracking-widest'>{isLoading ? 'ADD TO BAG...' : 'ADD TO BAG'}</button>
+                <button onClick={handleWishlist} className='w-[60px] h-[43px] flex items-center justify-center bg-black border border-black text-white tracking-widest'>
+                {wishLoading ? <SmallLoader /> : <RiHeartAddLine size={20} color='white'/>}
                 </button>
             </div>
         </div>

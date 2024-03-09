@@ -56,7 +56,7 @@ const ProductDetailsPage = async ({ params }) => {
                 </div>
             </div>
             <MightAlsoSection id={slug} />
-            <MoreProducts brandId={manufacturer?._id} />
+            <MoreProducts brandId={manufacturer?._id} productId={_id} />
             <ReviewSection
                 id={_id}
                 productId={slug} />

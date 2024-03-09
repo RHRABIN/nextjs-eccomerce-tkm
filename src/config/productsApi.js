@@ -26,10 +26,10 @@ const getSingleProduct = async (id) => {
 };
 
 // get get Brands Products  ByBrand Id 
-const getBrandsProductsByBrandId = async (brandId, page = "?page=1") => {
+const getBrandsProductsByBrandId = async (brandId, productId, page = "?page=1") => {
     let response;
     try {
-        response = await axios.post(`${baseUrl}/product/brand-products/${brandId}${page}`);
+        response = await axios.post(`${baseUrl}/product/brand-products/${brandId}${page}&productId=${productId}`);
         return response;
     } catch (error) {
         console.error(error);

@@ -10,12 +10,12 @@ import { Collapse } from 'antd';
 
 const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, routineCategory }) => {
     return (
-        <div className='mx-4 md:hidden mt-10'>
+        <div className='md:hidden mt-10'>
 
             <Collapse
                 size="small"
                 expandIconPosition='right'
-                className='border-none mb-2'
+                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
                 items={[
                     {
                         key: '1',
@@ -37,7 +37,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
             <Collapse
                 size="small"
                 expandIconPosition='right'
-                className='border-none mb-2'
+                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
                 items={[
                     {
                         key: '1',
@@ -66,7 +66,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
             <Collapse
                 size="small"
                 expandIconPosition='right'
-                className='border-none mb-2'
+                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
                 items={[
                     {
                         key: '1',
@@ -95,7 +95,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
             <Collapse
                 size="small"
                 expandIconPosition='right'
-                className='border-none mb-2'
+                className='border-none mb-2  py-1 bg-[#f9f9f9] px-4'
                 items={[
                     {
                         key: '1',
