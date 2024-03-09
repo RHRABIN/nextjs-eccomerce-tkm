@@ -134,7 +134,7 @@
     color: #faca15;
 }
 
-.mobile-scrollbar::-webkit-scrollbar{
+.mobile-scrollbar::-webkit-scrollbar {
     width: 0px;
 }
 
@@ -164,15 +164,15 @@
     margin-bottom: 0;
     display: none;
     cursor: pointer;
-  }
-  
-  .custom-checkbox label {
+}
+
+.custom-checkbox label {
     position: relative;
     cursor: pointer;
-  }
-  
-  .custom-checkbox label:before {
-    content:'';
+}
+
+.custom-checkbox label:before {
+    content: '';
     --webkit-appearance: none;
     background-color: transparent;
     padding: 10px;
@@ -181,9 +181,9 @@
     vertical-align: middle;
     cursor: pointer;
     margin-right: 10px;
-  }
-  
-  .custom-checkbox input:checked + label:after {
+}
+
+.custom-checkbox input:checked+label:after {
     content: '';
     display: block;
     position: absolute;
@@ -194,21 +194,29 @@
     border: solid #0079bf;
     border-width: 0 1px 1px 0;
     transform: rotate(45deg);
-  }
-
-  .custom-checkbox input:checked + label{
-    background-color: #dfe1e3;
-  }
-
-  strong{
-    font-weight: 700;
-  }
-
-:where(.css-dev-only-do-not-override-1rqnfsa).ant-collapse>.ant-collapse-item {
-    border-bottom: none !important;
 }
-:where(.css-dev-only-do-not-override-1rqnfsa).ant-collapse .ant-collapse-content {
-    /* background-color: transparent !important; */
+
+.custom-checkbox input:checked+label {
+    background-color: #dfe1e3;
+}
+
+strong {
+    font-weight: 700;
+}
+
+.ant-collapse-item:last-child {
+    border-bottom: none;
+}
+
+.ant-collapse-content {
     border-top: none !important;
 }
 
+
+/* :where(.css-dev-only-do-not-override-1rqnfsa).ant-collapse>.ant-collapse-item {
+    border-bottom: none !important;
+} */
+/* :where(.css-dev-only-do-not-override-1rqnfsa).ant-collapse .ant-collapse-content {
+    background-color: transparent !important;
+    border-top: none !important;
+} */
