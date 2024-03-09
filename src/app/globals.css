@@ -180,7 +180,7 @@
     position: relative;
     vertical-align: middle;
     cursor: pointer;
-    margin-right: 5px;
+    margin-right: 10px;
   }
   
   .custom-checkbox input:checked + label:after {
@@ -188,7 +188,7 @@
     display: block;
     position: absolute;
     top: 8px;
-    left: 9px;
+    left: 20px;
     width: 5px;
     height: 11px;
     border: solid #0079bf;
@@ -198,4 +198,8 @@
 
   .custom-checkbox input:checked + label{
     background-color: #dfe1e3;
+  }
+
+  strong{
+    font-weight: 700;
   }

@@ -1,9 +1,10 @@
 'use client'
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, Fragment } from 'react';
 import { getAllProductsBySearch } from '@/config/productsApi';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import ProductCard from '@/components/card/ProductCard';
 import { Pagination } from 'antd';
+import DefaultSortClient from '@/clientSideRender/productsSearch/DefaultSortClient';
 
 const ProductsSearchPage = () => {
     const [products, setProducts] = useState([]);
@@ -49,9 +50,17 @@ const ProductsSearchPage = () => {
     const totalProducts = products?.data?.result?.totalProducts || 0;
 
     return (
+        <Fragment>
+        
+        <div>
+            <div className='flex justify-center md:hidden w-full'>
+                <DefaultSortClient total={totalProducts || 0} />
+            </div>
+        </div>
+
         <div className='container mx-auto md:relative'>
             <div className='hidden md:block absolute -top-[50px] left-[20px]'>Items: {totalProducts || 0}</div>
-           {products?.data?.result?.totalPageNumber && <div className='hidden md:block md:absolute -top-[50px] right-[260px]'>{`< ${searchParams.get('page') || 1 }/ ${products?.data?.result?.totalPageNumber} >`}</div>}
+           {products?.data?.result?.totalPageNumber > 0  && <div className='hidden md:block md:absolute -top-[50px] right-[260px]'>{`< ${searchParams.get('page') || 1 }/ ${products?.data?.result?.totalPageNumber} >`}</div>}
             {
                 (products?.data?.result?.data?.length > 0) ?
                     <div className='grid grid-cols-2 lg:grid-cols-3 gap-5'>
@@ -79,6 +88,7 @@ const ProductsSearchPage = () => {
                 />
            </div>
         </div>
+        </Fragment>
     );
 };
 

@@ -1,13 +1,17 @@
 'use client'
-import SearchHistory from '@/components/productsSearch/history/SearchHistory';
 import SearchSidebar from '@/components/productsSearch/sidebar/SearchSidebar';
 import { Drawer } from 'antd';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
+import { MdKeyboardBackspace } from "react-icons/md";
 
-const DefaultSortClient = () => {
+
+const DefaultSortClient = ({total}) => {
     const [openDrawer, setOpenDrawer] = useState(false);
-
+    const router = useRouter()
+    const searchParams = useSearchParams();
+   const isShowClear =  (searchParams.get('subcat') || searchParams.get("price")) ? true : false;
+   
     return (
         <>
             <button onClick={() => setOpenDrawer(true)} className='flex items-center border rounded justify-center p-2 w-full py-3'>
@@ -16,17 +20,25 @@ const DefaultSortClient = () => {
             </button>
 
             <Drawer
-                title={'Search'}
+                title={<button onClick={() => setOpenDrawer(false)} className='flex items-center gap-2'>
+                <MdKeyboardBackspace height={18} width={18} />
+                Back
+                </button>}
                 open={openDrawer}
                 onClose={() => setOpenDrawer(false)}
                 closeIcon={null}
                 width={'80%'}
                 extra={
-                    <button onClick={() => setOpenDrawer(false)} className='text-xl font-light border border-white hover:border-dark'><AiOutlineClose /></button>
+                    <button
+                    onClick={() => {
+                        router.push('/products');
+                    }}
+                    className={`${isShowClear ? 'block': 'hidden'} text-sm font-light`}>Clear All</button>
                 }
+
             >
-                {/* <SearchHistory /> */}
-                <SearchSidebar isMobile={true} setOpenDrawer={setOpenDrawer} />
+
+                <SearchSidebar totalProducts={total} isMobile={true} setOpenDrawer={setOpenDrawer} />
             </Drawer>
         </>
     );

@@ -69,6 +69,7 @@ const Banner = async () => {
                     }
                 </Slider>
             </div>
+            <div className='bg-black p-[6px] mt-[6px]'></div>
         </div>
     );
 };

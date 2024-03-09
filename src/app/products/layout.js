@@ -25,9 +25,6 @@ const layout = ({ children }) => {
                         <div className='hidden md:block'>
                             <SearchTopbar />
                         </div>
-                        <div className='flex justify-center md:hidden w-full'>
-                            <DefaultSortClient />
-                        </div>
                     </div>
                    
                     <div>

@@ -76,7 +76,7 @@ const Accordion = () => {
             {
                 categories?.shopBy?.map(shop =>
                     <AccordionClient key={shop?._id} title={shop?.title}>
-                        <ul className="text-sm overflow-y-auto max-h-[17rem]">
+                        <ul className="text-sm overflow-y-auto max-h-[17rem] pl-[10px]">
                             {shop?.children?.map(child => (
                                 <div key={child?._id} className='flex items-center custom-checkbox mt-1'>
                                     <input
@@ -90,7 +90,7 @@ const Accordion = () => {
                                     />
                                     <label
                                         htmlFor={child?._id}
-                                        className={`hover:bg-[#dfe1e3] hover:text-primary font-semibold text-[#212529] cursor-pointer w-full block px-2 py-1 text-[12px]`}>
+                                        className={`hover:bg-[#dfe1e3] rounded font-semibold text-[#212529] cursor-pointer w-full block px-2 py-1 text-[12px]`}>
                                         {child.title}
                                     </label>
                                 </div>
@@ -101,7 +101,7 @@ const Accordion = () => {
                 )
             }
             <AccordionClient title={'Weight'}>
-                <ul className="text-sm overflow-y-auto max-h-[17rem]">
+                <ul className="text-sm overflow-y-auto max-h-[17rem] pl-[10px">
                     {
                         categories?.weight?.map(weight =>
                             <div key={weight?._id} className='flex items-center custom-checkbox mt-1'>

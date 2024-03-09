@@ -1,38 +1,18 @@
 'use client'
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import AccordionClient from '@/clientSideRender/accordion/AccordionClient';
 import DangerHtml from '@/clientSideRender/dangerHtml/DangerHtml';
-import { FaFacebookF, FaHeart, FaInstagram, FaYoutube } from 'react-icons/fa6';
-import { IoIosStar } from 'react-icons/io';
+import { FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa6';
 import AddToCartButton from './AddToCartButton';
 import Link from 'next/link';
 import Image from 'next/image';
-import { AuthContext } from '@/context/AuthProvider';
-import toast from 'react-hot-toast';
-import SmallLoader from '../loader/smallLoader/SmallLoader';
-import { addToWishListByEmail } from '@/config/wishlistApi';
 import Rating from '../rating/Rating';
 
 const ProductDescription = ({ product }) => {
-    const { _id, name, totalRating, manufacturer, tags, price, offerPrice, description, directions, ingredients, variation, shipping, activities, badge } = product || {};
-    const { user } = useContext(AuthContext);
-    const [wishLoading, setWishLoading] = useState(false)
+    const { name, totalRating, manufacturer, tags, price, offerPrice, description, directions, ingredients, variation, shipping, activities, badge } = product || {};
+
     
-    const handleWishlist = async () => {
-        try {
-            setWishLoading(true)
-            if (user?.data?.user?.email) {
-                const res = await addToWishListByEmail(user?.data?.user?.email, { product: _id });
-                if (res) {
-                    toast.success('Wishlist added successfully');
-                }
-            }
-        } catch (error) {
-            console.error(error)
-        } finally {
-            setWishLoading(false)
-        }
-    }
+    
 
     return (
         <div>
@@ -51,8 +31,7 @@ const ProductDescription = ({ product }) => {
                 <Rating rate={totalRating} />
             </div>
             <div className='text-2xl md:text-3xl font-semibold text-gray-800 flex items-start gap-2 mb-3 border-t border-dotted border-t-dark pt-3'>
-                {/* <p className='font-[auto]'>৳</p>
-                <p>{offerPrice ? offerPrice : price}</p> */}
+              
                 {price == offerPrice ? <> <span className='font-[auto]'>৳</span>{offerPrice ? offerPrice : price}</> : <>
                     <span className='font-[auto]'>৳</span>{offerPrice}
                     <del className='mr-2 text-[24px]'>৳{price}</del>
@@ -66,9 +45,6 @@ const ProductDescription = ({ product }) => {
                 <FaFacebookF className='border border-gray-300 p-2 rounded-full text-dark text-4xl cursor-pointer hover:bg-[#1877F2] hover:text-white' />
                 <FaInstagram className='border border-gray-300 p-2 rounded-full text-dark text-4xl cursor-pointer hover:bg-gradient-to-br from-[#f9ce34]
                 via-[#ee2a7b] to-[#6228d7] hover:text-white' />
-                <button onClick={handleWishlist} className='border border-gray-300 p-2 rounded-full text-dark cursor-pointer hover:bg-orange-500 hover:text-white'>
-                    {wishLoading ? <SmallLoader /> : <FaHeart className='' />}
-                </button>
             </div>
 
             <div className='flex flex-wrap gap-2 mt-4'>
@@ -94,16 +70,16 @@ const ProductDescription = ({ product }) => {
             }
 
             <div className='mt-2'>
-                <AccordionClient title={'Activities'} isDropdown={true}>
+                <AccordionClient title={'ACTIVITIES'} isDropdown={true}>
                     <DangerHtml getText={activities} padding={true} />
                 </AccordionClient>
-                <AccordionClient title={'Directions'} isDropdown={true}>
+                <AccordionClient title={'DIRECTIONS'} isDropdown={true}>
                     <DangerHtml getText={directions} padding={true} />
                 </AccordionClient>
-                <AccordionClient title={'Ingredients'} isDropdown={true}>
+                <AccordionClient title={'INGREDIENTS'} isDropdown={true}>
                     <DangerHtml getText={ingredients} padding={true} />
                 </AccordionClient>
-                <AccordionClient title={'Shipping'} isDropdown={true}>
+                <AccordionClient title={'SHIPPING'} isDropdown={true}>
                     <p className='p-2 text-gray-800 font-[300] leading-8 text-sm'>
                         <DangerHtml getText={shipping} padding={true} />
                     </p>
