@@ -4,10 +4,15 @@ import { getAllBrands } from '@/config/categoriesApi'
 import Link from 'next/link';
 import React from 'react';
 import { IoHomeSharp } from "react-icons/io5";
+import { Pagination } from 'antd';
 
 const BrandProductPage = async ({ params }) => {
     const { slug } = params || {};
     const { data: brandProduct } = await getBrandProductsByBrandSlug(slug) || {};
+
+    // const handlePagination = (page)=>{
+    //     router.push(pathname + '?' + createQueryString("page", page))
+    // }
     return (
         <div className='container mx-auto my-10'>
             <div className='mx-4 md:mx-0'>
@@ -16,7 +21,7 @@ const BrandProductPage = async ({ params }) => {
                     <Link href=''> / Brands</Link>
                 </div>
                 {
-                    brandProduct?.result?.length > 0 ? <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                    brandProduct?.result?.length > 0 ? <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
                         {
                             brandProduct?.result?.map(product =>
                                 <ProductCard
@@ -28,6 +33,17 @@ const BrandProductPage = async ({ params }) => {
                     </div> : <p className='text-center md:text-2xl font-medium my-10'>There is no products on this brand</p>
                 }
             </div>
+            {/* <div className='flex items-center justify-center mv-2 mt-16 md:mt-8'>
+                <Pagination
+                    total={brandProduct?.totalProducts || 0}
+                    hideOnSinglePage={true}
+                    pageSize={15}
+                    onChange={(page)=> handlePagination(page)}
+                    responsive
+                    
+                    defaultCurrent={params.get("page") || 1}
+                />
+           </div> */}
         </div>
     );
 };

@@ -43,7 +43,6 @@ const ProductsSearchPage = () => {
     }, [searchParams]);
 
     const handlePagination = (page)=>{
-
         router.push(pathname + '?' + createQueryString("page", page))
     }
 
@@ -76,8 +75,8 @@ const ProductsSearchPage = () => {
                     <p className='text-center text-xl font-medium mt-6'>No Search Result Found</p>
             }
 
-        <div className='flex items-center justify-center mv-2 mt-16 md:mt-8'>
-            <Pagination
+            <div className='flex items-center justify-center mv-2 mt-16 md:mt-8'>
+                <Pagination
                     total={totalProducts || 0}
                     hideOnSinglePage={true}
                     pageSize={15}

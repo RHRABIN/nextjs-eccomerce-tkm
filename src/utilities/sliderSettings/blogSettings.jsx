@@ -5,9 +5,8 @@ export const blogSettings = {
     infinite: true,
     slidesToShow: 4,
     slidesToScroll: 2,
-    autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 6000,
+    autoplay: false,
+    speed: 1000,
     prevArrow: <ArrowLeft />,
     nextArrow: <ArrowRight />,
     responsive: [

@@ -204,10 +204,11 @@
     font-weight: 700;
   }
 
-:where(.css-dev-only-do-not-override-1rqnfsa).ant-collapse>.ant-collapse-item {
+.ant-collapse>.ant-collapse-item {
     border-bottom: none !important;
 }
-:where(.css-dev-only-do-not-override-1rqnfsa).ant-collapse .ant-collapse-content {
+
+.ant-collapse .ant-collapse-content {
     /* background-color: transparent !important; */
     border-top: none !important;
 }
