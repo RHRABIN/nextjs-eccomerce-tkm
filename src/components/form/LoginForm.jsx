@@ -76,7 +76,7 @@ const LoginForm = () => {
 
                 <label className='mb-2 block mt-4' htmlFor="">Password</label>
                 <input className='border border-gray-300 outline-none p-2 rounded w-full block placeholder:text-sm placeholder:text-dark placeholder:font-[300]' placeholder='Password' name='password' type="password" />
-                <Link className='text-end w-full block mt-4 text-sm text-blue-600 hover:underline' href='/forgot-password'>Forget Password</Link>
+                <Link className='text-end w-full block mt-4 text-sm text-primary hover:underline' href='/forgot-password'>Forget Password</Link>
                 <div className='flex justify-center mt-6 hover:opacity-90'>
                     <button className='bg-secondary text-white font-[500] px-8 py-2 rounded' type='submit'>{isLoading ? 'Login..' : 'Login'}</button>
                 </div>

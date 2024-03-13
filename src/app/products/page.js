@@ -59,7 +59,7 @@ const ProductsSearchPage = () => {
 
         <div className='container mx-auto md:relative'>
             <div className='hidden md:block absolute -top-[50px] left-[20px]'>Items: {totalProducts || 0}</div>
-           {products?.data?.result?.totalPageNumber > 0  && <div className='hidden md:block md:absolute -top-[50px] right-[260px]'>{`< ${searchParams.get('page') || 1 }/ ${products?.data?.result?.totalPageNumber} >`}</div>}
+           {products?.data?.result?.totalPageNumber > 0  && <div className='hidden md:block md:absolute -top-[50px] right-[280px]'>{`< ${searchParams.get('page') || 1 }/ ${products?.data?.result?.totalPageNumber} >`}</div>}
             {
                 (products?.data?.result?.data?.length > 0) ?
                     <div className='grid grid-cols-2 lg:grid-cols-3 gap-5'>

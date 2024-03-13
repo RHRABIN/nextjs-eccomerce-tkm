@@ -7,6 +7,7 @@ import AddToCartButton from './AddToCartButton';
 import Link from 'next/link';
 import Image from 'next/image';
 import Rating from '../rating/Rating';
+import { Collapse } from 'antd';
 
 const ProductDescription = ({ product }) => {
     const { name, totalRating, manufacturer, tags, price, offerPrice, description, directions, ingredients, variation, shipping, activities, badge } = product || {};
@@ -50,7 +51,7 @@ const ProductDescription = ({ product }) => {
             <div className='flex flex-wrap gap-2 mt-4'>
                 {
                     tags?.map((tag) =>
-                        <span key={tag} className='bg-[rgb(245,245,245)] text-gray-800 py-0.5 px-1 text-xs'>{tag}</span>
+                        <span key={tag} className='bg-[rgb(219,219,219)] text-gray-800 py-0.5 px-1 text-xs'>{tag}</span>
                     )
                 }
             </div>
@@ -69,21 +70,55 @@ const ProductDescription = ({ product }) => {
                 </div>
             }
 
-            <div className='mt-2'>
-                <AccordionClient title={'ACTIVITIES'} isDropdown={true}>
-                    <DangerHtml getText={activities} padding={true} />
-                </AccordionClient>
-                <AccordionClient title={'DIRECTIONS'} isDropdown={true}>
-                    <DangerHtml getText={directions} padding={true} />
-                </AccordionClient>
-                <AccordionClient title={'INGREDIENTS'} isDropdown={true}>
-                    <DangerHtml getText={ingredients} padding={true} />
-                </AccordionClient>
-                <AccordionClient title={'SHIPPING'} isDropdown={true}>
-                    <p className='p-2 text-gray-800 font-[300] leading-8 text-sm'>
-                        <DangerHtml getText={shipping} padding={true} />
-                    </p>
-                </AccordionClient>
+            <div className='mt-4'>
+            <Collapse
+                size="small"
+                expandIconPosition='right'
+                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
+                items={[
+                    {
+                        key: '1',
+                        label: 'ACTIVITIES',
+                        children: <DangerHtml getText={activities} padding={true} />
+                    },
+                ]}
+            />
+            <Collapse
+                size="small"
+                expandIconPosition='right'
+                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
+                items={[
+                    {
+                        key: '1',
+                        label: 'DIRECTIONS',
+                        children: <DangerHtml getText={directions} padding={true} />
+                    },
+                ]}
+            />
+            <Collapse
+                size="small"
+                expandIconPosition='right'
+                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
+                items={[
+                    {
+                        key: '1',
+                        label: 'INGREDIENTS',
+                        children: <DangerHtml getText={ingredients} padding={true} />
+                    },
+                ]}
+            />
+            <Collapse
+                size="small"
+                expandIconPosition='right'
+                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
+                items={[
+                    {
+                        key: '1',
+                        label: 'SHIPPING',
+                        children: <DangerHtml getText={shipping} padding={true} />
+                    },
+                ]}
+            />
             </div>
         </div>
     );

@@ -24,11 +24,11 @@ const ProductDetailsPage = async ({ params }) => {
    
     return (
         <div className='container mx-auto my-4 md:my-12'>
-            <div className='mb-4 px-4 md:px-0'>{
+            {/* <div className='mb-4 px-4 md:px-0'>{
                 product?.breadcrumb?.map((br, idx) => <Link className='text-blue-500 
                 hover:underline hover:text-red-500 ' href={`/products?category=${br.slug}`} key={br.slug}>{br.title} <span className={`${idx == product.breadcrumb.length - 1 ? 'hidden' : ''}`}>/</span> </Link>)
-            }
-            </div>
+                }
+            </div> */}
             <div className='mx-4 md:mx-0'>
                 <div className='md:flex items-start gap-8'>
                     <div className='w-full md:w-1/2 flex gap-2 mb-4 lg:mb-0 md:sticky md:top-10 flex-col-reverse md:flex-row'>
@@ -37,7 +37,7 @@ const ProductDetailsPage = async ({ params }) => {
                                 images?.map((img) =>
                                     <Image
                                         key={img}
-                                        className='h-auto md:w-full border mb-2'
+                                        className='w-[70px] h-[70px] border mb-2'
                                         height={720}
                                         width={1280}
                                         src={img}
@@ -50,7 +50,7 @@ const ProductDetailsPage = async ({ params }) => {
                         </div>
                     </div>
                     {/* right side bar */}
-                    <div className='w-full md:w-1/2 md:-mt-[34px]'>
+                    <div className='w-full md:w-1/2'>
                         <ProductDescription product={product?.result} />
                     </div>
                 </div>

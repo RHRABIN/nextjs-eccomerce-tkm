@@ -39,9 +39,9 @@ const SearchSidebar = ({ isMobile, setOpenDrawer, totalProducts }) => {
             </div>}
             <div className={`${isMobile ? 'max-h-[65vh] overflow-auto mobile-scrollbar' : ''}`}>
 
-                <Accordion />
+                <Accordion size={18} />
                 
-                <div className="flex justify-between text-black mt-2 font-semibold px-2 md:px-0">
+                <div className="flex justify-between text-black mt-2 px-2 md:px-0">
 
                     {
                       queryPrice ? <>
@@ -49,8 +49,8 @@ const SearchSidebar = ({ isMobile, setOpenDrawer, totalProducts }) => {
                         <span>{queryPrice.split('-')[1]}</span>
                       </> : 
                       <>
-                        <span>0</span>
-                        <span>5000</span>
+                        <span>৳0</span>
+                        <span>৳5000</span>
                       </>
                     }
                 </div>

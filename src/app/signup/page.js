@@ -21,7 +21,7 @@ const SignupPage = () => {
                             <FcGoogle className='text-3xl' />
                         </button>
                     </div>
-                    <p className='text-xs md:text-sm text-center mt-4'>Already have an account? please <Link href='/login' className='text-[#0000EE] hover:underline'>login</Link></p>
+                    <p className='text-xs md:text-sm text-center mt-4'>Already have an account? please <Link href='/login' className='text-primary hover:underline'>login</Link></p>
                 </div>
             </div>
         </div>

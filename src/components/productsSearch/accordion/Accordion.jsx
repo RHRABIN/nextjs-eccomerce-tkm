@@ -90,7 +90,7 @@ const Accordion = () => {
                                     />
                                     <label
                                         htmlFor={child?._id}
-                                        className={`hover:bg-[#dfe1e3] rounded font-semibold text-[#212529] cursor-pointer w-full block px-2 py-1 text-[12px]`}>
+                                        className={`hover:bg-[#dfe1e3] rounded text-[#212529] cursor-pointer w-full block px-2 py-1 text-[12px]`}>
                                         {child.title}
                                     </label>
                                 </div>
@@ -116,7 +116,7 @@ const Accordion = () => {
                                 />
                                 <label
                                     htmlFor={weight?._id}
-                                    className={`hover:bg-[#f2fafe] hover:text-primary font-semibold text-[#212529] cursor-pointer w-full block px-2 py-1 text-[12px]`}>
+                                    className={`hover:bg-[#f2fafe] hover:text-primary text-[#212529] cursor-pointer w-full block px-2 py-1 text-[12px]`}>
                                     {weight.name}
                                 </label>
                             </div>
