@@ -6,6 +6,7 @@ import MoreProducts from '@/components/productDetails/MoreProducts';
 import ReviewSection from '@/components/productDetails/reviewSection';
 import { getSingleProduct } from '@/config/productsApi';
 import Link from 'next/link';
+import ImageSection from '@/components/productDetails/ImageSection';
 
 export async function generateMetadata({ params }) {
     const { slug } = params || {};
@@ -21,7 +22,7 @@ const ProductDetailsPage = async ({ params }) => {
     const { slug } = params || {};
     const { data: product } = await getSingleProduct(slug) || {};
     const { name, images, _id, manufacturer, profileImage } = product?.result || {};
-   
+
     return (
         <div className='container mx-auto my-4 md:my-12'>
             {/* <div className='mb-4 px-4 md:px-0'>{
@@ -46,6 +47,10 @@ const ProductDetailsPage = async ({ params }) => {
                             }
                         </div>
                         <div className='w-full'>
+                            <ImageSection
+                                imgAlt={'img'}
+                                imgSrc={images?.[0]}
+                            />
                             <Image className='h-auto w-full' height={720} width={1280} src={profileImage ? profileImage : images?.[0]} alt={name} />
                         </div>
                     </div>
