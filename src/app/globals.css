@@ -194,6 +194,7 @@
     border: solid #0079bf;
     border-width: 0 1px 1px 0;
     transform: rotate(45deg);
+<<<<<<< HEAD
 }
 
 .custom-checkbox input:checked+label {
@@ -220,3 +221,36 @@ strong {
     background-color: transparent !important;
     border-top: none !important;
 } */
+=======
+  }
+
+  .custom-checkbox input:checked + label{
+    background-color: #dfe1e3;
+  }
+
+  strong{
+    font-weight: 700;
+  }
+
+
+
+.ant-collapse>.ant-collapse-item {
+    border-bottom: none !important;
+}
+
+.ant-collapse .ant-collapse-content {
+    /* background-color: transparent !important; */
+    border-top: none !important;
+}
+
+.ant-slider .ant-slider-handle::after{
+    box-shadow: 0 0 0 2px #000 !important;
+}
+
+.ant-pagination .ant-pagination-item-active{
+    border-color: #000;
+}
+.ant-pagination .ant-pagination-item-active a{
+    color: #ed143d;
+}
+>>>>>>> 6e166fa7542cbb77676a0982a761e7536aacd9d2

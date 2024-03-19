@@ -50,7 +50,7 @@ const ProductDescription = ({ product }) => {
             <div className='flex flex-wrap gap-2 mt-4'>
                 {
                     tags?.map((tag) =>
-                        <span key={tag} className='bg-[rgb(245,245,245)] text-gray-800 py-0.5 px-1 text-xs'>{tag}</span>
+                        <span key={tag} className='bg-[rgb(219,219,219)] text-gray-800 py-0.5 px-1 text-xs'>{tag}</span>
                     )
                 }
             </div>
@@ -69,6 +69,7 @@ const ProductDescription = ({ product }) => {
                 </div>
             }
 
+<<<<<<< HEAD
             <div className='mt-2'>
                 <Collapse
                     size="small"
@@ -124,6 +125,57 @@ const ProductDescription = ({ product }) => {
                         <DangerHtml getText={shipping} padding={true} />
                     </p>
                 </AccordionClient> */}
+=======
+            <div className='mt-4'>
+            <Collapse
+                size="small"
+                expandIconPosition='right'
+                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
+                items={[
+                    {
+                        key: '1',
+                        label: 'ACTIVITIES',
+                        children: <DangerHtml getText={activities} padding={true} />
+                    },
+                ]}
+            />
+            <Collapse
+                size="small"
+                expandIconPosition='right'
+                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
+                items={[
+                    {
+                        key: '1',
+                        label: 'DIRECTIONS',
+                        children: <DangerHtml getText={directions} padding={true} />
+                    },
+                ]}
+            />
+            <Collapse
+                size="small"
+                expandIconPosition='right'
+                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
+                items={[
+                    {
+                        key: '1',
+                        label: 'INGREDIENTS',
+                        children: <DangerHtml getText={ingredients} padding={true} />
+                    },
+                ]}
+            />
+            <Collapse
+                size="small"
+                expandIconPosition='right'
+                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
+                items={[
+                    {
+                        key: '1',
+                        label: 'SHIPPING',
+                        children: <DangerHtml getText={shipping} padding={true} />
+                    },
+                ]}
+            />
+>>>>>>> 6e166fa7542cbb77676a0982a761e7536aacd9d2
             </div>
         </div>
     );

@@ -16,10 +16,26 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                 size="small"
                 expandIconPosition='right'
                 className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
+                // items={[
+                //     {
+                //         key: '1',
+                //         label: 'BEST SELLER',
+                        // children: <div className='flex overflow-x-scroll details-image gap-2'>
+                        //     {
+                        //         bestSellingProducts?.map(product =>
+                        //             <div key={product?._id} className='px-2 pb-5 min-w-[10rem]'>
+                        //                 <ProductCard product={product} />
+                        //             </div>
+                        //         )
+                        //     }
+                        // </div>
+                //     },
+                // ]}
                 items={[
                     {
                         key: '1',
                         label: 'BEST SELLER',
+<<<<<<< HEAD
                         children:
                             <Slider {...productSettings} className='mb-10'>
                                 {
@@ -30,6 +46,17 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                     )
                                 }
                             </Slider>
+=======
+                        children: <Slider {...productSettings} className='mb-10 h-[390px]'>
+                            {
+                                bestSellingProducts?.map(product =>
+                                    <div key={product?._id} className='px-2 pb-5 min-w-[10rem]'>
+                                        <ProductCard product={product} />
+                                    </div>
+                                )
+                            }
+                        </Slider>
+>>>>>>> 6e166fa7542cbb77676a0982a761e7536aacd9d2
                     },
                 ]}
             />
@@ -101,6 +128,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                     {
                         key: '1',
                         label: 'ROUTINE',
+<<<<<<< HEAD
                         children:
                             <Slider {...productSettings} className='mb-10'>
                                 {
@@ -119,6 +147,42 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                     )
                                 }
                             </Slider>
+=======
+                        // children: <div className='flex overflow-x-scroll details-image gap-2 '>
+                        //     {
+                        //         routineCategory?.map(category =>
+                        //             <div key={category?._id} className='px-2 min-w-[10rem]'>
+                        //                 <Link href={`/products?category=${category?.slug}`} className='relative'>
+                        //                     <Image
+                        //                         className='w-full'
+                        //                         height={720}
+                        //                         width={1280}
+                        //                         quality={100}
+                        //                         src={category?.image ? category?.image : img} alt={category?.title} />
+                        //                     <p className='absolute bottom-5 text-center w-full'>{category?.title}</p>
+                        //                 </Link>
+                        //             </div>
+                        //         )
+                        //     }
+                        // </div>
+                        children: <Slider {...productSettings} className='mb-10'>
+                            {
+                                routineCategory?.map(category =>
+                                    <div key={category?._id} className='px-2 min-w-[10rem]'>
+                                        <Link href={`/products?category=${category?.slug}`} className='relative'>
+                                            <Image
+                                                className='w-full'
+                                                height={720}
+                                                width={1280}
+                                                quality={100}
+                                                src={category?.image ? category?.image : img} alt={category?.title} />
+                                            <p className='absolute bottom-5 text-center w-full'>{category?.title}</p>
+                                        </Link>
+                                    </div>
+                                )
+                            }
+                        </Slider>
+>>>>>>> 6e166fa7542cbb77676a0982a761e7536aacd9d2
                     },
                 ]}
             />

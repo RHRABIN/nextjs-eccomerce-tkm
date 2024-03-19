@@ -25,7 +25,7 @@ const MobileNav = ({ user, toggle, setToggle, handleLogout, loginSuccess }) => {
 
     return (
         <nav className={`bg-secondary text-dark px-4 transition-all ease-in-out duration-500 ${toggle ? 'min-h-screen overflow-visible lg:overflow-hidden lg:invisible lg:h-0 visible  pb-4' : 'h-0 overflow-hidden invisible'}`}>
-            <ul>
+            <ul className='pt-2'>
                 {categories?.length > 0 &&
                     categories?.map(category => category?.children?.length > 0 ?
                         category?.title?.toLowerCase() === 'brands' ?
@@ -34,7 +34,7 @@ const MobileNav = ({ user, toggle, setToggle, handleLogout, loginSuccess }) => {
                                 title={category?.title}
                             >
 
-                                <li onClick={() => setToggle(false)} className='hover:text-white border-b border-b-dark border-opacity-10 py-2'><Link href='/brands' className='w-full block'>All Brands (A-Z)</Link></li>
+                                <li onClick={() => setToggle(false)} className='text-[#7aa93c] border-b border-b-dark border-opacity-10 py-2'><Link href='/brands' className='w-full block'>All Brands (A-Z)</Link></li>
                             </MobileSubNavButtonClient> :
                             <MobileSubNavButtonClient
                                 key={category?._id}
@@ -56,7 +56,7 @@ const MobileNav = ({ user, toggle, setToggle, handleLogout, loginSuccess }) => {
                                     )
                                 }
                             </MobileSubNavButtonClient> :
-                        <li onClick={() => setToggle(false)} key={category?._id} className='hover:text-white border-b border-b-dark border-opacity-10 py-2'><Link href={`/products?category=${category?.slug}`} className='w-full block'>{category?.title}</Link></li>
+                        <li onClick={() => setToggle(false)} key={category?._id} className='hover:text-white hover:uppercase border-b border-b-dark border-opacity-10 py-2'><Link href={`/products?category=${category?.slug}`} className='w-full block'>{category?.title}</Link></li>
                     )
                 }
                 {

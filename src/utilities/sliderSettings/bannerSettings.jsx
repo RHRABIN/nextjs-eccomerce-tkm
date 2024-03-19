@@ -5,7 +5,7 @@ export const bannerSettings = {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 2000,
+    speed: 1500,
     autoplaySpeed: 6000,
     arrows: false,
     

@@ -3,7 +3,7 @@ import SearchSidebar from '@/components/productsSearch/sidebar/SearchSidebar';
 import { Drawer } from 'antd';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
-import { MdKeyboardBackspace } from "react-icons/md";
+import { BsArrowRight } from "react-icons/bs";
 
 
 const DefaultSortClient = ({total}) => {
@@ -21,8 +21,8 @@ const DefaultSortClient = ({total}) => {
 
             <Drawer
                 title={<button onClick={() => setOpenDrawer(false)} className='flex items-center gap-2'>
-                <MdKeyboardBackspace height={18} width={18} />
-                Back
+                BACK
+                <BsArrowRight />
                 </button>}
                 open={openDrawer}
                 onClose={() => setOpenDrawer(false)}
