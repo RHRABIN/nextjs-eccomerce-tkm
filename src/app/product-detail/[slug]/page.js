@@ -21,7 +21,7 @@ export async function generateMetadata({ params }) {
 const ProductDetailsPage = async ({ params }) => {
     const { slug } = params || {};
     const { data: product } = await getSingleProduct(slug) || {};
-    const { name, images, _id, manufacturer, profileImage } = product?.result || {};
+    const { name, altTag, images, _id, manufacturer, profileImage } = product?.result || {};
 
     return (
         <div className='container mx-auto my-4 md:my-12'>
@@ -48,10 +48,10 @@ const ProductDetailsPage = async ({ params }) => {
                         </div>
                         <div className='w-full'>
                             <ImageSection
-                                imgAlt={'img'}
+                                imgAlt={altTag}
                                 imgSrc={images?.[0]}
                             />
-                            <Image className='h-auto w-full' height={720} width={1280} src={profileImage ? profileImage : images?.[0]} alt={name} />
+                            {/* <Image className='h-auto w-full' height={720} width={1280} src={profileImage ? profileImage : images?.[0]} alt={name} /> */}
                         </div>
                     </div>
                     {/* right side bar */}

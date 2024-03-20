@@ -2,14 +2,14 @@
 import React from 'react';
 import ReactImageMagnify from 'react-image-magnify';
 
-const ImageSection = ({ imgSrc }) => {
+const ImageSection = ({ imgSrc, imgAlt }) => {
     return (
         <div>
             <ReactImageMagnify {...{
                 smallImage: {
-                    alt: 'Wristwatch by Ted Baker London',
+                    alt: imgAlt,
                     isFluidWidth: true,
-                    src: imgSrc
+                    src: imgSrc,
                 },
                 largeImage: {
                     src: imgSrc,
