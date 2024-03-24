@@ -61,7 +61,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                             {
                                 skinCategory?.map(category =>
                                     <div key={category?._id} className='px-2 pb-5'>
-                                        <Link href={`/products?category=${category?.slug}`} className='relative'>
+                                        <Link href={`/products?subcat=${category?.slug}`} className='relative'>
                                             <Image
                                                 className='w-full'
                                                 height={720}
@@ -90,7 +90,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                             {
                                 concernCategory?.map(category =>
                                     <div key={category?._id} className='px-2 pb-5'>
-                                        <Link href={`/products?category=${category?.slug}`} className='relative'>
+                                        <Link href={`/products?subcat=${category?.slug}`} className='relative'>
                                             <Image
                                                 className='w-full'
                                                 height={720}
@@ -136,7 +136,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                             {
                                 routineCategory?.map(category =>
                                     <div key={category?._id} className='px-2 min-w-[10rem]'>
-                                        <Link href={`/products?category=${category?.slug}`} className='relative'>
+                                        <Link href={`/products?subcat=${category?.slug}`} className='relative'>
                                             <Image
                                                 className='w-full'
                                                 height={720}
