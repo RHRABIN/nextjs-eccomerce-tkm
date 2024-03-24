@@ -35,7 +35,7 @@ const ProductDetailsPage = async ({ params }) => {
                     <div className='w-full md:w-1/2 flex gap-2 mb-4 lg:mb-0 md:sticky md:top-10 flex-col-reverse md:flex-row'>
                         <div className='w-1/4 md:overflow-y-scroll h-fit flex gap-2 md:gap-0 md:block lg:h-[28rem] details-image'>
                             {
-                                images?.map((img) =>
+                                [...images]?.map((img) =>
                                     <Image
                                         key={img}
                                         className='w-[70px] h-[70px] border mb-2'
@@ -49,7 +49,7 @@ const ProductDetailsPage = async ({ params }) => {
                         <div className='w-full'>
                             <ImageSection
                                 imgAlt={altTag}
-                                imgSrc={images?.[0]}
+                                images={[...images]}
                             />
                             {/* <Image className='h-auto w-full' height={720} width={1280} src={profileImage ? profileImage : images?.[0]} alt={name} /> */}
                         </div>

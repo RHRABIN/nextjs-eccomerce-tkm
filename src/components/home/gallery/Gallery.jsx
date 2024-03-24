@@ -14,11 +14,13 @@ const Gallery = async () => {
                     helped you achieve that skin glow you have always dreamt about.</p>
 
                 <div className='grid grid-cols-3 lg:grid-cols-4 gap-2 md:gap-5 mt-10'>
-                    {
-                        galleries?.data?.map(photo =>
-                            <Image key={photo?._id} className='w-full h-auto md:h-80' height={720} width={1280} src={photo?.image} alt='community-image' />
-                        )
-                    }
+                    
+                        {
+                            galleries?.data?.map(photo =>
+                                <Image key={photo?._id} className='w-full h-[130px] md:h-80' height={720} width={1280} src={photo?.image} alt='community-image' />
+                            )
+                        }
+                   
                 </div>
             </div>
         </div>
