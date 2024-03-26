@@ -115,7 +115,7 @@ const Header = () => {
 
                         <div className='w-1/2 flex items-center justify-center'>
                             <Link href='/' className='w-fit'>
-                                <Image height={600} width={500} className="w-80 hidden lg:block" src={logo} alt="logo" />
+                                <Image height={600} width={500} className="w-80 lg:max-h-[70px] hidden lg:block" src={logo} alt="logo" />
                                 <Image height={600} width={500} className="w-80 lg:hidden" src={mLogo} alt="logo" />
                             </Link>
                         </div>
