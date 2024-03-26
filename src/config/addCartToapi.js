@@ -6,7 +6,9 @@ const { baseUrl } = require("./baseUrl");
 const getAddToCartDataByEmail = async (email) => {
     let response;
     try {
-        response = await axios.post(`${baseUrl}/cart/myCart/${email}`);
+        if(email){
+            response = await axios.post(`${baseUrl}/cart/myCart/${email}`);
+        }
         return response;
     } catch (error) {
         console.error(error);

@@ -97,10 +97,10 @@ const getCampaignProducts = async (slug) => {
 
 
 // get brands Products
-const getBrandProductsByBrandSlug = async (brandId, page = "?page=1") => {
+const getBrandProductsByBrandSlug = async (slugUrl) => {
     let response;
     try {
-        response = await axios.post(`${baseUrl}/product/brand-products/slug/${brandId}${page}`);
+        response = await axios.post(`${baseUrl}/product/brand-products/slug/${slugUrl}`);
         return response;
     } catch (error) {
         console.error(error);

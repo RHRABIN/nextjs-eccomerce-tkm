@@ -25,12 +25,23 @@ const Header = () => {
 
 
     useEffect(() => {
+        let isIgnore = false;
+
         const searchMutation = async () => {
-            const data = await getSearchSuggestion(suggestSearch);
-            setSearchData(data?.data?.tags)
+            if(suggestSearch){
+                const data = await getSearchSuggestion(suggestSearch);
+                setSearchData(data?.data?.tags)
+            }
 
         }
-        searchMutation();
+        
+        if(!isIgnore){
+            searchMutation();
+        }
+
+        return ()=>{
+            isIgnore = true;
+        }
     }, [suggestSearch])
 
 

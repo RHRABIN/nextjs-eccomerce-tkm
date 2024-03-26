@@ -6,21 +6,27 @@ import { useEffect, useState } from 'react';
 
 const MobileNav = ({ user, toggle, setToggle, handleLogout, loginSuccess }) => {
     const [categories, setCategories] = useState([]);
-    const [brands, setBrands] = useState([]);
 
     useEffect(() => {
+        let isIgnore = false;
+
         const fetchBrandsAndCategories = async () => {
-            const [categoriesResponse, brandsResponse] = await Promise.all([
+            const [categoriesResponse] = await Promise.all([
                 getCategories(),
-                getAllBrands()
             ]);
             const { data: getCategory } = categoriesResponse || {};
-            const { data: getBrands } = brandsResponse || {};
 
             setCategories(getCategory?.result);
-            setBrands(getBrands?.result);
         }
-        fetchBrandsAndCategories();
+
+        if(!isIgnore){
+            fetchBrandsAndCategories();
+        }
+
+        // cleanup
+        return ()=>{
+            isIgnore = true;
+        }
     }, []);
 
     return (

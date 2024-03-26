@@ -17,8 +17,10 @@ const CartDrawer = () => {
     useEffect(() => {
         const cartMutation = async () => {
             try {
-                const response = await axios.post(`${baseUrl}/cart/myCart/${user?.data?.user?.email}`);
-                setCartData(response?.data?.data);
+                if(user?.data?.user?.email){
+                    const response = await axios.post(`${baseUrl}/cart/myCart/${user?.data?.user?.email}`);
+                    setCartData(response?.data?.data);
+                }
             } catch (error) {
                 console.error(error);
             }
