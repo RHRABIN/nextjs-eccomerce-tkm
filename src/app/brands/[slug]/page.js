@@ -60,22 +60,44 @@ const BrandProductPage = async ({ params }) => {
     return (
         <div className='container mx-auto my-10'>
             <div className='mx-4 md:mx-0'>
-                <div className='flex items-center gap-2'>
-                    <Link href='/'><IoHomeSharp /></Link>
-                    <Link href='/brands'> / Brands</Link>
-                </div>
+                {
+                    !brandProduct?.brand?.image && <>
+                    <div className='flex items-center gap-2'>
+                        <Link href='/'><IoHomeSharp /></Link>
+                        <Link href='/brands'> / Brands</Link>
+                     </div>
+
+                      <div className='text-md flex justify-end gap-4 -mt-[18px]'>
+                      <div className=''>Items: {totalProducts || 0}</div>
+                      
+                      {brandProduct?.totalPageNumber > 0  && <div className=''>{`< ${searchParams.get('page') || 1 }/ ${brandProduct?.totalPageNumber} >`}</div>}
+                     </div>
+                    </>
+                }
+                
                 <div className='flex flex-col items-center mb-4 md:mb-8 md:max-w-[760px] m-auto px-4'>
                     <p className='text-gray-800 text-3xl md:text-[40px] mb-3'>
                     {brandProduct?.brand?.name ? brandProduct?.brand?.name :'Brand Products'}</p>
                     <Image className='w-fit' height={500} width={1000} src={waveImg} alt='wave' />
                 </div>
                 {
-                    brandProduct?.brand?.image && <div>
-                        <Image className='w-fit' height={500} width={1000} src={brandProduct?.brand?.image} alt='wave' />
+                    brandProduct?.brand?.image && <div className=' mx-auto !ml-auto'>
+                        <Image height={500} width={2000} src={brandProduct?.brand?.image} alt='brand-image' />
+                        <div className='bg-black p-[4px] md:p-[6px] mt-[2px]'></div>
+
+                        <div className='flex items-center gap-2 mt-4'>
+                            <Link href='/'><IoHomeSharp /></Link>
+                            <Link href='/brands'> / Brands</Link>
+                        </div>
+
+                        <div className='text-md flex justify-end gap-4 -mt-[18px]'>
+                            <div className=''>Items: {totalProducts || 0}</div>
+                            {brandProduct?.totalPageNumber > 0  && <div className=''>{`< ${searchParams.get('page') || 1 }/ ${brandProduct?.totalPageNumber} >`}</div>}
+                        </div>
                     </div>
                 }
                 {
-                   totalProducts > 0 ? <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                   totalProducts > 0 ? <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4'>
                         {
                             brandProduct?.result?.map(product =>
                                 <ProductCard
@@ -86,6 +108,7 @@ const BrandProductPage = async ({ params }) => {
                         }
                     </div> : <p className='text-center md:text-2xl font-medium my-10'>There is no products on this brand</p>
                 }
+
             </div>
             <div className='flex items-center justify-center mv-2 mt-16 md:mt-8'>
                 <Pagination

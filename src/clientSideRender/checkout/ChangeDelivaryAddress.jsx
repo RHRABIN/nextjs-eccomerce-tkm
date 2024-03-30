@@ -7,7 +7,7 @@ const ChangeDelivaryAddress = () => {
     const [openModal, setModalOpen] = useState(false);
     return (
         <span>
-            <button onClick={() => setModalOpen(true)} className='text-blue-600 font-medium'>Change</button>
+            <button onClick={() => setModalOpen(true)} className='text-blue-600 font-medium ml-2'>Change</button>
             <Modal
                 title={'Delivery Address'}
                 width={800}

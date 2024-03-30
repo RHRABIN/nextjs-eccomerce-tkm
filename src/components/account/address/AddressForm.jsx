@@ -104,10 +104,10 @@ const AddressForm = ({ address }) => {
                         }
                     </select>
                 </div>
-                <div>
+                {/* <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Zip Code</label>
                     <input onChange={handleAddressChange} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Zip Code' name='zipCode' type="text" />
-                </div>
+                </div> */}
 
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Select District <span className='text-red-600'>*</span></label>
@@ -117,10 +117,10 @@ const AddressForm = ({ address }) => {
                         }
                     </select>
                 </div>
-                <div>
+                {/* <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Email</label>
                     <input onChange={handleAddressChange} defaultValue={shippingEmail} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Email' name='shippingEmail' type="text" />
-                </div>
+                </div> */}
 
 
                 <div>
@@ -139,7 +139,7 @@ const AddressForm = ({ address }) => {
 
             <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Street Address <span className='text-red-600'>*</span></label>
             <input onChange={handleAddressChange} defaultValue={address?.address} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Address' name='address' type="text" />
-            <input onChange={handleAddressChange} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs mt-2' placeholder='Optional Address' type="text" />
+            
 
             <div className='flex items-center justify-end'>
                 <button className='bg-secondary text-white px-6 py-2 hover:opacity-90 rounded mt-4'>{isLoading ? 'Submit..' : 'Submit'}</button>

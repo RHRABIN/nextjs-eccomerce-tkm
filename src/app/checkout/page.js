@@ -14,7 +14,7 @@ const CheckoutPage = () => {
             <div className='mx-4 md:mx-0'>
                 <PrivateRoute />
                 <div className='border-dotted border-b pb-5 border-b-dark'>
-                    <h1 className='text-gray-800 text-2xl text-center font-medium'>Checkout</h1>
+                    <h1 className='text-gray-800 font-bold text-2xl text-center'>Checkout</h1>
                 </div>
 
                 <div className='md:flex gap-4 mt-4'>

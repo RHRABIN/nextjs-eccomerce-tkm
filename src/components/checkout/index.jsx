@@ -42,8 +42,8 @@ const CheckoutContent = () => {
             {
                 activeAddress ?
                     <div className='bg-white rounded mt-5 shadow p-2 border text-sm'>
-                        <p className='font-light'>Deliver to: {activeAddress?.data?.shippingName}</p>
-                        <p className='font-light'><span className='bg-blue-100 p-0.5 rounded-md'>Home</span> | {activeAddress?.data?.address} <ChangeDelivaryAddress /></p>
+                        <p className='font-semibold mb-2'>Deliver to: {activeAddress?.data?.shippingName}</p>
+                        <p className='font-light'><span className='bg-blue-100 p-1 rounded'>Home</span> | {activeAddress?.data?.address} <ChangeDelivaryAddress /></p>
                     </div> :
                     <p className='text-center mt-5'>No Address Found</p>
             }

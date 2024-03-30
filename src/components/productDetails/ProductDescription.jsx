@@ -24,7 +24,7 @@ const ProductDescription = ({ product }) => {
             </div>}
 
             <h1 className='uppercase  text-lg md:text-xl font-semibold mt-1 md:mt-3'>
-                <Link href={`/brand/${manufacturer?.slug}`}>{manufacturer?.name}</Link>
+                <Link href={`/brands/${manufacturer?.slug}`}>{manufacturer?.name}</Link>
             </h1>
             <h2 className='font-normal text-xl md:text-2xl text-gray-800 my-2 md:my-3'>{name}</h2>
 
