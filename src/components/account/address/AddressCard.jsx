@@ -82,7 +82,7 @@ const AddressCard = ({onCloseModal}) => {
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
             {
                 allAddress?.map(adrs =>
-                    <div key={adrs?._id} className={`bg-white p-4 rounded hover:shadow-md cursor-pointer border text-gray-600 mb-10 ${adrs?.selected && 'border-green-600'}`}>
+                    <div key={adrs?._id} className={`bg-white p-4 rounded hover:shadow-md cursor-pointer border text-gray-600 ${adrs?.selected && 'border-green-600'}`}>
                         <div className='flex justify-between items-center'>
                             <p className='text-sm font-[500]'>{adrs?.shippingName}</p>
                             <div className='flex justify-between items-center'>
@@ -108,14 +108,15 @@ const AddressCard = ({onCloseModal}) => {
                                 </div>
                             </div>
                         </div>
-                        <p className='text-sm my-2'>{adrs?.shippingPhone}</p>
-                        <span className='flex justify-between items-center'>
+                        <p className='text-sm mt-1'>{adrs?.shippingPhone}</p>
+                        <p className='text-sm text-[#929292]'>{adrs?.upazila}, {adrs.district}, {adrs.division}</p>
+                        <p className='flex justify-between items-center text-[#929292]'>
                             <p className='text-sm'>House No: {adrs?.address}</p>
                             {
                                 !adrs?.selected &&
                                 <button onClick={() => handleDeleteAddress(adrs?._id)} className='border p-1 rounded-md text-sm font-semibold hover:bg-red-600 hover:text-white'>{dLoading ? 'Removing..' : 'Remove'}</button>
                             }
-                        </span>
+                        </p>
                     </div>
 
                 )
