@@ -8,7 +8,8 @@ import { AuthContext } from '@/context/AuthProvider';
 import { getActiveAddress } from '@/config/addressApi';
 
 const CheckoutContent = () => {
-    const { user, deleteSuccess, checkoutSuccess, setCheckoutSuccess } = useContext(AuthContext);
+    const { user, deleteSuccess, checkoutSuccess, addressSuccess } = useContext(AuthContext);
+    
     const [cartData, setCartData] = useState(null);
     const [activeAddress, setActiveAddress] = useState(null);
 
@@ -32,9 +33,10 @@ const CheckoutContent = () => {
             fetchData()
             // setCheckoutSuccess(false)
         }
-    }, [user?.data?.user?.email, checkoutSuccess, deleteSuccess]);
+    }, [user?.data?.user?.email, checkoutSuccess, deleteSuccess, addressSuccess]);
 
-
+    const {shippingName, upazila, district, division, shippingPhone, address} = activeAddress?.data || {};
+    
     return (
         <div>
             <CheckoutNewAddress />
@@ -42,8 +44,11 @@ const CheckoutContent = () => {
             {
                 activeAddress ?
                     <div className='bg-white rounded mt-5 shadow p-2 border text-sm'>
-                        <p className='font-semibold mb-2'>Deliver to: {activeAddress?.data?.shippingName}</p>
-                        <p className='font-light'><span className='bg-blue-100 p-1 rounded'>Home</span> | {activeAddress?.data?.address} <ChangeDelivaryAddress /></p>
+                        <p className='font-semibold mb-2'>Deliver to: {shippingName}</p>
+                        <p className='font-semibold mb-2'>Phone: {shippingPhone}</p>
+                        <p className='font-semibold mb-2 text-[#929292]'>Home: {upazila}, {district}, {division}</p>
+                        <p className='font-light'><span className='bg-blue-100 p-1 rounded'>Details</span> | <span className='text-[#929292]'>{address} </span> <ChangeDelivaryAddress /></p>
+
                     </div> :
                     <p className='text-center mt-5'>No Address Found</p>
             }

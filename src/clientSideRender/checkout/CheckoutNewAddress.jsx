@@ -16,7 +16,7 @@ const CheckoutNewAddress = () => {
                 onCancel={() => setOpenModal(false)}
                 footer={false}
             >
-                <AddressForm />
+                <AddressForm onCloseModal={setOpenModal}/>
             </Modal>
         </div>
     );

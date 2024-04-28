@@ -16,7 +16,7 @@ const ChangeDelivaryAddress = () => {
                 onCancel={() => setModalOpen(false)}
                 footer={false}
             >
-                <AddressCard />
+                <AddressCard  onCloseModal={setModalOpen}/>
             </Modal>
         </span>
     );

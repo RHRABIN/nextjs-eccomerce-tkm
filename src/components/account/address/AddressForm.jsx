@@ -5,7 +5,7 @@ import { AuthContext } from '@/context/AuthProvider';
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
-const AddressForm = ({ address }) => {
+const AddressForm = ({ address, onCloseModal }) => {
     const [newAddress, setNewAddress] = useState();
     const { user, setAddressOpen, addressSuccess, setAddressSuccess } = useContext(AuthContext);
     const [division, setDivision] = useState(null);
@@ -74,6 +74,7 @@ const AddressForm = ({ address }) => {
         } catch (error) {
             console.error(error)
         } finally {
+            onCloseModal(false)
             setIsLoadng(false)
         }
     }

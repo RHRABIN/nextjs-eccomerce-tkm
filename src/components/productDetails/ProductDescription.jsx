@@ -74,7 +74,7 @@ const ProductDescription = ({ product }) => {
             <Collapse
                 size="small"
                 expandIconPosition='right'
-                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
+                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4 custom-bg'
                 items={[
                     {
                         key: '1',
@@ -86,7 +86,7 @@ const ProductDescription = ({ product }) => {
             <Collapse
                 size="small"
                 expandIconPosition='right'
-                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
+                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4 custom-bg'
                 items={[
                     {
                         key: '1',
@@ -98,7 +98,7 @@ const ProductDescription = ({ product }) => {
             <Collapse
                 size="small"
                 expandIconPosition='right'
-                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
+                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4 custom-bg'
                 items={[
                     {
                         key: '1',
@@ -110,7 +110,7 @@ const ProductDescription = ({ product }) => {
             <Collapse
                 size="small"
                 expandIconPosition='right'
-                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
+                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4 custom-bg'
                 items={[
                     {
                         key: '1',

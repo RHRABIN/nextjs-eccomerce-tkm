@@ -5,7 +5,7 @@ import { AuthContext } from '@/context/AuthProvider';
 import React, { useContext, useEffect, useState } from 'react';
 
 const OrderSummary = () => {
-    const { user, isCartSuccess, deleteSuccess } = useContext(AuthContext);
+    const { user, isCartSuccess, deleteSuccess, addressSuccess } = useContext(AuthContext);
     const [cartData, setCartData] = useState(null)
 
     const { discount, discountAmount, shippingCharge, subtotal, total } = cartData?.data?.data || {};
@@ -27,7 +27,7 @@ const OrderSummary = () => {
         if (isCartSuccess || deleteSuccess) {
             fetchData()
         }
-    }, [user?.data?.user?.email, isCartSuccess, deleteSuccess])
+    }, [user?.data?.user?.email, isCartSuccess, deleteSuccess, addressSuccess])
 
     return (
         <div className='border rounded-md bg-white shadow-lg p-4'>

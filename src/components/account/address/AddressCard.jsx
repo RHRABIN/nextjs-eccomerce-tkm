@@ -7,7 +7,7 @@ import AddressForm from './AddressForm';
 import toast from "react-hot-toast";
 import { Modal } from "antd";
 
-const AddressCard = () => {
+const AddressCard = ({onCloseModal}) => {
     const { user, addressSuccess, setAddressSuccess } = useContext(AuthContext);
     const [addressOpen, setAddressOpen] = useState(false);
     const [editAddress, setEditAddress] = useState({});
@@ -44,6 +44,8 @@ const AddressCard = () => {
         try {
             await setActiveAddress({ id }, user?.data?.user?.email);
             setSelectSuccess(!selectSuccess);
+            setAddressSuccess(true)
+            onCloseModal(false)
         } catch (error) {
             setError(error.message);
         }

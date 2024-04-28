@@ -5,16 +5,16 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const PaymentClient = ({ email, product }) => {
-    const [payment, setPayment] = useState('');
+    const [paymentType, setPaymentType] = useState('');
     const { setCheckoutCart, setIsCartSuccess } = useContext(AuthContext)
-    const { discountAmount, shippingCharge, total } = product || {};
+    const { discountAmount, shippingCharge, total, isInsideDhaka } = product || {};
 
     const handlePayment = async () => {
-        if (!payment) {
+        if (!paymentType) {
             toast.error('Please Select Payment Method')
-        } else if (payment === 'COD') {
+        } else if (paymentType === 'COD') {
             const modifiedData = {
-                paymentType: payment,
+                paymentType: paymentType,
                 totalAmount: total,
                 shippingCharge: shippingCharge,
                 status: 'pending',
@@ -33,16 +33,24 @@ const PaymentClient = ({ email, product }) => {
 
     return (
         <>
-            <div className='py-4 font-semibold text-sm flex justify-between my-5 md:my-10 items-center gap-2'>
-                <label htmlFor="cash-on" className={`${payment === 'COD' ? 'bg-primary text-white' : 'bg-white'} cursor-pointer text-xs md:text-sm border-primary border py-1 px-2 rounded-md w-1/2 text-center`}>
-                    Cash On Delivery
-                </label>
-                <input onChange={(e) => setPayment(e.target.value)} type="radio" id="cash-on" value='COD' name="paymentMethod" className="focus:ring-0 hidden" />
+        {
+            !isInsideDhaka && <p className='mt-3 text-sm font-semibold'>
+                Your Selected address is outside Dhaka. Please pay minimum 200 tk to confirm your order.
+            </p>
+        }
+            <div className={`py-2 font-semibold text-sm flex items-center gap-2 ${isInsideDhaka ? ' justify-between' : ' justify-center'}`}>
+                {
+                    isInsideDhaka && <>
+                        <label htmlFor="cash-on" className={`${paymentType === 'COD' ? 'bg-primary text-white' : 'bg-white'} cursor-pointer text-xs md:text-sm border-primary border py-1 px-2 rounded-md w-1/2 text-center`}>
+                        Cash On Delivery</label>
+                    <input onChange={(e) => setPaymentType(e.target.value)} type="radio" id="cash-on" value='COD' name="paymentMethod" className="focus:ring-0 hidden" />
+                    </>
+                }
 
-                <label htmlFor="online" className={`${payment === 'SSLCOMMERZ' ? 'bg-primary text-white' : 'bg-white'} cursor-pointer text-xs md:text-sm border-primary border py-1 px-2 rounded-md w-1/2 text-center`}>
+                <label htmlFor="online" className={`${paymentType === 'SSLCOMMERZ' ? 'bg-primary text-white' : 'bg-white'} cursor-pointer text-xs md:text-sm border-primary border py-1 px-2 rounded-md w-1/2 text-center`}>
                     Pay Now
                 </label>
-                <input onChange={(e) => setPayment(e.target.value)} type="radio" id="online" value='SSLCOMMERZ' name="paymentMethod" className="focus:ring-0 hidden" />
+                <input onChange={(e) => setPaymentType(e.target.value)} type="radio" id="online" value='SSLCOMMERZ' name="paymentMethod" className="focus:ring-0 hidden" />
             </div>
             <div className='mt-4 flex items-center justify-center'>
                 <button onClick={handlePayment} className='bg-secondary font-medium text-white px-4 py-1.5 rounded-md hover:opacity-90'>Place Order</button>

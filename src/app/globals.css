@@ -242,7 +242,9 @@
     padding-inline-start: 12px;
 }
 
-
+.custom-bg >.ant-collapse-item >.ant-collapse-content>.ant-collapse-content-box {
+    background: #f9f9f9;
+}
 
 
 
