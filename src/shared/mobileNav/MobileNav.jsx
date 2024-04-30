@@ -30,7 +30,7 @@ const MobileNav = ({ user, toggle, setToggle, handleLogout, loginSuccess }) => {
     }, []);
 
     return (
-        <nav className={`bg-secondary text-dark px-4 transition-all ease-in-out duration-500 ${toggle ? 'h-screen overflow-visible lg:overflow-hidden lg:invisible lg:h-0 visible  pb-4' : 'h-0 overflow-hidden invisible'}`}>
+        <nav className={`bg-secondary text-dark px-4 transition-all ease-in-out duration-700 ${toggle ? 'max-h-screen overflow-visible lg:overflow-hidden lg:invisible lg:h-0 visible  pb-4' : 'max-h-0 overflow-hidden invisible'}`}>
             <ul className='pt-2'>
                 {categories?.length > 0 &&
                     categories?.map(category => category?.children?.length > 0 ?

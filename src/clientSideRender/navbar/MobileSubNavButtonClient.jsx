@@ -14,7 +14,7 @@ const MobileSubNavButtonClient = ({ title, children }) => {
                 </button>
             </li>
             <ul
-                className={`w-full bg-secondary ps-4 ease-in duration-500 transition-transform ${toggle ? 'block' : 'hidden'}`}
+                className={`w-full bg-secondary ps-4 ease-in-out duration-500 transition-all ${toggle ? 'max-h-screen overflow-visible visible  pb-4' : 'max-h-0 overflow-hidden invisible'}`}
             >
                 {children}
             </ul>
