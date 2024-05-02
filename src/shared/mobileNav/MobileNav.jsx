@@ -3,6 +3,7 @@ import MobileSubNavButtonClient from '@/clientSideRender/navbar/MobileSubNavButt
 import Link from 'next/link';
 import { getCategories, getAllBrands } from '@/config/categoriesApi'
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 const MobileNav = ({ user, toggle, setToggle, handleLogout, loginSuccess }) => {
     const [categories, setCategories] = useState([]);
@@ -29,8 +30,15 @@ const MobileNav = ({ user, toggle, setToggle, handleLogout, loginSuccess }) => {
         }
     }, []);
 
+    const path = usePathname()
+
+    useEffect(()=>{
+        setToggle(false)
+    },[path])
+
+
     return (
-        <nav className={`bg-secondary text-dark px-4 transition-all ease-in-out duration-700 ${toggle ? 'max-h-screen overflow-visible lg:overflow-hidden lg:invisible lg:h-0 visible  pb-4' : 'max-h-0 overflow-hidden invisible'}`}>
+        <nav className={`bg-secondary overflow-hidden text-[#888888] px-4 transition-all ease-in-out duration-700 ${toggle ? 'max-h-screen overflow-y-scroll lg:overflow-hidden lg:invisible lg:h-0 visible  pb-4' : 'max-h-0 overflow-hidden invisible'}`}>
             <ul className='pt-2'>
                 {categories?.length > 0 &&
                     categories?.map(category => category?.children?.length > 0 ?

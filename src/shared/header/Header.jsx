@@ -12,6 +12,7 @@ import { getSearchSuggestion } from "@/config/productsApi";
 import { useRouter } from "next/navigation";
 import CartDrawer from "@/components/cartDrawer/CartDrawer";
 import MobileSearchBar from '../mobileNav/MobileSearchBar';
+import Hamburger from 'hamburger-react'
 
 const Header = () => {
     const [toggle, setToggle] = useState(false);
@@ -73,7 +74,7 @@ const Header = () => {
         <>
             <div className="bg-secondary text-white lg:bg-white lg:text-secondary">
                 <div className='container mx-auto'>
-                    <div className='mx-5 md:mx-0 py-4 md:py-7 flex items-center'>
+                    <div className='mx-5 md:mx-0 py-2 md:py-7 flex items-center'>
                         <div className="w-1/4 md:w-[300px]">
                             <div ref={suggestionBarRef} className="relative">
                                 <form onSubmit={handleSearch}>
@@ -107,9 +108,9 @@ const Header = () => {
                                     </ul>
                                 </div>
                             </div>
-                            <button onClick={() => setToggle(!toggle)} className="lg:hidden text-2xl">
-                                {toggle ? <FaXmark /> : <FaBars />}
-                            </button>
+                            
+                            <Hamburger  size={22} toggled={toggle} toggle={() => setToggle(!toggle)} />
+
                         </div>
 
 
@@ -135,6 +136,7 @@ const Header = () => {
                             <button className='lg:hidden' onClick={() => setOpenDrawer(true)} >
                                 <IoIosSearch className='text-2xl' />
                             </button>
+                            
 
                             <CartDrawer />
                         </div>
