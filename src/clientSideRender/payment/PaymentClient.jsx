@@ -35,7 +35,7 @@ const PaymentClient = ({ email, product }) => {
             toast.success('Online payment cooming soon')
             // window.location.href = `${import.meta.env.VITE_APP_API_URL
             // }/ssl/ssl-request/${userEmail}`;
-            window.location.href = `http://localhost:8000/v1/ssl/ssl-request/${email}`;
+            // window.location.href = `http://localhost:8000/v1/ssl/ssl-request/${email}`;
         }else{
             toast.error('Something went wring please try again')
         }
