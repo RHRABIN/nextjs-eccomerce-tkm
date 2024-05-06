@@ -86,11 +86,24 @@ const orderCancelMutation = async (data) => {
     }
 };
 
+
+// coupon apply
+const applyCoupon = async (data) => {
+    let response;
+    try {
+        response = await axios.post(`${baseUrl}/coupon/verify/${data.email}`, data);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 export {
     getAddToCartDataByEmail,
     addToCartNewDataByEmail,
     deleteCardDataByEmailId,
     placeSingleOrderByEmail,
     getAllOrdersByEmail,
-    orderCancelMutation
+    orderCancelMutation,
+    applyCoupon
 }

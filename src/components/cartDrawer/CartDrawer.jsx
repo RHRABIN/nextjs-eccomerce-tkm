@@ -55,7 +55,7 @@ const CartDrawer = () => {
                 }
                 footer={
                     <div>
-                        <div className='flex justify-between items-center'>
+                        <div className='flex justify-between items-center text-lg'>
                             <p>Subtotal :</p>
                             <span className='flex items-center my-2 md:justify-center mr-4'>
                                 <p className='font-semibold font-[auto] mr-1'>৳</p>

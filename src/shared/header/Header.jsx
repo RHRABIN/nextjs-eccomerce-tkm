@@ -109,7 +109,9 @@ const Header = () => {
                                 </div>
                             </div>
                             
-                            <Hamburger  size={22} toggled={toggle} toggle={() => setToggle(!toggle)} />
+                           <div className='lg:hidden'>
+                             <Hamburger  size={22} toggled={toggle} toggle={() => setToggle(!toggle)}  />
+                           </div>
 
                         </div>
 

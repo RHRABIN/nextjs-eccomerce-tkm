@@ -27,7 +27,17 @@ const PaymentClient = ({ email, product }) => {
                     setCheckoutCart(true)
                     setIsCartSuccess(true)
                 }
+            }else{
+            toast.error('Something went wring please try again')
             }
+        }
+        else if(paymentType === 'SSLCOMMERZ'){
+            toast.success('Online payment cooming soon')
+            // window.location.href = `${import.meta.env.VITE_APP_API_URL
+            // }/ssl/ssl-request/${userEmail}`;
+            window.location.href = `http://localhost:8000/v1/ssl/ssl-request/${email}`;
+        }else{
+            toast.error('Something went wring please try again')
         }
     }
 
@@ -47,14 +57,16 @@ const PaymentClient = ({ email, product }) => {
                     </>
                 }
 
-                <label htmlFor="online" className={`${paymentType === 'SSLCOMMERZ' ? 'bg-primary text-white' : 'bg-white'} cursor-pointer text-xs md:text-sm border-primary border py-1 px-2 rounded-md w-1/2 text-center`}>
+                <label htmlFor="online" className={`${paymentType === 'SSLCOMMERZ' ? 'bg-primary text-white' : 'bg-white'} cursor-pointer text-xs md:text-sm border-primary border py-1 px-2 rounded-md text-center ${isInsideDhaka ? 'w-1/2' : 'w-4/5 mt-4'}`}>
                     Pay Now
                 </label>
                 <input onChange={(e) => setPaymentType(e.target.value)} type="radio" id="online" value='SSLCOMMERZ' name="paymentMethod" className="focus:ring-0 hidden" />
             </div>
-            <div className='mt-4 flex items-center justify-center'>
-                <button onClick={handlePayment} className='bg-secondary font-medium text-white px-4 py-1.5 rounded-md hover:opacity-90'>Place Order</button>
-            </div>
+           {
+             <div className='mt-4 flex items-center justify-center'>
+             <button onClick={handlePayment} className='bg-secondary font-medium text-white px-6 py-1.5 rounded-md hover:opacity-90'>Place Order</button>
+            </div> 
+           }
         </>
     );
 };
