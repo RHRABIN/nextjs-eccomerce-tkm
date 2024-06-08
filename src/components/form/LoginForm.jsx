@@ -33,7 +33,10 @@ const LoginForm = () => {
                     if (response?.data) {
                         router.push('/');
                         toast.success('Login Successfull')
-                        setLoginSuccess(!loginSuccess)
+                        setLoginSuccess(!loginSuccess);
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 500);
                     } else {
                         setIsError(true)
                     }

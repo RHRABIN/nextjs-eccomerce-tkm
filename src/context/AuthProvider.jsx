@@ -17,6 +17,8 @@ const AuthProvider = ({ children }) => {
     const handleLogout = () => {
         localStorage.removeItem('auth')
         setLoginSuccess(!loginSuccess)
+
+        window.location.reload()
     }
 
     useEffect(() => {

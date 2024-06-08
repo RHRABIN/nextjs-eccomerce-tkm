@@ -2,10 +2,11 @@
 import { createAddress, updateAddress } from '@/config/addressApi';
 import { getAllDistrict, getAllDivisions, getAllSubDistrict } from '@/config/shippingApi';
 import { AuthContext } from '@/context/AuthProvider';
+import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
-const AddressForm = ({ address, onCloseModal }) => {
+const AddressForm = ({ address={}, onCloseModal }) => {
     const [newAddress, setNewAddress] = useState();
     const { user, setAddressOpen, addressSuccess, setAddressSuccess } = useContext(AuthContext);
     const [division, setDivision] = useState(null);
@@ -13,28 +14,55 @@ const AddressForm = ({ address, onCloseModal }) => {
     const [subDistrict, setSubDistrict] = useState(null);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoadng] = useState(false)
+    const router = useRouter()
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchDivisions = async () => {
             try {
-                const [divisionsResponse, districtsResponse, subDistrictsResponse] = await Promise.all([
-                    getAllDivisions(),
-                    getAllDistrict(newAddress?.division),
-                    getAllSubDistrict(newAddress?.district)
-                ]);
+                const divisionsResponse = await getAllDivisions();
                 setDivision(divisionsResponse?.data);
-                setDistrict(districtsResponse?.data);
-                setSubDistrict(subDistrictsResponse?.data);
                 setLoading(false);
             } catch (error) {
                 console.error(error);
-                toast.error("Failed to fetch address data");
+                toast.error("Failed to fetch divisions");
             }
         };
 
-        fetchData();
+        fetchDivisions();
+    }, []);
 
-    }, [newAddress]);
+    useEffect(() => {
+        if (!newAddress?.division) return;
+
+        const fetchDistricts = async () => {
+            try {
+                const districtsResponse = await getAllDistrict(newAddress.division);
+                setDistrict(districtsResponse?.data);
+            } catch (error) {
+                console.error(error);
+                toast.error("Failed to fetch districts");
+            }
+        };
+
+        fetchDistricts();
+    }, [newAddress?.division]);
+
+    useEffect(() => {
+        if (!newAddress?.district) return;
+
+        const fetchSubDistricts = async () => {
+            try {
+                const subDistrictsResponse = await getAllSubDistrict(newAddress.district);
+                setSubDistrict(subDistrictsResponse?.data);
+            } catch (error) {
+                console.error(error);
+                toast.error("Failed to fetch subdistricts");
+            }
+        };
+
+        fetchSubDistricts();
+    }, [newAddress?.district]);
+
 
     const { _id, shippingName, shippingPhone, shippingEmail } = address || {};
 
@@ -74,7 +102,7 @@ const AddressForm = ({ address, onCloseModal }) => {
         } catch (error) {
             console.error(error)
         } finally {
-            onCloseModal(false)
+            window.location.reload()
             setIsLoadng(false)
         }
     }
