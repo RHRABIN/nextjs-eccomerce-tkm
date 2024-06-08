@@ -5,7 +5,7 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const PaymentClient = ({ email, product }) => {
-    const [paymentType, setPaymentType] = useState('');
+    const [paymentType, setPaymentType] = useState('COD');
     const { setCheckoutCart, setIsCartSuccess } = useContext(AuthContext)
     const { discountAmount, shippingCharge, total, isInsideDhaka } = product || {};
 
@@ -49,7 +49,12 @@ const PaymentClient = ({ email, product }) => {
             </p>
         }
             <div className={`py-2 font-semibold text-sm flex items-center gap-2 ${isInsideDhaka ? ' justify-between' : ' justify-center'}`}>
-                {
+                
+                    <label htmlFor="cash-on" className={`${paymentType === 'COD' ? 'bg-primary text-white' : 'bg-white'} cursor-pointer text-xs md:text-sm border-primary border py-1 px-2 rounded-md w-1/2 text-center`}>
+                    Cash On Delivery</label>
+                <input onChange={(e) => setPaymentType(e.target.value)} type="radio" id="cash-on" value='COD' name="paymentMethod" className="focus:ring-0 hidden" />
+                
+                {/* {
                     isInsideDhaka && <>
                         <label htmlFor="cash-on" className={`${paymentType === 'COD' ? 'bg-primary text-white' : 'bg-white'} cursor-pointer text-xs md:text-sm border-primary border py-1 px-2 rounded-md w-1/2 text-center`}>
                         Cash On Delivery</label>
@@ -59,7 +64,7 @@ const PaymentClient = ({ email, product }) => {
 
                 <label htmlFor="online" className={`${paymentType === 'SSLCOMMERZ' ? 'bg-primary text-white' : 'bg-white'} cursor-pointer text-xs md:text-sm border-primary border py-1 px-2 rounded-md text-center ${isInsideDhaka ? 'w-1/2' : 'w-4/5 mt-4'}`}>
                     Pay Now
-                </label>
+                </label> */}
                 <input onChange={(e) => setPaymentType(e.target.value)} type="radio" id="online" value='SSLCOMMERZ' name="paymentMethod" className="focus:ring-0 hidden" />
             </div>
            {

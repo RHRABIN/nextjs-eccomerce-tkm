@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
-const AddressForm = ({ address={}, onCloseModal }) => {
+const AddressForm = ({ address, onCloseModal }) => {
     const [newAddress, setNewAddress] = useState();
     const { user, setAddressOpen, addressSuccess, setAddressSuccess } = useContext(AuthContext);
     const [division, setDivision] = useState(null);
@@ -14,6 +14,7 @@ const AddressForm = ({ address={}, onCloseModal }) => {
     const [subDistrict, setSubDistrict] = useState(null);
     const [loading, setLoading] = useState(true);
     const [isLoading, setIsLoadng] = useState(false)
+    const [divisionNotClick, setDivisionNotClick] = useState(false)
     const router = useRouter()
 
     useEffect(() => {
@@ -64,10 +65,7 @@ const AddressForm = ({ address={}, onCloseModal }) => {
     }, [newAddress?.district]);
 
 
-    const { _id, shippingName, shippingPhone, shippingEmail } = address || {};
-
-
-
+    const { _id, shippingName, shippingPhone, shippingEmail, district:defaultDistrict, division:defaultDivision, address:defaultAddress, upazila } = address || {};
 
     const makeOptions = (options) => {
         let allOptions = [];
@@ -113,7 +111,7 @@ const AddressForm = ({ address={}, onCloseModal }) => {
 
         const updateAddress = { ...newAddress };
         updateAddress[name] = value;
-        setNewAddress(updateAddress);
+        setNewAddress(address);
     }
 
     return (
@@ -121,16 +119,19 @@ const AddressForm = ({ address={}, onCloseModal }) => {
             <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Name <span className='text-red-600'>*</span></label>
             <input onChange={handleAddressChange} defaultValue={shippingName} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Name' name='shippingName' type="text" />
 
-            <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Town / City <span className='text-red-600'>*</span></label>
-            <input onChange={handleAddressChange} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Town' name='town' type="text" />
+            {/* <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Town / City <span className='text-red-600'>*</span></label>
+            <input onChange={handleAddressChange} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Town' name='town' type="text" /> */}
 
             <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Select Division <span className='text-red-600'>*</span></label>
-                    <select onChange={handleAddressChange} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="division" id="">
+                    <select onChange={handleAddressChange} onClick={()=> setDivisionNotClick(true)} defaultValue={defaultDivision} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="division" id="">
+                        {(defaultDivision && !divisionNotClick) && <option value={defaultDivision} >{defaultDivision}</option>} 
                         {
                             makeOptions(division?.result)
                         }
+
+                        
                     </select>
                 </div>
                 {/* <div>
@@ -140,10 +141,11 @@ const AddressForm = ({ address={}, onCloseModal }) => {
 
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Select District <span className='text-red-600'>*</span></label>
-                    <select onChange={handleAddressChange} disabled={!newAddress?.division} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="district" id="">
+                    <select onChange={handleAddressChange} defaultValue={defaultDistrict} disabled={!newAddress?.division} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="district" id="">
                         {
                             makeOptions(district?.result)
                         }
+                        {(defaultDistrict && !district?.result) && <option value={defaultDistrict} >{defaultDistrict}</option>}
                     </select>
                 </div>
                 {/* <div>
@@ -154,10 +156,11 @@ const AddressForm = ({ address={}, onCloseModal }) => {
 
                 <div>
                     <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Select Upazilla <span className='text-red-600'>*</span></label>
-                    <select disabled={!newAddress?.district} onChange={handleAddressChange} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="upazila" id="">
+                    <select disabled={!newAddress?.district} defaultValue={upazila} onChange={handleAddressChange} className='border outline-none rounded-md w-full px-2 py-1 text-sm' name="upazila" id="">
                         {
                             makeOptions(subDistrict?.result)
                         }
+                        {(upazila && !subDistrict?.result) && <option value={upazila} >{upazila}</option>}
                     </select>
                 </div>
                 <div>
@@ -166,8 +169,8 @@ const AddressForm = ({ address={}, onCloseModal }) => {
                 </div>
             </div>
 
-            <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Street Address <span className='text-red-600'>*</span></label>
-            <input onChange={handleAddressChange} defaultValue={address?.address} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Address' name='address' type="text" />
+            <label className='block my-2 text-sm text-black opacity-90' htmlFor="">Address <span className='text-red-600'>*</span></label>
+            <textarea onChange={handleAddressChange} defaultValue={defaultAddress} className='border outline-none px-2 py-1 rounded-md w-full text-sm placeholder:text-xs' placeholder='Address' name='address' type="text" />
             
 
             <div className='flex items-center justify-end'>

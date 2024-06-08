@@ -7,7 +7,7 @@ import AddressForm from './AddressForm';
 import toast from "react-hot-toast";
 import { Modal } from "antd";
 
-const AddressCard = ({onCloseModal}) => {
+const AddressCard = ({ onCloseModal }) => {
     const { user, addressSuccess, setAddressSuccess } = useContext(AuthContext);
     const [addressOpen, setAddressOpen] = useState(false);
     const [editAddress, setEditAddress] = useState({});
@@ -78,6 +78,7 @@ const AddressCard = ({onCloseModal}) => {
     if (error) {
         return <div>Error: {error}</div>;
     }
+
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
             {
@@ -95,16 +96,7 @@ const AddressCard = ({onCloseModal}) => {
                                 }
                                 <div>
                                     <button onClick={() => handleEditAddress(adrs)} className='text-blue-500 text-sm'>Edit</button>
-                                    <Modal
-                                        title="Edit Address"
-                                        centered
-                                        open={addressOpen}
-                                        onCancel={() => setAddressOpen(false)}
-                                        footer={false}
-                                    >
 
-                                        <AddressForm address={editAddress} />
-                                    </Modal>
                                 </div>
                             </div>
                         </div>
@@ -121,6 +113,17 @@ const AddressCard = ({onCloseModal}) => {
 
                 )
             }
+
+            {editAddress && <Modal
+                title="Edit Address"
+                centered
+                open={addressOpen}
+                onCancel={() => setAddressOpen(false)}
+                footer={false}
+            >
+
+                <AddressForm address={editAddress} />
+            </Modal>}
         </div>
 
     );
