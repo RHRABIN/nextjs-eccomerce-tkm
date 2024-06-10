@@ -6,12 +6,16 @@ import CheckoutNewAddress from '@/clientSideRender/checkout/CheckoutNewAddress';
 import { getAddToCartDataByEmail } from '@/config/addCartToapi';
 import { AuthContext } from '@/context/AuthProvider';
 import { getActiveAddress } from '@/config/addressApi';
+import { useRouter } from 'next/navigation';
 
 const CheckoutContent = () => {
     const { user, deleteSuccess, checkoutSuccess, addressSuccess } = useContext(AuthContext);
     
     const [cartData, setCartData] = useState(null);
     const [activeAddress, setActiveAddress] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const router = useRouter()
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,6 +28,8 @@ const CheckoutContent = () => {
                 setActiveAddress(addressResponse.data);
             } catch (error) {
                 console.error(error)
+            }finally{
+                setIsLoading(false)
             }
         };
 
@@ -36,10 +42,17 @@ const CheckoutContent = () => {
     }, [user?.data?.user?.email, checkoutSuccess, deleteSuccess, addressSuccess]);
 
     const {shippingName, upazila, district, division, shippingPhone, address} = activeAddress?.data || {};
+
+    if(!isLoading && !cartData?.data?.data?.cartData?.products){
+        router.replace('/')
+    }
     
     return (
         <div>
-            <CheckoutNewAddress />
+            {
+                isLoading ? <p className='text-center'>Loading...</p> : <>
+                
+                <CheckoutNewAddress />
 
             {
                 activeAddress ?
@@ -64,6 +77,8 @@ const CheckoutContent = () => {
                     <p className='text-center'>No Cart Data Found</p>
                 }
             </div>
+                </>
+            }
         </div>
     );
 };

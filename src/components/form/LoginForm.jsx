@@ -36,7 +36,7 @@ const LoginForm = () => {
                         setLoginSuccess(!loginSuccess);
                         setTimeout(() => {
                             window.location.reload()
-                        }, 500);
+                        }, 200);
                     } else {
                         setIsError(true)
                     }

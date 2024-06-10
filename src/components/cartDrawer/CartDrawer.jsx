@@ -9,15 +9,18 @@ import { Drawer } from 'antd';
 import { AiOutlineClose } from 'react-icons/ai';
 import axios from 'axios';
 import { baseUrl } from '@/config/baseUrl';
+import { useRouter } from 'next/navigation';
 
 const CartDrawer = () => {
     const { user, isCartSuccess, setIsCartSuccess, deleteSuccess, setDeleteSuccess } = useContext(AuthContext)
     const [openDrawer, setOpenDrawer] = useState(false)
     const [cartData, setCartData] = useState();
+    const router = useRouter();
+
     useEffect(() => {
         const cartMutation = async () => {
             try {
-                if(user?.data?.user?.email){
+                if (user?.data?.user?.email) {
                     const response = await axios.post(`${baseUrl}/cart/myCart/${user?.data?.user?.email}`);
                     setCartData(response?.data?.data);
                 }
@@ -64,8 +67,17 @@ const CartDrawer = () => {
                         </div>
                         <div className="mb-10 mt-5 w-full">
 
-                            {user?.data?.user?.email ? <Link onClick={() => setOpenDrawer(false)} href='/checkout' className="bg-secondary text-white hover:text-white text-lg p-2 w-full block text-center font-medium rounded hover:opacity-90">Place Order</Link> :
-
+                            {user?.data?.user?.email ?
+                                <button 
+                                disabled={!cartData?.subtotal}
+                                onClick={() => {
+                                    router.replace('/checkout')
+                                    setOpenDrawer(false)
+                                }} 
+                                className={`bg-secondary text-white hover:text-white text-lg p-2 w-full block text-center font-medium rounded hover:opacity-90 ${cartData?.subtotal ? '' : 'cursor-not-allowed'}`}>
+                                    Place Order
+                                </button> 
+                                :
                                 <Link onClick={() => setOpenDrawer(false)} href='/login' className="bg-secondary text-white hover:text-white text-lg p-2 w-full block text-center font-medium rounded hover:opacity-90">Place Order</Link>}
 
                             <Link onClick={() => setOpenDrawer(false)} href='/' className="text-gray-800 text-lg font-medium mt-4 hover:text-black text-center block">Continue Shopping</Link>

@@ -1,6 +1,7 @@
 'use client'
 import { placeSingleOrderByEmail } from '@/config/addCartToapi';
 import { AuthContext } from '@/context/AuthProvider';
+import { useRouter } from 'next/navigation';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -8,6 +9,7 @@ const PaymentClient = ({ email, product }) => {
     const [paymentType, setPaymentType] = useState('COD');
     const { setCheckoutCart, setIsCartSuccess } = useContext(AuthContext)
     const { discountAmount, shippingCharge, total, isInsideDhaka } = product || {};
+    const router = useRouter();
 
     const handlePayment = async () => {
         if (!paymentType) {
@@ -22,13 +24,17 @@ const PaymentClient = ({ email, product }) => {
             }
             if (modifiedData) {
                 const response = await placeSingleOrderByEmail(email, modifiedData)
-                if (response) {
-                    toast.success('Order Successfull')
+                if (response.data) {
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 200);
+                    toast.success('Order Successfull');
+                    router.replace(`/order-success/${response.data.orderId}`)
                     setCheckoutCart(true)
                     setIsCartSuccess(true)
                 }
-            }else{
-            toast.error('Something went wring please try again')
+            }else {
+                toast.error('Something went wring please try again')
             }
         }
         else if(paymentType === 'SSLCOMMERZ'){
