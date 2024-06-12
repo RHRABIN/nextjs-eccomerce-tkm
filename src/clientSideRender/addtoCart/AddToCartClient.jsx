@@ -2,6 +2,7 @@
 import { addToCartNewDataByEmail } from '@/config/addCartToapi';
 import { addToWishListByEmail } from '@/config/wishlistApi';
 import { AuthContext } from '@/context/AuthProvider';
+import { useRouter } from 'next/navigation';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaRegHeart } from 'react-icons/fa6';
@@ -10,6 +11,7 @@ const AddToCartClient = ({ product }) => {
     const { _id, offerPrice } = product || {};
     const { user, isCartSuccess, setIsCartSuccess } = useContext(AuthContext);
     const email = user?.data?.user?.email || {};
+    const router = useRouter()
 
 
     const [isLoading, setIsLoading] = useState(false);
@@ -17,18 +19,19 @@ const AddToCartClient = ({ product }) => {
     const handleAddToCart = async () => {
         setIsLoading(true);
 
-        let data = {};
-        if (email) {
-            data = {
-                product: _id,
-                offerPrice,
-            };
-        }
+        const data = {
+            product: _id,
+            offerPrice,
+        };
 
         try {
-            await addToCartNewDataByEmail(email, data) || {};
-            setIsCartSuccess(true);
-            toast.success('Cart addedd Successfully')
+            if (user?.data?.user?.email) {
+                await addToCartNewDataByEmail(user?.data?.user?.email, data);
+                setIsCartSuccess(true)
+                toast.success('Cart addedd Successfully');
+            } else {
+                router.push('/login')
+            }
         } catch (error) {
             console.error('Error adding to cart:', error);
         } finally {
@@ -43,9 +46,12 @@ const AddToCartClient = ({ product }) => {
             const res = await addToWishListByEmail(email, { product: _id });
             if (res) {
                 toast.success('Wishlist added successfully');
+            } else {
+                toast.error("Please sign in your account")
             }
         }
     }
+
     return (
         <>
             <button onClick={handleWishlist} className='w-1/4  justify-start hidden md:flex'>

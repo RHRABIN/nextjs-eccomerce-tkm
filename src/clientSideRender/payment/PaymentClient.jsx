@@ -24,14 +24,17 @@ const PaymentClient = ({ email, product }) => {
             }
             if (modifiedData) {
                 const response = await placeSingleOrderByEmail(email, modifiedData)
-                if (response.data) {
+                console.log(response)
+                if (response?.data) {
                     setTimeout(() => {
                         window.location.reload()
                     }, 200);
                     toast.success('Order Successfull');
-                    router.replace(`/order-success/${response.data.orderId}`)
+                    router.replace(`/order-success/${response?.data?.orderId}`)
                     setCheckoutCart(true)
                     setIsCartSuccess(true)
+                }else{
+                    toast.error('Address not found')
                 }
             }else {
                 toast.error('Something went wring please try again')
