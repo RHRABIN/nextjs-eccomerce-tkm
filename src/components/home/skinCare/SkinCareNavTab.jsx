@@ -57,14 +57,14 @@ const SkinCareNavTab = ({ bestSellingProducts, skinCategory, concernCategory, ro
                     {
                         skinCategory?.map(category =>
                             <div key={category?._id} className='px-2 py-10'>
-                                <Link href={`/products?subcat=${category?.slug}`} className='relative'>
+                                <Link href={`/products?subcat=${category?.slug}`} className='relative flex items-center justify-center'>
                                     <Image
                                         className='w-full'
                                         height={720}
                                         width={1280}
                                         quality={100}
                                         src={category?.image ? category?.image : img} alt={category?.title} />
-                                    <p className='absolute bottom-5 text-center w-full'>{category?.title}</p>
+                                    <p className='absolute inset-0 flex items-center justify-center text-center w-full font-bold'>{category?.title}</p>
                                 </Link>
                             </div>
                         )
@@ -77,14 +77,14 @@ const SkinCareNavTab = ({ bestSellingProducts, skinCategory, concernCategory, ro
                     {
                         concernCategory?.map(category =>
                             <div key={category?._id} className='px-2 py-10'>
-                                <Link href={`/products?subcat=${category?.slug}`} className='relative'>
+                                <Link href={`/products?subcat=${category?.slug}`} className='relative flex items-center justify-center'>
                                     <Image
                                         className='w-full'
                                         height={720}
                                         width={1280}
                                         quality={100}
                                         src={category?.image ? category?.image : img} alt={category?.title} />
-                                    <p className='absolute bottom-5 text-center w-full'>{category?.title}</p>
+                                    <p className='absolute inset-0 flex items-center justify-center text-center w-full font-bold'>{category?.title}</p>
                                 </Link>
                             </div>
                         )
@@ -98,14 +98,14 @@ const SkinCareNavTab = ({ bestSellingProducts, skinCategory, concernCategory, ro
                     {
                         routineCategory?.map(category =>
                             <div key={category?._id} className='px-2 py-10'>
-                                <Link href={`/products?category=${category?.slug}`} className='relative'>
+                                <Link href={`/products?category=${category?.slug}`} className='relative flex items-center justify-center'>
                                     <Image
                                         className='w-full'
                                         height={720}
                                         width={1280}
                                         quality={100}
                                         src={category?.image ? category?.image : img} alt={category?.title} />
-                                    <p className='absolute bottom-5 text-center w-full'>{category?.title}</p>
+                                    <p className='absolute inset-0 flex items-center justify-center text-center w-full font-bold'>{category?.title}</p>
                                 </Link>
                             </div>
                         )
