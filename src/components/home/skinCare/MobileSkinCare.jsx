@@ -68,7 +68,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                                 width={1280}
                                                 quality={100}
                                                 src={category?.image ? category?.image : img} alt={category?.title} />
-                                            <p className='absolute inset-0 flex items-center justify-center text-center w-full font-bold'>{category?.title}</p>
+                                            <p className='absolute inset-0 flex items-center justify-center text-center w-full font-bold uppercase'>{category?.title}</p>
                                         </Link>
                                     </div>
                                 )
@@ -97,7 +97,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                                 width={1280}
                                                 quality={100}
                                                 src={category?.image ? category?.image : img} alt={category?.title} />
-                                            <p className='absolute inset-0 flex items-center justify-center text-center w-full font-bold'>{category?.title}</p>
+                                            <p className='absolute inset-0 flex items-center justify-center text-center w-full font-bold uppercase'>{category?.title}</p>
                                         </Link>
                                     </div>
                                 )
@@ -126,7 +126,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                         //                         width={1280}
                         //                         quality={100}
                         //                         src={category?.image ? category?.image : img} alt={category?.title} />
-                        //                     <p className='absolute inset-0 flex items-center justify-center text-center w-full font-bold'>{category?.title}</p>
+                        //                     <p className='absolute inset-0 flex items-center justify-center text-center w-full font-bold uppercase'>{category?.title}</p>
                         //                 </Link>
                         //             </div>
                         //         )
@@ -143,7 +143,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                                 width={1280}
                                                 quality={100}
                                                 src={category?.image ? category?.image : img} alt={category?.title} />
-                                            <p className='absolute inset-0 flex items-center justify-center text-center w-full font-bold'>{category?.title}</p>
+                                            <p className='absolute inset-0 flex items-center justify-center text-center w-full font-bold uppercase'>{category?.title}</p>
                                         </Link>
                                     </div>
                                 )
