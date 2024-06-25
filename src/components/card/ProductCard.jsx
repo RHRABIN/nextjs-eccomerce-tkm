@@ -6,7 +6,7 @@ import AddToCartClient from '@/clientSideRender/addtoCart/AddToCartClient';
 import OfferCountDown from './OfferCountDown';
 
 const ProductCard = ({ product }) => {
-    const { _id, name, images, price, offerPrice, productType, slug, manufacturer, timeStamps, expireDate, profileImage , badge } = product || {};
+    const { _id, name, images, price, offerPrice, productType, slug, manufacturer, timeStamps, expireDate, profileImage , badge, quantity } = product || {};
 
     return (
         <div className='py-4 relative cursor-pointer group md:hover:shadow-md md:hover:shadow-dark md:hover:scale-105 duration-500 transition'>
@@ -36,6 +36,7 @@ const ProductCard = ({ product }) => {
                                 <span className='font-[auto]'>৳</span>{offerPrice}
                             </>}
                         </p>
+                        {quantity && quantity > 0 ? <p className='text-green-500 text-xs'>Product In Stock</p> : ''}
                     </div>
                     {timeStamps ?
                         <div className='absolute -top-[20px] left-0 right-0'>

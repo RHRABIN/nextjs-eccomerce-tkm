@@ -10,7 +10,7 @@ import Rating from '../rating/Rating';
 import { Collapse } from 'antd';
 
 const ProductDescription = ({ product }) => {
-    const { name, totalRating, manufacturer, tags, price, offerPrice, description, directions, ingredients, variation, shipping, activities, badge } = product || {};
+    const { name, totalRating, manufacturer, tags, price, offerPrice, description, directions, ingredients, variation, shipping, activities, badge,quantity } = product || {};
 
     
     
@@ -31,7 +31,7 @@ const ProductDescription = ({ product }) => {
             <div className='flex items-center text-dark text-lg md:text-xl mb-3'>
                 <Rating rate={totalRating} />
             </div>
-            <div className='text-2xl md:text-3xl font-semibold text-gray-800 flex items-start gap-2 mb-3 border-t border-dotted border-t-dark pt-3'>
+            <div className='text-2xl md:text-3xl font-semibold text-gray-800 flex items-start gap-2 mb-2 border-t border-dotted border-t-dark pt-3'>
               
                 {price == offerPrice ? <> <span className='font-[auto]'>৳</span>{offerPrice ? offerPrice : price}</> : <>
                     <span className='font-[auto]'>৳</span>{offerPrice}
@@ -39,13 +39,20 @@ const ProductDescription = ({ product }) => {
                 </>}
             </div>
 
+                {/* {
+                    quantity && quantity > 0 ? <div className='mb-2 text-green-500 text-sm'>Product In Stock</div> : ''
+                } */}
+
             <AddToCartButton product={product} />
 
             <div className='flex items-center gap-3 mt-3'>
                 <FaYoutube className='border border-gray-300 p-2 rounded-full text-dark text-4xl cursor-pointer hover:bg-[#CD201F] hover:text-white' />
+                <Link href='https://www.facebook.com/thekoreanmallbd/' target='_blank'>
                 <FaFacebookF className='border border-gray-300 p-2 rounded-full text-dark text-4xl cursor-pointer hover:bg-[#1877F2] hover:text-white' />
-                <FaInstagram className='border border-gray-300 p-2 rounded-full text-dark text-4xl cursor-pointer hover:bg-gradient-to-br from-[#f9ce34]
-                via-[#ee2a7b] to-[#6228d7] hover:text-white' />
+                </Link>
+                <Link href="https://www.instagram.com/thekoreanmallbd/" target='_blank'>
+                    <FaInstagram className='border border-gray-300 p-2 rounded-full text-dark text-4xl cursor-pointer hover:bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] hover:text-white' />
+                </Link>
             </div>
 
             <div className='flex flex-wrap gap-2 mt-4'>

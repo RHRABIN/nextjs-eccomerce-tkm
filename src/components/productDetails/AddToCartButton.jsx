@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation';
 
 const AddToCartButton = ({ product }) => {
     const [productQty, setProductQty] = useState(1)
-    const { _id, offerPrice } = product || {};
+    const { _id, offerPrice , quantity} = product || {};
     const { user, setIsCartSuccess } = useContext(AuthContext);
     const email = user?.data?.user?.email || {};
     const router = useRouter()
@@ -108,7 +108,9 @@ const AddToCartButton = ({ product }) => {
                     </button>
             </div>
             <div className='w-3/5 flex gap-[1px] items-center'>
-                <button onClick={handleAddToCart} className='bg-black border border-black text-white w-full py-2 tracking-widest'>{isLoading ? 'ADD TO BAG...' : 'ADD TO BAG'}</button>
+                {
+                    quantity && quantity > 0 ? <button onClick={handleAddToCart} className='bg-black border border-black text-white w-full py-2 tracking-widest'>{isLoading ? 'ADD TO BAG...' : 'ADD TO BAG'}</button> :  <button disabled className='bg-black border border-black text-white w-full py-2 tracking-widest'>Out of Stock</button>
+                }
                 <button onClick={handleWishlist} className='w-[60px] h-[43px] flex items-center justify-center bg-black border border-black text-white tracking-widest'>
                 {wishLoading ? <SmallLoader /> : <RiHeartAddLine size={20} color='white'/>}
                 </button>

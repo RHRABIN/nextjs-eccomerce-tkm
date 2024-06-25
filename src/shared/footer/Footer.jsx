@@ -11,7 +11,7 @@ const Footer = () => {
         <div className='bg-secondary py-8 md:p-8'>
             <div className='container mx-auto'>
                 <div className='mx-4 md:mx-0'>
-                    <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
+                    <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
                         <div className='text-dark'>
                             <Link href='/'>
                                 <Image className='w-52 h-auto' height={720} width={1280} src={logo} alt='logo' />
@@ -51,6 +51,15 @@ const Footer = () => {
                                 <li className='text-dark list-none my-2 hover:text-white'><Link href='/account'>My Account</Link></li>
                                 <li className='text-dark list-none my-2 hover:text-white'><Link href='/account/orders'>Order History</Link></li>
                                 <li className='text-dark list-none my-2 hover:text-white'><Link href='/account/wishlist'>MY Wishlist</Link></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 className='text-white text-lg font-semibold'>Licenses & Services</h4>
+                            <ul>
+                                <li className='text-dark list-none my-2 hover:text-white'>TRADE/DNCC/024738/2023</li>
+                                <li className='text-dark list-none my-2 hover:text-white'>7 Days happy return</li>
+
                             </ul>
                         </div>
 

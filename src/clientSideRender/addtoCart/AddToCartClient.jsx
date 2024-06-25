@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 import { FaRegHeart } from 'react-icons/fa6';
 
 const AddToCartClient = ({ product }) => {
-    const { _id, offerPrice } = product || {};
+    const { _id, offerPrice, quantity } = product || {};
     const { user, isCartSuccess, setIsCartSuccess } = useContext(AuthContext);
     const email = user?.data?.user?.email || {};
     const router = useRouter()
@@ -57,7 +57,9 @@ const AddToCartClient = ({ product }) => {
             <button onClick={handleWishlist} className='w-1/4  justify-start hidden md:flex'>
                 <FaRegHeart className='md:text-2xl' />
             </button>
-            <button onClick={handleAddToCart} className='bg-primary p-1.5 text-white uppercase text-sm md:p-2 w-full'>{isLoading ? 'Add to cart..' : 'Add to cart'}</button>
+            {
+                quantity && quantity > 0 ? <button onClick={handleAddToCart} className='bg-primary p-1.5 text-white uppercase text-sm md:p-2 w-full'>{isLoading ? 'Add to cart..' : 'Add to cart'}</button> : <button disabled className='bg-primary p-1.5 text-white uppercase text-sm md:p-2 w-full'>Out of Stock</button>
+            }
         </>
     );
 };
