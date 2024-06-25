@@ -13,24 +13,11 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
         <div className='md:hidden mt-10'>
 
             <Collapse
+                accordion
+                key="1"
                 size="small"
                 expandIconPosition='right'
-                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
-                // items={[
-                //     {
-                //         key: '1',
-                //         label: 'BEST SELLER',
-                        // children: <div className='flex overflow-x-scroll details-image gap-2'>
-                        //     {
-                        //         bestSellingProducts?.map(product =>
-                        //             <div key={product?._id} className='px-2 pb-5 min-w-[10rem]'>
-                        //                 <ProductCard product={product} />
-                        //             </div>
-                        //         )
-                        //     }
-                        // </div>
-                //     },
-                // ]}
+                className='border-none bg-transparent'
                 items={[
                     {
                         key: '1',
@@ -45,17 +32,9 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                             }
                         </Slider>
                     },
-                ]}
-            />
 
-
-            <Collapse
-                size="small"
-                expandIconPosition='right'
-                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
-                items={[
                     {
-                        key: '1',
+                        key: '2',
                         label: 'SKIN TYPE',
                         children: <Slider {...productSettings} className='mb-10'>
                             {
@@ -68,23 +47,16 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                                 width={1280}
                                                 quality={100}
                                                 src={category?.image ? category?.image : img} alt={category?.title} />
-                                            <p className='absolute inset-0 flex items-center justify-center text-center w-full font-bold uppercase'>{category?.title}</p>
+                                            <p className='absolute px-2 inset-0 flex items-center justify-center text-center w-full font-bold uppercase bg-[#00000033]'>{category?.title}</p>
                                         </Link>
                                     </div>
                                 )
                             }
                         </Slider>
                     },
-                ]}
-            />
 
-            <Collapse
-                size="small"
-                expandIconPosition='right'
-                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4'
-                items={[
                     {
-                        key: '1',
+                        key: '3',
                         label: 'SKIN CONCERN',
                         children: <Slider {...productSettings} className='mb-10'>
                             {
@@ -97,41 +69,17 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                                 width={1280}
                                                 quality={100}
                                                 src={category?.image ? category?.image : img} alt={category?.title} />
-                                            <p className='absolute inset-0 flex items-center justify-center text-center w-full font-bold uppercase'>{category?.title}</p>
+                                            <p className='absolute px-2 inset-0 flex items-center justify-center text-center w-full font-bold uppercase bg-[#00000033]'>{category?.title}</p>
                                         </Link>
                                     </div>
                                 )
                             }
                         </Slider>
                     },
-                ]}
-            />
 
-            <Collapse
-                size="small"
-                expandIconPosition='right'
-                className='border-none mb-2  py-1 bg-[#f9f9f9] px-4'
-                items={[
                     {
-                        key: '1',
+                        key: '4',
                         label: 'ROUTINE',
-                        // children: <div className='flex overflow-x-scroll details-image gap-2 '>
-                        //     {
-                        //         routineCategory?.map(category =>
-                        //             <div key={category?._id} className='px-2 min-w-[10rem]'>
-                        //                 <Link href={`/products?category=${category?.slug}`} className='relative flex items-center justify-center'>
-                        //                     <Image
-                        //                         className='w-full'
-                        //                         height={720}
-                        //                         width={1280}
-                        //                         quality={100}
-                        //                         src={category?.image ? category?.image : img} alt={category?.title} />
-                        //                     <p className='absolute inset-0 flex items-center justify-center text-center w-full font-bold uppercase'>{category?.title}</p>
-                        //                 </Link>
-                        //             </div>
-                        //         )
-                        //     }
-                        // </div>
                         children: <Slider {...productSettings} className='mb-10'>
                             {
                                 routineCategory?.map(category =>
@@ -142,14 +90,15 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                                 height={720}
                                                 width={1280}
                                                 quality={100}
-                                                src={category?.image ? category?.image : img} alt={category?.title} />
-                                            <p className='absolute inset-0 flex items-center justify-center text-center w-full font-bold uppercase'>{category?.title}</p>
+                                                src={!category?.image ? category?.image : img} alt={category?.title} />
+                                            <p className='absolute px-2 inset-0 flex items-center justify-center text-center w-full font-bold uppercase bg-[#00000033]'>{category?.title}</p>
                                         </Link>
                                     </div>
                                 )
                             }
                         </Slider>
                     },
+                    
                 ]}
             />
 

@@ -208,6 +208,14 @@
 
 .ant-collapse>.ant-collapse-item {
     border-bottom: none !important;
+    margin-bottom: 6px;
+    background: #f9f9f9;
+    width: 100%;
+    padding: 2px 8px;
+}
+
+.ant-collapse>.ant-collapse-item-active {
+    margin-bottom: 0px;
 }
 
 .ant-collapse .ant-collapse-content {
