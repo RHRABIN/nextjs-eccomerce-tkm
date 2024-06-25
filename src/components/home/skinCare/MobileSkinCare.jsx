@@ -22,7 +22,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                     {
                         key: '1',
                         label: 'BEST SELLER',
-                        children: <Slider {...productSettings} className='mb-10 h-[390px]'>
+                        children: <Slider {...productSettings} className='mb-10 h-[400px]'>
                             {
                                 bestSellingProducts?.map(product =>
                                     <div key={product?._id} className='px-2 pb-5 min-w-[10rem]'>
