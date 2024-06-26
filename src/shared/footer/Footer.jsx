@@ -58,7 +58,9 @@ const Footer = () => {
                             <h4 className='text-white text-lg font-semibold'>Licenses & Services</h4>
                             <ul>
                                 <li className='text-dark list-none my-2 hover:text-white'>TRADE/DNCC/024738/2023</li>
-                                <li className='text-dark list-none my-2 hover:text-white'>7 Days happy return</li>
+                                <li className='text-dark list-none my-2 hover:text-white'>Inside Dhaka 48 Hours Delivery</li>
+                                <li className='text-dark list-none my-2 hover:text-white'>Outside Dhaka 72 Hours Delivery</li>
+                                <li className='text-dark list-none my-2 hover:text-white'>7 Days Happy Return</li>
 
                             </ul>
                         </div>
