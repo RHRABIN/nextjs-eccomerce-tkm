@@ -11,10 +11,16 @@ import ImageSection from '@/components/productDetails/ImageSection';
 export async function generateMetadata({ params }) {
     const { slug } = params || {};
     const { data: product } = await getSingleProduct(slug) || {};
-    const { name, description } = product?.result || {};
+    const { name, description, images } = product?.result || {};
     return {
         title: name,
-        description: description
+        description: description,
+        openGraph: {
+            title: name ? `${name}` : 'The Korean Mall',
+            description: description,
+            url: `https://koreanmallbd.org/products/${slug}`,
+            image: images?.[0]
+        },
     }
 }
 
