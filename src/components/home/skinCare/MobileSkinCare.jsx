@@ -47,7 +47,9 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                                 width={1280}
                                                 quality={100}
                                                 src={category?.image ? category?.image : img} alt={category?.title} />
-                                            <p className='absolute px-2 inset-0 flex items-center justify-center text-center w-full font-bold uppercase bg-[#00000033] text-[#f1f1f1]'>{category?.title}</p>
+                                            {
+                                                !category?.image && <p className='absolute px-2 inset-0 flex items-center justify-center text-center w-full font-bold uppercase bg-[#00000033] text-[#f1f1f1]'>{category?.title}</p>
+                                            }
                                         </Link>
                                     </div>
                                 )
@@ -69,7 +71,9 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                                 width={1280}
                                                 quality={100}
                                                 src={category?.image ? category?.image : img} alt={category?.title} />
-                                            <p className='absolute px-2 inset-0 flex items-center justify-center text-center w-full font-bold uppercase bg-[#00000033] text-[#f1f1f1]'>{category?.title}</p>
+                                            {
+                                                !category?.image && <p className='absolute px-2 inset-0 flex items-center justify-center text-center w-full font-bold uppercase bg-[#00000033] text-[#f1f1f1]'>{category?.title}</p>
+                                            }
                                         </Link>
                                     </div>
                                 )
@@ -91,7 +95,9 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                                 width={1280}
                                                 quality={100}
                                                 src={!category?.image ? category?.image : img} alt={category?.title} />
-                                            <p className='absolute px-2 inset-0 flex items-center justify-center text-center w-full font-bold uppercase bg-[#00000033] text-[#f1f1f1]'>{category?.title}</p>
+                                            {
+                                                !category?.image && <p className='absolute px-2 inset-0 flex items-center justify-center text-center w-full font-bold uppercase bg-[#00000033] text-[#f1f1f1]'>{category?.title}</p>
+                                            }
                                         </Link>
                                     </div>
                                 )
