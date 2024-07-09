@@ -109,7 +109,7 @@ const SkinCareNavTab = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                         height={720}
                                         width={1280}
                                         quality={100}
-                                        src={!category?.image ? category?.image : img} alt={category?.title} />
+                                        src={category?.image ? category?.image : img} alt={category?.title} />
                                     {
                                         !category.image && <p className='absolute px-2 inset-0 flex items-center justify-center text-center w-full font-bold uppercase bg-[#00000033] text-[#f1f1f1]'>{category?.title}</p>
                                     }
