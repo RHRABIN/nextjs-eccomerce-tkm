@@ -22,7 +22,8 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                     {
                         key: '1',
                         label: 'BEST SELLER',
-                        children: <Slider {...productSettings} className='mb-10 h-[400px]'>
+                        children: <div>
+                            <Slider {...productSettings} className='mb-10 h-[410px]'>
                             {
                                 bestSellingProducts?.map(product =>
                                     <div key={product?._id} className='px-2 pb-5 min-w-[10rem]'>
@@ -30,7 +31,11 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                     </div>
                                 )
                             }
+                            <div className='text-end'>
+                                <Link href={'/'} className='py-2 px-3 border border-primary mb-1'>See More</Link>
+                            </div>
                         </Slider>
+                        </div>
                     },
 
                     {
@@ -87,7 +92,7 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                         children: <Slider {...productSettings} className='mb-10'>
                             {
                                 routineCategory?.map(category =>
-                                    <div key={category?._id} className='px-2 min-w-[10rem]'>
+                                    <div key={category?._id} className='px-2 pb-5'>
                                         <Link href={`/products?category=${category?.slug}`} className='relative flex items-center justify-center'>
                                             <Image
                                                 className='w-full'
