@@ -63,7 +63,7 @@ const CheckoutContent = () => {
                         <p className='font-light'><span className='bg-blue-100 p-1 rounded'>Details</span> | <span className='text-[#929292]'>{address} </span> <ChangeDelivaryAddress /></p>
 
                     </div> :
-                    <p className='text-center mt-5'>No Address Found</p>
+                    <p className='text-center mt-5 js--no-address'>No Address Found</p>
             }
 
             <div className='mt-4'>

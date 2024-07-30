@@ -36,7 +36,7 @@ const ProductCard = ({ product }) => {
                                 <span className='font-[auto]'>৳</span>{offerPrice}
                             </>}
                         </p>
-                        {quantity && quantity > 0 ? <p className='text-green-500 text-xs'>Product In Stock</p> : ''}
+                        {quantity && quantity > 0 ? <p className='text-green-500 text-xs hidden'>Product In Stock</p> : ''}
                     </div>
                     {timeStamps ?
                         <div className='absolute -top-[20px] left-0 right-0'>

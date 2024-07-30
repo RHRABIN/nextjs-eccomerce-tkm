@@ -27,15 +27,16 @@ const ProductDescription = ({ product }) => {
                 <Link href={`/brands/${manufacturer?.slug}`}>{manufacturer?.name}</Link>
             </h1>
             <h2 className='font-normal text-xl md:text-2xl text-gray-800 my-2 md:my-3'>{name}</h2>
-
             <div className='flex items-center text-dark text-lg md:text-xl mb-3'>
                 <Rating rate={totalRating} />
             </div>
             <div className='text-2xl md:text-3xl font-semibold text-gray-800 flex items-start gap-2 mb-2 border-t border-dotted border-t-dark pt-3'>
               
-                {price == offerPrice ? <> <span className='font-[auto]'>৳</span>{offerPrice ? offerPrice : price}</> : <>
+                {price == offerPrice ? <> <span className='font-[auto]'>৳</span>{offerPrice ? offerPrice : price} {quantity && quantity > 0 ? <span className='text-green-500 text-xs mt-2'>Product In Stock</span> : ''}</> : <>
                     <span className='font-[auto]'>৳</span>{offerPrice}
                     <del className='mr-2 text-[24px]'>৳{price}</del>
+                {quantity && quantity > 0 ? <span className='text-green-500 text-xs mt-2'>Product In Stock</span> : ''}
+
                 </>}
             </div>
 
@@ -81,7 +82,7 @@ const ProductDescription = ({ product }) => {
             <Collapse
                 size="small"
                 expandIconPosition='right'
-                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4 custom-bg'
+                className='border-none mb-2 bg-[#f9f9f9] custom-bg'
                 items={[
                     {
                         key: '1',
@@ -93,7 +94,7 @@ const ProductDescription = ({ product }) => {
             <Collapse
                 size="small"
                 expandIconPosition='right'
-                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4 custom-bg'
+                className='border-none mb-2 bg-[#f9f9f9] custom-bg'
                 items={[
                     {
                         key: '1',
@@ -105,7 +106,7 @@ const ProductDescription = ({ product }) => {
             <Collapse
                 size="small"
                 expandIconPosition='right'
-                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4 custom-bg'
+                className='border-none mb-2 bg-[#f9f9f9] custom-bg'
                 items={[
                     {
                         key: '1',
@@ -117,7 +118,7 @@ const ProductDescription = ({ product }) => {
             <Collapse
                 size="small"
                 expandIconPosition='right'
-                className='border-none mb-2 py-1 bg-[#f9f9f9] px-4 custom-bg'
+                className='border-none mb-2 bg-[#f9f9f9] custom-bg'
                 items={[
                     {
                         key: '1',

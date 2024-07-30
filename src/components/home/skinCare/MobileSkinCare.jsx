@@ -30,8 +30,8 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                     </div>
                                 )
                             }
-                            <div className='text-end'>
-                                <Link href={'/'} className='py-2 px-3 border border-primary mb-1'>See More</Link>
+                            <div className='!flex items-center justify-center h-[410px]'>
+                                <Link href={'/products?category=best'} className='py-2 px-3 border border-primary mb-1'>See More</Link>
                             </div>
                         </Slider>
                     },
@@ -57,6 +57,10 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                     </div>
                                 )
                             }
+
+                            <div className='!flex items-center justify-center'>
+                                <Link href={'/products?category=skin-type'} className='py-2 px-3 border border-primary mb-1'>See More</Link>
+                            </div>
                         </Slider>
                     },
 
@@ -81,6 +85,10 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                     </div>
                                 )
                             }
+
+                            <div className='!flex items-center justify-center'>
+                                <Link href={'/products?category=skin-concern'} className='py-2 px-3 border border-primary mb-1'>See More</Link>
+                            </div>
                         </Slider>
                     },
 
@@ -105,6 +113,10 @@ const MobileSkinCare = ({ bestSellingProducts, skinCategory, concernCategory, ro
                                     </div>
                                 )
                             }
+
+                            <div className='!flex items-center justify-center'>
+                                <Link href={'/products?category=routine'} className='py-2 px-3 border border-primary mb-1'>See More</Link>
+                            </div>
                         </Slider>
                     },
                     

@@ -6,7 +6,7 @@ export const productSettings = {
     slidesToShow: 4,
     slidesToScroll: 2,
     autoplay: false,
-    speed: 1000,
+    speed: 500,
     prevArrow: <ArrowLeft />,
     nextArrow: <ArrowRight />,
     responsive: [
