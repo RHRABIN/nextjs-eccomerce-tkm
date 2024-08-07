@@ -1,6 +1,7 @@
 'use client'
 import { placeSingleOrderByEmail } from '@/config/addCartToapi';
 import { AuthContext } from '@/context/AuthProvider';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -57,10 +58,10 @@ const PaymentClient = ({ email, product }) => {
                 Your Selected address is outside Dhaka. Please pay minimum 200 tk to confirm your order.
             </p>
         }
-            <div className={`py-2 font-semibold text-sm flex items-center gap-2 ${isInsideDhaka ? ' justify-between' : ' justify-center'}`}>
+            <div className={`py-2 font-semibold text-sm flex items-center gap-2 ${isInsideDhaka ? ' justify-center' : ' justify-center'}`}>
                 
-                    <label htmlFor="cash-on" className={`${paymentType === 'COD' ? 'bg-primary text-white' : 'bg-white'} cursor-pointer text-xs md:text-sm border-primary border py-1 px-2 rounded-md w-1/2 text-center`}>
-                    Cash On Delivery</label>
+                    <label htmlFor="cash-on" className={`${paymentType === 'COD' ? 'bg-[#e5e7eb]' : 'bg-white'} cursor-pointer text-xs md:text-sm border-[#e5e7eb] border py-1.5 px-2 rounded-md w-1/2 text-center flex items-center justify- gap-2`}>
+                    Cash On Delivery <Image width={30} height={30} src={'/cash.webp'} alt='cash'/></label>
                 <input onChange={(e) => setPaymentType(e.target.value)} type="radio" id="cash-on" value='COD' name="paymentMethod" className="focus:ring-0 hidden" />
                 
                 {/* {
@@ -78,7 +79,7 @@ const PaymentClient = ({ email, product }) => {
             </div>
            {
              <div className='mt-2 flex items-center justify-center'>
-             <button onClick={handlePayment} className='bg-secondary font-medium text-white px-6 py-1.5 rounded-md hover:opacity-90'>Place Order</button>
+             <button onClick={handlePayment} className='bg-secondary w-1/2 font-medium text-white px-6 py-1.5 rounded-md hover:opacity-90'>Place Order</button>
             </div> 
            }
         </>

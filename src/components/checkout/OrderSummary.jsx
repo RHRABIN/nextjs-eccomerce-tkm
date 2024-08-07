@@ -13,6 +13,7 @@ const OrderSummary = () => {
     
     const [cartData, setCartData] = useState(null)
     const [couponCode, setCouponCode] = useState("")
+    const [couponMsg, setCouponMsg] = useState("")
 
     const { discount, discountAmount, shippingCharge, subtotal, total, cartData:userCartData } = cartData?.data?.data || {};
 
@@ -46,14 +47,17 @@ const OrderSummary = () => {
         try {
            const response = await axios.post(`${baseUrl}/coupon/verify/${modifiedData.email}`, modifiedData);
             toast.success(response?.data?.message || "Successfyllu applied coupon");
+            setCouponMsg({message: `${couponCode} coupon applied success`, status: true})
             setAddressSuccess(true)
         } catch (error) {
-            toast.error(error.response.data.message || 'Please Select Payment Method')
+            toast.error(error.response.data.message || 'Please enter valid code')
+            setCouponMsg({message:  `${couponCode} ${error.response.data.message || 'Please enter valid code'}`, status: false})
         }
     }
 
     return (
         <div className='border rounded-md bg-white shadow-lg p-4'>
+            {couponMsg && <p className={`${couponMsg.status ? 'text-green-400' : 'text-red-500'} p-1`}>{couponMsg.message}</p>}
             <form onSubmit={handleCoupon} className='flex items-center justify-between gap-2'>
                 <input onChange={(e)=> setCouponCode(e.target.value)} value={couponCode} className='border border-dark outline-none p-2 w-full rounded-md placeholder:text-xs' placeholder='Gift Card or Discount Code' type="text" />
                 <button type='submit' className='bg-secondary text-white px-4 py-2 font-medium hover:opacity-90 rounded-md'>Apply</button>
