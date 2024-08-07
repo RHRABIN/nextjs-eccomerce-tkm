@@ -77,7 +77,7 @@ const PaymentClient = ({ email, product }) => {
                 <input onChange={(e) => setPaymentType(e.target.value)} type="radio" id="online" value='SSLCOMMERZ' name="paymentMethod" className="focus:ring-0 hidden" />
             </div>
            {
-             <div className='mt-4 flex items-center justify-center'>
+             <div className='mt-2 flex items-center justify-center'>
              <button onClick={handlePayment} className='bg-secondary font-medium text-white px-6 py-1.5 rounded-md hover:opacity-90'>Place Order</button>
             </div> 
            }
